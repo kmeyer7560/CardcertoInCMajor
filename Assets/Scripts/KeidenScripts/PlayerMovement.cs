@@ -6,7 +6,6 @@ public class TopDownMovement : MonoBehaviour
 {
     public float moveSpeed;
     public float activeSpeed;
-    public float dashSpeed;
     public float dashLength = .5f;
     public float dashCooldown = 1f;
     private float dashCounter;
@@ -29,16 +28,6 @@ public class TopDownMovement : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
         
         moveDirection = new Vector2(moveX, moveY).normalized;
-
-        if(Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            if (dashCoolCounter <= 0 && dashCounter <= 0)
-            {
-                activeSpeed = dashSpeed;
-                dashCounter = dashLength;
-            }
-        }
-
         if (dashCounter > 0)
         {
             dashCounter -= Time.deltaTime;
@@ -54,6 +43,7 @@ public class TopDownMovement : MonoBehaviour
         {
             dashCoolCounter -= Time.deltaTime;
         }
+
         Move();
     }
 
@@ -62,18 +52,24 @@ public class TopDownMovement : MonoBehaviour
         rb.velocity = new Vector2(moveDirection.x * activeSpeed, moveDirection.y * activeSpeed);
     }
 
-    public void Dash()
+    public void Dash(float dashSpeed)
     {
-        activeSpeed = dashSpeed;
-        dashCounter = dashLength;
+    
+            if (dashCoolCounter <= 0 && dashCounter <= 0)
+            {
+                activeSpeed = dashSpeed;
+                dashCounter = dashLength;
+            }
     }
 
     // Update is called once per frame
     void Update()
     {
     
-
-
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Dash(50);
+        }
 
 
 
