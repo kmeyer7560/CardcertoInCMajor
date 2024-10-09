@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public bool hasBeenPlayed;
+    public int handIndex;
+
+    private HandManager hm;
+
+
+    private void Start()
     {
-        
+        hm = FindObjectOfType<HandManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void playCard()
     {
-        
+        if(!hasBeenPlayed)
+        {
+            transform.position += Vector3.down * 5;
+            hasBeenPlayed = true;
+            hm.availableCardSlots[handIndex] = true;
+
+        }
     }
 }
