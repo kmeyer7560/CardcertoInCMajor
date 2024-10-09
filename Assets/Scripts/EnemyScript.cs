@@ -11,26 +11,26 @@ public class EnemyScript : MonoBehaviour
     
     private float timer;
     public GameObject player;
-    public int fireRate = 2;
-    
+    public double fireRate = 2.0;
     private bool shooting;
     public float speed = 10;
     private Transform playerTarget;
-    public int timeToShoot;
-
-    private float startTime = Time.realtimeSinceStartup;
+    public int timeToShoot = 2;
+    private double startTime;
+    public int range = 10;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         shooting = false;
         playerTarget = player.GetComponent<Transform>();
+        startTime = Time.realtimeSinceStartup;
     }
     void Update()
     {
         UpdateWalking();
         float distance = Vector2.Distance(transform.position, player.transform.position);
         
-        if(distance<10)
+        if(distance<=range)
         {
             timer += Time.deltaTime;
             
@@ -44,13 +44,17 @@ public class EnemyScript : MonoBehaviour
 
     void UpdateWalking()
     {
-        if(shooting){
-
-        }
-        if(Time.realtimeSinceStartup != timeToShoot && shooting)
+        if(shooting)
         {
-            startTime += Time.deltaTime;
-
+            if(Time.realtimeSinceStartup >= startTime + timeToShoot)
+            {
+                timeToShoot--;
+                if(timeToShoot<= 0)
+                {
+                    shooting = false;
+                }
+            }
+            startTime = Time.realtimeSinceStartup;
         }
         if(!shooting)
         {
@@ -61,6 +65,5 @@ public class EnemyScript : MonoBehaviour
     {
         shooting = true;
         Instantiate(bullet, bulletPos.position, Quaternion.identity);
-
     }
 }
