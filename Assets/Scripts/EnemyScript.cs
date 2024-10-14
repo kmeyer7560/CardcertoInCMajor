@@ -1,69 +1,99 @@
-using System;
 using UnityEngine;
-using System.Collections;
-using System.Runtime.CompilerServices;
 
 public class EnemyScript : MonoBehaviour
 {
-    //https://www.youtube.com/watch?v=--u20SaCCow
     public GameObject bullet;
     public Transform bulletPos;
-    
-    private float timer;
     public GameObject player;
-    public double fireRate = 2.0;
+    public float fireRate = 2.0f;
+    public float speed = 10f;
+    public float shootDuration = 2f;
+    public float range = 10f;
+
+    private float timer;
     private bool shooting;
-    public float speed = 10;
     private Transform playerTarget;
-    public int timeToShoot = 2;
-    private double startTime;
-    public int range = 10;
+    private float shootStartTime;
+
     void Start()
     {
+        //player is the object with the tag "Player"
         player = GameObject.FindGameObjectWithTag("Player");
+        //automatically makes shooting false so they dont shoot before being in range
         shooting = false;
+        //sets the player's transform component necessary for knowing where the player is
         playerTarget = player.GetComponent<Transform>();
-        startTime = Time.realtimeSinceStartup;
     }
+
     void Update()
     {
-        UpdateWalking();
+        //updates distance from player
         float distance = Vector2.Distance(transform.position, player.transform.position);
         
-        if(distance<=range)
+        //if distance is less then set range
+        if (distance <= range)
         {
-            timer += Time.deltaTime;
-            
-            if(timer > fireRate)
+            //if not shooting
+            if (!shooting)
             {
-                timer = 0;
-                Shoot();
+                //add 1 second to shoot timer
+                timer += Time.deltaTime;
+                
+                //firerate
+                if (timer >= fireRate)
+                {
+                    StartShooting();
+                }
             }
+            //else if shooting
+            else
+            {
+                //calculates shoot duration. Current time since the start of the game - when the enemy starts shooting >= set shoot duration variable. EX: if the shoot duration is 2 then stop after two seconds until told to start shooting again.
+                if (Time.time - shootStartTime >= shootDuration)
+                {
+                    StopShooting();
+                }
+            }
+        }
+        //else if enemy is out of range
+        else
+        {
+            StopShooting();
+        }
+        
+        //if not shooting then move towards player
+        if (!shooting)
+        {
+            MoveTowardsPlayer();
         }
     }
 
-    void UpdateWalking()
-    {
-        if(shooting)
-        {
-            if(Time.realtimeSinceStartup >= startTime + timeToShoot)
-            {
-                timeToShoot--;
-                if(timeToShoot<= 0)
-                {
-                    shooting = false;
-                }
-            }
-            startTime = Time.realtimeSinceStartup;
-        }
-        if(!shooting)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, playerTarget.position, speed * Time.deltaTime);
-        }
-    }
-    void Shoot()
+    void StartShooting()
     {
         shooting = true;
+        //shootStartTime = current time since started the game
+        shootStartTime = Time.time;
+        Shoot();
+    }
+
+    void StopShooting()
+    {
+        shooting = false;
+        // timer resets for shooting
+        timer = 0;
+    }
+
+    void Shoot()
+    {
+        //summon a cloned bullet
         Instantiate(bullet, bulletPos.position, Quaternion.identity);
+    }
+
+    void MoveTowardsPlayer()
+    {
+        //calculate where the  player is
+        Vector2 directionToPlayer = (playerTarget.position - transform.position).normalized;
+        //move towards the player
+        transform.position = Vector2.MoveTowards(transform.position, playerTarget.position, speed * Time.deltaTime);
     }
 }
