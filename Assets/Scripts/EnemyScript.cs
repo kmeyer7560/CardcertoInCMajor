@@ -10,10 +10,11 @@ public class EnemyScript : MonoBehaviour
     public float shootDuration = 2f;
     public float range = 10f;
 
-    private float timer;
     private bool shooting;
     private Transform playerTarget;
     private float shootStartTime;
+    private bool canShoot = false;
+    //fixes infinite attack speed bug
 
     void Start()
     {
@@ -36,11 +37,9 @@ public class EnemyScript : MonoBehaviour
             //if not shooting
             if (!shooting)
             {
-                //add 1 second to shoot timer
-                timer += Time.deltaTime;
-                
-                //firerate
-                if (timer >= fireRate)
+
+                //august's non gorped code
+                if ((int)(Time.time % fireRate) == 0)
                 {
                     StartShooting();
                 }
@@ -80,13 +79,23 @@ public class EnemyScript : MonoBehaviour
     {
         shooting = false;
         // timer resets for shooting
-        timer = 0;
     }
 
     void Shoot()
     {
+        canShoot = true;
         //summon a cloned bullet
-        Instantiate(bullet, bulletPos.position, Quaternion.identity);
+        if(canShoot)
+        {
+            Instantiate(bullet, bulletPos.position, Quaternion.identity);
+        }
+        canShoot = false;
+        if ((int)(Time.time % fireRate) == 0)
+        {
+            canShoot = true;
+        }
+
+
     }
 
     void MoveTowardsPlayer()

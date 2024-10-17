@@ -5,7 +5,6 @@ public class MeleeEnemyScript : MonoBehaviour
     public GameObject player;
     public float speed = 10f;
 
-    private float timer;
     private bool attacking;
     private Transform playerTarget;
     private float attackStartTime;
@@ -33,11 +32,8 @@ public class MeleeEnemyScript : MonoBehaviour
             //if not shooting
             if (!attacking)
             {
-                //add 1 second to shoot timer
-                timer += Time.deltaTime;
-                
-                //firerate
-                if (timer >= attackRate)
+               //august's non gorped code
+                if ((int)(Time.time % attackRate) == 0)
                 {
                     StartAttacking();
                 }
@@ -77,12 +73,12 @@ public class MeleeEnemyScript : MonoBehaviour
     {
         attacking = false;
         // timer resets for shooting
-        timer = 0;
     }
 
     void Attack()
     {
         //deak damage to player and do animation
+        Debug.Log("attack player");
     }
 
     void MoveTowardsPlayer()
