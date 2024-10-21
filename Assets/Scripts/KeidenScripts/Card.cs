@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Card : MonoBehaviour
@@ -8,6 +9,8 @@ public class Card : MonoBehaviour
     public int handIndex;
 
     private HandManager hm;
+
+    public GameObject player;
 
 
     private void Start()
@@ -19,10 +22,17 @@ public class Card : MonoBehaviour
     {
         if(!hasBeenPlayed)
         {
+
             transform.position += Vector3.down * 5;
             hasBeenPlayed = true;
             hm.availableCardSlots[handIndex] = true;
-
+            hm.count++;
+            hm.hold.Add(this);
+            hm.hand.Remove(this);
+            hm.DrawCard();
+            player.GetComponent<TopDownMovement>().Dash(50); //what the card should do should go here.
+            Debug.Log(hm.count);
+            
         }
     }
 }

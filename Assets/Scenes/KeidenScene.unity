@@ -397,6 +397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasBeenPlayed: 0
   handIndex: 0
+  player: {fileID: 337609313}
 --- !u!1 &65963887
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,6 +543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasBeenPlayed: 0
   handIndex: 0
+  player: {fileID: 337609313}
 --- !u!1 &189896904
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,6 +982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasBeenPlayed: 0
   handIndex: 0
+  player: {fileID: 337609313}
 --- !u!1 &755722624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1013,6 +1016,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasBeenPlayed: 0
   handIndex: 0
+  player: {fileID: 337609313}
 --- !u!61 &755722626
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1270,6 +1274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasBeenPlayed: 0
   handIndex: 0
+  player: {fileID: 337609313}
 --- !u!1 &833143438
 GameObject:
   m_ObjectHideFlags: 0
@@ -1644,6 +1649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasBeenPlayed: 0
   handIndex: 0
+  player: {fileID: 337609313}
 --- !u!1 &1483407676
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,6 +1857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasBeenPlayed: 0
   handIndex: 0
+  player: {fileID: 337609313}
 --- !u!1 &1640898107
 GameObject:
   m_ObjectHideFlags: 0
@@ -2157,6 +2164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasBeenPlayed: 0
   handIndex: 0
+  player: {fileID: 337609313}
 --- !u!1 &2032598494
 GameObject:
   m_ObjectHideFlags: 0
