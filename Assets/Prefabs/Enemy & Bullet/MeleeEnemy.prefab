@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2946998384389315531}
-  - component: {fileID: 8155859171210038908}
+  - component: {fileID: 9109683289599518762}
   m_Layer: 0
   m_Name: MeleeEnemy
   m_TagString: Untagged
@@ -117,7 +117,7 @@ Transform:
   - {fileID: 4513230831079905560}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8155859171210038908
+--- !u!114 &9109683289599518762
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

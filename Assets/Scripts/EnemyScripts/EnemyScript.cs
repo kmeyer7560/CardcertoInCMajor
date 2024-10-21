@@ -1,24 +1,29 @@
 using UnityEngine;
 
-public class MeleeEnemyScript : MonoBehaviour
+public class EnemyScript : MonoBehaviour
 {
+    public GameObject bullet;
+    public Transform bulletPos;
     public GameObject player;
+    public float fireRate = 2.0f;
     public float speed = 10f;
+    public float shootDuration = 2f;
+    public float range = 10f;
 
-    private bool attacking;
+    private bool shooting;
     private Transform playerTarget;
-    private float attackStartTime;
-    public int range = 3;
-    public float attackRate = 2.0f;
-    public float attackDuration = 2.0f;
+    private float shootStartTime;
+    private float lastShotTime;
+
     void Start()
     {
         //player is the object with the tag "Player"
         player = GameObject.FindGameObjectWithTag("Player");
         //automatically makes shooting false so they dont shoot before being in range
-        attacking = false;
+        shooting = false;
         //sets the player's transform component necessary for knowing where the player is
         playerTarget = player.GetComponent<Transform>();
+        lastShotTime = -fireRate;
     }
 
     void Update()
@@ -30,55 +35,59 @@ public class MeleeEnemyScript : MonoBehaviour
         if (distance <= range)
         {
             //if not shooting
-            if (!attacking)
+            if (!shooting)
             {
-               //august's non gorped code
-                if ((int)(Time.time % attackRate) == 0)
+
+                //august's non gorped code
+                if ((int)(Time.time % fireRate) == 0)
                 {
-                    StartAttacking();
+                    StartShooting();
                 }
             }
             //else if shooting
             else
             {
                 //calculates shoot duration. Current time since the start of the game - when the enemy starts shooting >= set shoot duration variable. EX: if the shoot duration is 2 then stop after two seconds until told to start shooting again.
-                if (Time.time - attackStartTime >= attackDuration)
+                if (Time.time - shootStartTime >= shootDuration)
                 {
-                    StopAttacking();
+                    StopShooting();
                 }
             }
         }
         //else if enemy is out of range
         else
         {
-            StopAttacking();
+            StopShooting();
         }
         
         //if not shooting then move towards player
-        if (!attacking)
+        if (!shooting)
         {
             MoveTowardsPlayer();
         }
     }
 
-    void StartAttacking()
+    void StartShooting()
     {
-        attacking = true;
+        shooting = true;
         //shootStartTime = current time since started the game
-        attackStartTime = Time.time;
-        Attack();
+        shootStartTime = Time.time;
+        Shoot();
     }
 
-    void StopAttacking()
+    void StopShooting()
     {
-        attacking = false;
+        shooting = false;
         // timer resets for shooting
     }
 
-    void Attack()
+    void Shoot()
     {
-        //deak damage to player and do animation
-        Debug.Log("attack player");
+        if (Time.time - lastShotTime >= fireRate)
+        {
+            Instantiate(bullet, bulletPos.position, Quaternion.identity);
+            lastShotTime = Time.time;
+        }
     }
 
     void MoveTowardsPlayer()

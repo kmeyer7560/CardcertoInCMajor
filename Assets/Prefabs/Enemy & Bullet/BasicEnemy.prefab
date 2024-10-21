@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7605254002419611370}
-  - component: {fileID: 3480388706031575056}
+  - component: {fileID: 2539273680467271495}
   m_Layer: 0
   m_Name: BasicEnemy
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 675884554575161046}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3480388706031575056
+--- !u!114 &2539273680467271495
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 0}
-  bulletPos: {fileID: 0}
+  bulletPos: {fileID: 675884554575161046}
   player: {fileID: 0}
   fireRate: 0.5
   speed: 1

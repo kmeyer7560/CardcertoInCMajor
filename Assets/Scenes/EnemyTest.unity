@@ -399,6 +399,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeleeEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 9109683289599518762, guid: fbb90683ac4944f9ab0575450465a8bd, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1523860192}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -421,6 +425,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2539273680467271495, guid: 7fb0e01464763c84cbe1f041673a4c89, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 2123376611950472817, guid: bf789547d4d054f83adbe2d8bd98efa7, type: 3}
+    - target: {fileID: 2539273680467271495, guid: 7fb0e01464763c84cbe1f041673a4c89, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1523860192}
     - target: {fileID: 3480388706031575056, guid: 7fb0e01464763c84cbe1f041673a4c89, type: 3}
       propertyPath: bullet
       value: 
