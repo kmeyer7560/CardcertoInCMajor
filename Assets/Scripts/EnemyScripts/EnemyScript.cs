@@ -93,7 +93,8 @@ public class EnemyScript : MonoBehaviour
     void MoveTowardsPlayer()
     {
         //calculate where the  player is
-        Vector2 directionToPlayer = (playerTarget.position - transform.position).normalized;
+        //Debug.Log("move");
+        //Vector2 directionToPlayer = (playerTarget.position - transform.position).normalized;
         //move towards the player
         transform.position = Vector2.MoveTowards(transform.position, playerTarget.position, speed * Time.deltaTime);
     }
