@@ -12,8 +12,6 @@ public class HandManager : MonoBehaviour
     public List<Card> hold = new List<Card>();
     public bool[] availableCardSlots;
 
-    public int count;
-
     public void DrawCard()
     {
         if (deck.Count >= 1){
@@ -25,9 +23,10 @@ public class HandManager : MonoBehaviour
                 {
                     randCard.gameObject.SetActive(true);
                     randCard.transform.position = cardSlots[i].position;
+                    
                     availableCardSlots[i] = false;
                     randCard.handIndex = i;
-                    hand.Add(randCard);
+                    hand.Insert(i, randCard);
                     deck.Remove(randCard);
                     return;
                 }
@@ -37,20 +36,14 @@ public class HandManager : MonoBehaviour
 
     public void shuffle()
     {
-        count = 0;
-        for(int i = 2; i < 0; i--)
-        {
             Debug.Log("shuffled");
-            Card tempCard = hold[i];
-            Debug.Log(tempCard);
+            Card tempCard = hold[0];
             deck.Add(tempCard);
             hold.Remove(tempCard);
-        }
     }
 
     void Start()
     {
-        count = 0;
         for (int i = 0; i <4; i++)
         {
             DrawCard();
@@ -61,10 +54,6 @@ public class HandManager : MonoBehaviour
 
     void Update()
     {
-        if(count >= 2)
-        {
-            shuffle();
-        }
 
         if (Input.GetKeyDown(KeyCode.J))
         {

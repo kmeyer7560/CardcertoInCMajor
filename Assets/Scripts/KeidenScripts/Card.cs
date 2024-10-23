@@ -12,6 +12,9 @@ public class Card : MonoBehaviour
 
     public GameObject player;
 
+    public GameObject staminaBar;
+
+
 
     private void Start()
     {
@@ -22,16 +25,16 @@ public class Card : MonoBehaviour
     {
         if(!hasBeenPlayed)
         {
-
-            transform.position += Vector3.down * 5;
+            staminaBar.GetComponent<StaminaManager>().useCard(20);
             hasBeenPlayed = true;
             hm.availableCardSlots[handIndex] = true;
-            hm.count++;
             hm.hold.Add(this);
             hm.hand.Remove(this);
             hm.DrawCard();
             player.GetComponent<TopDownMovement>().Dash(50); //what the card should do should go here.
-            Debug.Log(hm.count);
+            hm.shuffle();
+            hasBeenPlayed = false;
+            gameObject.SetActive(false);
             
         }
     }
