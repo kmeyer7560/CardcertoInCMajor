@@ -49,10 +49,11 @@ MonoBehaviour:
   bullet: {fileID: 0}
   bulletPos: {fileID: 675884554575161046}
   player: {fileID: 0}
-  fireRate: 0.5
-  speed: 1
-  shootDuration: 2
-  range: 10
+  fireRate: 0.3
+  speed: 1.5
+  shootDuration: 3
+  range: 15
+  direction: {x: 0, y: 0, z: 0}
 --- !u!1 &2605936144868520830
 GameObject:
   m_ObjectHideFlags: 0
