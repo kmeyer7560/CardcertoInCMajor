@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
@@ -14,6 +15,8 @@ public class EnemyScript : MonoBehaviour
     private Transform playerTarget;
     private float shootStartTime;
     private float lastShotTime;
+
+    public Vector3 direction = Vector3.zero;
 
     void Start()
     {
@@ -73,6 +76,7 @@ public class EnemyScript : MonoBehaviour
         //shootStartTime = current time since started the game
         shootStartTime = Time.time;
         Shoot();
+
     }
 
     void StopShooting()
@@ -87,14 +91,24 @@ public class EnemyScript : MonoBehaviour
         {
             Instantiate(bullet, bulletPos.position, Quaternion.identity);
             lastShotTime = Time.time;
+            direction.x = Random.Range(-1,2);
+            direction.y = Random.Range(-1,2);
+            Strafe();
+
         }
     }
 
     void MoveTowardsPlayer()
     {
         //calculate where the  player is
-        Vector2 directionToPlayer = (playerTarget.position - transform.position).normalized;
+        //Debug.Log("move");
+        //Vector2 directionToPlayer = (playerTarget.position - transform.position).normalized;
         //move towards the player
         transform.position = Vector2.MoveTowards(transform.position, playerTarget.position, speed * Time.deltaTime);
+    }
+
+    void Strafe()
+    {
+        transform.position = Vector2.MoveTowards(transform.position,direction, speed * Time.deltaTime);
     }
 }
