@@ -16,8 +16,14 @@ public class StaminaManager : MonoBehaviour
 
     public void useCard(float staminaCost)
     {
-        stamina -= staminaCost;
-
+        ChargeRate = 0;
+        StopCoroutine(RechargeStamia());
+        if (staminaCost <= stamina)
+        {
+            Debug.Log("card atually usesd");
+            stamina -= staminaCost;
+            StartCoroutine(RechargeStamia());
+        }
     }
 
     // Start is called before the first frame update
@@ -32,26 +38,25 @@ public class StaminaManager : MonoBehaviour
         if (stamina >= 0)
         {
             staminaBar.fillAmount = stamina / maxStamina;
-            if (recharge != null)
-            {
-                StopCoroutine(recharge);
-                recharge = StartCoroutine(RechargeStamia());
-            }
-        }   
+
+        }
+         
     }
 
     private IEnumerator RechargeStamia()
     {
-        yield return new WaitForSeconds(1f);
 
-        while (stamina < maxStamina)
+        yield return new WaitForSeconds(1.5f);
+        ChargeRate = 10;
+        while (stamina < maxStamina && ChargeRate == 10)
         {
             stamina += ChargeRate / 10f;
-            if (stamina >= maxStamina)
+            if (stamina <= maxStamina)
             {
                 staminaBar.fillAmount = stamina / maxStamina;
-                yield return new WaitForSeconds(.1f); 
+                yield return new WaitForSeconds(0.2f); 
             }
         }
+        recharge = null;
     }
 }

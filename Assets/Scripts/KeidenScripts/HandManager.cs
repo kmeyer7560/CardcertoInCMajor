@@ -36,7 +36,7 @@ public class HandManager : MonoBehaviour
 
     public void shuffle()
     {
-            Debug.Log("shuffled");
+            //Debug.Log("shuffled");
             Card tempCard = hold[0];
             deck.Add(tempCard);
             hold.Remove(tempCard);

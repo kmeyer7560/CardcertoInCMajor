@@ -25,16 +25,23 @@ public class Card : MonoBehaviour
     {
         if(!hasBeenPlayed)
         {
-            staminaBar.GetComponent<StaminaManager>().useCard(20);
-            hasBeenPlayed = true;
-            hm.availableCardSlots[handIndex] = true;
-            hm.hold.Add(this);
-            hm.hand.Remove(this);
-            hm.DrawCard();
-            player.GetComponent<TopDownMovement>().Dash(50); //what the card should do should go here.
-            hm.shuffle();
-            hasBeenPlayed = false;
-            gameObject.SetActive(false);
+            if (staminaBar.GetComponent<StaminaManager>().stamina >= 10)
+            {
+
+                staminaBar.GetComponent<StaminaManager>().useCard(10);
+                hasBeenPlayed = true;
+                hm.availableCardSlots[handIndex] = true;
+                hm.hold.Add(this);
+                hm.hand.Remove(this);
+                hm.DrawCard();
+                player.GetComponent<TopDownMovement>().Dash(50); //what the card should do should go here.
+                hm.shuffle();
+                hasBeenPlayed = false;
+                gameObject.SetActive(false);
+            }
+            else {
+                staminaBar.GetComponent<StaminaManager>().ChargeRate = 10;
+            }
             
         }
     }
