@@ -9,11 +9,6 @@ public class StaminaManager : MonoBehaviour
     public float stamina = 100f;
     public float maxStamina = 100f;
     public float ChargeRate;
-    private Coroutine recharge;
-    
-
-
-
     public void useCard(float staminaCost)
     {
         ChargeRate = 0;
@@ -54,9 +49,8 @@ public class StaminaManager : MonoBehaviour
             if (stamina <= maxStamina)
             {
                 staminaBar.fillAmount = stamina / maxStamina;
-                yield return new WaitForSeconds(0.2f); 
+                yield return new WaitForSeconds(0.1f); 
             }
         }
-        recharge = null;
     }
 }

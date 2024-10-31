@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
 public class Card : MonoBehaviour
@@ -9,32 +10,35 @@ public class Card : MonoBehaviour
     public int handIndex;
 
     private HandManager hm;
-
-    public GameObject player;
-
     public GameObject staminaBar;
-
-
-
+    public GameObject player;
+    public float staminaCost;
+    public string cardType;
+    public float dashStrength;
     private void Start()
     {
         hm = FindObjectOfType<HandManager>();
+        cardType = this.tag;
+        Debug.Log(cardType);
+
     }
 
     public void playCard()
     {
         if(!hasBeenPlayed)
         {
-            if (staminaBar.GetComponent<StaminaManager>().stamina >= 10)
+            if (staminaBar.GetComponent<StaminaManager>().stamina >= staminaCost)
             {
 
-                staminaBar.GetComponent<StaminaManager>().useCard(10);
+                staminaBar.GetComponent<StaminaManager>().useCard(staminaCost);
                 hasBeenPlayed = true;
                 hm.availableCardSlots[handIndex] = true;
                 hm.hold.Add(this);
                 hm.hand.Remove(this);
                 hm.DrawCard();
-                player.GetComponent<TopDownMovement>().Dash(50); //what the card should do should go here.
+                if(cardType == "dashCard"){  //what the card should do should go here.
+                    dashCard();
+                }
                 hm.shuffle();
                 hasBeenPlayed = false;
                 gameObject.SetActive(false);
@@ -45,4 +49,10 @@ public class Card : MonoBehaviour
             
         }
     }
+
+    public void dashCard()
+    {
+        player.GetComponent<TopDownMovement>().Dash(dashStrength);
+    }
+
 }
