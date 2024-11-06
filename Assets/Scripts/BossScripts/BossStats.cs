@@ -8,21 +8,25 @@ public class BossStats : MonoBehaviour
     private float currentHealth;
     public BossHealthBar healthBar;
     public bool tractorBoss;
-    private float tractorSpeed = 10f;
+    private float tractorSpeed = 5f;
 
     public GameObject player;
     private Transform playerTarget;
-    private Transform currentTarget;
-    private bool rush;
+    Animator anim;
     void Start()
     {
         currentHealth = maxHealth;
+        anim = GetComponent<Animator>();
 
         healthBar.SetSliderMax(maxHealth);
         player = GameObject.FindGameObjectWithTag("Player");
         playerTarget = player.GetComponent<Transform>();
     }
 
+    public void Attack(float amount)
+    {
+        //attack player
+    }
     public void TakeDamage(float amount)
     {
         //subtracts the health by the amount inputed when function is called and updates slider
@@ -37,39 +41,13 @@ public class BossStats : MonoBehaviour
     }
     private void Update()
     {
-        //if the boss is tractorboss
-        if(tractorBoss)
+        if(currentHealth <= maxHealth*.5)
         {
-            //if current health is hald the max health then phase two
-            if(currentHealth <= maxHealth * .5)
-            {
-                TractorPhaseTwo();
-            }
-            else
-            {
-                TractorPhaseOne();
-            }
+            anim.SetTrigger("TractorPhaseTwo");
         }
-        //test for takedamage
-        /*if(Input.GetKeyDown("k"))
+        if(currentHealth <= 0)
         {
-            TakeDamage(100);
-        }*/
-    }
-
-    public void TractorPhaseOne()
-    {
-        Rush();
-    }
-
-    public void Rush()
-    {
-        currentTarget = playerTarget;
-        transform.position = Vector2.MoveTowards(transform.position, currentTarget.position, tractorSpeed * Time.deltaTime);
-    }
-    public void TractorPhaseTwo()
-    {
-        Debug.Log("tractor phase two");
-        //tractor explodes, chickens come out, guy shoots at you on the ground and moves like a normal enemy
+            anim.SetTrigger("TractorBossDeath");
+        }
     }
 }
