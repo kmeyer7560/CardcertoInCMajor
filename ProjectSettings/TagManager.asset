@@ -6,6 +6,7 @@ TagManager:
   tags:
   - dashCard
   - attackCard
+  - Enemy
   layers:
   - Default
   - TransparentFX

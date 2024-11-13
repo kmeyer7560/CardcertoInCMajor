@@ -8,10 +8,11 @@ public class Card : MonoBehaviour
 {
     public bool hasBeenPlayed;
     public int handIndex;
-
     private HandManager hm;
     public GameObject staminaBar;
     public GameObject player;
+    public Transform shootingPoint;
+    public GameObject bulletPrefab;
     public float staminaCost;
     public string cardType;
     public float dashStrength;
@@ -39,6 +40,10 @@ public class Card : MonoBehaviour
                 if(cardType == "dashCard"){  //what the card should do should go here.
                     dashCard();
                 }
+
+                if(cardType == "attackCard"){
+                    shootCard();
+                }
                 hm.shuffle();
                 hasBeenPlayed = false;
                 gameObject.SetActive(false);
@@ -53,6 +58,11 @@ public class Card : MonoBehaviour
     public void dashCard()
     {
         player.GetComponent<TopDownMovement>().Dash(dashStrength);
+    }
+
+    public void shootCard()
+    {
+        Instantiate(bulletPrefab, shootingPoint.position, transform.rotation);
     }
 
 }
