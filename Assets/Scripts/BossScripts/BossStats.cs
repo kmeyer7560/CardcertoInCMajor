@@ -15,12 +15,15 @@ public class BossStats : MonoBehaviour
     public Transform chickenPos;
     public bool drive;
     Vector3 lastVelocity;
+    public GameObject treadTracks;
 
     public GameObject player;
     private Transform playerTarget;
     Animator anim;
     public float movespeed = 10f;
     private Rigidbody2D rb;
+    private bool turning;
+    public GameObject BossSprite;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -32,10 +35,22 @@ public class BossStats : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerTarget = player.GetComponent<Transform>();
     }
-    public void Drive()
+    public void DriveLeft()
     {
-        rb.AddForce(transform.up * 1000f);
-        rb.AddForce(-transform.right * 800f);
+        rb.AddForce(transform.up * 500f);
+        rb.AddForce(-transform.right * 500f);
+        Invoke("DriveRight", 1f);
+    }
+    public void DriveRight()
+    {
+        rb.AddForce(-transform.up * 500f);
+        rb.AddForce(transform.right * 500f);
+        Invoke("DriveLeft", 1f);
+    }
+    public void TreadTracks()
+    {
+        Instantiate(treadTracks, BossSprite.position, Quaternion.identity);
+        Invoke("TreadTracks", 1f);
     }
 
     public void Attack(float amount)
@@ -61,10 +76,11 @@ public class BossStats : MonoBehaviour
     }
     private void Update()
     {
+        TreadTracks();
         lastVelocity = rb.velocity;
         if(drive)
         {
-            Drive();
+            DriveLeft();
         }
         if(currentHealth <= maxHealth*.5)
         {
