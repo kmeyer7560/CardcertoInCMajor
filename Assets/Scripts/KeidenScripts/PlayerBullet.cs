@@ -11,6 +11,8 @@ public class PlayerBullet: MonoBehaviour
 
     public Transform target;
 
+    private float timer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,5 +24,13 @@ public class PlayerBullet: MonoBehaviour
     void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, target.transform.position,Speed * Time.deltaTime);
+        Speed += (float) 0.1;
+
+        timer += Time.deltaTime;
+        //bullet lasts 10 seconds before it dies
+        if(timer>10)
+        {
+            Destroy(gameObject);
+        }
     }
 }
