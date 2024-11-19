@@ -23,7 +23,7 @@ public class BossStats : MonoBehaviour
     public float movespeed = 10f;
     private Rigidbody2D rb;
     private bool turning;
-    public GameObject BossSprite;
+    public Transform BossSprite;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -37,20 +37,21 @@ public class BossStats : MonoBehaviour
     }
     public void DriveLeft()
     {
-        rb.AddForce(transform.up * 500f);
+        rb.AddForce(transform.up * 700f);
         rb.AddForce(-transform.right * 500f);
         Invoke("DriveRight", 1f);
     }
     public void DriveRight()
     {
-        rb.AddForce(-transform.up * 500f);
+        rb.AddForce(-transform.up * 700f);
         rb.AddForce(transform.right * 500f);
         Invoke("DriveLeft", 1f);
     }
     public void TreadTracks()
     {
         Instantiate(treadTracks, BossSprite.position, Quaternion.identity);
-        Invoke("TreadTracks", 1f);
+        //temporary solution, replace with unity particles later
+        Invoke("TreadTracks", 1000000000f);
     }
 
     public void Attack(float amount)
@@ -71,11 +72,17 @@ public class BossStats : MonoBehaviour
     }
     public void ChickenAttack()
     {
-        //for(int i=0;i<=10 i++; )
-        //Instantiate(chicken, chickenPos.position, Quaternion.identity);
+        for(int i=0;i<=10;i++)
+        {
+            Instantiate(chicken, chickenPos.position, Quaternion.identity);
+        }
     }
     private void Update()
     {
+        if(Input.GetKeyDown("p"))
+        {
+            ChickenAttack();
+        }
         TreadTracks();
         lastVelocity = rb.velocity;
         if(drive)
