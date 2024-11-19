@@ -9040,7 +9040,7 @@ MonoBehaviour:
   player: {fileID: 337609313}
   shootingPoint: {fileID: 1411283468}
   bulletPrefab: {fileID: 5551599301993821772, guid: 195aa06c101e74b22b853b9241b04271, type: 3}
-  staminaCost: 20
+  staminaCost: 10
   cardType: 
   dashStrength: 0
 --- !u!1 &1360773683
@@ -10299,6 +10299,10 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 2539273680467271495, guid: 7fb0e01464763c84cbe1f041673a4c89, type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2539273680467271495, guid: 7fb0e01464763c84cbe1f041673a4c89, type: 3}
       propertyPath: bullet
       value: 
       objectReference: {fileID: 2123376611950472817, guid: bf789547d4d054f83adbe2d8bd98efa7, type: 3}
@@ -10466,7 +10470,7 @@ GameObject:
   - component: {fileID: 1882991135}
   m_Layer: 0
   m_Name: BigAttack
-  m_TagString: Untagged
+  m_TagString: attackCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10600,9 +10604,9 @@ MonoBehaviour:
   handIndex: 0
   staminaBar: {fileID: 1273984469}
   player: {fileID: 337609313}
-  shootingPoint: {fileID: 0}
-  bulletPrefab: {fileID: 0}
-  staminaCost: 10
+  shootingPoint: {fileID: 1411283468}
+  bulletPrefab: {fileID: 5551599301993821772, guid: a3765c5eeadc24b18b616db0ff548ed1, type: 3}
+  staminaCost: 20
   cardType: 
   dashStrength: 0
 --- !u!1 &1904445767

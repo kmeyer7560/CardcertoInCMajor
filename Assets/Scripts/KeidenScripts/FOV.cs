@@ -5,7 +5,7 @@ using UnityEngine;
 public class FOV : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    /*void Start()
     {
         Mesh mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
@@ -33,5 +33,5 @@ public class FOV : MonoBehaviour
     void Update()
     {
         
-    }
+    } */
 }
