@@ -16,7 +16,7 @@ public class ChestScript : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");x
+        player = GameObject.FindGameObjectWithTag("Player");
         //lootpool = [gun1, gun2, gun3];
     }
 
