@@ -4,34 +4,21 @@ using UnityEngine;
 
 public class FOV : MonoBehaviour
 {
-    // Start is called before the first frame update
-    /*void Start()
+    public float fovAngle = 90;
+    public float fovRange = 5f;
+    public Vector2 lookDirection = Vector2.down;
+    
+    public bool IsTargetInFOV(Transform target)
     {
-        Mesh mesh = new Mesh();
-        GetComponent<MeshFilter>().mesh = mesh;
+        Vector2 directionToTarget = (target.position - transform.position).normalized;
+        float angleToTarget = Vector2.Angle(lookDirection, directionToTarget);
 
-        float fov = 90f;
-        int rayCount = 2;
-        float angle = 0f;
-        float angleIncrease = fov / rayCount;
-        float viewDistance = 50f;
+        if (angleToTarget < fovAngle / 2)
+        {
+            float distance = Vector2.Distance(target.position, transform.position);
+            return distance < fovRange;
+        }
 
-        Vector3[] vertices = new Vector3[];
-        Vector2[] uv = new Vector2[];
-        int[] triangles = new int[];
-
-
-
-
-        mesh.vertices = vertices;
-        mesh.uv = uv;
-        mesh.triangles = triangles;
-
+        return false;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    } */
 }
