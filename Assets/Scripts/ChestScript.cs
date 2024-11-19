@@ -16,7 +16,7 @@ public class ChestScript : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");x
         //lootpool = [gun1, gun2, gun3];
     }
 
@@ -31,7 +31,7 @@ public class ChestScript : MonoBehaviour
     }
     void OpenChest()
     {
-        //play chest open animation
+        //play chest open animatio
         randomDraw = Random.Range(0,2);
         //reward = lootpool[randomDraw];
 
