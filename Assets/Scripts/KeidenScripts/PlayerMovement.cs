@@ -65,15 +65,6 @@ public class TopDownMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
-        if(Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            Dash(50);
-        }
-
-
-
-
         ProcessInputs();
     }
 }

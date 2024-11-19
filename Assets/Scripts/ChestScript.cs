@@ -31,7 +31,7 @@ public class ChestScript : MonoBehaviour
     }
     void OpenChest()
     {
-        //play chest open animation
+        //play chest open animatio
         randomDraw = Random.Range(0,2);
         //reward = lootpool[randomDraw];
 
