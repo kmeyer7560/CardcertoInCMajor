@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor.Callbacks;
 using UnityEngine;
@@ -24,6 +25,7 @@ public class BossStats : MonoBehaviour
     private Rigidbody2D rb;
     private bool turning;
     public Transform BossSprite;
+    private int chickens = 10;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -72,16 +74,16 @@ public class BossStats : MonoBehaviour
     }
     public void ChickenAttack()
     {
-        for(int i=0;i<=10;i++)
-        {
-            Instantiate(chicken, chickenPos.position, Quaternion.identity);
-        }
+        if(chickens>0)
+        Instantiate(chicken, chickenPos.position, Quaternion.identity);
+        chickens--;
+        Invoke("ChickenAttack",.1f);
     }
     private void Update()
     {
         if(Input.GetKeyDown("p"))
         {
-            ChickenAttack();
+            TakeDamage(100);
         }
         TreadTracks();
         lastVelocity = rb.velocity;
