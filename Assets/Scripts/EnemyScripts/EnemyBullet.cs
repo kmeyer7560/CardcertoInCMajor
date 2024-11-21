@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
-
+using Random=UnityEngine.Random;
 public class EnemyBullet : MonoBehaviour
 {
     private GameObject player;
     private Rigidbody2D rb;
     public float force;
     private float timer;
+    public Vector3 spread = Vector3.zero;
+    private Vector3 playerPosition;
     
     void Start()
     {
@@ -16,7 +18,8 @@ public class EnemyBullet : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         
         //calculate direction
-        Vector3 direction = player.transform.position - transform.position;
+        playerPosition = player.transform.position + spread;
+        Vector3 direction = playerPosition - transform.position;
         //calculate velocity
         rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
         
