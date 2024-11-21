@@ -1,5 +1,6 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using Random=UnityEngine.Random;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class EnemyScript : MonoBehaviour
     public float speed = 10f;
     public float shootDuration = 2f;
     public float range = 10f;
+
+    public float spreadAmount;
 
     private bool shooting;
     private Transform playerTarget;

@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class PlayerBullet: MonoBehaviour
+public class PlayerBullet : MonoBehaviour
 {
     public float Speed;
 
@@ -17,20 +16,43 @@ public class PlayerBullet: MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        target = GameObject.FindGameObjectWithTag("Enemy").transform;
+        target = FindClosestEnemy();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, target.transform.position,Speed * Time.deltaTime);
-        Speed += (float) 0.1;
+        if (target != null)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
+        }
+
+        Speed += 0.1f;
 
         timer += Time.deltaTime;
-        //bullet lasts 10 seconds before it dies
-        if(timer>10)
+        // Bullet lasts 10 seconds before it dies
+        if (timer > 10)
         {
             Destroy(gameObject);
         }
+    }
+
+    Transform FindClosestEnemy()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Transform closestEnemy = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (GameObject enemy in enemies)
+        {
+            float distance = Vector2.Distance(transform.position, enemy.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestEnemy = enemy.transform;
+            }
+        }
+
+        return closestEnemy;
     }
 }
