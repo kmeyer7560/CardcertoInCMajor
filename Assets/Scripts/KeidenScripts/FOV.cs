@@ -11,6 +11,10 @@ public class FOV : MonoBehaviour
 
     private float lastAngle; // Store the last angle when the player was moving
 
+    public Transform hitObject;
+
+    public LayerMask enemyLayer;
+
     void Update()
     {
         if (player != null)
@@ -44,16 +48,21 @@ public class FOV : MonoBehaviour
             Vector2 direction = new Vector2(Mathf.Cos(currentAngle * Mathf.Deg2Rad), Mathf.Sin(currentAngle * Mathf.Deg2Rad));
 
             // Cast the ray
-            RaycastHit2D hit = Physics2D.Raycast(player.position, direction, rayLength);
+            RaycastHit2D hit = Physics2D.Raycast(player.position, direction, rayLength, enemyLayer);
 
             // Draw the ray in the Scene view for debugging
             Debug.DrawRay(player.position, direction * rayLength, Color.red);
 
             // Check if the ray hit something
-            if (hit.collider.tag == "Enemy")
+            if (hit.collider)
             {
-                // Handle the hit
-                Debug.Log("Hit");
+                if (hit.transform.CompareTag("Enemy"))
+                {
+                    // Handle the hit
+                    Debug.Log("Hit");
+                    hitObject = hit.transform;
+
+                }
             }
         }
     }
