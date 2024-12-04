@@ -34,36 +34,46 @@ public class FOV : MonoBehaviour
         }
     }
 
-    void CastConeRays(float angle)
+  void CastConeRays(float angle)
+{
+    // Calculate the angle step based on the number of rays and the cone angle
+    float angleStep = coneAngle / numberOfRays;
+    float closestDistance = Mathf.Infinity; // Initialize closest distance to infinity
+    Transform closestHitObject = null; // Variable to store the closest hit object
+
+    for (int i = 0; i <= numberOfRays; i++)
     {
-        // Calculate the angle step based on the number of rays and the cone angle
-        float angleStep = coneAngle / numberOfRays;
+        // Calculate the current ray angle
+        float currentAngle = angle - (coneAngle / 2) + (i * angleStep);
 
-        for (int i = 0; i <= numberOfRays; i++)
+        // Calculate the direction of the ray
+        Vector2 direction = new Vector2(Mathf.Cos(currentAngle * Mathf.Deg2Rad), Mathf.Sin(currentAngle * Mathf.Deg2Rad));
+
+        // Cast the ray
+        RaycastHit2D hit = Physics2D.Raycast(player.position, direction, rayLength, enemyLayer);
+
+        // Draw the ray in the Scene view for debugging
+        Debug.DrawRay(player.position, direction * rayLength, Color.red);
+
+        // Check if the ray hit something
+        if (hit.collider)
         {
-            // Calculate the current ray angle
-            float currentAngle = angle - (coneAngle / 2) + (i * angleStep);
-
-            // Calculate the direction of the ray
-            Vector2 direction = new Vector2(Mathf.Cos(currentAngle * Mathf.Deg2Rad), Mathf.Sin(currentAngle * Mathf.Deg2Rad));
-
-            // Cast the ray
-            RaycastHit2D hit = Physics2D.Raycast(player.position, direction, rayLength, enemyLayer);
-
-            // Draw the ray in the Scene view for debugging
-            Debug.DrawRay(player.position, direction * rayLength, Color.red);
-
-            // Check if the ray hit something
-            if (hit.collider)
+            if (hit.transform.CompareTag("Enemy"))
             {
-                if (hit.transform.CompareTag("Enemy"))
-                {
-                    // Handle the hit
-                    Debug.Log("Hit");
-                    hitObject = hit.transform;
+                // Calculate the distance from the player to the hit object
+                float distance = Vector2.Distance(player.position, hit.transform.position);
 
+                // Check if this hit object is closer than the previously found closest object
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance; // Update closest distance
+                    closestHitObject = hit.transform; // Update closest hit object
                 }
             }
         }
     }
+
+    // After checking all rays, set hitObject to the closest hit object found
+    hitObject = closestHitObject;
+}
 }

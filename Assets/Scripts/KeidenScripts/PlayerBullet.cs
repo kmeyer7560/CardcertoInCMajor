@@ -11,45 +11,33 @@ public class PlayerBullet : MonoBehaviour
 
     Rigidbody2D rb;
 
-    public Transform target;
-
     private float timer;
 
     public Transform objectInRay;
-
-    bool inRange;
 
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
-        target = FindClosestEnemy();
+        Debug.Log(Player.GetComponent<FOV>().hitObject);
+        objectInRay = Player.GetComponent<FOV>().hitObject;
+        Debug.Log(objectInRay);
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (target != null)
+    {    
+        if (objectInRay != null)
         {
-            objectInRay = Player.GetComponent<FOV>().hitObject;
-            if(objectInRay == target)
-            {
-                inRange = true;
-            } 
-            else
-            {
-                Vector2.MoveTowards(transform.position, transform.forward, Speed * Time.deltaTime);
-                inRange = false;
-            }
+            transform.position = Vector2.MoveTowards(transform.position, objectInRay.position, Speed * Time.deltaTime);
         }
 
-        if (inRange)
+        else
         {
-            transform.position = Vector2.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
+            rb.AddForce(Player.GetComponent<Rigidbody2D>().velocity);
         }
-
-
+        
 
         Speed += 0.1f;
 
@@ -59,24 +47,5 @@ public class PlayerBullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    Transform FindClosestEnemy()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        Transform closestEnemy = null;
-        float closestDistance = Mathf.Infinity;
-
-        foreach (GameObject enemy in enemies)
-        {
-            float distance = Vector2.Distance(transform.position, enemy.transform.position);
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                closestEnemy = enemy.transform;
-            }
-        }
-
-        return closestEnemy;
     }
 }                                                                                               

@@ -122,54 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &38179413
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 38179414}
-  - component: {fileID: 38179415}
-  m_Layer: 0
-  m_Name: FOV
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &38179414
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 38179413}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.37, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 337609318}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &38179415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 38179413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bbca4f61bf8a4617b070d4fb88c3351, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 337609318}
-  rayLength: 8
-  numberOfRays: 20
-  coneAngle: 45
 --- !u!1 &59507907
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +133,7 @@ GameObject:
   - component: {fileID: 59507908}
   - component: {fileID: 59507910}
   - component: {fileID: 59507911}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Card5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +239,7 @@ GameObject:
   - component: {fileID: 65963888}
   - component: {fileID: 65963890}
   - component: {fileID: 65963891}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Card4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,7 +347,7 @@ GameObject:
   - component: {fileID: 337609315}
   - component: {fileID: 337609314}
   - component: {fileID: 337609319}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -481,6 +433,7 @@ MonoBehaviour:
   dashLength: 0.1
   dashCooldown: 0
   rb: {fileID: 337609315}
+  moveDirection: {x: 0, y: 0}
 --- !u!4 &337609318
 Transform:
   m_ObjectHideFlags: 0
@@ -498,7 +451,6 @@ Transform:
   - {fileID: 928289328}
   - {fileID: 1268404340}
   - {fileID: 1411283468}
-  - {fileID: 38179414}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &337609319
@@ -513,10 +465,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbca4f61bf8a4617b070d4fb88c3351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  rayLength: 5
-  numberOfRays: 10
+  player: {fileID: 337609318}
+  rayLength: 8
+  numberOfRays: 12
   coneAngle: 45
+  hitObject: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &415890881
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,7 +482,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 415890882}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cardslots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -595,7 +551,7 @@ GameObject:
   - component: {fileID: 467285667}
   - component: {fileID: 467285669}
   - component: {fileID: 467285670}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Card6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3317,7 +3273,7 @@ GameObject:
   - component: {fileID: 755722628}
   - component: {fileID: 755722627}
   - component: {fileID: 755722625}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Card8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3423,7 +3379,7 @@ GameObject:
   - component: {fileID: 773632447}
   - component: {fileID: 773632449}
   - component: {fileID: 773632450}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Dash
   m_TagString: dashCard
   m_Icon: {fileID: 0}
@@ -3722,7 +3678,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 878782122}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Deck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3764,7 +3720,7 @@ GameObject:
   - component: {fileID: 928289327}
   - component: {fileID: 928289326}
   - component: {fileID: 928289325}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -8473,7 +8429,7 @@ GameObject:
   - component: {fileID: 1268404339}
   - component: {fileID: 1268404338}
   - component: {fileID: 1268404337}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8575,7 +8531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1273984470}
   - component: {fileID: 1273984471}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stamina Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8626,7 +8582,7 @@ GameObject:
   - component: {fileID: 1305808604}
   - component: {fileID: 1305808606}
   - component: {fileID: 1305808607}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmallAttack
   m_TagString: attackCard
   m_Icon: {fileID: 0}
@@ -9331,7 +9287,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1411283468}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9364,7 +9320,7 @@ GameObject:
   - component: {fileID: 1472107593}
   - component: {fileID: 1472107595}
   - component: {fileID: 1472107594}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9437,7 +9393,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1483407677}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cardslot (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9469,7 +9425,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1571619862}
   - component: {fileID: 1571619863}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9552,7 +9508,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1577428102}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cardslot (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9586,7 +9542,7 @@ GameObject:
   - component: {fileID: 1588991729}
   - component: {fileID: 1588991728}
   - component: {fileID: 1588991730}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Card7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9735,7 +9691,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1665271709}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cardslot (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9847,7 +9803,7 @@ GameObject:
   - component: {fileID: 1882991132}
   - component: {fileID: 1882991134}
   - component: {fileID: 1882991135}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BigAttack
   m_TagString: attackCard
   m_Icon: {fileID: 0}
@@ -9953,7 +9909,7 @@ GameObject:
   - component: {fileID: 1959583276}
   - component: {fileID: 1959583278}
   - component: {fileID: 1959583277}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10026,7 +9982,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2040247849}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cardslot (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
