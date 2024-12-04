@@ -27,7 +27,7 @@ public class BossStats : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        drive = true;
+        drive = false;
         currentHealth = maxHealth;
         anim = GetComponent<Animator>();
 
@@ -89,6 +89,10 @@ public class BossStats : MonoBehaviour
         {
             anim.SetTrigger("TractorBossDeath");
         }
+    }
+    public void StartChase(){
+        Debug.Log("startchase");
+        drive = true;
     }
 
     private void OnCollisionEnter(Collision coll)
