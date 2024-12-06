@@ -1,36 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.EventSystems;
 
-public class PlayerBullet: MonoBehaviour
+public class PlayerBullet : MonoBehaviour
 {
     public float Speed;
 
+    public GameObject Player;
+
     Rigidbody2D rb;
 
-    public Transform target;
-
     private float timer;
+
+    public Transform objectInRay;
 
     // Start is called before the first frame update
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
-        target = GameObject.FindGameObjectWithTag("Enemy").transform;
+        Debug.Log(Player.GetComponent<FOV>().hitObject);
+        objectInRay = Player.GetComponent<FOV>().hitObject;
+        Debug.Log(objectInRay);
     }
 
     // Update is called once per frame
     void Update()
-    {
-        transform.position = Vector2.MoveTowards(transform.position, target.transform.position,Speed * Time.deltaTime);
-        Speed += (float) 0.1;
+    {    
+        if (objectInRay != null)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, objectInRay.position, Speed * Time.deltaTime);
+        }
+
+        else
+        {
+            rb.AddForce(Player.GetComponent<Rigidbody2D>().velocity);
+        }
+        
+
+        Speed += 0.1f;
 
         timer += Time.deltaTime;
-        //bullet lasts 10 seconds before it dies
-        if(timer>10)
+        // Bullet lasts 10 seconds before it dies
+        if (timer > 10)
         {
             Destroy(gameObject);
         }
     }
-}
+}                                                                                               

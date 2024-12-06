@@ -20,7 +20,7 @@ public class Card : MonoBehaviour
     {
         hm = FindObjectOfType<HandManager>();
         cardType = this.tag;
-        Debug.Log(cardType);
+        //Debug.Log(cardType);
 
     }
 
