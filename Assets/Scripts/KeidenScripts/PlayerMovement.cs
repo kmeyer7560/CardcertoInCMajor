@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class TopDownMovement : MonoBehaviour
+public class PlayerMovement: MonoBehaviour
 {
     public float moveSpeed;
     public float activeSpeed;
@@ -10,6 +11,7 @@ public class TopDownMovement : MonoBehaviour
     public float dashCooldown = 1f;
     private float dashCounter;
     private float dashCoolCounter;
+    public Vector2 savedDirection;
      
 
     public Rigidbody2D rb;
@@ -63,8 +65,11 @@ public class TopDownMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() 
     {
         ProcessInputs();
-    }
+        if(savedDirection!= moveDirection && moveDirection!= Vector2.zero){ //ian coded
+            savedDirection = moveDirection; //ian coded
+        }
+        }
 }

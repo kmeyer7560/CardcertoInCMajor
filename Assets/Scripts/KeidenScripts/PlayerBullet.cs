@@ -18,8 +18,6 @@ public class PlayerBullet : MonoBehaviour
 
     public Transform objectInRay;
 
-    bool inRange;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +27,10 @@ public class PlayerBullet : MonoBehaviour
         Debug.Log(Player.GetComponent<FOV>().hitObject);
         objectInRay = Player.GetComponent<FOV>().hitObject;
         Debug.Log(objectInRay);
-        rb.AddForce(Player.GetComponent<Rigidbody2D>().velocity*200);      
+        if(objectInRay == null){ //ian code
+            rb.velocity = Player.GetComponent<PlayerMovement>().savedDirection * Speed;      
+        }
+
         Debug.Log(Player.GetComponent<Rigidbody2D>().velocity);
     }
 
