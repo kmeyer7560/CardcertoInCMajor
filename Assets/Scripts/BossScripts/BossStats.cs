@@ -16,20 +16,18 @@ public class BossStats : MonoBehaviour
     public Transform chickenPos;
     public bool drive;
     Vector3 lastVelocity;
-    public GameObject treadTracks;
 
     public GameObject player;
     private Transform playerTarget;
     Animator anim;
     public float movespeed = 10f;
     private Rigidbody2D rb;
-    private bool turning;
     public Transform BossSprite;
     private int chickens = 10;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        drive = false;
         currentHealth = maxHealth;
         anim = GetComponent<Animator>();
 
@@ -49,13 +47,6 @@ public class BossStats : MonoBehaviour
         rb.AddForce(transform.right * 500f);
         Invoke("DriveLeft", 1f);
     }
-    public void TreadTracks()
-    {
-        Instantiate(treadTracks, BossSprite.position, Quaternion.identity);
-        //temporary solution, replace with unity particles later
-        Invoke("TreadTracks", 1000000000f);
-    }
-
     public void Attack(float amount)
     {
         //attack player
@@ -79,13 +70,12 @@ public class BossStats : MonoBehaviour
         chickens--;
         Invoke("ChickenAttack",.1f);
     }
-    private void Update()
+    void Update()
     {
         if(Input.GetKeyDown("p"))
         {
             TakeDamage(100);
         }
-        TreadTracks();
         lastVelocity = rb.velocity;
         if(drive)
         {
@@ -99,6 +89,10 @@ public class BossStats : MonoBehaviour
         {
             anim.SetTrigger("TractorBossDeath");
         }
+    }
+    public void StartChase(){
+        Debug.Log("startchase");
+        drive = true;
     }
 
     private void OnCollisionEnter(Collision coll)
