@@ -57,7 +57,7 @@ public class Card : MonoBehaviour
 
     public void dashCard()
     {
-        player.GetComponent<TopDownMovement>().Dash(dashStrength);
+        player.GetComponent<PlayerMovement>().Dash(dashStrength);
     }
 
     public void shootCard()
