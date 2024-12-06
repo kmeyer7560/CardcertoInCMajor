@@ -10,6 +10,8 @@ public class PlayerBullet : MonoBehaviour
 {
     public float Speed;
 
+    public float damage;
+
     public GameObject Player;
 
     Rigidbody2D rb;
@@ -17,6 +19,8 @@ public class PlayerBullet : MonoBehaviour
     private float timer;
 
     public Transform objectInRay;
+
+    private GameObject collidedObject;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +52,16 @@ public class PlayerBullet : MonoBehaviour
         // Bullet lasts 10 seconds before it dies
         if (timer > 10)
         {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            collidedObject = other.gameObject;
+            collidedObject.GetComponent<EnemyHealth>().takeDamage(damage);
             Destroy(gameObject);
         }
     }
