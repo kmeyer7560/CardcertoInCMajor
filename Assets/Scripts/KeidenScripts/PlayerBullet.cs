@@ -62,6 +62,10 @@ public class PlayerBullet : MonoBehaviour
         {
             collidedObject = other.gameObject;
             collidedObject.GetComponent<EnemyHealth>().takeDamage(damage);
+        }
+        
+        if (!other.CompareTag("Player"))
+        {
             Destroy(gameObject);
         }
     }
