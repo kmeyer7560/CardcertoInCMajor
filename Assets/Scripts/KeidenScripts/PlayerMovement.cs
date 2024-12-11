@@ -5,6 +5,8 @@ using UnityEngine.UIElements;
 
 public class PlayerMovement: MonoBehaviour
 {
+    
+    public SpriteRenderer spriteRenderer;
     public float moveSpeed;
     public float activeSpeed;
     public float dashLength = .5f;
@@ -52,6 +54,14 @@ public class PlayerMovement: MonoBehaviour
     void Move()
     {
         rb.velocity = new Vector2(moveDirection.x * activeSpeed, moveDirection.y * activeSpeed);
+        if (rb.velocity.x < 0)
+        {
+                spriteRenderer.flipX = true;
+        }
+        if (rb.velocity.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 
     public void Dash(float dashSpeed)
