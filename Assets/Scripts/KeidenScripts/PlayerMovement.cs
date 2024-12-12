@@ -17,6 +17,7 @@ public class PlayerMovement: MonoBehaviour
      
 
     public Rigidbody2D rb;
+    public Animator animator;
 
     public Vector2 moveDirection;
     
@@ -80,6 +81,15 @@ public class PlayerMovement: MonoBehaviour
         ProcessInputs();
         if(savedDirection!= moveDirection && moveDirection!= Vector2.zero){ //ian coded
             savedDirection = moveDirection; //ian coded
+        }
+
+        if (rb.velocity != Vector2.zero)
+        {
+            animator.SetBool("moving", true);
+        }
+        else
+        {
+            animator.SetBool("moving", false);
         }
         }
 }
