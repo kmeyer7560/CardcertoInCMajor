@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - playerAttack
   - aoeCard
+  - Environment
   layers:
   - Default
   - TransparentFX

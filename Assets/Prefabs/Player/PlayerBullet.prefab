@@ -172,6 +172,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 10
-  damage: 35
+  damage: 25
   Player: {fileID: 0}
   objectInRay: {fileID: 0}

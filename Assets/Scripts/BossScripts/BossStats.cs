@@ -74,7 +74,7 @@ public class BossStats : MonoBehaviour
             healthBar.SetSlider(currentHealth);
         }
     }
-
+    
     public void Heal(float amount)
     {
         currentHealth += amount;

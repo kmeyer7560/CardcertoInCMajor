@@ -37,7 +37,7 @@ public class aoeAttack : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             other.GetComponent<EnemyHealth>().takeDamage(damage);
-            other.GetComponent<EnemyHealth>().knockBack();
+            other.GetComponent<EnemyHealth>().knockBack(this.gameObject);
         }
     }
 }

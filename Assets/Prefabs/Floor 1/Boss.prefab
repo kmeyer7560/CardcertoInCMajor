@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2895868489952260165}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,6 +48,9 @@ MonoBehaviour:
   maxHealth: 1000
   healthBar: {fileID: 0}
   tractorBoss: 1
+  chicken: {fileID: 0}
+  chickenPos: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &6851281464494583840
 GameObject:
   m_ObjectHideFlags: 0
