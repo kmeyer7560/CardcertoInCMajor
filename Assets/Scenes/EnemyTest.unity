@@ -7037,7 +7037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01dfe3285dfce5d439d6def02ea2a104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 30
+  moveSpeed: 20
   reverseSpeed: 10
   rotationSpeed: 200
   visionRange: 1000
@@ -7238,6 +7238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d5b3a198f2b4d29864945dc0fd2c9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
   moveSpeed: 10
   activeSpeed: 0.11
   dashLength: 0.1
@@ -12612,7 +12613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3859004919516479033, guid: 5cffafe7914214d8297cb9b581f61571, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4709632677837978828, guid: 5cffafe7914214d8297cb9b581f61571, type: 3}
       propertyPath: m_LocalScale.x
