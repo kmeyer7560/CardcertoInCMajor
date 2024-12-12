@@ -64,5 +64,10 @@ public class PlayerBullet : MonoBehaviour
             collidedObject.GetComponent<EnemyHealth>().takeDamage(damage);
             Destroy(gameObject);
         }
+        
+        if (other.CompareTag("Environment"))
+        {
+            Destroy(gameObject);
+        }
     }
     }                                                                                     

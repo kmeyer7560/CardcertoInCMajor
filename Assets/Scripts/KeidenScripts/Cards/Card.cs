@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Card : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Card : MonoBehaviour
     public GameObject player;
     public Transform shootingPoint;
     public GameObject bulletPrefab;
+    public GameObject aoePrefab;
     public float staminaCost;
     public string cardType;
     public float dashStrength;
@@ -41,8 +43,13 @@ public class Card : MonoBehaviour
                     dashCard();
                 }
 
-                if(cardType == "attackCard"){
+                else if(cardType == "attackCard"){
                     shootCard();
+                }
+
+                else if(cardType == "aoeCard")
+                {
+                    aoeCard();
                 }
                 hm.shuffle();
                 hasBeenPlayed = false;
@@ -63,6 +70,11 @@ public class Card : MonoBehaviour
     public void shootCard()
     {
         Instantiate(bulletPrefab, shootingPoint.position, transform.rotation);
+    }
+
+    public void aoeCard()
+    {
+        Instantiate(aoePrefab, shootingPoint.position, transform.rotation);
     }
 
 }

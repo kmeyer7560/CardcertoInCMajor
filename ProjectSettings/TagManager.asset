@@ -7,6 +7,9 @@ TagManager:
   - dashCard
   - attackCard
   - Enemy
+  - playerAttack
+  - aoeCard
+  - Environment
   layers:
   - Default
   - TransparentFX
