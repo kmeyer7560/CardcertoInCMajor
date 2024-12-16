@@ -14,6 +14,7 @@ public class PlayerMovement: MonoBehaviour
     private float dashCounter;
     private float dashCoolCounter;
     public Vector2 savedDirection;
+    public bool vulnerable;
      
 
     public Rigidbody2D rb;
@@ -25,6 +26,7 @@ public class PlayerMovement: MonoBehaviour
     void Start()
     {
         activeSpeed = moveSpeed;
+        vulnerable = true;
     }
 
     void ProcessInputs()
@@ -41,6 +43,7 @@ public class PlayerMovement: MonoBehaviour
             {
                 activeSpeed = moveSpeed;
                 dashCoolCounter = dashCooldown;
+                vulnerable = true;
             }
         }
 
@@ -70,9 +73,11 @@ public class PlayerMovement: MonoBehaviour
     
             if (dashCoolCounter <= 0 && dashCounter <= 0)
             {
+                vulnerable = false;
                 activeSpeed = dashSpeed;
                 dashCounter = dashLength;
             }
+
     }
 
     // Update is called once per frame

@@ -4,11 +4,13 @@ using Random=UnityEngine.Random;
 public class EnemyBullet : MonoBehaviour
 {
     private GameObject player;
+    public GameObject playerHealthBar;
     private Rigidbody2D rb;
     public float force;
     private float timer;
     public Vector3 spread = Vector3.zero;
     private Vector3 playerPosition;
+    public float damage;
     
     void Start()
     {
@@ -16,6 +18,7 @@ public class EnemyBullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         //set player as the object with the "Player" tag
         player = GameObject.FindGameObjectWithTag("Player");
+        playerHealthBar = GameObject.Find("PlayerHealthBar");
         
         //calculate direction
         playerPosition = player.transform.position + spread;
@@ -42,8 +45,15 @@ public class EnemyBullet : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            //subtract player health here
+             if (player.GetComponent<PlayerMovement>().vulnerable)
+            {
+                playerHealthBar.GetComponent<PlayerHealthBar>().TakeDamage(damage);
+            }
         }
-        Destroy(gameObject);
+
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Environment"))
+        {
+             Destroy(gameObject);
+        }
     }
 }

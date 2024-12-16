@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 3914140}
   m_Layer: 0
   m_Name: collider
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2591,7 +2591,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.06924531}
@@ -2619,7 +2619,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -2642,8 +2642,9 @@ MonoBehaviour:
   dashLength: 0.1
   dashCooldown: 0
   savedDirection: {x: 0, y: 0}
+  vulnerable: 0
   rb: {fileID: 337609315}
-  animator: {fileID: 0}
+  animator: {fileID: 1571619864}
   moveDirection: {x: 0, y: 0}
 --- !u!4 &337609318
 Transform:
@@ -2684,7 +2685,7 @@ MonoBehaviour:
   hitObject: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 129
 --- !u!1 &415890881
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ public class PlayerHealthBar : MonoBehaviour
 {
     public Slider healthSlider;
     
-    public void SetSlider(float amount)
+    public void SetSlider (float amount)
     {
         healthSlider.value = amount;
     }
@@ -17,11 +17,8 @@ public class PlayerHealthBar : MonoBehaviour
         healthSlider.maxValue = amount;
         SetSlider(amount);
     }
-    void Update()
+    public void TakeDamage(float amount)
     {
-        if(Input.GetKeyDown("p"))
-        {
-            SetSlider( healthSlider.value -19f);
-        }
+        healthSlider.value -= amount;
     }
 }
