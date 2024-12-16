@@ -17,4 +17,11 @@ public class PlayerHealthBar : MonoBehaviour
         healthSlider.maxValue = amount;
         SetSlider(amount);
     }
+    void Update()
+    {
+        if(Input.GetKeyDown("p"))
+        {
+            SetSlider( healthSlider.value -19f);
+        }
+    }
 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4513230831079905560}
   - component: {fileID: 2484940487668359717}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2946998384389315531}
   - component: {fileID: 9109683289599518762}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TorchEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
