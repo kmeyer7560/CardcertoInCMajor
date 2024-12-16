@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Billy
       objectReference: {fileID: 0}
+    - target: {fileID: 475084341199406426, guid: 59da9f3e056fa45bdad0c08d86facfc9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2539273680467271495, guid: 59da9f3e056fa45bdad0c08d86facfc9, type: 3}
       propertyPath: range
       value: 100
@@ -6288,7 +6292,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 475084341199406426, guid: 7fb0e01464763c84cbe1f041673a4c89, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2539273680467271495, guid: 7fb0e01464763c84cbe1f041673a4c89, type: 3}
       propertyPath: speed
@@ -12863,7 +12867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3859004919516479033, guid: 5cffafe7914214d8297cb9b581f61571, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4709632677837978828, guid: 5cffafe7914214d8297cb9b581f61571, type: 3}
       propertyPath: m_LocalScale.x
