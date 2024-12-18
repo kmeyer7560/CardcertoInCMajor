@@ -11,6 +11,8 @@ public class EnemyScript : MonoBehaviour
     public float speed = 10f;
     public float shootDuration = 2f;
     public float range = 10f;
+    
+    public Animator animator;
 
     public float spreadAmount;
 
@@ -48,6 +50,7 @@ public class EnemyScript : MonoBehaviour
                 if ((int)(Time.time % fireRate) == 0)
                 {
                     StartShooting();
+                    animator.SetTrigger("shoot");
                 }
             }
             //else if shooting
@@ -70,6 +73,11 @@ public class EnemyScript : MonoBehaviour
         if (!shooting)
         {
             MoveTowardsPlayer();
+            animator.SetBool("move",true);
+        }
+        else
+        {
+        animator.SetBool("move",false);
         }
     }
 
@@ -108,6 +116,7 @@ public class EnemyScript : MonoBehaviour
         //Vector2 directionToPlayer = (playerTarget.position - transform.position).normalized;
         //move towards the player
         transform.position = Vector2.MoveTowards(transform.position, playerTarget.position, speed * Time.deltaTime);
+        
     }
 
     void Strafe()
