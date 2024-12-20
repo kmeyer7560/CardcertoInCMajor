@@ -2,7 +2,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Random=UnityEngine.Random;
 
-public class EnemyScript : MonoBehaviour
+public class EnemyScript: MonoBehaviour
 {
     public GameObject bullet;
     public Transform bulletPos;
@@ -42,14 +42,16 @@ public class EnemyScript : MonoBehaviour
         //if distance is less then set range
         if (distance <= range)
         {
+            Debug.Log("123123");
+            
             //if not shooting
             if (!shooting)
             {
-
+                
                 //august's non gorped code
                 if ((int)(Time.time % fireRate) == 0)
                 {
-                    StartShooting();
+                    //StartShooting();
                     animator.SetTrigger("shoot");
                 }
             }
