@@ -12,8 +12,6 @@ public class ShotgunEnemy : MonoBehaviour
     public float shootDuration = 2f;
     public float range = 10f;
 
-    public float spreadAmount;
-
     private bool shooting;
     private Transform playerTarget;
     private float shootStartTime;
@@ -88,23 +86,18 @@ public class ShotgunEnemy : MonoBehaviour
         // timer resets for shooting
     }
 
-    public void Shoot (){
-     int bulletCount = 10;
-     float spread = 1;
-     Quaternion newRot = bulletPos.rotation;
 
-     for (int i = 0; i < bulletCount; i++)
-     {
-          float addedOffset =  i - bulletCount / 2 * spread;
+    public void Shoot() {
+    int bulletCount = 10;
+    float spreadAngle = 30f;
+    float halfSpread = spreadAngle / 2f;
 
-          // Then add "addedOffset" to whatever rotation axis the player must rotate on
-          //newRot = Quaternion.Euler(bulletPos.transform.localEulerAngles.x,             
-          //bulletPos.transform.localEulerAngles.y, 
-          //bulletPos.transform.localEulerAngles.z + addedOffset);
-
-          Instantiate(bullet, bulletPos.position, newRot);
-     }
-} 
+    for (int i = 0; i < bulletCount; i++) {
+        float spread = Random.Range(-halfSpread, halfSpread);
+        Quaternion newRot = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + spread);
+        Instantiate(bullet, bulletPos.position, newRot);
+    }
+}
 
     void MoveTowardsPlayer()
     {
