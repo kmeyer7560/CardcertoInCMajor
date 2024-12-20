@@ -14,9 +14,11 @@ public class PlayerMovement: MonoBehaviour
     private float dashCounter;
     private float dashCoolCounter;
     public Vector2 savedDirection;
+    public bool vulnerable;
      
 
     public Rigidbody2D rb;
+    public Animator animator;
 
     public Vector2 moveDirection;
     
@@ -24,6 +26,7 @@ public class PlayerMovement: MonoBehaviour
     void Start()
     {
         activeSpeed = moveSpeed;
+        vulnerable = true;
     }
 
     void ProcessInputs()
@@ -40,6 +43,7 @@ public class PlayerMovement: MonoBehaviour
             {
                 activeSpeed = moveSpeed;
                 dashCoolCounter = dashCooldown;
+                vulnerable = true;
             }
         }
 
@@ -69,9 +73,11 @@ public class PlayerMovement: MonoBehaviour
     
             if (dashCoolCounter <= 0 && dashCounter <= 0)
             {
+                vulnerable = false;
                 activeSpeed = dashSpeed;
                 dashCounter = dashLength;
             }
+
     }
 
     // Update is called once per frame
@@ -80,6 +86,15 @@ public class PlayerMovement: MonoBehaviour
         ProcessInputs();
         if(savedDirection!= moveDirection && moveDirection!= Vector2.zero){ //ian coded
             savedDirection = moveDirection; //ian coded
+        }
+
+        if (rb.velocity != Vector2.zero)
+        {
+            animator.SetBool("moving", true);
+        }
+        else
+        {
+            animator.SetBool("moving", false);
         }
         }
 }

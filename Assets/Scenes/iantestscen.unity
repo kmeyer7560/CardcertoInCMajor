@@ -214,7 +214,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2419,7 +2419,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2469,6 +2469,7 @@ MonoBehaviour:
   player: {fileID: 337609313}
   shootingPoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
+  aoePrefab: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 0
@@ -2525,7 +2526,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2575,6 +2576,7 @@ MonoBehaviour:
   player: {fileID: 337609313}
   shootingPoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
+  aoePrefab: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 0
@@ -2678,7 +2680,9 @@ MonoBehaviour:
   dashLength: 0.1
   dashCooldown: 0
   savedDirection: {x: 0, y: 0}
+  vulnerable: 0
   rb: {fileID: 337609315}
+  animator: {fileID: 1571619864}
   moveDirection: {x: 0, y: 0}
 --- !u!4 &337609318
 Transform:
@@ -2690,7 +2694,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.21470761, y: 0.2011, z: 0}
-  m_LocalScale: {x: 1, y: 0.6577, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1571619862}
@@ -2720,6 +2724,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1
+  light2D: {fileID: 0}
 --- !u!1 &415890881
 GameObject:
   m_ObjectHideFlags: 0
@@ -2840,7 +2845,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2890,6 +2895,7 @@ MonoBehaviour:
   player: {fileID: 337609313}
   shootingPoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
+  aoePrefab: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 0
@@ -5545,6 +5551,7 @@ MonoBehaviour:
   player: {fileID: 337609313}
   shootingPoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
+  aoePrefab: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 0
@@ -5568,7 +5575,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5672,7 +5679,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5722,6 +5729,7 @@ MonoBehaviour:
   player: {fileID: 337609313}
   shootingPoint: {fileID: 1411283468}
   bulletPrefab: {fileID: 0}
+  aoePrefab: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 50
@@ -6067,7 +6075,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16645,7 +16653,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16695,6 +16703,7 @@ MonoBehaviour:
   player: {fileID: 337609313}
   shootingPoint: {fileID: 1411283468}
   bulletPrefab: {fileID: 5551599301993821772, guid: 195aa06c101e74b22b853b9241b04271, type: 3}
+  aoePrefab: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 0
@@ -16751,7 +16760,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17465,7 +17474,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.5204501, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 337609318}
@@ -17490,7 +17499,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17627,7 +17636,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17677,6 +17686,7 @@ MonoBehaviour:
   player: {fileID: 337609313}
   shootingPoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
+  aoePrefab: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 0
@@ -17847,7 +17857,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17897,6 +17907,7 @@ MonoBehaviour:
   player: {fileID: 337609313}
   shootingPoint: {fileID: 1411283468}
   bulletPrefab: {fileID: 5551599301993821772, guid: a3765c5eeadc24b18b616db0ff548ed1, type: 3}
+  aoePrefab: {fileID: 0}
   staminaCost: 20
   cardType: 
   dashStrength: 0
