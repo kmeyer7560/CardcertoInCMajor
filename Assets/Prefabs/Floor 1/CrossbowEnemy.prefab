@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7605254002419611370}
   - component: {fileID: 2539273680467271495}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CrossbowEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 675884554575161046}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BulletPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5727546941759924166}
   - component: {fileID: 3962654787909985005}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
