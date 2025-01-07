@@ -252,8 +252,6 @@ GameObject:
   m_Component:
   - component: {fileID: 437892900}
   - component: {fileID: 437892899}
-  - component: {fileID: 437892902}
-  - component: {fileID: 437892901}
   m_Layer: 0
   m_Name: RoomsFirstDungeonGenerator
   m_TagString: Untagged
@@ -297,41 +295,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &437892901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 437892898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d50f621b4af5fa344a7e7bb6f253b453, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  floorTilemap: {fileID: 238160969}
-  wallTilemap: {fileID: 238160969}
-  objectPrefabs:
-  - {fileID: 8476924464524390386, guid: fbb90683ac4944f9ab0575450465a8bd, type: 3}
-  maxObjectsPerRoom: 5
---- !u!114 &437892902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 437892898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2138676c2219a8c43ab01be8bf8fac9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  floorTilemap: {fileID: 238160969}
-  wallTilemap: {fileID: 238160969}
-  enemyPrefabs:
-  - {fileID: 475084341199406426, guid: 7fb0e01464763c84cbe1f041673a4c89, type: 3}
-  minEnemiesPerRoom: 1
-  maxEnemiesPerRoom: 3
 --- !u!1 &988054295
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,15 +327,15 @@ MonoBehaviour:
   floorTilemap: {fileID: 238160969}
   wallTilemap: {fileID: 238160969}
   floorTile: {fileID: 11400000, guid: 33e57810ac99e4be399c910b7fe32de2, type: 2}
-  wallTop: {fileID: 11400000, guid: a0d800cb0cfd742b3bb76e0a0343eebc, type: 2}
+  wallTop: {fileID: 11400000, guid: f4b9d5a6f7dde4bae82dce991ea8d53b, type: 2}
   wallSideRight: {fileID: 11400000, guid: ca009bf32eca3469b991be0d9db3a4df, type: 2}
   wallSiderLeft: {fileID: 11400000, guid: 3e98a74c34ec04095838d87f5cf28eab, type: 2}
   wallBottom: {fileID: 11400000, guid: f6c060425f6844da1ad02e9e7fc7d433, type: 2}
   wallFull: {fileID: 11400000, guid: f3be60cbdba33483aa16ae5a93d8e879, type: 2}
-  wallInnerCornerDownLeft: {fileID: 11400000, guid: e3524cecb4ce14af28cca5b09a8dba23, type: 2}
+  wallInnerCornerDownLeft: {fileID: 11400000, guid: f4b9d5a6f7dde4bae82dce991ea8d53b, type: 2}
   wallInnerCornerDownRight: {fileID: 11400000, guid: fcb8ea0baffcc44c883e7cf241f297a5, type: 2}
   wallDiagonalCornerDownRight: {fileID: 11400000, guid: fcb8ea0baffcc44c883e7cf241f297a5, type: 2}
-  wallDiagonalCornerDownLeft: {fileID: 11400000, guid: 486042301830a4486a192883e1c4ebd4, type: 2}
+  wallDiagonalCornerDownLeft: {fileID: 11400000, guid: f4b9d5a6f7dde4bae82dce991ea8d53b, type: 2}
   wallDiagonalCornerUpRight: {fileID: 11400000, guid: 38a462363073048f9ac6c36f3a3e936c, type: 2}
   wallDiagonalCornerUpLeft: {fileID: 11400000, guid: 0c697c7579e12446caa04a8176977e50, type: 2}
 --- !u!4 &988054297
