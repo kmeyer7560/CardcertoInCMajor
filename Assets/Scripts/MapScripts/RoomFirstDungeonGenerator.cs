@@ -7,6 +7,12 @@ using Random = UnityEngine.Random;
 public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 {
     [SerializeField]
+    private DungeonRoomLocator dungeonRoomLocator;
+    [SerializeField]
+    private ObjectPlacer objectPlacer;
+    [SerializeField]
+    private EnemyPlacer enemyPlacer;
+    [SerializeField]
     private int minRoomWidth = 4, minRoomHeight = 4;
     [SerializeField]
     private int dungeonWidth = 20, dungeonHeight = 20;
@@ -16,39 +22,60 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     [SerializeField]
     private bool randomWalkRooms = false;
 
+    public void Start()
+    {
+        RunProceduralGeneration();
+
+        objectPlacer.floorTilemap = tilemapVisualizer.FloorTilemap;
+        objectPlacer.wallTilemap = tilemapVisualizer.WallTilemap;
+        enemyPlacer.floorTilemap = tilemapVisualizer.FloorTilemap;
+        enemyPlacer.wallTilemap = tilemapVisualizer.WallTilemap;
+    }
+    
     protected override void RunProceduralGeneration()
     {
         CreateRooms();
     }
 
     private void CreateRooms()
+{
+    var roomsList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
+
+    HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
+
+    if (randomWalkRooms)
     {
-        var roomsList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
-
-        HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
-
-        if (randomWalkRooms)
-        {
-            floor = CreateRoomsRandomly(roomsList);
-        }
-        else
-        {
-            floor = CreateSimpleRooms(roomsList);
-        }
-        
-
-        List<Vector2Int> roomCenters = new List<Vector2Int>();
-        foreach (var room in roomsList)
-        {
-            roomCenters.Add((Vector2Int)Vector3Int.RoundToInt(room.center));
-        }
-
-        HashSet<Vector2Int> corridors = ConnectRooms(roomCenters);
-        floor.UnionWith(corridors);
-
-        tilemapVisualizer.PaintFloorTiles(floor);
-        WallGenerator.CreateWalls(floor, tilemapVisualizer);
+        floor = CreateRoomsRandomly(roomsList);
     }
+    else
+    {
+        floor = CreateSimpleRooms(roomsList);
+    }
+
+    List<Vector2Int> roomCenters = new List<Vector2Int>();
+    foreach (var room in roomsList)
+    {
+        roomCenters.Add((Vector2Int)Vector3Int.RoundToInt(room.center));
+    }
+
+    HashSet<Vector2Int> corridors = ConnectRooms(roomCenters);
+    floor.UnionWith(corridors);
+
+    tilemapVisualizer.PaintFloorTiles(floor);
+    WallGenerator.CreateWalls(floor, tilemapVisualizer);
+
+    // Initialize rooms in DungeonRoomLocator
+    dungeonRoomLocator.InitializeRooms(roomsList);
+    dungeonRoomLocator.ConnectRooms(corridors);
+    dungeonRoomLocator.AssignSpecialRooms();
+
+    // Place objects and enemies in each room
+    foreach (var room in roomsList)
+    {
+        objectPlacer.PlaceObjects(room);
+        enemyPlacer.PlaceEnemies(room);
+    }
+}
 
     private HashSet<Vector2Int> CreateRoomsRandomly(List<BoundsInt> roomsList)
     {
