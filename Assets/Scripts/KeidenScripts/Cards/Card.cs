@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Card : MonoBehaviour
 {
@@ -18,48 +15,69 @@ public class Card : MonoBehaviour
     public float staminaCost;
     public string cardType;
     public float dashStrength;
+
     private void Start()
     {
         hm = FindObjectOfType<HandManager>();
         cardType = this.tag;
-        //Debug.Log(cardType);
-
     }
 
     public void playCard()
     {
-        if(!hasBeenPlayed)
+        if (!hasBeenPlayed)
         {
             if (staminaBar.GetComponent<StaminaManager>().stamina >= staminaCost)
             {
-
                 staminaBar.GetComponent<StaminaManager>().useCard(staminaCost);
                 hasBeenPlayed = true;
                 hm.availableCardSlots[handIndex] = true;
                 hm.hold.Add(this);
                 hm.hand.Remove(this);
                 hm.DrawCard();
-                if(cardType == "dashCard"){  //what the card should do should go here.
+
+                if (cardType == "dashCard")
+                {
                     dashCard();
                 }
-
-                else if(cardType == "attackCard"){
+                else if (cardType == "attackCard")
+                {
                     shootCard();
                 }
-
-                else if(cardType == "aoeCard")
+                else if (cardType == "aoeCard")
                 {
                     aoeCard();
                 }
+                else if (cardType == "burstCard")
+                {
+                    gameObject.SetActive(true);
+                    StartCoroutine(burstDelay());
+                }
+
                 hm.shuffle();
                 hasBeenPlayed = false;
-                gameObject.SetActive(false);
+                if (cardType != "burstCard") //need this for every card that uses a coroutine f you unity
+                {
+                    gameObject.SetActive(false);
+                }
             }
-            else {
+            else
+            {
                 staminaBar.GetComponent<StaminaManager>().ChargeRate = 10;
             }
-            
         }
+    }
+
+    IEnumerator burstDelay()
+    {
+        gameObject.transform.position = new Vector2(1000000, 100000); //just to get the sprite out of the way becuase i can't turn off the gameobject while a coroutine needs to run. Very desperate tactic.
+        Debug.Log("Starting burst delay...");
+        for (int i = 0; i < 3; i++)
+        {
+            Debug.Log("Shooting bullet " + (i + 1));
+            shootCard(); // Call the shootCard method to instantiate a bullet
+            yield return new WaitForSeconds(0.1f); // Wait for 0.3 seconds before the next shot
+        }
+        gameObject.SetActive(false);
     }
 
     public void dashCard()
@@ -69,12 +87,11 @@ public class Card : MonoBehaviour
 
     public void shootCard()
     {
-        Instantiate(bulletPrefab, shootingPoint.position, transform.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.rotation);
     }
 
     public void aoeCard()
     {
-        Instantiate(aoePrefab, shootingPoint.position, transform.rotation);
+        Instantiate(aoePrefab, shootingPoint.position, shootingPoint.rotation);
     }
-
 }

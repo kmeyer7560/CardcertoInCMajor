@@ -28,14 +28,14 @@ public class PlayerBullet : MonoBehaviour
 
         Player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
-        Debug.Log(Player.GetComponent<FOV>().hitObject);
+        //Debug.Log(Player.GetComponent<FOV>().hitObject);
         objectInRay = Player.GetComponent<FOV>().hitObject;
-        Debug.Log(objectInRay);
+        //Debug.Log(objectInRay);
         if(objectInRay == null){ //ian code
             rb.velocity = Player.GetComponent<PlayerMovement>().savedDirection * Speed;      
         }
 
-        Debug.Log(Player.GetComponent<Rigidbody2D>().velocity);
+        //Debug.Log(Player.GetComponent<Rigidbody2D>().velocity);
     }
 
     // Update is called once per frame
