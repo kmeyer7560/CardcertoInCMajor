@@ -51,7 +51,7 @@ public class EnemyScript: MonoBehaviour
                 //august's non gorped code
                 if ((int)(Time.time % fireRate) == 0)
                 {
-                    //StartShooting();
+                    StartShooting();
                     animator.SetTrigger("shoot");
                 }
             }
