@@ -16,8 +16,9 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     [SerializeField]
     private bool randomWalkRooms = false;
     public GameObject playerSpawner;
-    public GameObject bossEntrance;
+    public GameObject bossEntrancePrefab;
     public GameObject chestPrefab;
+    private bool entraceCanSpawn = true;
 
     public void Start()
     {
@@ -66,7 +67,11 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
             var roomBounds = roomsList[i];
             var roomCenter = new Vector2Int(Mathf.RoundToInt(roomBounds.center.x), Mathf.RoundToInt(roomBounds.center.y));
             var roomFloor = RunRandomWalk(randomWalkParameters, roomCenter);
-            //bossEntrance.transform.position = new Vector3(roomCenter.x, roomCenter.y, 0f);
+            if(entraceCanSpawn)
+            {
+                Instantiate(bossEntrancePrefab, new Vector3(roomCenter.x, roomCenter.y, 0f), transform.rotation);
+                entraceCanSpawn = false;
+            }
             foreach (var position in roomFloor)
             {
                 if(position.x >= (roomBounds.xMin + offset) && position.x <= (roomBounds.xMax - offset) && position.y >= (roomBounds.yMin - offset) && position.y <= (roomBounds.yMax - offset))
@@ -164,5 +169,9 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
             }
         }
         return floor;
+    }
+    private void Dijkstra ()
+    {
+
     }
 }
