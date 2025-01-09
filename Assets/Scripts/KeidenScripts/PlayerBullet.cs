@@ -50,7 +50,7 @@ public class PlayerBullet : MonoBehaviour
 
         timer += Time.deltaTime;
         // Bullet lasts 10 seconds before it dies
-        if (timer > 10)
+        if (timer > 6)
         {
             Destroy(gameObject);
         }

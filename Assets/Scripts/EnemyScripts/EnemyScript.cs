@@ -42,7 +42,7 @@ public class EnemyScript: MonoBehaviour
         //if distance is less then set range
         if (distance <= range)
         {
-            Debug.Log("123123");
+            //Debug.Log("123123");
             
             //if not shooting
             if (!shooting)
@@ -51,8 +51,9 @@ public class EnemyScript: MonoBehaviour
                 //august's non gorped code
                 if ((int)(Time.time % fireRate) == 0)
                 {
-                    StartShooting();
                     animator.SetTrigger("shoot");
+                    StartShooting();
+                    
                 }
             }
             //else if shooting
