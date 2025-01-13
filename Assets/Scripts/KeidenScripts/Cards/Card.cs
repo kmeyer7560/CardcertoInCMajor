@@ -11,7 +11,7 @@ public class Card : MonoBehaviour
     public GameObject player;
     public Transform shootingPoint;
     public GameObject bulletPrefab;
-    public GameObject aoePrefab;
+
     public float staminaCost;
     public string cardType;
     public float dashStrength;
@@ -43,14 +43,16 @@ public class Card : MonoBehaviour
                 {
                     shootCard();
                 }
-                else if (cardType == "aoeCard")
-                {
-                    aoeCard();
-                }
                 else if (cardType == "burstCard")
                 {
                     gameObject.SetActive(true);
                     StartCoroutine(burstDelay());
+                }
+                else if (cardType == "laserCard")
+                {
+                    player.GetComponent<PlayerMovement>().moveable = false;
+                    player.GetComponent<PlayerMovement>().rb.velocity = new Vector2(0, 0);;
+                    shootCard();
                 }
 
                 hm.shuffle();
@@ -70,10 +72,10 @@ public class Card : MonoBehaviour
     IEnumerator burstDelay()
     {
         gameObject.transform.position = new Vector2(1000000, 100000); //just to get the sprite out of the way becuase i can't turn off the gameobject while a coroutine needs to run. Very desperate tactic.
-        Debug.Log("Starting burst delay...");
+        //Debug.Log("Starting burst delay...");
         for (int i = 0; i < 3; i++)
         {
-            Debug.Log("Shooting bullet " + (i + 1));
+            //Debug.Log("Shooting bullet " + (i + 1));
             shootCard(); // Call the shootCard method to instantiate a bullet
             yield return new WaitForSeconds(0.1f); // Wait for 0.3 seconds before the next shot
         }
@@ -82,16 +84,11 @@ public class Card : MonoBehaviour
 
     public void dashCard()
     {
-        player.GetComponent<PlayerMovement>().Dash(dashStrength);
+        player.GetComponent<PlayerMovement>().StartCoroutine(Dashroutine(dashStrength));
     }
 
     public void shootCard()
     {
         GameObject bullet = Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.rotation);
-    }
-
-    public void aoeCard()
-    {
-        Instantiate(aoePrefab, shootingPoint.position, shootingPoint.rotation);
     }
 }

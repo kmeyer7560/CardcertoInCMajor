@@ -8,10 +8,10 @@ TagManager:
   - attackCard
   - Enemy
   - playerAttack
-  - aoeCard
   - Environment
   - enemyAttack
   - burstCard
+  - laserCard
   layers:
   - Default
   - TransparentFX

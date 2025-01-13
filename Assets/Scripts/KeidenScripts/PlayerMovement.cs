@@ -15,6 +15,7 @@ public class PlayerMovement: MonoBehaviour
     private float dashCoolCounter;
     public Vector2 savedDirection;
     public bool vulnerable;
+    public bool moveable;
      
 
     public Rigidbody2D rb;
@@ -27,6 +28,7 @@ public class PlayerMovement: MonoBehaviour
     {
         activeSpeed = moveSpeed;
         vulnerable = true;
+        moveable = true;
     }
 
     void ProcessInputs()
@@ -68,22 +70,46 @@ public class PlayerMovement: MonoBehaviour
         }
     }
 
-    public void Dash(float dashSpeed)
-    {
-    
-            if (dashCoolCounter <= 0 && dashCounter <= 0)
-            {
-                vulnerable = false;
-                activeSpeed = dashSpeed;
-                dashCounter = dashLength;
-            }
+    public IEnumerator DashCoroutine(float dashSpeed)
+{
+    vulnerable = false;
+    activeSpeed = dashSpeed;
+    dashCounter = dashLength;
 
+    float dashTime = 0f;
+    while (dashTime < dashLength)
+    {
+        // Check for potential collisions
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, savedDirection.normalized, dashSpeed * Time.fixedDeltaTime);
+        if (hit.collider != null)
+        {
+            // If a collision is detected, stop the dash
+            break;
+        }
+
+        // Move the player in the saved direction
+        rb.velocity = savedDirection.normalized * dashSpeed;
+
+        yield return new WaitForFixedUpdate(); // Wait for the next physics update
+        dashTime += Time.fixedDeltaTime;
     }
+
+    // Reset the player's velocity after dashing
+    rb.velocity = Vector2.zero;
+    activeSpeed = moveSpeed;
+    dashCoolCounter = dashCooldown;
+    vulnerable = true;
+}
+
 
     // Update is called once per frame
     void Update() 
     {
-        ProcessInputs();
+        if (moveable)
+        {
+            ProcessInputs();
+        }
+    
         if(savedDirection!= moveDirection && moveDirection!= Vector2.zero){ //ian coded
             savedDirection = moveDirection; //ian coded
         }
