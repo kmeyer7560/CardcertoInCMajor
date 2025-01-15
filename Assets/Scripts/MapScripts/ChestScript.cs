@@ -1,62 +1,68 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ChestScript : MonoBehaviour
 {
-    public float detectionRange = 5f;
-    private bool playerInRange = false;
-    public LayerMask playerLayer;
+    public GameObject content;
+    public GameObject pickScreen;
+    private int random;
+    private int amountOfCards;
+    private Animator animator;
 
-    public ScrollRect scrollRect;
-    public float spinDuration = 5f;
-    public float spinSpeed = 2000f;
-    public AnimationCurve spinCurve;
-
-    private bool isSpinning = false;
-
-    private void Update()
+    void Start()
     {
-        Vector2 boxSize = new Vector2(detectionRange * 2, detectionRange * 2);
-        Collider2D hit = Physics2D.OverlapBox(transform.position, boxSize, 0f, playerLayer);
-        playerInRange = (hit != null);
+        content = GameObject.Find("Content");
+        pickScreen = GameObject.Find("PickScreen");
+        animator = content.GetComponent<Animator>();
+        content.SetActive(false);
+    }
 
-        if(playerInRange && Input.GetKeyDown("space"))
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Chest") && Input.GetKeyDown(KeyCode.Space))
         {
-            Gamble();
+            random = Random.Range(0, 100);
+            if(random <= 40)
+            {
+                //roll 1
+                ActivateContent();
+                PickCard(1);
+            }
+            else if(random <= 60)
+            {
+                //roll 2
+                ActivateContent();
+                PickCard(2);
+            }
+            else if(random <= 80)
+            {
+                //roll 3
+                ActivateContent();
+                PickCard(3);
+            }
+            else if(random <= 90)
+            {
+                //roll 5
+                ActivateContent();
+                PickCard(5);
+            }
+            else
+            {
+                //roll 8
+                ActivateContent();
+                PickCard(8);
+            }
         }
     }
 
-    public void Gamble()
+    private void ActivateContent()
     {
-        if(!isSpinning)
-        {
-            StartCoroutine(SpinRoulette());
-        }    
+        content.SetActive(true);
+        animator.SetTrigger("roll5");
     }
-    private IEnumerator SpinRoulette()
+
+    private void PickCard(int cards)
     {
-        isSpinning = true;
-        float elapsedTime = 0f;
-        float startPosition = scrollRect.horizontalNormalizedPosition;
-        float targetPosition = Random.value;
-
-        while (elapsedTime < spinDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            float t = elapsedTime / spinDuration;
-            float curveValue = spinCurve.Evaluate(t);
-            
-            float currentPosition = Mathf.Lerp(startPosition, targetPosition, curveValue);
-            scrollRect.horizontalNormalizedPosition = currentPosition;
-
-            yield return null;
-        }
-
-        scrollRect.horizontalNormalizedPosition = targetPosition;
-        isSpinning = false;
-
-        // Handle item selection logic here
+        pickScreen.SetActive(true);
+        
     }
 }
