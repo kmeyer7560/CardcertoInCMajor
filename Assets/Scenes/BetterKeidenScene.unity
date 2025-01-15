@@ -2469,7 +2469,6 @@ MonoBehaviour:
   player: {fileID: 337609313}
   shootingPoint: {fileID: 1411283468}
   bulletPrefab: {fileID: 5551599301993821772, guid: 51053576952684448a803b8454afb676, type: 3}
-  aoePrefab: {fileID: 0}
   staminaCost: 15
   cardType: 
   dashStrength: 0
@@ -2713,6 +2712,7 @@ MonoBehaviour:
   dashCooldown: 0
   savedDirection: {x: 0, y: 0}
   vulnerable: 0
+  moveable: 0
   rb: {fileID: 337609315}
   animator: {fileID: 1571619864}
   moveDirection: {x: 0, y: 0}
@@ -2843,8 +2843,8 @@ GameObject:
   - component: {fileID: 467285669}
   - component: {fileID: 467285670}
   m_Layer: 6
-  m_Name: Card6
-  m_TagString: Untagged
+  m_Name: GuitarLaser
+  m_TagString: laserCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2905,8 +2905,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.5492216, g: 0.09411764, b: 0.94509804, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 1b6c5eca71692429c8f7b4ffaab4650f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2932,9 +2932,8 @@ MonoBehaviour:
   handIndex: 0
   staminaBar: {fileID: 1273984469}
   player: {fileID: 337609313}
-  shootingPoint: {fileID: 0}
-  bulletPrefab: {fileID: 0}
-  aoePrefab: {fileID: 0}
+  shootingPoint: {fileID: 1411283468}
+  bulletPrefab: {fileID: 5551599301993821772, guid: e27e9d74b0efe4765865ca05c10c5a46, type: 3}
   staminaCost: 10
   cardType: 
   dashStrength: 0
@@ -5662,7 +5661,6 @@ MonoBehaviour:
   player: {fileID: 337609313}
   shootingPoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
-  aoePrefab: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 0
@@ -5872,7 +5870,6 @@ MonoBehaviour:
   player: {fileID: 337609313}
   shootingPoint: {fileID: 1411283468}
   bulletPrefab: {fileID: 0}
-  aoePrefab: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 50
@@ -6151,7 +6148,7 @@ GameObject:
   - component: {fileID: 1097318605}
   m_Layer: 6
   m_Name: aoeCard
-  m_TagString: aoeCard
+  m_TagString: attackCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6240,8 +6237,7 @@ MonoBehaviour:
   staminaBar: {fileID: 1273984469}
   player: {fileID: 337609313}
   shootingPoint: {fileID: 1411283468}
-  bulletPrefab: {fileID: 0}
-  aoePrefab: {fileID: 912633962132210534, guid: 26b78d961696b4a039ea06b684cde72b, type: 3}
+  bulletPrefab: {fileID: 912633962132210534, guid: 26b78d961696b4a039ea06b684cde72b, type: 3}
   staminaCost: 15
   cardType: 
   dashStrength: 0
@@ -16927,7 +16923,6 @@ MonoBehaviour:
   player: {fileID: 337609313}
   shootingPoint: {fileID: 1411283468}
   bulletPrefab: {fileID: 5551599301993821772, guid: 195aa06c101e74b22b853b9241b04271, type: 3}
-  aoePrefab: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 0
@@ -17563,7 +17558,7 @@ Transform:
   m_GameObject: {fileID: 1411283467}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.214, y: 0.13, z: 0}
+  m_LocalPosition: {x: 0.231, y: 0.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18047,7 +18042,6 @@ MonoBehaviour:
   player: {fileID: 337609313}
   shootingPoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
-  aoePrefab: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 0
@@ -18288,7 +18282,6 @@ MonoBehaviour:
   player: {fileID: 337609313}
   shootingPoint: {fileID: 1411283468}
   bulletPrefab: {fileID: 5551599301993821772, guid: a3765c5eeadc24b18b616db0ff548ed1, type: 3}
-  aoePrefab: {fileID: 0}
   staminaCost: 30
   cardType: 
   dashStrength: 0

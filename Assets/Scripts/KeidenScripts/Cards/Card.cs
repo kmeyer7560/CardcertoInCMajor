@@ -11,7 +11,6 @@ public class Card : MonoBehaviour
     public GameObject player;
     public Transform shootingPoint;
     public GameObject bulletPrefab;
-
     public float staminaCost;
     public string cardType;
     public float dashStrength;
@@ -38,6 +37,10 @@ public class Card : MonoBehaviour
                 if (cardType == "dashCard")
                 {
                     dashCard();
+                }
+                if (cardType == "gDashCard")
+                {
+                    gDash();
                 }
                 else if (cardType == "attackCard")
                 {
@@ -84,7 +87,13 @@ public class Card : MonoBehaviour
 
     public void dashCard()
     {
-        player.GetComponent<PlayerMovement>().StartCoroutine(Dashroutine(dashStrength));
+        player.GetComponent<PlayerMovement>().dash(dashStrength, false);
+
+    }
+
+    public void gDash()
+    {
+        player.GetComponent<PlayerMovement>().dash(dashStrength, true);
     }
 
     public void shootCard()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -16,6 +17,7 @@ public class PlayerMovement: MonoBehaviour
     public Vector2 savedDirection;
     public bool vulnerable;
     public bool moveable;
+    public TrailRenderer tr;
      
 
     public Rigidbody2D rb;
@@ -26,6 +28,7 @@ public class PlayerMovement: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        tr.emitting = false;
         activeSpeed = moveSpeed;
         vulnerable = true;
         moveable = true;
@@ -70,36 +73,59 @@ public class PlayerMovement: MonoBehaviour
         }
     }
 
-    public IEnumerator DashCoroutine(float dashSpeed)
+    public void dash(float dashSpeed, bool trail)
+    {
+        if (trail)
+        {
+            tr.emitting = true;
+        }
+        Debug.Log("dashed");
+        Debug.Log(dashSpeed);
+        StartCoroutine(DashCoroutine(dashSpeed));
+    }
+
+   public IEnumerator DashCoroutine(float dashSpeed)
 {
+    Debug.Log("Started Routine");
     vulnerable = false;
     activeSpeed = dashSpeed;
     dashCounter = dashLength;
 
     float dashTime = 0f;
-    while (dashTime < dashLength)
+    float dashDistance = dashSpeed * Time.fixedDeltaTime; // Calculate the distance to move each frame
+
+    // Calculate the total number of steps for the dash
+    int steps = Mathf.CeilToInt(dashLength / Time.fixedDeltaTime);
+    Vector2 direction = savedDirection.normalized;
+
+    for (int i = 0; i < steps; i++)
     {
+        // Calculate the target position for this step
+        Vector2 targetPosition = rb.position + direction * dashDistance;
+
         // Check for potential collisions
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, savedDirection.normalized, dashSpeed * Time.fixedDeltaTime);
-        if (hit.collider != null)
+        RaycastHit2D hit = Physics2D.Raycast(rb.position, direction, dashDistance);
+        if (hit.collider != null && hit.collider.CompareTag("Environment"))
         {
             // If a collision is detected, stop the dash
             break;
         }
 
-        // Move the player in the saved direction
-        rb.velocity = savedDirection.normalized * dashSpeed;
+        // Move the player
+        rb.MovePosition(targetPosition);
 
         yield return new WaitForFixedUpdate(); // Wait for the next physics update
-        dashTime += Time.fixedDeltaTime;
     }
 
     // Reset the player's velocity after dashing
+    tr.emitting = false;
     rb.velocity = Vector2.zero;
     activeSpeed = moveSpeed;
     dashCoolCounter = dashCooldown;
     vulnerable = true;
 }
+
+
 
 
     // Update is called once per frame

@@ -58,6 +58,8 @@ MonoBehaviour:
   animator: {fileID: 4714359397264952569}
   spreadAmount: 0
   direction: {x: 0, y: 0, z: 0}
+  rb: {fileID: 6196279504761268732}
+  spriteRenderer: {fileID: 3962654787909985005}
 --- !u!114 &5684699325127324769
 MonoBehaviour:
   m_ObjectHideFlags: 0
