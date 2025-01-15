@@ -17,6 +17,7 @@ public class rollStop : MonoBehaviour
     }
     public void RollStop()
     {
+        Debug.Log("rollstop");
         gameObject.SetActive(false);
     }
 }

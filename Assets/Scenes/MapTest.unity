@@ -4399,6 +4399,12 @@ MonoBehaviour:
   playerSpawner: {fileID: 821642654}
   bossEntrancePrefab: {fileID: 6750090895590366358, guid: bb5ac4e82a905449dbc6629b2df01408, type: 3}
   chestPrefab: {fileID: 7519551053038593844, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
+  enemies:
+  - {fileID: 475084341199406426, guid: 7fb0e01464763c84cbe1f041673a4c89, type: 3}
+  - {fileID: 475084341199406426, guid: 9ee53c4a9e3184f4db5329f3597066f7, type: 3}
+  - {fileID: 8476924464524390386, guid: 028d1dbec2f57424485a9da85ae6f928, type: 3}
+  - {fileID: 475084341199406426, guid: 0d98d341bb47342b292891aa81115cf8, type: 3}
+  numOfEnemies: 4
 --- !u!4 &437892900
 Transform:
   m_ObjectHideFlags: 0
@@ -7136,12 +7142,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 623069392}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 0
+  m_ShowMaskGraphic: 1
 --- !u!114 &623069395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8899,7 +8905,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.925
+  orthographic size: 5.5833335
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -9867,8 +9873,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02533418, y: -0.06200695}
-  m_Size: {x: 0.34933168, y: 0.6162683}
+  m_Offset: {x: -0.010814622, y: -0.06200695}
+  m_Size: {x: 0.30214313, y: 0.6162683}
   m_Direction: 0
 --- !u!50 &821642658
 Rigidbody2D:
@@ -12751,7 +12757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1087231060
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13785,7 +13791,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.69948, y: 0.69948, z: 0.69948}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 821642655}
@@ -20514,7 +20520,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2020625341
 RectTransform:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -19,6 +20,9 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     public GameObject bossEntrancePrefab;
     public GameObject chestPrefab;
     private bool entraceCanSpawn = true;
+    public List<GameObject> enemies;
+    public int numOfEnemies;
+
 
     public void Start()
     {
@@ -78,10 +82,15 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                 {
                     floor.Add(position);
                     int randomValue = Random.Range(0,500);
+                    int randomEnemy = Random.Range(0, numOfEnemies);
                     //generates chest
                     if(randomValue == 0)
                     {
                         Instantiate(chestPrefab, new Vector3(roomCenter.x, roomCenter.y, 0f), transform.rotation);
+                    }
+                    if(randomValue <= 10)
+                    {
+                        Instantiate(enemies[randomEnemy], new Vector3(roomCenter.x, roomCenter.y, 0f), transform.rotation);
                     }
                 }
             }
