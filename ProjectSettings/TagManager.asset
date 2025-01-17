@@ -12,6 +12,7 @@ TagManager:
   - enemyAttack
   - burstCard
   - laserCard
+  - gDashCard
   layers:
   - Default
   - TransparentFX
