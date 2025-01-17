@@ -3,7 +3,10 @@ using UnityEngine;
 
 public class ChestScript : MonoBehaviour
 {
-    public GameObject content;
+    public GameObject content2;
+    public GameObject content4;
+    public GameObject content8;
+    public GameObject contentSpecial;
     public GameObject pickScreen;
     private int random;
     private int randomSuit;
@@ -14,10 +17,17 @@ public class ChestScript : MonoBehaviour
 
     void Start()
     {
-        content = GameObject.Find("Content");
-        pickScreen = GameObject.Find("PickScreen");
-        animator = content.GetComponent<Animator>();
-        content.SetActive(false);
+        content2 = GameObject.Find("Content2");
+        content4 = GameObject.Find("Content2");
+        content8 = GameObject.Find("Content2");
+        contentSpecial = GameObject.Find("Content2");
+
+        animator = content2.GetComponent<Animator>();
+
+        content2.SetActive(false);
+        content4.SetActive(false);
+        content8.SetActive(false);
+        contentSpecial.SetActive(false);
     }
 
     void OnCollisionEnter(Collision collision)
@@ -26,36 +36,45 @@ public class ChestScript : MonoBehaviour
         {
             random = Random.Range(0, 100);
             randomSuit = Random.Range(0,3);
+            
             if(random <= 39)
-            {
+            {   
                 //roll 2
-                ActivateContent();
+                if(randomSuit == 0)
+                {
+
+                }
+                ActivateContent(2);
                 SpawnCards(2);
             }
             else if(random <= 59)
             {
                 //roll 4
-                ActivateContent();
+                ActivateContent(4);
                 SpawnCards(4);
             }
             else if(random <= 89)
             {
                 //roll 8
-                ActivateContent();
+                ActivateContent(8);
                 SpawnCards(8);
             }
             else
             {
                 //roll special
-                ActivateContent();
+                ActivateContent(1);
                 SpawnCards(1);
             }
         }
     }
 
-    private void ActivateContent()
+    private void ActivateContent(int roll)
     {
-        content.SetActive(true);
+        if(roll == 1)
+        {
+            contentSpecial.SetActive(true);
+        }
+        
         animator.SetTrigger("roll5");
     }
 
