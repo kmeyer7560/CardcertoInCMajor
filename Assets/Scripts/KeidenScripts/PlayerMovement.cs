@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class PlayerMovement: MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    
     public SpriteRenderer spriteRenderer;
     public float moveSpeed;
     public float activeSpeed;
@@ -18,27 +15,29 @@ public class PlayerMovement: MonoBehaviour
     public bool vulnerable;
     public bool moveable;
     public TrailRenderer tr;
-     
+    public PolygonCollider2D trailCollider; // Reference to the PolygonCollider2D
 
     public Rigidbody2D rb;
     public Animator animator;
 
     public Vector2 moveDirection;
-    
-    // Start is called before the first frame update
+    public Vector3 trailPos1;
+    public Vector3 trailPos2;
+
     void Start()
     {
         tr.emitting = false;
         activeSpeed = moveSpeed;
         vulnerable = true;
         moveable = true;
+        trailCollider.enabled = false; // Ensure the collider is disabled at start
     }
 
     void ProcessInputs()
     {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
-        
+
         moveDirection = new Vector2(moveX, moveY).normalized;
         if (dashCounter > 0)
         {
@@ -52,7 +51,7 @@ public class PlayerMovement: MonoBehaviour
             }
         }
 
-        if (dashCoolCounter > 0 )
+        if (dashCoolCounter > 0)
         {
             dashCoolCounter -= Time.deltaTime;
         }
@@ -63,14 +62,7 @@ public class PlayerMovement: MonoBehaviour
     void Move()
     {
         rb.velocity = new Vector2(moveDirection.x * activeSpeed, moveDirection.y * activeSpeed);
-        if (rb.velocity.x < 0)
-        {
-                spriteRenderer.flipX = true;
-        }
-        if (rb.velocity.x > 0)
-        {
-            spriteRenderer.flipX = false;
-        }
+        spriteRenderer.flipX = rb.velocity.x < 0;
     }
 
     public void dash(float dashSpeed, bool trail)
@@ -78,75 +70,77 @@ public class PlayerMovement: MonoBehaviour
         if (trail)
         {
             tr.emitting = true;
+            trailCollider.enabled = true; // Enable the collider when the trail is active
         }
         Debug.Log("dashed");
         Debug.Log(dashSpeed);
         StartCoroutine(DashCoroutine(dashSpeed));
     }
 
-   public IEnumerator DashCoroutine(float dashSpeed)
-{
-    Debug.Log("Started Routine");
-    vulnerable = false;
-    activeSpeed = dashSpeed;
-    dashCounter = dashLength;
-
-    float dashTime = 0f;
-    float dashDistance = dashSpeed * Time.fixedDeltaTime; // Calculate the distance to move each frame
-
-    // Calculate the total number of steps for the dash
-    int steps = Mathf.CeilToInt(dashLength / Time.fixedDeltaTime);
-    Vector2 direction = savedDirection.normalized;
-
-    for (int i = 0; i < steps; i++)
+    public IEnumerator DashCoroutine(float dashSpeed)
     {
-        // Calculate the target position for this step
-        Vector2 targetPosition = rb.position + direction * dashDistance;
+        Debug.Log("Started Routine");
+        vulnerable = false;
+        activeSpeed = dashSpeed;
+        dashCounter = dashLength;
 
-        // Check for potential collisions
-        RaycastHit2D hit = Physics2D.Raycast(rb.position, direction, dashDistance);
-        if (hit.collider != null && hit.collider.CompareTag("Environment"))
+        float dashDistance = dashSpeed * Time.fixedDeltaTime;
+
+        int steps = Mathf.CeilToInt(dashLength / Time.fixedDeltaTime);
+        Vector2 direction = savedDirection.normalized;
+
+        for (int i = 0; i < steps; i++)
         {
-            // If a collision is detected, stop the dash
-            break;
+            Vector2 targetPosition = rb.position + direction * dashDistance;
+
+            RaycastHit2D hit = Physics2D.Raycast(rb.position, direction, dashDistance);
+            if (hit.collider != null && hit.collider.CompareTag("Environment"))
+            {
+                break;
+            }
+
+            rb.MovePosition(targetPosition);
+            yield return new WaitForFixedUpdate();
         }
 
-        // Move the player
-        rb.MovePosition(targetPosition);
-
-        yield return new WaitForFixedUpdate(); // Wait for the next physics update
+        // Reset the player's velocity after dashing
+        tr.emitting = false;
+        StartCoroutine(DisableColliderAfterDelay(1.5f)); // Start the coroutine to disable the collider
+        rb.velocity = Vector2.zero;
+        activeSpeed = moveSpeed;
+        dashCoolCounter = dashCooldown;
+        vulnerable = true;
     }
 
-    // Reset the player's velocity after dashing
-    tr.emitting = false;
-    rb.velocity = Vector2.zero;
-    activeSpeed = moveSpeed;
-    dashCoolCounter = dashCooldown;
-    vulnerable = true;
-}
+    private IEnumerator DisableColliderAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay); // Wait for the specified delay
+                trailCollider.enabled = false; // Disable the collider
+    }
 
-
-
-
-    // Update is called once per frame
-    void Update() 
+    void Update()
     {
         if (moveable)
         {
             ProcessInputs();
         }
-    
-        if(savedDirection!= moveDirection && moveDirection!= Vector2.zero){ //ian coded
-            savedDirection = moveDirection; //ian coded
+
+        if (savedDirection != moveDirection && moveDirection != Vector2.zero)
+        {
+            savedDirection = moveDirection;
         }
 
-        if (rb.velocity != Vector2.zero)
+        animator.SetBool("moving", rb.velocity != Vector2.zero);
+
+        // Update the collider to match the trail
+        UpdateTrailCollider();
+    }
+
+    void UpdateTrailCollider()
+    {
+        if (tr.emitting)
         {
-            animator.SetBool("moving", true);
+            trailPos1 = this.transform.position;
         }
-        else
-        {
-            animator.SetBool("moving", false);
-        }
-        }
+    }
 }
