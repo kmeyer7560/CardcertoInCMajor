@@ -1,39 +1,73 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class ChestScript : MonoBehaviour
 {
-    private string[] lootpool;
-    public GameObject player;
-    private int range = 3;
-    private int randomDraw;
-
-    public string gun1;
-    public string gun2;
-    public string gun3;
-    private int reward;
+    public GameObject content;
+    public GameObject pickScreen;
+    private int random;
+    private int randomSuit;
+    private int randomCard;
+    private int randomSpecialCard;
+    private int amountOfCards;
+    private Animator animator;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        //lootpool = [gun1, gun2, gun3];
+        content = GameObject.Find("Content");
+        pickScreen = GameObject.Find("PickScreen");
+        animator = content.GetComponent<Animator>();
+        content.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnCollisionEnter(Collision collision)
     {
-        float distance = Vector2.Distance(transform.position, player.transform.position);
-        if(Input.GetKeyDown("space") && distance <= range)
+        if(collision.gameObject.CompareTag("Chest") && Input.GetKeyDown(KeyCode.Space))
         {
-            OpenChest();
+            random = Random.Range(0, 100);
+            randomSuit = Random.Range(0,3);
+            if(random <= 39)
+            {
+                //roll 2
+                ActivateContent();
+                SpawnCards(2);
+            }
+            else if(random <= 59)
+            {
+                //roll 4
+                ActivateContent();
+                SpawnCards(4);
+            }
+            else if(random <= 89)
+            {
+                //roll 8
+                ActivateContent();
+                SpawnCards(8);
+            }
+            else
+            {
+                //roll special
+                ActivateContent();
+                SpawnCards(1);
+            }
         }
     }
-    void OpenChest()
-    {
-        //play chest open animatio
-        randomDraw = Random.Range(0,2);
-        //reward = lootpool[randomDraw];
 
+    private void ActivateContent()
+    {
+        content.SetActive(true);
+        animator.SetTrigger("roll5");
+    }
+
+    private void SpawnCards(int cards)
+    {
+        int randomCard = Random.Range(0,3);
+        //int random
+        //if(cards == 1)
+        //{
+          //  specialCards[]
+        //}
+        //pickScreen.SetActive(true);
+        
     }
 }

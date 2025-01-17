@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,11 +16,19 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private int offset = 1;
     [SerializeField]
     private bool randomWalkRooms = false;
+    public GameObject playerSpawner;
+    public GameObject bossEntrancePrefab;
+    public GameObject chestPrefab;
+    private bool entraceCanSpawn = true;
+    public List<GameObject> enemies;
+    public int numOfEnemies;
+
 
     public void Start()
     {
         RunProceduralGeneration();
     }
+
     protected override void RunProceduralGeneration()
     {
         CreateRooms();
@@ -29,7 +37,6 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private void CreateRooms()
     {
         var roomsList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
-
         HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
 
         if (randomWalkRooms)
@@ -53,6 +60,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
         tilemapVisualizer.PaintFloorTiles(floor);
         WallGenerator.CreateWalls(floor, tilemapVisualizer);
+
     }
 
     private HashSet<Vector2Int> CreateRoomsRandomly(List<BoundsInt> roomsList)
@@ -63,11 +71,27 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
             var roomBounds = roomsList[i];
             var roomCenter = new Vector2Int(Mathf.RoundToInt(roomBounds.center.x), Mathf.RoundToInt(roomBounds.center.y));
             var roomFloor = RunRandomWalk(randomWalkParameters, roomCenter);
+            if(entraceCanSpawn)
+            {
+                Instantiate(bossEntrancePrefab, new Vector3(roomCenter.x, roomCenter.y, 0f), transform.rotation);
+                entraceCanSpawn = false;
+            }
             foreach (var position in roomFloor)
             {
                 if(position.x >= (roomBounds.xMin + offset) && position.x <= (roomBounds.xMax - offset) && position.y >= (roomBounds.yMin - offset) && position.y <= (roomBounds.yMax - offset))
                 {
                     floor.Add(position);
+                    int randomValue = Random.Range(0,500);
+                    int randomEnemy = Random.Range(0, numOfEnemies);
+                    //generates chest
+                    if(randomValue == 0)
+                    {
+                        Instantiate(chestPrefab, new Vector3(roomCenter.x, roomCenter.y, 0f), transform.rotation);
+                    }
+                    if(randomValue <= 10)
+                    {
+                        Instantiate(enemies[randomEnemy], new Vector3(roomCenter.x, roomCenter.y, 0f), transform.rotation);
+                    }
                 }
             }
         }
@@ -135,6 +159,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                 closest = position;
             }
         }
+        playerSpawner.transform.position = new Vector3(closest.x, closest.y, 0f);
         return closest;
     }
 
@@ -153,5 +178,9 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
             }
         }
         return floor;
+    }
+    private void Dijkstra ()
+    {
+
     }
 }
