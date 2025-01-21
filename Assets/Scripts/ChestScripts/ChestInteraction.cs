@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using System;
+using System.Numerics;
 
 public class ChestInteraction : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class ChestInteraction : MonoBehaviour
     private bool notSpinning = true;
 
     private bool playerInRange = false;
+    public GameObject[] cardPrefabs;
+    //private int randomCard = Random.Range(0,cardPrefabs.Length);
 
     private void Start()
     {
@@ -20,7 +24,7 @@ public class ChestInteraction : MonoBehaviour
 
     private void Update()
     {
-        playerInRange = Vector3.Distance(transform.position, Camera.main.transform.position) <= interactionRange; 
+        //playerInRange = Vector3.Distance(transform.position, Camera.main.transform.position) <= interactionRange; 
 
         if (playerInRange && Input.GetKeyDown(interactionKey) && notSpinning)
         {
@@ -38,5 +42,17 @@ public class ChestInteraction : MonoBehaviour
         notSpinning = false;
         yield return new WaitForSeconds(duration);
         notSpinning = true;
+    }
+
+    public void GiveReward(int value, string suit)
+    {
+        if(suit == "Clubs")
+        {
+            for(int i=0; i<value; i++)
+            {
+
+                //Instantiate(cardPrefabs[randomCard], new Vector3(0, 0, 0), Quaternion.Identity);
+            }
+        }
     }
 }

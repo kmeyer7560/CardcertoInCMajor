@@ -79,7 +79,7 @@ public class RouletteManager : MonoBehaviour
         for (int i = 0; i < rewards.Count; i++)
         {
             GameObject card = Instantiate(rewards[i].Prefab, rewardContainer);
-            card.transform.localScale = new Vector3(cardScale, cardScale, 1f); // Adjusted card scale
+            card.transform.localScale = new Vector3(cardScale, cardScale, 1f);
             float xPosition = startX + (i * (cardWidth + cardSpacing));
             card.transform.localPosition = new Vector3(xPosition, 0, 0);
 
@@ -144,12 +144,13 @@ public class RouletteManager : MonoBehaviour
                 if (winningReward != null)
                 {
                     Debug.Log($"You won: {winningReward.Value} of {winningReward.Suit}");
+                    //GetComponent<ChestInteraction>.
                     return;
                 }
             }
         }
 
-        Debug.Log("Player is not touching any reward.");
+        Debug.Log("Player is not touching any reward");
     }
 
     private IEnumerator MakeCardsDisappear()
