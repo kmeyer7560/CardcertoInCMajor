@@ -15,7 +15,6 @@ public class PlayerMovement : MonoBehaviour
     public bool vulnerable;
     public bool moveable;
     public TrailRenderer tr;
-    public PolygonCollider2D trailCollider; // Reference to the PolygonCollider2D
 
     public Rigidbody2D rb;
     public Animator animator;
@@ -30,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
         activeSpeed = moveSpeed;
         vulnerable = true;
         moveable = true;
-        trailCollider.enabled = false; // Ensure the collider is disabled at start
     }
 
     void ProcessInputs()
@@ -70,7 +68,6 @@ public class PlayerMovement : MonoBehaviour
         if (trail)
         {
             tr.emitting = true;
-            trailCollider.enabled = true; // Enable the collider when the trail is active
         }
         Debug.Log("dashed");
         Debug.Log(dashSpeed);
@@ -115,7 +112,6 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator DisableColliderAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay); // Wait for the specified delay
-                trailCollider.enabled = false; // Disable the collider
     }
 
     void Update()
@@ -141,6 +137,8 @@ public class PlayerMovement : MonoBehaviour
         if (tr.emitting)
         {
             trailPos1 = this.transform.position;
+
+            
         }
     }
 }
