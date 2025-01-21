@@ -11,9 +11,12 @@ public class Card : MonoBehaviour
     public GameObject player;
     public Transform shootingPoint;
     public GameObject bulletPrefab;
+    public GameObject healthBar;
     public float staminaCost;
     public string cardType;
     public float dashStrength;
+    public float defense;
+
 
     private void Start()
     {
@@ -56,6 +59,10 @@ public class Card : MonoBehaviour
                     player.GetComponent<PlayerMovement>().moveable = false;
                     player.GetComponent<PlayerMovement>().rb.velocity = new Vector2(0, 0);;
                     shootCard();
+                }
+                else if (cardType == "defenseCard")
+                {
+                    healthBar.GetComponent<PlayerHealthBar>().setDefense(defense);
                 }
 
                 hm.shuffle();
