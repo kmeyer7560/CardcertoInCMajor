@@ -27,6 +27,7 @@ public class ShotgunEnemy : MonoBehaviour
         shooting = false;
         //sets the player's transform component necessary for knowing where the player is
         playerTarget = player.GetComponent<Transform>();
+        
         lastShotTime = -fireRate;
     }
 
