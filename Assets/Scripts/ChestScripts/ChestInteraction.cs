@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using System;
-using System.Numerics;
 
 public class ChestInteraction : MonoBehaviour
 {
@@ -9,10 +8,15 @@ public class ChestInteraction : MonoBehaviour
     public KeyCode interactionKey = KeyCode.Space;
     public RouletteManager rouletteManager;
     private bool notSpinning = true;
+    private int intValue;
 
     private bool playerInRange = false;
-    public GameObject[] cardPrefabs;
-    //private int randomCard = Random.Range(0,cardPrefabs.Length);
+    public GameObject[] guitarCardPrefabs;
+    public GameObject[] fluteCardPrefabs;
+    public GameObject[] violinCardPrefabs;
+    public GameObject[] drumCardPrefabs;
+    public GameObject[] specialCardPrefabs;
+
 
     private void Start()
     {
@@ -24,7 +28,7 @@ public class ChestInteraction : MonoBehaviour
 
     private void Update()
     {
-        //playerInRange = Vector3.Distance(transform.position, Camera.main.transform.position) <= interactionRange; 
+        playerInRange = Vector3.Distance(transform.position, Camera.main.transform.position) <= interactionRange; 
 
         if (playerInRange && Input.GetKeyDown(interactionKey) && notSpinning)
         {
@@ -44,15 +48,40 @@ public class ChestInteraction : MonoBehaviour
         notSpinning = true;
     }
 
-    public void GiveReward(int value, string suit)
+    public void GiveReward(string value, string suit)
     {
-        if(suit == "Clubs")
+        int intValue = 0;
+        if (value != "Ace")
         {
-            for(int i=0; i<value; i++)
-            {
+            intValue = int.Parse(value);
+            GameObject[] prefabArray = null;
 
-                //Instantiate(cardPrefabs[randomCard], new Vector3(0, 0, 0), Quaternion.Identity);
+            switch (suit)
+            {
+                case "Clubs":
+                    prefabArray = guitarCardPrefabs;
+                    break;
+                case "Hearts":
+                    prefabArray = fluteCardPrefabs;
+                    break;
+                case "Spades":
+                    prefabArray = violinCardPrefabs;
+                    break;
+                case "Diamonds":
+                    prefabArray = drumCardPrefabs;
+                    break;
             }
+
+            for (int i = 0; i < intValue; i++)
+            {
+                int randomCard = UnityEngine.Random.Range(0, prefabArray.Length);
+                GameObject instantiatedCard = Instantiate(prefabArray[randomCard], transform.position, Quaternion.identity);
+            }
+        }
+        else
+        {
+            int randomCard = UnityEngine.Random.Range(0, specialCardPrefabs.Length);
+            GameObject instantiatedCard = Instantiate(specialCardPrefabs[randomCard], transform.position, Quaternion.identity);
         }
     }
 }

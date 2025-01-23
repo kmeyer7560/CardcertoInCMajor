@@ -90,7 +90,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                     }
                     if(randomValue <= 10)
                     {
-                        Instantiate(enemies[randomEnemy], new Vector3(roomCenter.x, roomCenter.y, 0f), transform.rotation);
+                        //Instantiate(enemies[randomEnemy], new Vector3(roomCenter.x, roomCenter.y, 0f), transform.rotation);
                     }
                 }
             }
