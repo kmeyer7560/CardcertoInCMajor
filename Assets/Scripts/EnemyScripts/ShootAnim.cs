@@ -1,0 +1,18 @@
+using UnityEngine;
+
+public class ShootAnim : MonoBehaviour
+{
+    private EnemyScript enemyScript;
+    public GameObject enemyObject;
+
+    void Start()
+    {
+        enemyScript = enemyObject.GetComponent<EnemyScript>();
+    }
+
+    public void CallShoot()
+    {
+        Debug.Log("shot is called");
+        enemyScript.StartShooting();
+    }
+}

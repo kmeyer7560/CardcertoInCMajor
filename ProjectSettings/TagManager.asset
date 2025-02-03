@@ -15,6 +15,7 @@ TagManager:
   - gDashCard
   - aoeCard
   - ChestReward
+  - Wall
   layers:
   - Default
   - TransparentFX

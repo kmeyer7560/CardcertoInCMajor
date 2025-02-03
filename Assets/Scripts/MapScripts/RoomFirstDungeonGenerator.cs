@@ -21,12 +21,16 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     public GameObject chestPrefab;
     private bool entraceCanSpawn = true;
     public List<GameObject> enemies;
-    public int numOfEnemies;
+    
+    NavMeshGenerate navMeshGenerate;
 
 
     public void Start()
     {
+        navMeshGenerate = GetComponent<NavMeshGenerate>();
         RunProceduralGeneration();
+        navMeshGenerate.GenerateNavmesh();
+
     }
 
     protected override void RunProceduralGeneration()
@@ -71,32 +75,49 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
             var roomBounds = roomsList[i];
             var roomCenter = new Vector2Int(Mathf.RoundToInt(roomBounds.center.x), Mathf.RoundToInt(roomBounds.center.y));
             var roomFloor = RunRandomWalk(randomWalkParameters, roomCenter);
+
             if(entraceCanSpawn)
             {
                 Instantiate(bossEntrancePrefab, new Vector3(roomCenter.x, roomCenter.y, 0f), transform.rotation);
                 entraceCanSpawn = false;
             }
+
+            List<Vector2Int> validFloorPositions = new List<Vector2Int>();
+
             foreach (var position in roomFloor)
             {
-                if(position.x >= (roomBounds.xMin + offset) && position.x <= (roomBounds.xMax - offset) && position.y >= (roomBounds.yMin - offset) && position.y <= (roomBounds.yMax - offset))
+                if(position.x >= (roomBounds.xMin + offset) && position.x <= (roomBounds.xMax - offset) && 
+                   position.y >= (roomBounds.yMin - offset) && position.y <= (roomBounds.yMax - offset))
                 {
                     floor.Add(position);
-                    int randomValue = Random.Range(0,500);
-                    int randomEnemy = Random.Range(0, numOfEnemies);
-                    //generates chest
-                    if(randomValue == 0)
-                    {
-                        Instantiate(chestPrefab, new Vector3(roomCenter.x, roomCenter.y, 0f), transform.rotation);
-                    }
-                    if(randomValue <= 10)
-                    {
-                        //Instantiate(enemies[randomEnemy], new Vector3(roomCenter.x, roomCenter.y, 0f), transform.rotation);
-                    }
+                    validFloorPositions.Add(position);
                 }
+            }
+
+            int enemiesToSpawn = Random.Range(1, 1); // Spawn enemies per room
+            for (int j = 0; j < enemiesToSpawn; j++)
+            {
+                if (validFloorPositions.Count > 0 && enemies.Count > 0)
+                {
+                    int randomPositionIndex = Random.Range(0, validFloorPositions.Count);
+                    Vector2Int spawnPosition = validFloorPositions[randomPositionIndex];
+                    int randomEnemyIndex = Random.Range(0, enemies.Count);
+
+                    Instantiate(enemies[randomEnemyIndex], new Vector3(spawnPosition.x, spawnPosition.y, 0f), Quaternion.identity);
+
+                    validFloorPositions.RemoveAt(randomPositionIndex);
+                }
+            }
+
+            if (Random.Range(0, 100) < 20) // 20% chance
+            {
+                Vector2Int chestPosition = validFloorPositions[Random.Range(0, validFloorPositions.Count)];
+                Instantiate(chestPrefab, new Vector3(chestPosition.x, chestPosition.y, 0f), transform.rotation);
             }
         }
         return floor;
     }
+
 
     private HashSet<Vector2Int> ConnectRooms(List<Vector2Int> roomCenters)
     {
@@ -178,9 +199,5 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
             }
         }
         return floor;
-    }
-    private void Dijkstra ()
-    {
-
     }
 }

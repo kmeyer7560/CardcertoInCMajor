@@ -125,6 +125,7 @@ public class RouletteManager : MonoBehaviour
         Time.timeScale = 1;
 
         StartCoroutine(MakeCardsDisappear());
+        chestInteraction.DestroyChest();
     }
 
     private float EaseOutCubic(float t)
