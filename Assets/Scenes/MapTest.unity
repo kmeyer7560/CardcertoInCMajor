@@ -725,6 +725,7 @@ MonoBehaviour:
   chestPrefab: {fileID: 7519551053038593844, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
   enemies:
   - {fileID: 1220592464380258565, guid: f8d5b44b30ae54023a51d8e7e6c95d29, type: 3}
+  navMeshSurface: {fileID: 1632365229}
 --- !u!4 &437892900
 Transform:
   m_ObjectHideFlags: 0
@@ -779,6 +780,122 @@ Transform:
   - {fileID: 2096816072}
   m_Father: {fileID: 823087236}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &495326772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 495326774}
+  - component: {fileID: 495326773}
+  m_Layer: 0
+  m_Name: RouletteManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &495326773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495326772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63933cd7304c22743a4890f6dd2d9c96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RewardPrefabs:
+  - Value: Ace
+    Suit: Clubs
+    Weight: 10
+    Prefab: {fileID: 286709107986089897, guid: 61caf7bfa0f977d42a62875e8af9cf70, type: 3}
+  - Value: Ace
+    Suit: Diamonds
+    Weight: 10
+    Prefab: {fileID: 286709107986089897, guid: e41e4c9a3334c4e42929f2fe8fdf37fa, type: 3}
+  - Value: Ace
+    Suit: Hearts
+    Weight: 10
+    Prefab: {fileID: 286709107986089897, guid: c0b2b5b8b1f96cf4792186a9391db996, type: 3}
+  - Value: Ace
+    Suit: Spades
+    Weight: 10
+    Prefab: {fileID: 286709107986089897, guid: 671a29f19bd83fe4792fe0804a14e46b, type: 3}
+  - Value: 8
+    Suit: Clubs
+    Weight: 20
+    Prefab: {fileID: 286709107986089897, guid: cfe0970bb8262f841b4481e0dda4cb67, type: 3}
+  - Value: 8
+    Suit: Diamonds
+    Weight: 20
+    Prefab: {fileID: 286709107986089897, guid: 56e23ec8cdfa2264197833841130fb8b, type: 3}
+  - Value: 8
+    Suit: Hearts
+    Weight: 20
+    Prefab: {fileID: 286709107986089897, guid: f9b84d5ecd1cea146ad19a4ea4d61fdb, type: 3}
+  - Value: 8
+    Suit: Spades
+    Weight: 20
+    Prefab: {fileID: 286709107986089897, guid: d1fcb629a4fb38241b289ad2af76aee0, type: 3}
+  - Value: 4
+    Suit: Clubs
+    Weight: 30
+    Prefab: {fileID: 286709107986089897, guid: 3efcbc838615c004ca6eae791c49af90, type: 3}
+  - Value: 4
+    Suit: Diamonds
+    Weight: 30
+    Prefab: {fileID: 286709107986089897, guid: d329ac1bc2070b74e81dba9785542cf2, type: 3}
+  - Value: 4
+    Suit: Hearts
+    Weight: 30
+    Prefab: {fileID: 286709107986089897, guid: b84491328cf18e640a326738122ad4c2, type: 3}
+  - Value: 4
+    Suit: Spades
+    Weight: 30
+    Prefab: {fileID: 286709107986089897, guid: 1bc2cb789cd88b04d8222c794b885a3b, type: 3}
+  - Value: 2
+    Suit: Clubs
+    Weight: 40
+    Prefab: {fileID: 286709107986089897, guid: a2f57bf6f8814d247a7cd991c724b70c, type: 3}
+  - Value: 2
+    Suit: Diamonds
+    Weight: 40
+    Prefab: {fileID: 286709107986089897, guid: c862d15e564fc1f488aad1cbbed944ce, type: 3}
+  - Value: 2
+    Suit: Hearts
+    Weight: 40
+    Prefab: {fileID: 286709107986089897, guid: 4a24df3ff06a20849892414284d27fd0, type: 3}
+  - Value: 2
+    Suit: Spades
+    Weight: 40
+    Prefab: {fileID: 286709107986089897, guid: 202d6099701979a4cb10cb7edb43d12f, type: 3}
+  rewardContainer: {fileID: 0}
+  playerTransform: {fileID: 0}
+  chestInteraction: {fileID: 0}
+--- !u!224 &495326774
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495326772}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.057047337}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -2.7291896, y: 2.7701952}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &569642109
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,7 +2650,7 @@ MonoBehaviour:
   m_BuildHeightMesh: 0
   m_MinRegionArea: 0
   m_HideEditorLogs: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 4ca6b7dbd31214036a833483fff3ed34, type: 2}
 --- !u!4 &1632365230
 Transform:
   m_ObjectHideFlags: 0
@@ -3371,3 +3488,4 @@ SceneRoots:
   - {fileID: 1828587760}
   - {fileID: 1022774238}
   - {fileID: 1632365230}
+  - {fileID: 495326774}

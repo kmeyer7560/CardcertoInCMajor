@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using NavMeshPlus.Components;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -22,14 +23,13 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private bool entraceCanSpawn = true;
     public List<GameObject> enemies;
     
-    NavMeshGenerate navMeshGenerate;
+    public NavMeshSurface navMeshSurface;
 
 
     public void Start()
     {
-        navMeshGenerate = GetComponent<NavMeshGenerate>();
+        navMeshSurface.BuildNavMesh();
         RunProceduralGeneration();
-        navMeshGenerate.GenerateNavmesh();
 
     }
 
