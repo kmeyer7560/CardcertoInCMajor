@@ -48,4 +48,9 @@ public class EnemyHealth : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         rb.velocity = vel;
     }
+
+    void OnParticleCollision(GameObject particle)
+    {
+        takeDamage(1);
+    }
 }

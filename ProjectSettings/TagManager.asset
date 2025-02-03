@@ -13,6 +13,7 @@ TagManager:
   - burstCard
   - laserCard
   - gDashCard
+  - defenseCard
   layers:
   - Default
   - TransparentFX
