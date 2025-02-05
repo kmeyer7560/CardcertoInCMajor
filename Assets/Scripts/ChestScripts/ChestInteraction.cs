@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class ChestInteraction : MonoBehaviour
 {
@@ -7,8 +8,15 @@ public class ChestInteraction : MonoBehaviour
     public KeyCode interactionKey = KeyCode.Space;
     public RouletteManager rouletteManager;
     private bool notSpinning = true;
+    private int intValue;
 
     private bool playerInRange = false;
+    public GameObject[] guitarCardPrefabs;
+    public GameObject[] fluteCardPrefabs;
+    public GameObject[] violinCardPrefabs;
+    public GameObject[] drumCardPrefabs;
+    public GameObject[] specialCardPrefabs;
+
 
     private void Start()
     {
@@ -24,12 +32,9 @@ public class ChestInteraction : MonoBehaviour
 
         if (playerInRange && Input.GetKeyDown(interactionKey) && notSpinning)
         {
-            if (rouletteManager != null)
-            {
-                rouletteManager.StartSpin();
-                StartCoroutine(Spinning(7f));
-                Debug.Log("Spin started");
-            }
+            StartCoroutine(Spinning(7f));
+            rouletteManager.StartSpin();
+            Debug.Log("Spin started");
         }
     }
 
@@ -38,5 +43,46 @@ public class ChestInteraction : MonoBehaviour
         notSpinning = false;
         yield return new WaitForSeconds(duration);
         notSpinning = true;
+    }
+
+    public void GiveReward(string value, string suit)
+    {
+        int intValue = 0;
+        if (value != "Ace")
+        {
+            intValue = int.Parse(value);
+            GameObject[] prefabArray = null;
+
+            switch (suit)
+            {
+                case "Clubs":
+                    prefabArray = guitarCardPrefabs;
+                    break;
+                case "Hearts":
+                    prefabArray = fluteCardPrefabs;
+                    break;
+                case "Spades":
+                    prefabArray = violinCardPrefabs;
+                    break;
+                case "Diamonds":
+                    prefabArray = drumCardPrefabs;
+                    break;
+            }
+
+            for (int i = 0; i < intValue; i++)
+            {
+                int randomCard = UnityEngine.Random.Range(0, prefabArray.Length);
+                GameObject instantiatedCard = Instantiate(prefabArray[randomCard], transform.position, Quaternion.identity);
+            }
+        }
+        else
+        {
+            int randomCard = UnityEngine.Random.Range(0, specialCardPrefabs.Length);
+            GameObject instantiatedCard = Instantiate(specialCardPrefabs[randomCard], transform.position, Quaternion.identity);
+        }
+    }
+    public void DestroyChest()
+    {
+        gameObject.SetActive(false);
     }
 }

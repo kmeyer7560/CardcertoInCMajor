@@ -13,7 +13,13 @@ TagManager:
   - burstCard
   - laserCard
   - gDashCard
+<<<<<<< HEAD
   - defenseCard
+=======
+  - aoeCard
+  - ChestReward
+  - Wall
+>>>>>>> origin/main
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +24,10 @@ public class RouletteManager : MonoBehaviour
     private const float cardSpacing = 0f;
     private const float cardScale = 0.4f;
 
+    public ChestInteraction chestInteraction;
+
     private void Awake()
     {
-        // Set weights based on card values
         foreach (var reward in RewardPrefabs)
         {
             switch (reward.Value)
@@ -79,12 +81,16 @@ public class RouletteManager : MonoBehaviour
         for (int i = 0; i < rewards.Count; i++)
         {
             GameObject card = Instantiate(rewards[i].Prefab, rewardContainer);
-            card.transform.localScale = new Vector3(cardScale, cardScale, 1f); // Adjusted card scale
+
+            card.transform.localScale = new Vector3(cardScale, cardScale, 1f);
             float xPosition = startX + (i * (cardWidth + cardSpacing));
             card.transform.localPosition = new Vector3(xPosition, 0, 0);
 
             BoxCollider2D collider = card.AddComponent<BoxCollider2D>();
             collider.isTrigger = true;
+
+            Renderer renderer = card.GetComponent<Renderer>();
+            renderer.material.renderQueue = 3000;
         }
     }
 
@@ -119,10 +125,8 @@ public class RouletteManager : MonoBehaviour
         Time.timeScale = 1;
 
         StartCoroutine(MakeCardsDisappear());
+        chestInteraction.DestroyChest();
     }
-
-
-
 
     private float EaseOutCubic(float t)
     {
@@ -131,32 +135,33 @@ public class RouletteManager : MonoBehaviour
 
     private void DetermineWinningReward()
     {
-
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(playerTransform.position, 0.5f);
-
         foreach (Collider2D hitCollider in hitColliders)
         {
             if (hitCollider.transform.parent == rewardContainer)
             {
                 GameObject hitObject = hitCollider.gameObject;
-                RewardPrefab winningReward = RewardPrefabs.FirstOrDefault(r => r.Prefab.name == hitObject.name.Replace("(Clone)", "").Trim());
+                RewardPrefab winningReward = RewardPrefabs.FirstOrDefault(r => r != null && r.Prefab != null && r.Prefab.name == hitObject.name.Replace("(Clone)", "").Trim());
                 
                 if (winningReward != null)
                 {
                     Debug.Log($"You won: {winningReward.Value} of {winningReward.Suit}");
+                    chestInteraction.GiveReward(winningReward.Value, winningReward.Suit);
                     return;
                 }
             }
         }
 
-        Debug.Log("Player is not touching any reward.");
+        Debug.Log("Player is not touching any reward");
     }
 
     private IEnumerator MakeCardsDisappear()
     {
-        float fadeDuration = .1f;
+        float fadeDuration = 0.1f;
 
         Renderer[] cardRenderers = rewardContainer.GetComponentsInChildren<Renderer>();
+        SpriteRenderer[] spriteRenderers = rewardContainer.GetComponentsInChildren<SpriteRenderer>();
+        Image[] images = rewardContainer.GetComponentsInChildren<Image>();
         
         float elapsedTime = 0f;
         while (elapsedTime < fadeDuration)
@@ -165,9 +170,32 @@ public class RouletteManager : MonoBehaviour
             
             foreach (Renderer renderer in cardRenderers)
             {
-                Color color = renderer.material.color;
-                color.a = alpha;
-                renderer.material.color = color;
+                if (renderer != null && renderer.material != null)
+                {
+                    Color color = renderer.material.color;
+                    color.a = alpha;
+                    renderer.material.color = color;
+                }
+            }
+
+            foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+            {
+                if (spriteRenderer != null)
+                {
+                    Color color = spriteRenderer.color;
+                    color.a = alpha;
+                    spriteRenderer.color = color;
+                }
+            }
+
+            foreach (Image image in images)
+            {
+                if (image != null)
+                {
+                    Color color = image.color;
+                    color.a = alpha;
+                    image.color = color;
+                }
             }
             
             elapsedTime += Time.deltaTime;
@@ -176,7 +204,10 @@ public class RouletteManager : MonoBehaviour
         
         foreach (Transform child in rewardContainer)
         {
-            Destroy(child.gameObject);
+            if (child != null)
+            {
+                Destroy(child.gameObject);
+            }
         }
     }
 
@@ -184,7 +215,10 @@ public class RouletteManager : MonoBehaviour
     {
         foreach (Transform child in rewardContainer)
         {
-            Destroy(child.gameObject);
+            if (child != null)
+            {
+                Destroy(child.gameObject);
+            }
         }
 
         List<RewardPrefab> rewards = GenerateWeightedRewardList(50);

@@ -1,5 +1,5 @@
 using UnityEngine;
-using Random = UnityEngine.Random;
+using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -9,106 +9,145 @@ public class EnemyScript : MonoBehaviour
     public float fireRate = 2.0f;
     public float speed = 10f;
     public float shootDuration = 2f;
-    public float range = 10f;
+    public float shootRange = 6f;
+    public float walkRange = 9f;
 
     public Animator animator;
 
-    public float spreadAmount;
-
     private bool shooting;
-    private Transform playerTarget;
     private float shootStartTime;
-    private float lastShotTime;
+    private float nextFireTime;
 
     public Rigidbody2D rb;
     public SpriteRenderer spriteRenderer;
 
+    public int bulletsPerShot = 1;
+    public float spread = 30f;
+
+    // NavMesh variables
+    private NavMeshAgent agent;
+    public float pathUpdateRate = 0.1f;
+    private float lastPathUpdateTime;
+    //[SerializeField] Transform playerTransform;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        //playerTransform = GameObject.FindGameObjectWithTag("PlayerSprite").transform;
+
         shooting = false;
-        playerTarget = player.GetComponent<Transform>();
-        lastShotTime = -fireRate;
+        nextFireTime = Time.time + fireRate;
+
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+
+        PlaceAgentOnNavMesh();
+    }
+
+    void PlaceAgentOnNavMesh()
+    {
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(transform.position, out hit, 1f, NavMesh.AllAreas))
+        {
+            agent.Warp(hit.position);
+        }
     }
 
     void Update()
     {
-        // Update distance from player
         float distance = Vector2.Distance(transform.position, player.transform.position);
 
-        // If distance is less than set range
-        if (distance <= range)
+        if (distance <= walkRange)
         {
-            if (!shooting)
+            if (distance <= shootRange)
             {
-                if ((int)(Time.time % fireRate) == 0)
+                if (!shooting && Time.time >= nextFireTime)
                 {
                     animator.SetTrigger("shoot");
-                    StartShooting();
+                    shooting = true;
+                    shootStartTime = Time.time;
                 }
-            }
-            else
-            {
-                if (Time.time - shootStartTime >= shootDuration)
+                else if (shooting && Time.time - shootStartTime >= shootDuration)
                 {
                     StopShooting();
                 }
+                animator.SetBool("move", false);
+                //agent.isStopped = true;
+            }
+            else
+            {
+                StopShooting();
+                shooting = false;
+                MoveTowardsPlayer();
+                animator.SetBool("move", true);
             }
         }
         else
         {
             StopShooting();
-        }
-
-        // If not shooting then move towards player
-        if (!shooting)
-        {
-            MoveTowardsPlayer();
-            animator.SetBool("move", true);
-        }
-        else
-        {
+            shooting = false;
             animator.SetBool("move", false);
+            //agent.isStopped = true;
+        }
+
+        if (Time.time - lastPathUpdateTime > pathUpdateRate)
+        {
+            UpdatePath();
+            lastPathUpdateTime = Time.time;
         }
     }
 
-    void StartShooting()
+    void UpdatePath()
     {
-        shooting = true;
-        shootStartTime = Time.time;
-        Shoot();
-    }
-
-    void StopShooting()
-    {
-        shooting = false;
-    }
-
-    void Shoot()
-    {
-        if (Time.time - lastShotTime >= fireRate)
+        if (player != null && agent.isActiveAndEnabled && agent.isOnNavMesh)
         {
-            Instantiate(bullet, bulletPos.position, Quaternion.identity);
-            lastShotTime = Time.time;
+            agent.SetDestination(player.transform.position);
         }
     }
 
     void MoveTowardsPlayer()
     {
-        // Calculate direction to player
-        Vector2 directionToPlayer = (playerTarget.position - transform.position).normalized;
+        //agent.SetDestination(playerTransform.position);
+        //agent.isStopped = false;
+        agent.speed = speed;
 
-        // Move towards the player
-        transform.position = Vector2.MoveTowards(transform.position, playerTarget.position, speed * Time.deltaTime);
+        // Update sprite direction
+        Vector2 directionToTarget = (player.transform.position - transform.position).normalized;
+        spriteRenderer.flipX = directionToTarget.x < 0;
+    }
 
-        // Flip the sprite based on the direction
-        if (directionToPlayer.x < 0)
+    public void StartShooting()
+    {
+        Debug.Log("shoot");
+        Shoot();
+    }
+
+    void StopShooting()
+    {
+        nextFireTime = Time.time + fireRate;
+        shooting = false;
+    }
+
+    void Shoot()
+    {
+        Vector2 directionToPlayer = (player.transform.position - bulletPos.position).normalized;
+
+        for (int i = 0; i < bulletsPerShot; i++)
         {
-            spriteRenderer.flipX = true; // Facing left
+            float spreadAngle = Random.Range(-spread / 2f, spread / 2f);
+
+            Vector2 spreadDirection = Quaternion.Euler(0, 0, spreadAngle) * directionToPlayer;
+
+            float angle = Mathf.Atan2(spreadDirection.y, spreadDirection.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.Euler(0, 0, angle);
+
+            GameObject bulletInstance = Instantiate(bullet, bulletPos.position, rotation);
+            Rigidbody2D rb = bulletInstance.GetComponent<Rigidbody2D>();
+
+            rb.velocity = spreadDirection * 10f;
         }
-        else if (directionToPlayer.x > 0)
-        {
-            spriteRenderer.flipX = false; // Facing right
-        }
+
+        nextFireTime = Time.time + fireRate;
     }
 }
