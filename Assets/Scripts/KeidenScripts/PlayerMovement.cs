@@ -74,7 +74,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("Started Routine");
         vulnerable = false;
-        activeSpeed = dashSpeed;
         dashCounter = dashLength;
 
         float dashDistance = dashSpeed * Time.fixedDeltaTime;
@@ -100,7 +99,6 @@ public class PlayerMovement : MonoBehaviour
         // Reset the player's velocity after dashing
         StartCoroutine(DisableColliderAfterDelay(1.5f)); // Start the coroutine to disable the collider
         rb.velocity = Vector2.zero;
-        activeSpeed = moveSpeed;
         dashCoolCounter = dashCooldown;
         trail.GetComponent<ParticleSystem>().enableEmission = false;
         vulnerable = true;
@@ -109,6 +107,18 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator DisableColliderAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay); // Wait for the specified delay
+    }
+
+    public void speedUp()
+    {
+        activeSpeed = 8;
+        StartCoroutine(speedupTimer());
+    }
+
+    IEnumerator speedupTimer()
+    {
+        yield return new WaitForSeconds(2f);
+        activeSpeed = moveSpeed;
     }
 
     void Update()

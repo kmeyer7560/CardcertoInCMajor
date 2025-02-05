@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DashTrail : MonoBehaviour
 {
+
+    public BoxCollider2D bc;
     public float damage;
     void OnTriggerEnter2D(Collider2D other)
     {
