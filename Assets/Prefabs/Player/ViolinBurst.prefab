@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3424075913735891606}
   m_Layer: 0
   m_Name: ViolinBurst
-  m_TagString: playerAttack
+  m_TagString: violinAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

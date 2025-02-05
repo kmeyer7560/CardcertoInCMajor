@@ -11,6 +11,7 @@ public class EnemyHealth : MonoBehaviour
     public float currentHealth;
     private Vector2 source;
     public Rigidbody2D rb;
+    public int violinStacks;
 
     private Vector2 vel;
     // Start is called before the first frame update

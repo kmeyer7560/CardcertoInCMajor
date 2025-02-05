@@ -93,7 +93,7 @@ public class Card : MonoBehaviour
         {
             //Debug.Log("Shooting bullet " + (i + 1));
             shootCard(); // Call the shootCard method to instantiate a bullet
-            yield return new WaitForSeconds(0.1f); // Wait for 0.3 seconds before the next shot
+            yield return new WaitForSeconds(0.1f); 
         }
         gameObject.SetActive(false);
     }
