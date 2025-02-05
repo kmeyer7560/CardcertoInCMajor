@@ -32,12 +32,9 @@ public class ChestInteraction : MonoBehaviour
 
         if (playerInRange && Input.GetKeyDown(interactionKey) && notSpinning)
         {
-            if (rouletteManager != null)
-            {
-                rouletteManager.StartSpin();
-                StartCoroutine(Spinning(7f));
-                Debug.Log("Spin started");
-            }
+            StartCoroutine(Spinning(7f));
+            rouletteManager.StartSpin();
+            Debug.Log("Spin started");
         }
     }
 
@@ -83,5 +80,9 @@ public class ChestInteraction : MonoBehaviour
             int randomCard = UnityEngine.Random.Range(0, specialCardPrefabs.Length);
             GameObject instantiatedCard = Instantiate(specialCardPrefabs[randomCard], transform.position, Quaternion.identity);
         }
+    }
+    public void DestroyChest()
+    {
+        gameObject.SetActive(false);
     }
 }
