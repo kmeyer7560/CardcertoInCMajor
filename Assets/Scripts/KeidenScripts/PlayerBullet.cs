@@ -60,6 +60,10 @@ public class PlayerBullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
+            if (this.tag == "violinAttack")
+            {
+                other.GetComponent<EnemyHealth>().violinStacks += 1;
+            }
             collidedObject = other.gameObject;
             collidedObject.GetComponent<EnemyHealth>().takeDamage(damage);
             Destroy(gameObject);

@@ -14,21 +14,17 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 savedDirection;
     public bool vulnerable;
     public bool moveable;
-    public TrailRenderer tr;
-
     public Rigidbody2D rb;
     public Animator animator;
+    public GameObject trail;
 
     public Vector2 moveDirection;
-    public Vector3 trailPos1;
-    public Vector3 trailPos2;
-
     void Start()
     {
-        tr.emitting = false;
         activeSpeed = moveSpeed;
         vulnerable = true;
         moveable = true;
+        trail.GetComponent<ParticleSystem>().enableEmission = false;
     }
 
     void ProcessInputs()
@@ -63,25 +59,25 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer.flipX = rb.velocity.x < 0;
     }
 
-    public void dash(float dashSpeed, bool trail)
+    public void dash(float dashSpeed, bool t)
     {
-        if (trail)
-        {
-            tr.emitting = true;
-        }
         Debug.Log("dashed");
         Debug.Log(dashSpeed);
         StartCoroutine(DashCoroutine(dashSpeed));
+        if (t)
+        {
+            trail.GetComponent<ParticleSystem>().enableEmission = true;
+        }
     }
 
     public IEnumerator DashCoroutine(float dashSpeed)
     {
         Debug.Log("Started Routine");
         vulnerable = false;
-        activeSpeed = dashSpeed;
         dashCounter = dashLength;
 
         float dashDistance = dashSpeed * Time.fixedDeltaTime;
+        trail.SetActive(true);
 
         int steps = Mathf.CeilToInt(dashLength / Time.fixedDeltaTime);
         Vector2 direction = savedDirection.normalized;
@@ -101,17 +97,28 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Reset the player's velocity after dashing
-        tr.emitting = false;
         StartCoroutine(DisableColliderAfterDelay(1.5f)); // Start the coroutine to disable the collider
         rb.velocity = Vector2.zero;
-        activeSpeed = moveSpeed;
         dashCoolCounter = dashCooldown;
+        trail.GetComponent<ParticleSystem>().enableEmission = false;
         vulnerable = true;
     }
 
     private IEnumerator DisableColliderAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay); // Wait for the specified delay
+    }
+
+    public void speedUp()
+    {
+        activeSpeed = 8;
+        StartCoroutine(speedupTimer());
+    }
+
+    IEnumerator speedupTimer()
+    {
+        yield return new WaitForSeconds(2f);
+        activeSpeed = moveSpeed;
     }
 
     void Update()
@@ -127,18 +134,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         animator.SetBool("moving", rb.velocity != Vector2.zero);
-
-        // Update the collider to match the trail
-        UpdateTrailCollider();
-    }
-
-    void UpdateTrailCollider()
-    {
-        if (tr.emitting)
-        {
-            trailPos1 = this.transform.position;
-
-            
-        }
+      
     }
 }

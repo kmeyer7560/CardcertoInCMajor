@@ -24,16 +24,15 @@ public class EnemyScript : MonoBehaviour
     public int bulletsPerShot = 1;
     public float spread = 30f;
 
-    // NavMesh variables
     private NavMeshAgent agent;
     public float pathUpdateRate = 0.1f;
     private float lastPathUpdateTime;
-    //[SerializeField] Transform playerTransform;
+    [SerializeField] Transform playerTransform;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        //playerTransform = GameObject.FindGameObjectWithTag("PlayerSprite").transform;
+        playerTransform = player.transform.Find("Sprite");
 
         shooting = false;
         nextFireTime = Time.time + fireRate;
@@ -41,6 +40,7 @@ public class EnemyScript : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        agent.isStopped = true;
 
         PlaceAgentOnNavMesh();
     }
@@ -73,7 +73,7 @@ public class EnemyScript : MonoBehaviour
                     StopShooting();
                 }
                 animator.SetBool("move", false);
-                //agent.isStopped = true;
+                agent.isStopped = true;
             }
             else
             {
@@ -88,7 +88,7 @@ public class EnemyScript : MonoBehaviour
             StopShooting();
             shooting = false;
             animator.SetBool("move", false);
-            //agent.isStopped = true;
+            agent.isStopped = true;
         }
 
         if (Time.time - lastPathUpdateTime > pathUpdateRate)
@@ -108,8 +108,8 @@ public class EnemyScript : MonoBehaviour
 
     void MoveTowardsPlayer()
     {
-        //agent.SetDestination(playerTransform.position);
-        //agent.isStopped = false;
+        agent.SetDestination(playerTransform.position);
+        agent.isStopped = false;
         agent.speed = speed;
 
         // Update sprite direction

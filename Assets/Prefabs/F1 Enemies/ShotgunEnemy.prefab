@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.5, y: -0.01173, z: 0.029295493}
-  m_LocalScale: {x: 0.73333174, y: 0.73333174, z: 0.73333174}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5565939504505739623}
@@ -54,7 +54,7 @@ MonoBehaviour:
   player: {fileID: 0}
   fireRate: 2
   speed: 1
-  shootDuration: 2
+  shootDuration: 0
   shootRange: 6
   walkRange: 12
   animator: {fileID: 6329621094661948581}
@@ -63,6 +63,7 @@ MonoBehaviour:
   bulletsPerShot: 5
   spread: 30
   pathUpdateRate: 0.2
+  playerTransform: {fileID: 0}
 --- !u!114 &305204119834781205
 MonoBehaviour:
   m_ObjectHideFlags: 0
