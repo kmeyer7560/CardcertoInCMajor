@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class Card : MonoBehaviour
@@ -16,6 +18,8 @@ public class Card : MonoBehaviour
     public string cardType;
     public float dashStrength;
     public float defense;
+    public int burstShotNum;
+    public List<GameObject> eneimes;
 
 
     private void Start()
@@ -52,7 +56,7 @@ public class Card : MonoBehaviour
                 else if (cardType == "burstCard")
                 {
                     gameObject.SetActive(true);
-                    StartCoroutine(burstDelay());
+                    StartCoroutine(burstDelay(burstShotNum));
                 }
                 else if (cardType == "laserCard")
                 {
@@ -64,6 +68,22 @@ public class Card : MonoBehaviour
                 {
                     healthBar.GetComponent<PlayerHealthBar>().setDefense(defense);
                 }
+                else if (cardType == "speedCard")
+                {
+                    player.GetComponent<PlayerMovement>().speedUp();
+                }
+                else if (cardType == "blowCard")
+                {
+                    List <GameObject> enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+                    foreach (GameObject i in enemies)
+                    {
+                        if (i == null)
+                        {
+                            enemies.Remove(i);
+                        }
+                        i.GetComponent<EnemyHealth>().detonate();
+                    }
+                }
 
                 hm.shuffle();
                 hasBeenPlayed = false;
@@ -71,6 +91,7 @@ public class Card : MonoBehaviour
                 {
                     gameObject.SetActive(false);
                 }
+
             }
             else
             {
@@ -79,11 +100,11 @@ public class Card : MonoBehaviour
         }
     }
 
-    IEnumerator burstDelay()
+    IEnumerator burstDelay(int num)
     {
         gameObject.transform.position = new Vector2(1000000, 100000); //just to get the sprite out of the way becuase i can't turn off the gameobject while a coroutine needs to run. Very desperate tactic.
         //Debug.Log("Starting burst delay...");
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < num; i++)
         {
             //Debug.Log("Shooting bullet " + (i + 1));
             shootCard(); // Call the shootCard method to instantiate a bullet

@@ -4,27 +4,28 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - dashCard
-  - attackCard
   - Enemy
-  - playerAttack
   - Environment
-  - enemyAttack
   - burstCard
   - laserCard
+  - dashCard
+  - attackCard
   - gDashCard
-  - aoeCard
-  - ChestReward
-  - Wall
+  - playerAttack
+  - enemyAttack
+  - defenseCard
+  - violinAttack
+  - speedCard
+  - blowCard
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - ArenaWall
+  - 
   - Water
   - UI
-  - Player
-  - Enemy
+  - 
+  - 
   - 
   - 
   - 
