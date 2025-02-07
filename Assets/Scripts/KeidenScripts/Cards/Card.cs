@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
@@ -18,6 +19,7 @@ public class Card : MonoBehaviour
     public float dashStrength;
     public float defense;
     public int burstShotNum;
+    public List<GameObject> eneimes;
 
 
     private void Start()
@@ -70,6 +72,18 @@ public class Card : MonoBehaviour
                 {
                     player.GetComponent<PlayerMovement>().speedUp();
                 }
+                else if (cardType == "blowCard")
+                {
+                    List <GameObject> enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+                    foreach (GameObject i in enemies)
+                    {
+                        if (i == null)
+                        {
+                            enemies.Remove(i);
+                        }
+                        i.GetComponent<EnemyHealth>().detonate();
+                    }
+                }
 
                 hm.shuffle();
                 hasBeenPlayed = false;
@@ -77,6 +91,7 @@ public class Card : MonoBehaviour
                 {
                     gameObject.SetActive(false);
                 }
+
             }
             else
             {
@@ -93,7 +108,7 @@ public class Card : MonoBehaviour
         {
             //Debug.Log("Shooting bullet " + (i + 1));
             shootCard(); // Call the shootCard method to instantiate a bullet
-            yield return new WaitForSeconds(0.1f); 
+            yield return new WaitForSeconds(0.1f); // Wait for 0.3 seconds before the next shot
         }
         gameObject.SetActive(false);
     }

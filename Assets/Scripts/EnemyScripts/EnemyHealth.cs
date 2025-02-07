@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-
+    public GameObject player;
     public float health;
     public float currentHealth;
     private Vector2 source;
@@ -17,22 +17,28 @@ public class EnemyHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         currentHealth = health;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (currentHealth <= 0 )
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void takeDamage(float damage)
     {
         currentHealth -= damage;
-        if (currentHealth <= 0 )
-        {
-            Destroy(gameObject);
-        }
+    }
+
+    public void detonate()
+    {
+        currentHealth -= (violinStacks * 5);
+        violinStacks = 0;
     }
 
     public void knockBack(GameObject attack)

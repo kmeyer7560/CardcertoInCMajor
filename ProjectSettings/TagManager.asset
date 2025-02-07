@@ -3,7 +3,20 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Environment
+  - burstCard
+  - laserCard
+  - dashCard
+  - attackCard
+  - gDashCard
+  - playerAttack
+  - enemyAttack
+  - defenseCard
+  - violinAttack
+  - speedCard
+  - blowCard
   layers:
   - Default
   - TransparentFX
