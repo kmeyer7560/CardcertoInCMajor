@@ -13,6 +13,9 @@ public class EnemyHealth : MonoBehaviour
     public Rigidbody2D rb;
     public int violinStacks;
 
+    public GameObject healthOrb;
+    public GameObject coin;
+
     private Vector2 vel;
     // Start is called before the first frame update
     void Start()
@@ -26,8 +29,24 @@ public class EnemyHealth : MonoBehaviour
     {
         if (currentHealth <= 0 )
         {
-            Destroy(gameObject);
+            Death();
         }
+    }
+
+    public void Death()
+    {
+        int dropChance = Random.Range(1,10);
+        Debug.Log(dropChance);
+        if(dropChance <=5)
+        {
+            Instantiate(healthOrb, new Vector3(transform.position.x, transform.position.y, 0f), Quaternion.identity);
+        }
+        if(dropChance == 2)
+        {
+            Instantiate(coin, new Vector3(transform.position.x, transform.position.y, 0f), Quaternion.identity);
+        }
+        Destroy(gameObject);
+
     }
 
     public void takeDamage(float damage)

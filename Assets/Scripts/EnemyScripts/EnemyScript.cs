@@ -6,9 +6,7 @@ public class EnemyScript : MonoBehaviour
     public GameObject bullet;
     public Transform bulletPos;
     public GameObject player;
-    public float fireRate = 2.0f;
     public float speed = 10f;
-    public float shootDuration = 2f;
     public float shootRange = 6f;
     public float walkRange = 9f;
 
@@ -35,14 +33,14 @@ public class EnemyScript : MonoBehaviour
         playerTransform = player.transform.Find("Sprite");
 
         shooting = false;
-        nextFireTime = Time.time + fireRate;
+        nextFireTime = Time.time;
 
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         agent.isStopped = true;
 
-        PlaceAgentOnNavMesh();
+        Invoke("PlaceAgentOnNavMesh", 0.1f);
     }
 
     void PlaceAgentOnNavMesh()
@@ -50,9 +48,15 @@ public class EnemyScript : MonoBehaviour
         NavMeshHit hit;
         if (NavMesh.SamplePosition(transform.position, out hit, 1f, NavMesh.AllAreas))
         {
-            agent.Warp(hit.position);
+            Vector3 adjustedPosition = hit.position + Vector3.up * .5f; 
+            agent.Warp(adjustedPosition);
+        }
+        else
+        {
+            Debug.Log("Navmesh is null");
         }
     }
+
 
     void Update()
     {
@@ -68,7 +72,7 @@ public class EnemyScript : MonoBehaviour
                     shooting = true;
                     shootStartTime = Time.time;
                 }
-                else if (shooting && Time.time - shootStartTime >= shootDuration)
+                else if (shooting && Time.time - shootStartTime >= 0)
                 {
                     StopShooting();
                 }
@@ -125,7 +129,7 @@ public class EnemyScript : MonoBehaviour
 
     void StopShooting()
     {
-        nextFireTime = Time.time + fireRate;
+        nextFireTime = Time.time;
         shooting = false;
     }
 
@@ -148,6 +152,6 @@ public class EnemyScript : MonoBehaviour
             rb.velocity = spreadDirection * 10f;
         }
 
-        nextFireTime = Time.time + fireRate;
+        nextFireTime = Time.time;
     }
 }

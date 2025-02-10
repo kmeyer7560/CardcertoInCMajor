@@ -17,6 +17,9 @@ TagManager:
   - violinAttack
   - speedCard
   - blowCard
+  - aoeCard
+  - ChestReward
+  - Chest
   layers:
   - Default
   - TransparentFX
