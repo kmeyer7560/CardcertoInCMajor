@@ -25,7 +25,13 @@ public class RouletteManager : MonoBehaviour
     private const float cardScale = 0.4f;
 
     public ChestInteraction chestInteraction;
+    
+    void Start()
+    {
+        GameObject chest = GameObject.FindGameObjectWithTag("Chest");
+        chestInteraction = chest.GetComponent<ChestInteraction>();
 
+    }
     private void Awake()
     {
         foreach (var reward in RewardPrefabs)
@@ -227,7 +233,7 @@ public class RouletteManager : MonoBehaviour
         float verticalOffset = 0f;
         rewardContainer.position = playerTransform.position + new Vector3(0, verticalOffset, 0);
         
-        rewardContainer.localPosition += new Vector3(0, 0, 5);
+        rewardContainer.localPosition += new Vector3(0, 0, 1);
 
         StartCoroutine(SpinRewards());
     }
