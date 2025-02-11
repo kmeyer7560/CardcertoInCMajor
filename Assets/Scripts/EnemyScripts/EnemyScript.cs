@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -27,13 +28,17 @@ public class EnemyScript : MonoBehaviour
     private float lastPathUpdateTime;
     [SerializeField] Transform playerTransform;
 
+    public bool isMeleeEnemy;
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public LayerMask enemyLayers;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerTransform = player.transform.Find("Sprite");
 
         shooting = false;
-        nextFireTime = Time.time;
 
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
@@ -48,15 +53,9 @@ public class EnemyScript : MonoBehaviour
         NavMeshHit hit;
         if (NavMesh.SamplePosition(transform.position, out hit, 1f, NavMesh.AllAreas))
         {
-            Vector3 adjustedPosition = hit.position + Vector3.up * .5f; 
-            agent.Warp(adjustedPosition);
-        }
-        else
-        {
-            Debug.Log("Navmesh is null");
+            agent.Warp(hit.position);
         }
     }
-
 
     void Update()
     {
@@ -71,6 +70,15 @@ public class EnemyScript : MonoBehaviour
                     animator.SetTrigger("shoot");
                     shooting = true;
                     shootStartTime = Time.time;
+                    if(isMeleeEnemy)
+                    {
+                        //Debug.Log("attack!!!");
+                        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+                        foreach(Collider2D enemy in hitEnemies)
+                        {
+                            Debug.Log("hit" + enemy.name);
+                        }
+                    }
                 }
                 else if (shooting && Time.time - shootStartTime >= 0)
                 {
@@ -135,22 +143,22 @@ public class EnemyScript : MonoBehaviour
 
     void Shoot()
     {
-        Vector2 directionToPlayer = (player.transform.position - bulletPos.position).normalized;
+            Vector2 directionToPlayer = (player.transform.position - bulletPos.position).normalized;
 
-        for (int i = 0; i < bulletsPerShot; i++)
-        {
-            float spreadAngle = Random.Range(-spread / 2f, spread / 2f);
+            for (int i = 0; i < bulletsPerShot; i++)
+            {
+                float spreadAngle = Random.Range(-spread / 2f, spread / 2f);
 
-            Vector2 spreadDirection = Quaternion.Euler(0, 0, spreadAngle) * directionToPlayer;
+                Vector2 spreadDirection = Quaternion.Euler(0, 0, spreadAngle) * directionToPlayer;
 
-            float angle = Mathf.Atan2(spreadDirection.y, spreadDirection.x) * Mathf.Rad2Deg;
-            Quaternion rotation = Quaternion.Euler(0, 0, angle);
+                float angle = Mathf.Atan2(spreadDirection.y, spreadDirection.x) * Mathf.Rad2Deg;
+                Quaternion rotation = Quaternion.Euler(0, 0, angle);
 
-            GameObject bulletInstance = Instantiate(bullet, bulletPos.position, rotation);
-            Rigidbody2D rb = bulletInstance.GetComponent<Rigidbody2D>();
+                GameObject bulletInstance = Instantiate(bullet, bulletPos.position, rotation);
+                Rigidbody2D rb = bulletInstance.GetComponent<Rigidbody2D>();
 
-            rb.velocity = spreadDirection * 10f;
-        }
+                rb.velocity = spreadDirection * 10f;
+            }
 
         nextFireTime = Time.time;
     }

@@ -724,7 +724,7 @@ MonoBehaviour:
   bossEntrancePrefab: {fileID: 6750090895590366358, guid: bb5ac4e82a905449dbc6629b2df01408, type: 3}
   chestPrefab: {fileID: 7519551053038593844, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
   enemies:
-  - {fileID: 1220592464380258565, guid: f8d5b44b30ae54023a51d8e7e6c95d29, type: 3}
+  - {fileID: 1220592464380258565, guid: fbd9ea75e2dae4f73b40bbec105cc1e7, type: 3}
   navMeshSurface: {fileID: 1632365229}
 --- !u!4 &437892900
 Transform:
