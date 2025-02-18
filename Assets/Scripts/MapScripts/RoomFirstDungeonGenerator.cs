@@ -27,11 +27,51 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
 
     public void Start()
+{
+    RunProceduralGeneration();
+    StartCoroutine(BuildNavMeshWhenReady());
+}
+
+void Update()
+{
+    /*if(Input.GetKeyDown("u"))
     {
         navMeshSurface.BuildNavMesh();
-        RunProceduralGeneration();
-
+        Debug.Log("u pressed");
     }
+    if(navMeshSurface == null)
+    {
+        Debug.Log("surface is null");
+    }
+    else{
+        Debug.Log("surface isnt null");
+    }*/
+}
+
+private IEnumerator BuildNavMeshWhenReady()
+{
+    yield return null;
+
+    if (!IsNavMeshBaked())
+    { 
+        navMeshSurface.BuildNavMesh(); 
+    }
+}
+
+private bool IsNavMeshBaked()
+{
+    UnityEngine.AI.NavMeshHit hit;
+    Vector3[] checkPoints = { transform.position, transform.position + Vector3.right * 10, transform.position + Vector3.forward * 10 };
+    
+    foreach (Vector3 point in checkPoints)
+    {
+        if (UnityEngine.AI.NavMesh.SamplePosition(point, out hit, 1f, UnityEngine.AI.NavMesh.AllAreas))
+        {
+            return true;
+        }
+    }
+    return false;
+}
 
     protected override void RunProceduralGeneration()
     {

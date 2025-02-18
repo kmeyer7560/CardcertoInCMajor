@@ -37,6 +37,7 @@ public class ChestInteraction : MonoBehaviour
             Debug.Log("Spin started");
         }
     }
+    
 
     private IEnumerator Spinning(float duration)
     {
@@ -72,17 +73,19 @@ public class ChestInteraction : MonoBehaviour
             for (int i = 0; i < intValue; i++)
             {
                 int randomCard = UnityEngine.Random.Range(0, prefabArray.Length);
-                GameObject instantiatedCard = Instantiate(prefabArray[randomCard], transform.position, Quaternion.identity);
+                GameObject instantiatedCard = Instantiate(prefabArray[randomCard], this.transform.position, Quaternion.identity);
             }
         }
         else
         {
             int randomCard = UnityEngine.Random.Range(0, specialCardPrefabs.Length);
-            GameObject instantiatedCard = Instantiate(specialCardPrefabs[randomCard], transform.position, Quaternion.identity);
+            GameObject instantiatedCard = Instantiate(specialCardPrefabs[randomCard], this.transform.position, Quaternion.identity);
         }
     }
     public void DestroyChest()
     {
+        Debug.Log("turnoff chest");
+        Debug.Log(gameObject);
         gameObject.SetActive(false);
     }
 }

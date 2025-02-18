@@ -21,11 +21,17 @@ public class RouletteManager : MonoBehaviour
     public Transform playerTransform;
 
     private const float cardWidth = 0.4f;
-    private const float cardSpacing = 0f;
-    private const float cardScale = 0.4f;
+    private const float cardSpacing = -.215f;
+    private const float cardScale = 0.18f;
 
     public ChestInteraction chestInteraction;
+    
+    void Start()
+    {
+        GameObject chest = GameObject.FindGameObjectWithTag("Chest");
+        chestInteraction = chest.GetComponent<ChestInteraction>();
 
+    }
     private void Awake()
     {
         foreach (var reward in RewardPrefabs)
@@ -221,13 +227,13 @@ public class RouletteManager : MonoBehaviour
             }
         }
 
-        List<RewardPrefab> rewards = GenerateWeightedRewardList(50);
+        List<RewardPrefab> rewards = GenerateWeightedRewardList(150);
         InstantiateRewards(rewards);
 
         float verticalOffset = 0f;
         rewardContainer.position = playerTransform.position + new Vector3(0, verticalOffset, 0);
         
-        rewardContainer.localPosition += new Vector3(0, 0, 5);
+        rewardContainer.localPosition += new Vector3(0, 0, 1);
 
         StartCoroutine(SpinRewards());
     }

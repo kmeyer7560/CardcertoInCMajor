@@ -41,6 +41,11 @@ public class PlayerHealthBar : MonoBehaviour
         
         healthSlider.value -= (amount-defense);
     }
+    public void Heal(float amount)
+    {
+        Debug.Log("player healed");
+        healthSlider.value += (amount);
+    }
     public void setDefense(float value)
     {
         guitubble.SetActive(true);

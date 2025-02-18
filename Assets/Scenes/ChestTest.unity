@@ -261,6 +261,8 @@ MonoBehaviour:
   cardType: 
   dashStrength: 0
   defense: 0
+  burstShotNum: 0
+  eneimes: []
 --- !u!1 &229743473
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,6 +371,8 @@ MonoBehaviour:
   cardType: 
   dashStrength: 0
   defense: 0
+  burstShotNum: 0
+  eneimes: []
 --- !u!1 &243135495
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,6 +598,61 @@ MonoBehaviour:
   cardType: 
   dashStrength: 50
   defense: 0
+  burstShotNum: 0
+  eneimes: []
+--- !u!1 &827743468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 827743470}
+  - component: {fileID: 827743469}
+  m_Layer: 0
+  m_Name: ProceduralMapGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &827743469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827743468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77887691e1918fa49a3704f77a655ce4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridWidth: 10
+  gridHeight: 10
+  roomSize: 10
+  minRooms: 5
+  maxRooms: 10
+  floorTilemap: {fileID: 0}
+  wallTilemap: {fileID: 0}
+  floorTile: {fileID: 11400000, guid: fc6539539392c4d6087dc91363835072, type: 2}
+  wallTile: {fileID: 0}
+--- !u!4 &827743470
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827743468}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 71.44742, y: 60.252, z: -0.029323855}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &830170159
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,12 +798,10 @@ MonoBehaviour:
   savedDirection: {x: 0, y: 0}
   vulnerable: 0
   moveable: 0
-  tr: {fileID: 1257636013}
   rb: {fileID: 830170163}
   animator: {fileID: 1310314056}
+  trail: {fileID: 0}
   moveDirection: {x: 0, y: 0}
-  trailPos1: {x: 0, y: 0, z: 0}
-  trailPos2: {x: 0, y: 0, z: 0}
 --- !u!1001 &857207688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -753,6 +810,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4660126434956474823, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
+      propertyPath: rouletteManager
+      value: 
+      objectReference: {fileID: 1661210278}
     - target: {fileID: 5435511895412262082, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
       propertyPath: content2
       value: 
@@ -822,10 +883,7 @@ PrefabInstance:
     - {fileID: 6745927786317600391, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7519551053038593844, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2065633951}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
 --- !u!1 &934862901
 GameObject:
@@ -1067,6 +1125,8 @@ MonoBehaviour:
   cardType: 
   dashStrength: 0
   defense: 0
+  burstShotNum: 0
+  eneimes: []
 --- !u!1 &1006323507
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,7 +1343,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.575
+  orthographic size: 7.475
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -1496,6 +1556,8 @@ MonoBehaviour:
   cardType: 
   dashStrength: 0
   defense: 0
+  burstShotNum: 0
+  eneimes: []
 --- !u!1 &1257636011
 GameObject:
   m_ObjectHideFlags: 0
@@ -1918,6 +1980,8 @@ MonoBehaviour:
   cardType: 
   dashStrength: 0
   defense: 0
+  burstShotNum: 0
+  eneimes: []
 --- !u!1 &1382489392
 GameObject:
   m_ObjectHideFlags: 0
@@ -2026,6 +2090,8 @@ MonoBehaviour:
   cardType: 
   dashStrength: 0
   defense: 0
+  burstShotNum: 0
+  eneimes: []
 --- !u!1 &1419314144
 GameObject:
   m_ObjectHideFlags: 0
@@ -2282,6 +2348,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2102350436}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1536438233
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6675656197690361552, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675656197690361552, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675656197690361552, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675656197690361552, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675656197690361552, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675656197690361552, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675656197690361552, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675656197690361552, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675656197690361552, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675656197690361552, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7519551053038593844, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
+      propertyPath: m_Name
+      value: Chest (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
 --- !u!1 &1641405370
 GameObject:
   m_ObjectHideFlags: 0
@@ -2483,7 +2606,7 @@ MonoBehaviour:
     Prefab: {fileID: 286709107986089897, guid: 202d6099701979a4cb10cb7edb43d12f, type: 3}
   rewardContainer: {fileID: 1691967949}
   playerTransform: {fileID: 1310314055}
-  chestInteraction: {fileID: 2065633951}
+  chestInteraction: {fileID: 2065633952}
 --- !u!224 &1661210279
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2717,51 +2840,19 @@ MonoBehaviour:
   cardType: 
   dashStrength: 0
   defense: 0
---- !u!1 &2065633950 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7519551053038593844, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
+  burstShotNum: 0
+  eneimes: []
+--- !u!114 &2065633952 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4660126434956474823, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
   m_PrefabInstance: {fileID: 857207688}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2065633951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065633950}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89207147ccbece942b5977f9dcdd9104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionRange: 10.4
-  interactionKey: 32
-  rouletteManager: {fileID: 1661210278}
-  guitarCardPrefabs:
-  - {fileID: 1646419894224884969, guid: 9e1062aad55ffa44cbebce8b9cbf05d9, type: 3}
-  - {fileID: 1646419894224884969, guid: e1c1e089e64f1ab40a9a6b9d3dbfc517, type: 3}
-  - {fileID: 1646419894224884969, guid: 4e2881be6d707ce49bc1a06581e60f15, type: 3}
-  - {fileID: 1646419894224884969, guid: e644a0050e352c54f82f4d4ee08f9404, type: 3}
-  fluteCardPrefabs:
-  - {fileID: 1646419894224884969, guid: e644a0050e352c54f82f4d4ee08f9404, type: 3}
-  - {fileID: 1646419894224884969, guid: e644a0050e352c54f82f4d4ee08f9404, type: 3}
-  - {fileID: 1646419894224884969, guid: e644a0050e352c54f82f4d4ee08f9404, type: 3}
-  - {fileID: 1646419894224884969, guid: e644a0050e352c54f82f4d4ee08f9404, type: 3}
-  violinCardPrefabs:
-  - {fileID: 1646419894224884969, guid: e644a0050e352c54f82f4d4ee08f9404, type: 3}
-  - {fileID: 1646419894224884969, guid: e644a0050e352c54f82f4d4ee08f9404, type: 3}
-  - {fileID: 1646419894224884969, guid: e644a0050e352c54f82f4d4ee08f9404, type: 3}
-  - {fileID: 1646419894224884969, guid: e644a0050e352c54f82f4d4ee08f9404, type: 3}
-  drumCardPrefabs:
-  - {fileID: 1646419894224884969, guid: e644a0050e352c54f82f4d4ee08f9404, type: 3}
-  - {fileID: 1646419894224884969, guid: e644a0050e352c54f82f4d4ee08f9404, type: 3}
-  - {fileID: 1646419894224884969, guid: e644a0050e352c54f82f4d4ee08f9404, type: 3}
-  - {fileID: 1646419894224884969, guid: e644a0050e352c54f82f4d4ee08f9404, type: 3}
-  specialCardPrefabs:
-  - {fileID: 1646419894224884969, guid: e644a0050e352c54f82f4d4ee08f9404, type: 3}
-  - {fileID: 1646419894224884969, guid: e644a0050e352c54f82f4d4ee08f9404, type: 3}
-  - {fileID: 1646419894224884969, guid: e644a0050e352c54f82f4d4ee08f9404, type: 3}
-  - {fileID: 1646419894224884969, guid: e644a0050e352c54f82f4d4ee08f9404, type: 3}
 --- !u!1 &2095597829
 GameObject:
   m_ObjectHideFlags: 0
@@ -2867,3 +2958,5 @@ SceneRoots:
   - {fileID: 830170160}
   - {fileID: 2095597831}
   - {fileID: 1661210279}
+  - {fileID: 1536438233}
+  - {fileID: 827743470}
