@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Card : MonoBehaviour
@@ -20,6 +21,7 @@ public class Card : MonoBehaviour
     public float defense;
     public int burstShotNum;
     public List<GameObject> eneimes;
+    public int deflectBullets;
 
 
     private void Start()
@@ -45,34 +47,34 @@ public class Card : MonoBehaviour
                 {
                     dashCard();
                 }
-                if (cardType == "gDashCard")
+                if (cardType == "gDashCard") //guitar dash
                 {
                     gDash();
                 }
-                else if (cardType == "attackCard")
+                else if (cardType == "attackCard") //simple attack
                 {
                     shootCard();
                 }
-                else if (cardType == "burstCard")
+                else if (cardType == "burstCard") //any burst shot
                 {
                     gameObject.SetActive(true);
                     StartCoroutine(burstDelay(burstShotNum));
                 }
-                else if (cardType == "laserCard")
+                else if (cardType == "laserCard") //guitar laser
                 {
                     player.GetComponent<PlayerMovement>().moveable = false;
                     player.GetComponent<PlayerMovement>().rb.velocity = new Vector2(0, 0);;
                     shootCard();
                 }
-                else if (cardType == "defenseCard")
+                else if (cardType == "defenseCard") //guitar defense increase
                 {
                     healthBar.GetComponent<PlayerHealthBar>().setDefense(defense);
                 }
-                else if (cardType == "speedCard")
+                else if (cardType == "speedCard") //violin speedup
                 {
                     player.GetComponent<PlayerMovement>().speedUp();
                 }
-                else if (cardType == "blowCard")
+                else if (cardType == "blowCard") //violin detonate
                 {
                     List <GameObject> enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
                     foreach (GameObject i in enemies)
@@ -83,6 +85,12 @@ public class Card : MonoBehaviour
                         }
                         i.GetComponent<EnemyHealth>().detonate();
                     }
+                }
+                else if (cardType == "deflectCard")
+                {
+                    deflectBullets = healthBar.GetComponent<PlayerHealthBar>().deflect();
+                    healthBar.GetComponent<PlayerHealthBar>().deflectedNum = 0;
+                    StartCoroutine(burstDelay(deflectBullets));
                 }
 
                 hm.shuffle();
