@@ -21,8 +21,8 @@ public class RouletteManager : MonoBehaviour
     public Transform playerTransform;
 
     private const float cardWidth = 0.4f;
-    private const float cardSpacing = 0f;
-    private const float cardScale = 0.4f;
+    private const float cardSpacing = -.215f;
+    private const float cardScale = 0.18f;
 
     public ChestInteraction chestInteraction;
     
@@ -227,7 +227,7 @@ public class RouletteManager : MonoBehaviour
             }
         }
 
-        List<RewardPrefab> rewards = GenerateWeightedRewardList(50);
+        List<RewardPrefab> rewards = GenerateWeightedRewardList(150);
         InstantiateRewards(rewards);
 
         float verticalOffset = 0f;

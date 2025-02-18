@@ -32,6 +32,11 @@ public class EnemyScript : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
+    private float meleeCooldown = 1f;
+    private float lastMeleeAttack;
+    public PlayerHealthBar playerHealthBar;
+    public int meleeDamage;
+    private bool canAttack;
 
     void Start()
     {
@@ -46,6 +51,7 @@ public class EnemyScript : MonoBehaviour
         agent.isStopped = true;
 
         Invoke("PlaceAgentOnNavMesh", 0.1f);
+        playerHealthBar = player.GetComponentInChildren<PlayerHealthBar>();
     }
 
     void PlaceAgentOnNavMesh()
@@ -70,14 +76,19 @@ public class EnemyScript : MonoBehaviour
                     animator.SetTrigger("shoot");
                     shooting = true;
                     shootStartTime = Time.time;
-                    if(isMeleeEnemy)
+                    if(isMeleeEnemy && Time.time - lastMeleeAttack >= meleeCooldown)
                     {
-                        //Debug.Log("attack!!!");
-                        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-                        foreach(Collider2D enemy in hitEnemies)
+                        if(canAttack)
                         {
-                            Debug.Log("hit" + enemy.name);
+                            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+                            foreach(Collider2D enemy in hitEnemies)
+                            {
+                                Debug.Log("hit" + enemy.name);
+                                playerHealthBar.TakeDamage(meleeDamage);
+                            }
+                            canAttack = false;
                         }
+                        lastMeleeAttack = Time.time;
                     }
                 }
                 else if (shooting && Time.time - shootStartTime >= 0)
@@ -110,6 +121,15 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    void OnDrawGizmosSelected()
+    {
+        if(attackPoint == null)
+        {
+            return;
+        }
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
     void UpdatePath()
     {
         if (player != null && agent.isActiveAndEnabled && agent.isOnNavMesh)
@@ -131,8 +151,15 @@ public class EnemyScript : MonoBehaviour
 
     public void StartShooting()
     {
-        Debug.Log("shoot");
-        Shoot();
+        if(isMeleeEnemy)
+        {
+            canAttack = true;
+        }
+        else
+        {
+            Debug.Log("shoot");
+            Shoot();
+        }
     }
 
     void StopShooting()
