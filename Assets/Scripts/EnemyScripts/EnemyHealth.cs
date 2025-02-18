@@ -60,6 +60,13 @@ public class EnemyHealth : MonoBehaviour
         violinStacks = 0;
     }
 
+    public void deflectSlash()
+    {
+        violinStacks += 2;
+        takeDamage(1);
+        
+    }
+
     public void knockBack(GameObject attack)
     {
         vel = rb.velocity;

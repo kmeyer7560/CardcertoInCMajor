@@ -88,14 +88,13 @@ public class Card : MonoBehaviour
                 }
                 else if (cardType == "deflectCard")
                 {
-                    deflectBullets = healthBar.GetComponent<PlayerHealthBar>().deflect();
+                    healthBar.GetComponent<PlayerHealthBar>().deflect(OnDeflectComplete);
                     healthBar.GetComponent<PlayerHealthBar>().deflectedNum = 0;
-                    StartCoroutine(burstDelay(deflectBullets));
                 }
 
                 hm.shuffle();
                 hasBeenPlayed = false;
-                if (cardType != "burstCard") //need this for every card that uses a coroutine f you unity
+                if (cardType != "burstCard" && cardType != "deflectCard") //need this for every card that uses a coroutine f you unity
                 {
                     gameObject.SetActive(false);
                 }
@@ -116,10 +115,49 @@ public class Card : MonoBehaviour
         {
             //Debug.Log("Shooting bullet " + (i + 1));
             shootCard(); // Call the shootCard method to instantiate a bullet
-            yield return new WaitForSeconds(0.1f); // Wait for 0.3 seconds before the next shot
+            yield return new WaitForSeconds(0.1f); // Wait for 0.1 seconds before the next shot
         }
         gameObject.SetActive(false);
     }
+    IEnumerator wait(double wait)
+    {
+        yield return new WaitForSeconds((float) wait);
+    }
+
+    void OnDeflectComplete(int deflectedValue)
+    {
+        Debug.Log("Deflected Number: " + deflectedValue);
+        StartCoroutine(wait(0.5));
+
+        GameObject closestEnemy = FindClosestEnemy();
+        if (closestEnemy != null)
+        {   
+            for (int i = 0; i < deflectedValue; i++)
+            {
+                closestEnemy.GetComponent<EnemyHealth>().deflectSlash();
+            }
+        }
+        healthBar.GetComponent<PlayerHealthBar>().deflectedNum = 0;
+        gameObject.SetActive(false);
+    }   
+    private GameObject FindClosestEnemy()
+    {
+        GameObject closestEnemy = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+    {
+        float distance = Vector3.Distance(player.transform.position, enemy.transform.position);
+        if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestEnemy = enemy;
+            }
+    }
+
+    return closestEnemy;
+}
+
 
     public void dashCard()
     {
