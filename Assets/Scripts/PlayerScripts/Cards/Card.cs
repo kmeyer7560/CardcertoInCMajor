@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using Random=UnityEngine.Random;
 public class Card : MonoBehaviour
 {
     public bool hasBeenPlayed;
@@ -15,6 +16,7 @@ public class Card : MonoBehaviour
     public Transform shootingPoint;
     public GameObject bulletPrefab;
     public GameObject healthBar;
+    public GameObject slash;
     public float staminaCost;
     public string cardType;
     public float dashStrength;
@@ -88,9 +90,10 @@ public class Card : MonoBehaviour
                 }
                 else if (cardType == "deflectCard")
                 {
-                    healthBar.GetComponent<PlayerHealthBar>().deflect(OnDeflectComplete);
+                    healthBar.GetComponent<PlayerHealthBar>().deflect(deflectedValue => StartCoroutine(OnDeflectComplete(deflectedValue)));
                     healthBar.GetComponent<PlayerHealthBar>().deflectedNum = 0;
                 }
+
 
                 hm.shuffle();
                 hasBeenPlayed = false;
@@ -124,22 +127,30 @@ public class Card : MonoBehaviour
         yield return new WaitForSeconds((float) wait);
     }
 
-    void OnDeflectComplete(int deflectedValue)
-    {
-        Debug.Log("Deflected Number: " + deflectedValue);
-        StartCoroutine(wait(0.5));
-
-        GameObject closestEnemy = FindClosestEnemy();
-        if (closestEnemy != null)
-        {   
-            for (int i = 0; i < deflectedValue; i++)
-            {
-                closestEnemy.GetComponent<EnemyHealth>().deflectSlash();
-            }
+    IEnumerator OnDeflectComplete(int deflectedValue)
+{
+    Debug.Log("Deflected Number: " + deflectedValue);
+    GameObject closestEnemy = FindClosestEnemy();
+    if (closestEnemy != null)
+    {   
+        slash.SetActive(true); // Activate the slash GameObject once before the loop
+        for (int i = 0; i < deflectedValue; i++)
+        {
+            slash.transform.position = closestEnemy.transform.position; // Move the slash to the enemy's position
+            slash.transform.rotation = Random.rotation;
+            slash.GetComponent<Animator>().Play("Slash"); // Play the slash animation
+            
+            // Wait for the duration of the animation before playing it again
+            yield return new WaitForSeconds(0.125f); // Adjust this value based on the length of your animation
+            
+            closestEnemy.GetComponent<EnemyHealth>().deflectSlash(); // Call the deflect method on the enemy
         }
-        healthBar.GetComponent<PlayerHealthBar>().deflectedNum = 0;
-        gameObject.SetActive(false);
-    }   
+        slash.SetActive(false); // Deactivate the slash GameObject after all animations
+    }
+    healthBar.GetComponent<PlayerHealthBar>().deflectedNum = 0;
+    gameObject.SetActive(false);
+}
+
     private GameObject FindClosestEnemy()
     {
         GameObject closestEnemy = null;
