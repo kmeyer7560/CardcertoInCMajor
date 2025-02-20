@@ -8,15 +8,21 @@ public class CameraController : MonoBehaviour
     public static CameraController instance;
     public Room currRoom;
     public float moveSpeedWhenRoomChange;
+    private Room currentRoom;
 
     void Awake()
     {
         instance = this;
+        currentRoom = GetComponentInParent<Room>();
     }
-
+    
     void Update()
     {
         UpdatePosition();
+        if(instance.currRoom == currentRoom)
+        {
+            //currentRoom.SetActive(true);
+        }
     }
 
     void UpdatePosition()
