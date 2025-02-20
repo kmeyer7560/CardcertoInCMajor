@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Room : MonoBehaviour
@@ -24,6 +25,22 @@ public class Room : MonoBehaviour
     public Door topDoor;
     public Door bottomDoor;
     public List<Door> doors = new List<Door>();
+    
+    private Room currentRoom;
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            gameObject.SetActive(true);
+            Debug.Log("111");
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+    }
+    
 
     void Start()
     {
