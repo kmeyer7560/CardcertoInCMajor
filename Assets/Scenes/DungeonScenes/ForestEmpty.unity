@@ -1355,6 +1355,10 @@ PrefabInstance:
       propertyPath: grid.horizontalOffset
       value: 9.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3422737625521874760, guid: 790d8112a94c2d84e8497374f0b440c1, type: 3}
+      propertyPath: m_SortingOrder
+      value: -21
+      objectReference: {fileID: 0}
     - target: {fileID: 8939560332380729077, guid: 790d8112a94c2d84e8497374f0b440c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.6284111
@@ -1409,6 +1413,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8939560332380729077, guid: 790d8112a94c2d84e8497374f0b440c1, type: 3}
   m_PrefabInstance: {fileID: 616959165}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &616959167 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1844441642624114632, guid: 790d8112a94c2d84e8497374f0b440c1, type: 3}
+  m_PrefabInstance: {fileID: 616959165}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5398dd791b8489641bd603bf476337e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &676938763
 GameObject:
   m_ObjectHideFlags: 0
@@ -1764,6 +1779,7 @@ GameObject:
   - component: {fileID: 1423338416}
   - component: {fileID: 1423338415}
   - component: {fileID: 1423338414}
+  - component: {fileID: 1423338417}
   m_Layer: 0
   m_Name: Room
   m_TagString: Untagged
@@ -1859,6 +1875,24 @@ Transform:
   - {fileID: 11545362}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1423338417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423338413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e9aa05c6fb92af408a1a6f836893092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 616959167}
+  spawnerData:
+  - name: ShotgunEnemy
+    spawnerData: {fileID: 11400000, guid: 4f8ebff9baaefeb4896de5362ea292d3, type: 2}
+  - name: MeleeEnemy
+    spawnerData: {fileID: 11400000, guid: ae21b91915581af498b13e46fced3c35, type: 2}
 --- !u!1 &1625502923
 GameObject:
   m_ObjectHideFlags: 0

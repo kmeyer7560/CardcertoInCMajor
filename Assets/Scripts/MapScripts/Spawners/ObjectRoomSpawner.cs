@@ -19,6 +19,14 @@ public class ObjectRoomSpawner : MonoBehaviour
         grid = GetComponentInChildren<GridController>();
     }
 
+    public void InitialiseObjectSpawning()
+    {
+        foreach(RandomSpawner rs in spawnerData)
+        {
+            SpawnObjects(rs);
+        }
+    }
+
     void SpawnObjects(RandomSpawner data)
     {
         int randomIteration = Random.Range(data.spawnerData.minSpawn, data.spawnerData.maxSpawn + 1);
