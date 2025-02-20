@@ -23,7 +23,7 @@ public class EnemyScript : MonoBehaviour
     public int bulletsPerShot = 1;
     public float spread = 30f;
 
-    private NavMeshAgent agent;
+    //private NavMeshAgent agent;
     public float pathUpdateRate = 0.1f;
     private float lastPathUpdateTime;
     [SerializeField] Transform playerTransform;
@@ -37,86 +37,100 @@ public class EnemyScript : MonoBehaviour
     public PlayerHealthBar playerHealthBar;
     public int meleeDamage;
     private bool canAttack;
+    private bool playerInRoom;
+    private Room currentRoom;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerTransform = player.transform.Find("Sprite");
-
+        
         shooting = false;
 
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
-        agent.isStopped = true;
+        //agent = GetComponent<NavMeshAgent>();
+        //agent.updateRotation = false;
+        //agent.updateUpAxis = false;
+        //agent.isStopped = true;
 
-        Invoke("PlaceAgentOnNavMesh", 0.1f);
+        //Invoke("PlaceAgentOnNavMesh", 0.1f);
         playerHealthBar = player.GetComponentInChildren<PlayerHealthBar>();
+
+        currentRoom = GetComponentInParent<Room>();
     }
 
-    void PlaceAgentOnNavMesh()
+    /*void PlaceAgentOnNavMesh()
     {
         NavMeshHit hit;
         if (NavMesh.SamplePosition(transform.position, out hit, 1f, NavMesh.AllAreas))
         {
             agent.Warp(hit.position);
         }
-    }
+    }*/
 
     void Update()
     {
+        if(CameraController.instance.currRoom == currentRoom)
+        {
+            playerInRoom = true;
+        }
+        else
+        {
+            playerInRoom = false;
+        }
         float distance = Vector2.Distance(transform.position, player.transform.position);
 
-        if (distance <= walkRange)
+        if(playerInRoom)
         {
-            if (distance <= shootRange)
+            if (distance <= walkRange)
             {
-                if (!shooting && Time.time >= nextFireTime)
+                if (distance <= shootRange)
                 {
-                    animator.SetTrigger("shoot");
-                    shooting = true;
-                    shootStartTime = Time.time;
-                    if(isMeleeEnemy && Time.time - lastMeleeAttack >= meleeCooldown)
+                    if (!shooting && Time.time >= nextFireTime)
                     {
-                        if(canAttack)
+                        animator.SetTrigger("shoot");
+                        shooting = true;
+                        shootStartTime = Time.time;
+                        if(isMeleeEnemy && Time.time - lastMeleeAttack >= meleeCooldown)
                         {
-                            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-                            foreach(Collider2D enemy in hitEnemies)
+                            if(canAttack)
                             {
-                                Debug.Log("hit" + enemy.name);
-                                playerHealthBar.TakeDamage(meleeDamage);
+                                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+                                foreach(Collider2D enemy in hitEnemies)
+                                {
+                                    Debug.Log("hit" + enemy.name);
+                                    playerHealthBar.TakeDamage(meleeDamage);
+                                }
+                                canAttack = false;
                             }
-                            canAttack = false;
+                            lastMeleeAttack = Time.time;
                         }
-                        lastMeleeAttack = Time.time;
                     }
+                    else if (shooting && Time.time - shootStartTime >= 0)
+                    {
+                        StopShooting();
+                    }
+                    animator.SetBool("move", false);
+                    //agent.isStopped = true;
                 }
-                else if (shooting && Time.time - shootStartTime >= 0)
+                else
                 {
                     StopShooting();
+                    shooting = false;
+                    MoveTowardsPlayer();
+                    animator.SetBool("move", true);
                 }
-                animator.SetBool("move", false);
-                agent.isStopped = true;
             }
             else
             {
                 StopShooting();
                 shooting = false;
-                MoveTowardsPlayer();
-                animator.SetBool("move", true);
+                animator.SetBool("move", false);
+                //agent.isStopped = true;
             }
         }
-        else
-        {
-            StopShooting();
-            shooting = false;
-            animator.SetBool("move", false);
-            agent.isStopped = true;
-        }
-
         if (Time.time - lastPathUpdateTime > pathUpdateRate)
         {
-            UpdatePath();
+            //UpdatePath();
             lastPathUpdateTime = Time.time;
         }
     }
@@ -130,20 +144,23 @@ public class EnemyScript : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
-    void UpdatePath()
-    {
-        if (player != null && agent.isActiveAndEnabled && agent.isOnNavMesh)
-        {
-            agent.SetDestination(player.transform.position);
-        }
-    }
+    //void UpdatePath()
+    //{
+    //    if (player != null && agent.isActiveAndEnabled && agent.isOnNavMesh)
+    //    {
+    //        agent.SetDestination(player.transform.position);
+    //    }
+    //}
 
     void MoveTowardsPlayer()
     {
-        agent.SetDestination(playerTransform.position);
-        agent.isStopped = false;
-        agent.speed = speed;
-
+        //agent.SetDestination(playerTransform.position);
+        //agent.isStopped = false;
+        //agent.speed = speed;
+        if(playerInRoom)
+        {
+            Vector3.MoveTowards(transform.position, playerTransform.position, Time.deltaTime * speed);
+        }
         // Update sprite direction
         Vector2 directionToTarget = (player.transform.position - transform.position).normalized;
         spriteRenderer.flipX = directionToTarget.x < 0;
