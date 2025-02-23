@@ -23,7 +23,6 @@ public class EnemyScript : MonoBehaviour
     public int bulletsPerShot = 1;
     public float spread = 30f;
 
-    //private NavMeshAgent agent;
     public float pathUpdateRate = 0.1f;
     private float lastPathUpdateTime;
     [SerializeField] Transform playerTransform;
@@ -40,43 +39,64 @@ public class EnemyScript : MonoBehaviour
     private bool playerInRoom;
     private Room currentRoom;
 
+    ParticleSystem particleSystem;
+
     void Start()
     {
+        playerHealthBar = GameObject.Find("PlayerHealthBar").GetComponent<PlayerHealthBar>();
+
+        if(!isMeleeEnemy)
+        {
+            attackPoint = null;
+        }
+        particleSystem = GetComponentInChildren<ParticleSystem>();
+
         player = GameObject.FindGameObjectWithTag("Player");
-        playerTransform = player.transform.Find("Sprite");
+        if (player != null)
+        {
+            playerTransform = player.transform.Find("Sprite");
+        }
         
         shooting = false;
 
-        //agent = GetComponent<NavMeshAgent>();
-        //agent.updateRotation = false;
-        //agent.updateUpAxis = false;
-        //agent.isStopped = true;
-
-        //Invoke("PlaceAgentOnNavMesh", 0.1f);
-        playerHealthBar = player.GetComponentInChildren<PlayerHealthBar>();
+        if (player != null)
+        {
+        }
 
         currentRoom = GetComponentInParent<Room>();
-    }
 
-    /*void PlaceAgentOnNavMesh()
-    {
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(transform.position, out hit, 1f, NavMesh.AllAreas))
-        {
-            agent.Warp(hit.position);
-        }
-    }*/
+        // Check for other necessary components
+    }
 
     void Update()
     {
-        if(CameraController.instance.currRoom == currentRoom)
+        if (player == null || playerTransform == null)
         {
-            playerInRoom = true;
+            return;
+        }
+
+        if (currentRoom == null)
+        {
+            return;
+        }
+
+        CameraController cameraController = CameraController.instance;
+        if (cameraController != null)
+        {
+            if (cameraController.currRoom == currentRoom)
+            {
+                playerInRoom = true;
+            }
+            else
+            {
+                playerInRoom = false;
+            }
         }
         else
         {
             playerInRoom = false;
         }
+
         float distance = Vector2.Distance(transform.position, player.transform.position);
 
         if(playerInRoom)
@@ -97,7 +117,6 @@ public class EnemyScript : MonoBehaviour
                                 Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
                                 foreach(Collider2D enemy in hitEnemies)
                                 {
-                                    Debug.Log("hit" + enemy.name);
                                     playerHealthBar.TakeDamage(meleeDamage);
                                 }
                                 canAttack = false;
@@ -110,7 +129,6 @@ public class EnemyScript : MonoBehaviour
                         StopShooting();
                     }
                     animator.SetBool("move", false);
-                    //agent.isStopped = true;
                 }
                 else
                 {
@@ -125,16 +143,13 @@ public class EnemyScript : MonoBehaviour
                 StopShooting();
                 shooting = false;
                 animator.SetBool("move", false);
-                //agent.isStopped = true;
             }
         }
         if (Time.time - lastPathUpdateTime > pathUpdateRate)
         {
-            //UpdatePath();
             lastPathUpdateTime = Time.time;
         }
     }
-
     void OnDrawGizmosSelected()
     {
         if(attackPoint == null)
@@ -144,27 +159,28 @@ public class EnemyScript : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
-    //void UpdatePath()
-    //{
-    //    if (player != null && agent.isActiveAndEnabled && agent.isOnNavMesh)
-    //    {
-    //        agent.SetDestination(player.transform.position);
-    //    }
-    //}
-
-    void MoveTowardsPlayer()
+        void MoveTowardsPlayer()
     {
         //agent.SetDestination(playerTransform.position);
         //agent.isStopped = false;
         //agent.speed = speed;
+        if (player == null || playerTransform == null)
+        {
+            return;
+        }
+
         if(playerInRoom)
         {
-            Vector3.MoveTowards(transform.position, playerTransform.position, Time.deltaTime * speed);
+            transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, Time.deltaTime * speed);
         }
         // Update sprite direction
-        Vector2 directionToTarget = (player.transform.position - transform.position).normalized;
-        spriteRenderer.flipX = directionToTarget.x < 0;
+        if (spriteRenderer != null)
+        {
+            Vector2 directionToTarget = (player.transform.position - transform.position).normalized;
+            spriteRenderer.flipX = directionToTarget.x < 0;
+        }
     }
+
 
     public void StartShooting()
     {
@@ -174,7 +190,6 @@ public class EnemyScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("shoot");
             Shoot();
         }
     }
@@ -187,22 +202,45 @@ public class EnemyScript : MonoBehaviour
 
     void Shoot()
     {
-            Vector2 directionToPlayer = (player.transform.position - bulletPos.position).normalized;
+        if (particleSystem == null)
+        {
+            return;
+        }
+        particleSystem.Play();
 
-            for (int i = 0; i < bulletsPerShot; i++)
+        if (player == null || bulletPos == null)
+        {
+            return;
+        }
+
+        Vector2 directionToPlayer = (player.transform.position - bulletPos.position).normalized;
+
+        for (int i = 0; i < bulletsPerShot; i++)
+        {
+            float spreadAngle = Random.Range(-spread / 2f, spread / 2f);
+
+            Vector2 spreadDirection = Quaternion.Euler(0, 0, spreadAngle) * directionToPlayer;
+
+            float angle = Mathf.Atan2(spreadDirection.y, spreadDirection.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.Euler(0, 0, angle);
+
+            if (bullet == null)
             {
-                float spreadAngle = Random.Range(-spread / 2f, spread / 2f);
-
-                Vector2 spreadDirection = Quaternion.Euler(0, 0, spreadAngle) * directionToPlayer;
-
-                float angle = Mathf.Atan2(spreadDirection.y, spreadDirection.x) * Mathf.Rad2Deg;
-                Quaternion rotation = Quaternion.Euler(0, 0, angle);
-
-                GameObject bulletInstance = Instantiate(bullet, bulletPos.position, rotation);
-                Rigidbody2D rb = bulletInstance.GetComponent<Rigidbody2D>();
-
-                rb.velocity = spreadDirection * 10f;
+                return;
             }
+
+            GameObject bulletInstance = Instantiate(bullet, bulletPos.position, rotation);
+            Rigidbody2D bulletRb = bulletInstance.GetComponent<Rigidbody2D>();
+
+            if (bulletRb == null)
+            {
+                
+            }
+            else
+            {
+                bulletRb.velocity = spreadDirection * 10f;
+            }
+        }
 
         nextFireTime = Time.time;
     }

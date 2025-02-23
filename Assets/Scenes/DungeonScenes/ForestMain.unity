@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 33071375}
   - component: {fileID: 33071377}
   - component: {fileID: 33071376}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 69628314}
   - component: {fileID: 69628313}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084438746439389207, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6084438746439389207, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
       propertyPath: m_TagString
@@ -417,7 +417,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 173853490}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cardslot (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +450,7 @@ GameObject:
   - component: {fileID: 460107315}
   - component: {fileID: 460107317}
   - component: {fileID: 460107316}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GuitarBurst
   m_TagString: burstCard
   m_Icon: {fileID: 0}
@@ -491,12 +491,14 @@ MonoBehaviour:
   shootingPoint: {fileID: 1829969059}
   bulletPrefab: {fileID: 5551599301993821772, guid: 51053576952684448a803b8454afb676, type: 3}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
   staminaCost: 15
   cardType: 
   dashStrength: 0
   defense: 0
   burstShotNum: 0
   eneimes: []
+  deflectBullets: 0
 --- !u!212 &460107317
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -561,7 +563,7 @@ GameObject:
   - component: {fileID: 517648237}
   - component: {fileID: 517648236}
   - component: {fileID: 517648235}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -584,7 +586,6 @@ RectTransform:
   - {fileID: 1602473765}
   - {fileID: 965019979}
   - {fileID: 921020953}
-  - {fileID: 1829969059}
   - {fileID: 69628314}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -686,7 +687,7 @@ Transform:
   m_LocalScale: {x: 141.65898, y: -93.326515, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1185270026}
+  m_Father: {fileID: 1417324098}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &546048623
 SpriteRenderer:
@@ -749,7 +750,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 618848538}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cardslot (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -801,7 +802,7 @@ Transform:
   m_LocalScale: {x: 141.65898, y: -93.326515, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1185270026}
+  m_Father: {fileID: 1417324098}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &618993375
 SpriteRenderer:
@@ -866,7 +867,7 @@ GameObject:
   - component: {fileID: 630483276}
   - component: {fileID: 630483278}
   - component: {fileID: 630483277}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GuitarLaser
   m_TagString: laserCard
   m_Icon: {fileID: 0}
@@ -907,12 +908,14 @@ MonoBehaviour:
   shootingPoint: {fileID: 1829969059}
   bulletPrefab: {fileID: 5551599301993821772, guid: e27e9d74b0efe4765865ca05c10c5a46, type: 3}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
   staminaCost: 25
   cardType: 
   dashStrength: 0
   defense: 0
   burstShotNum: 0
   eneimes: []
+  deflectBullets: 0
 --- !u!212 &630483278
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1011,7 +1014,7 @@ Transform:
   m_LocalScale: {x: 141.65898, y: 1066.6741, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1185270026}
+  m_Father: {fileID: 1417324098}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &754525797
 SpriteRenderer:
@@ -1199,7 +1202,7 @@ GameObject:
   - component: {fileID: 921020953}
   - component: {fileID: 921020955}
   - component: {fileID: 921020954}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PlayerHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1240,8 +1243,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guitubble: {fileID: 1130780266}
+  vioubble: {fileID: 1803517004}
   healthSlider: {fileID: 921020955}
   defense: 0
+  deflectedNum: 0
 --- !u!114 &921020955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1436,6 +1441,7 @@ Transform:
   - {fileID: 2015453718}
   - {fileID: 1130780268}
   - {fileID: 958030081}
+  - {fileID: 1829969059}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &942962972
@@ -1449,7 +1455,7 @@ GameObject:
   - component: {fileID: 942962975}
   - component: {fileID: 942962974}
   - component: {fileID: 942962973}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6441,7 +6447,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 965019979}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cardslots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6478,7 +6484,7 @@ GameObject:
   - component: {fileID: 994529225}
   - component: {fileID: 994529227}
   - component: {fileID: 994529226}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BigAttack
   m_TagString: attackCard
   m_Icon: {fileID: 0}
@@ -6519,12 +6525,14 @@ MonoBehaviour:
   shootingPoint: {fileID: 1829969059}
   bulletPrefab: {fileID: 5551599301993821772, guid: a3765c5eeadc24b18b616db0ff548ed1, type: 3}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
   staminaCost: 30
   cardType: 
   dashStrength: 0
   defense: 0
   burstShotNum: 0
   eneimes: []
+  deflectBullets: 0
 --- !u!212 &994529227
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6588,7 +6596,7 @@ GameObject:
   - component: {fileID: 1025484763}
   - component: {fileID: 1025484765}
   - component: {fileID: 1025484764}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SmallAttack
   m_TagString: attackCard
   m_Icon: {fileID: 0}
@@ -6629,12 +6637,14 @@ MonoBehaviour:
   shootingPoint: {fileID: 1829969059}
   bulletPrefab: {fileID: 5551599301993821772, guid: 195aa06c101e74b22b853b9241b04271, type: 3}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 0
   defense: 0
   burstShotNum: 0
   eneimes: []
+  deflectBullets: 0
 --- !u!212 &1025484765
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6785,7 +6795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084438746439389207, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6084438746439389207, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
       propertyPath: m_TagString
@@ -6927,7 +6937,7 @@ GameObject:
   - component: {fileID: 1132237686}
   - component: {fileID: 1132237688}
   - component: {fileID: 1132237687}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Dash
   m_TagString: dashCard
   m_Icon: {fileID: 0}
@@ -6972,12 +6982,14 @@ MonoBehaviour:
   shootingPoint: {fileID: 1829969059}
   bulletPrefab: {fileID: 0}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 50
   defense: 0
   burstShotNum: 0
   eneimes: []
+  deflectBullets: 0
 --- !u!212 &1132237688
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7112,7 +7124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084438746439389207, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6084438746439389207, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
       propertyPath: m_TagString
@@ -7215,7 +7227,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.6
+  orthographic size: 7.673077
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -7244,10 +7256,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2113725980}
-  - {fileID: 754525796}
-  - {fileID: 546048622}
-  - {fileID: 618993374}
+  - {fileID: 1417324098}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1185270027
@@ -7332,6 +7341,41 @@ MonoBehaviour:
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
+--- !u!1 &1417324097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1417324098}
+  m_Layer: 0
+  m_Name: RoomHider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1417324098
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417324097}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2113725980}
+  - {fileID: 754525796}
+  - {fileID: 546048622}
+  - {fileID: 618993374}
+  m_Father: {fileID: 1185270026}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1423783413
 GameObject:
   m_ObjectHideFlags: 0
@@ -7342,7 +7386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1423783415}
   - component: {fileID: 1423783414}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Stamina Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7394,7 +7438,7 @@ GameObject:
   - component: {fileID: 1530980510}
   - component: {fileID: 1530980509}
   - component: {fileID: 1530980508}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GuitarDash
   m_TagString: gDashCard
   m_Icon: {fileID: 0}
@@ -7449,12 +7493,14 @@ MonoBehaviour:
   shootingPoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
   staminaCost: 15
   cardType: 
   dashStrength: 40
   defense: 0
   burstShotNum: 0
   eneimes: []
+  deflectBullets: 0
 --- !u!212 &1530980510
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7518,7 +7564,7 @@ GameObject:
   - component: {fileID: 1589371412}
   - component: {fileID: 1589371414}
   - component: {fileID: 1589371413}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7591,7 +7637,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1602473765}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Deck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7633,7 +7679,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1616299099}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cardslot (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7666,7 +7712,7 @@ GameObject:
   - component: {fileID: 1738502042}
   - component: {fileID: 1738502044}
   - component: {fileID: 1738502043}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: aoeCard
   m_TagString: attackCard
   m_Icon: {fileID: 0}
@@ -7707,12 +7753,14 @@ MonoBehaviour:
   shootingPoint: {fileID: 1829969059}
   bulletPrefab: {fileID: 912633962132210534, guid: 26b78d961696b4a039ea06b684cde72b, type: 3}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
   staminaCost: 15
   cardType: 
   dashStrength: 0
   defense: 0
   burstShotNum: 0
   eneimes: []
+  deflectBullets: 0
 --- !u!212 &1738502044
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7765,6 +7813,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1803517004 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6084438746439389207, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+  m_PrefabInstance: {fileID: 1871763871}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1829969058
 GameObject:
   m_ObjectHideFlags: 0
@@ -7790,11 +7843,11 @@ Transform:
   m_GameObject: {fileID: 1829969058}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.423994, y: 34.0777, z: 28.289}
-  m_LocalScale: {x: 40.32683, y: 40.32683, z: 40.32683}
+  m_LocalPosition: {x: -0.01, y: 0.01, z: -8.009885}
+  m_LocalScale: {x: 1.4114393, y: 1.4114393, z: 1.4114393}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 517648234}
+  m_Father: {fileID: 926645709}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1841382467
 GameObject:
@@ -7807,7 +7860,7 @@ GameObject:
   - component: {fileID: 1841382468}
   - component: {fileID: 1841382470}
   - component: {fileID: 1841382469}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7969,7 +8022,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084438746439389207, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6084438746439389207, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
       propertyPath: m_TagString
@@ -8213,7 +8266,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2079856419}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cardslot (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8245,7 +8298,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
   m_PrefabInstance: {fileID: 1871763871}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1803517004}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54d994b72bfd84c1bb6e73f15769d4bb, type: 3}
@@ -8333,7 +8386,7 @@ Transform:
   m_LocalScale: {x: 141.65898, y: 1066.6741, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1185270026}
+  m_Father: {fileID: 1417324098}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

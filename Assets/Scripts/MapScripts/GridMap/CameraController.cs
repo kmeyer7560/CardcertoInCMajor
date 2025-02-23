@@ -19,10 +19,10 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         UpdatePosition();
-        if(instance.currRoom == currentRoom)
-        {
-            //currentRoom.SetActive(true);
-        }
+        //if(instance.currRoom == currentRoom)
+        //{
+        //    //currentRoom.SetActive(true);
+        //}
     }
 
     void UpdatePosition()

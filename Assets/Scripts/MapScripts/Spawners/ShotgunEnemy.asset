@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d498bf7a333bf643bfd79cbde116abb, type: 3}
   m_Name: ShotgunEnemy
   m_EditorClassIdentifier: 
-  itemToSpawn: {fileID: 1220592464380258565, guid: fbd9ea75e2dae4f73b40bbec105cc1e7, type: 3}
-  minSpawn: 0
-  maxSpawn: 1
+  itemToSpawn: {fileID: 1220592464380258565, guid: f8d5b44b30ae54023a51d8e7e6c95d29, type: 3}
+  minSpawn: 1
+  maxSpawn: 2
