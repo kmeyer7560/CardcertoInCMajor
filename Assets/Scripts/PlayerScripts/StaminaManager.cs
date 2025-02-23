@@ -1,23 +1,33 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
+
 public class StaminaManager : MonoBehaviour
 {
-    public Image staminaBar;
-    public float stamina = 100f;
-    public float maxStamina = 100f;
-    public float ChargeRate;
+    public GameObject staminaNum;
+    public float stamina = 10f;
+    public float maxStamina = 10f;
+    public float ChargeRate = 1f; // Set a default charge rate
+    private Coroutine rechargeCoroutine; // Store the reference to the coroutine
+    private float lastCardUsedTime; // Track the last time a card was used
+    private float rechargeDelay = 1.5f; // Delay before stamina starts recharging
+
     public void useCard(float staminaCost)
     {
-        ChargeRate = 0;
-        StopCoroutine(RechargeStamia());
         if (staminaCost <= stamina)
         {
-            Debug.Log("card atually usesd");
+            Debug.Log("Card actually used");
             stamina -= staminaCost;
-            StartCoroutine(RechargeStamia());
+            lastCardUsedTime = Time.time; // Update the last card used time
+
+            // Stop the current recharge coroutine if it's running
+            if (rechargeCoroutine != null)
+            {
+                StopCoroutine(rechargeCoroutine);
+            }
+
+            // Start the recharge coroutine
+            rechargeCoroutine = StartCoroutine(RechargeStamina());
         }
     }
 
@@ -32,25 +42,31 @@ public class StaminaManager : MonoBehaviour
     {
         if (stamina >= 0)
         {
-            staminaBar.fillAmount = stamina / maxStamina;
-
+            staminaNum.GetComponent<TMP_Text>().SetText("{}", stamina);
         }
-         
     }
 
-    private IEnumerator RechargeStamia()
+    private IEnumerator RechargeStamina()
     {
-
-        yield return new WaitForSeconds(1.5f);
-        ChargeRate = 10;
-        while (stamina < maxStamina && ChargeRate == 10)
+        // Wait until 1.5 seconds have passed since the last card was used
+        while (Time.time - lastCardUsedTime < rechargeDelay)
         {
-            stamina += ChargeRate / 10f;
-            if (stamina <= maxStamina)
-            {
-                staminaBar.fillAmount = stamina / maxStamina;
-                yield return new WaitForSeconds(0.1f); 
-            }
+            yield return null; // Wait for the next frame
         }
+
+        // Start recharging stamina
+        while (stamina < maxStamina)
+        {
+            stamina += ChargeRate;
+            if (stamina > maxStamina)
+            {
+                stamina = maxStamina; // Ensure stamina does not exceed max
+            }
+
+            // Update stamina bar if needed
+            yield return new WaitForSeconds(0.5f); 
+        }
+
+        rechargeCoroutine = null; // Reset the coroutine reference when done
     }
 }
