@@ -38,7 +38,7 @@ public class Card : MonoBehaviour
         {
             if (staminaBar.GetComponent<StaminaManager>().stamina >= staminaCost)
             {
-                staminaBar.GetComponent<StaminaManager>().useCard(staminaCost);
+                staminaBar.GetComponent<StaminaManager>().useCard((int) staminaCost);
                 hasBeenPlayed = true;
                 hm.availableCardSlots[handIndex] = true;
                 hm.hold.Add(this);
@@ -102,10 +102,6 @@ public class Card : MonoBehaviour
                     gameObject.SetActive(false);
                 }
 
-            }
-            else
-            {
-                staminaBar.GetComponent<StaminaManager>().ChargeRate = 10;
             }
         }
     }
