@@ -20,6 +20,7 @@ TagManager:
   - aoeCard
   - ChestReward
   - Chest
+  - deflectCard
   layers:
   - Default
   - TransparentFX
@@ -57,6 +58,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Room
+    uniqueID: 707640415
+    locked: 0
   - name: Door
     uniqueID: 2769848267
+    locked: 0
+  - name: Enemies
+    uniqueID: 1295336243
+    locked: 0
+  - name: RoomHider
+    uniqueID: 2706462473
+    locked: 0
+  - name: Leaves
+    uniqueID: 1240142489
+    locked: 0
+  - name: Canvas
+    uniqueID: 974065331
     locked: 0

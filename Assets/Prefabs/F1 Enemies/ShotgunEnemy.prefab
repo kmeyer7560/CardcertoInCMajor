@@ -70,8 +70,6 @@ MonoBehaviour:
     m_Bits: 0
   playerHealthBar: {fileID: 0}
   meleeDamage: 0
-  shootRight: {fileID: 5503307521616814454}
-  shootLeft: {fileID: 8814863782279121346}
 --- !u!114 &305204119834781205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,8 +248,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1295336243
+  m_SortingLayer: 3
   m_SortingOrder: 9
   m_Sprite: {fileID: -2021289045, guid: 7528246d8785542feb60ee9e2ec90ed5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
