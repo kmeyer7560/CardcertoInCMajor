@@ -15,4 +15,12 @@ public class ShootAnim : MonoBehaviour
         Debug.Log("shot is called");
         enemyScript.StartShooting();
     }
+    public void CallStart()
+    {
+        enemyScript.OnShootAnimationStart();
+    }
+    public void CallEnd()
+    {
+        enemyScript.OnShootAnimationEnd();
+    }
 }

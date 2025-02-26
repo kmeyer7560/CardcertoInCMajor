@@ -38,18 +38,27 @@ public class EnemyScript : MonoBehaviour
     private bool canAttack;
     private bool playerInRoom;
     private Room currentRoom;
+    public GameObject shootFX;
+    public bool canMove;
 
-    ParticleSystem particleSystem;
+    ParticleSystem shootFXParticleSystem;
+    public Quaternion shootRotation;
+
+    private bool isShootingAnimation = false;
 
     void Start()
     {
+        canMove = true;
+        if(shootFX != null)
+        {
+            shootFXParticleSystem = shootFX.GetComponentInChildren<ParticleSystem>();
+        }
         playerHealthBar = GameObject.Find("PlayerHealthBar").GetComponent<PlayerHealthBar>();
 
         if(!isMeleeEnemy)
         {
             attackPoint = null;
         }
-        particleSystem = GetComponentInChildren<ParticleSystem>();
 
         player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -59,47 +68,22 @@ public class EnemyScript : MonoBehaviour
         
         shooting = false;
 
-        if (player != null)
-        {
-        }
-
         currentRoom = GetComponentInParent<Room>();
-
-        // Check for other necessary components
     }
 
     void Update()
     {
-        if (player == null || playerTransform == null)
+        if (player == null || playerTransform == null || currentRoom == null)
         {
             return;
         }
 
-        if (currentRoom == null)
-        {
-            return;
-        }
-
-        CameraController cameraController = CameraController.instance;
-        if (cameraController != null)
-        {
-            if (cameraController.currRoom == currentRoom)
-            {
-                playerInRoom = true;
-            }
-            else
-            {
-                playerInRoom = false;
-            }
-        }
-        else
-        {
-            playerInRoom = false;
-        }
+        UpdatePlayerInRoom();
+        UpdateSpriteDirection();
 
         float distance = Vector2.Distance(transform.position, player.transform.position);
 
-        if(playerInRoom)
+        if (playerInRoom)
         {
             if (distance <= walkRange)
             {
@@ -107,35 +91,25 @@ public class EnemyScript : MonoBehaviour
                 {
                     if (!shooting && Time.time >= nextFireTime)
                     {
-                        animator.SetTrigger("shoot");
-                        shooting = true;
-                        shootStartTime = Time.time;
-                        if(isMeleeEnemy && Time.time - lastMeleeAttack >= meleeCooldown)
-                        {
-                            if(canAttack)
-                            {
-                                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-                                foreach(Collider2D enemy in hitEnemies)
-                                {
-                                    playerHealthBar.TakeDamage(meleeDamage);
-                                }
-                                canAttack = false;
-                            }
-                            lastMeleeAttack = Time.time;
-                        }
+                        StartShootingSequence();
                     }
                     else if (shooting && Time.time - shootStartTime >= 0)
                     {
                         StopShooting();
                     }
                     animator.SetBool("move", false);
+                    canMove = false;
                 }
                 else
                 {
                     StopShooting();
                     shooting = false;
-                    MoveTowardsPlayer();
-                    animator.SetBool("move", true);
+                    canMove = !isShootingAnimation;
+                    if (canMove)
+                    {
+                        MoveTowardsPlayer();
+                        animator.SetBool("move", true);
+                    }
                 }
             }
             else
@@ -143,13 +117,23 @@ public class EnemyScript : MonoBehaviour
                 StopShooting();
                 shooting = false;
                 animator.SetBool("move", false);
+                canMove = false;
             }
         }
+        else
+        {
+            StopShooting();
+            shooting = false;
+            animator.SetBool("move", false);
+            canMove = false;
+        }
+
         if (Time.time - lastPathUpdateTime > pathUpdateRate)
         {
             lastPathUpdateTime = Time.time;
         }
     }
+
     void OnDrawGizmosSelected()
     {
         if(attackPoint == null)
@@ -159,20 +143,61 @@ public class EnemyScript : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
-        void MoveTowardsPlayer()
+    void MoveTowardsPlayer()
     {
-        //agent.SetDestination(playerTransform.position);
-        //agent.isStopped = false;
-        //agent.speed = speed;
-        if (player == null || playerTransform == null)
+        if (player == null || playerTransform == null || isShootingAnimation)
         {
             return;
         }
 
-        if(playerInRoom)
+        if(playerInRoom && canMove)
         {
             transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, Time.deltaTime * speed);
         }
+    }
+
+    void StartShootingSequence()
+    {
+        canMove = false;
+        animator.SetTrigger("shoot");
+        shooting = true;
+        shootStartTime = Time.time;
+
+        if (isMeleeEnemy && Time.time - lastMeleeAttack >= meleeCooldown)
+        {
+            if (canAttack)
+            {
+                PerformMeleeAttack();
+            }
+            lastMeleeAttack = Time.time;
+        }
+    }
+
+    void PerformMeleeAttack()
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            playerHealthBar.TakeDamage(meleeDamage);
+        }
+        canAttack = false;
+    }
+
+    void UpdatePlayerInRoom()
+    {
+        CameraController cameraController = CameraController.instance;
+        if (cameraController != null)
+        {
+            playerInRoom = cameraController.currRoom == currentRoom;
+        }
+        else
+        {
+            playerInRoom = false;
+        }
+    }
+
+    void UpdateSpriteDirection()
+    {
         // Update sprite direction
         if (spriteRenderer != null)
         {
@@ -180,7 +205,6 @@ public class EnemyScript : MonoBehaviour
             spriteRenderer.flipX = directionToTarget.x < 0;
         }
     }
-
 
     public void StartShooting()
     {
@@ -202,25 +226,27 @@ public class EnemyScript : MonoBehaviour
 
     void Shoot()
     {
-        if (particleSystem == null)
-        {
-            return;
-        }
-        particleSystem.Play();
-
         if (player == null || bulletPos == null)
         {
             return;
         }
 
         Vector2 directionToPlayer = (player.transform.position - bulletPos.position).normalized;
+        Vector2 shootDirection = Quaternion.Euler(0, 0, 0) * directionToPlayer;
+        float shootAngle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
+        shootRotation = Quaternion.Euler(-shootAngle, 90, 90);
+        if(shootFX != null)
+        {
+            shootFX.transform.rotation = shootRotation;
+            shootFXParticleSystem.Play();
+            Debug.Log("ShootFX is played");
+        }
 
         for (int i = 0; i < bulletsPerShot; i++)
         {
             float spreadAngle = Random.Range(-spread / 2f, spread / 2f);
 
             Vector2 spreadDirection = Quaternion.Euler(0, 0, spreadAngle) * directionToPlayer;
-
             float angle = Mathf.Atan2(spreadDirection.y, spreadDirection.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
 
@@ -232,16 +258,25 @@ public class EnemyScript : MonoBehaviour
             GameObject bulletInstance = Instantiate(bullet, bulletPos.position, rotation);
             Rigidbody2D bulletRb = bulletInstance.GetComponent<Rigidbody2D>();
 
-            if (bulletRb == null)
-            {
-                
-            }
-            else
+            if (bulletRb != null)
             {
                 bulletRb.velocity = spreadDirection * 10f;
             }
         }
 
         nextFireTime = Time.time;
+    }
+
+    // Animation event methods
+    public void OnShootAnimationStart()
+    {
+        isShootingAnimation = true;
+        canMove = false;
+    }
+
+    public void OnShootAnimationEnd()
+    {
+        isShootingAnimation = false;
+        canMove = true;
     }
 }
