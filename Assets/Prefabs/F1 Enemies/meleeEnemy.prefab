@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4516514076274992145}
   - component: {fileID: 6294633882381742267}
   - component: {fileID: 7207195315023640814}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: meleeEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -71,6 +71,9 @@ MonoBehaviour:
     m_Bits: 64
   playerHealthBar: {fileID: 0}
   meleeDamage: 15
+  shootFX: {fileID: 0}
+  canMove: 0
+  shootRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &305204119834781205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +189,7 @@ GameObject:
   - component: {fileID: 228331844927896582}
   - component: {fileID: 6329621094661948581}
   - component: {fileID: 3550632757325524420}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +308,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1779634767496160150}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +341,7 @@ GameObject:
   - component: {fileID: 6855614487821977431}
   - component: {fileID: 4695614973907583405}
   - component: {fileID: 5068621033404690523}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5166,7 +5169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7147357794731468004}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BulletPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -6215,6 +6215,7 @@ MonoBehaviour:
   - {fileID: 2103997904}
   - {fileID: 703264779}
   - {fileID: 1864855094}
+  - {fileID: 1170402300}
   cardSlots:
   - {fileID: 173853490}
   - {fileID: 2079856419}
@@ -6309,7 +6310,7 @@ GameObject:
   - component: {fileID: 866475284}
   - component: {fileID: 866475283}
   m_Layer: 0
-  m_Name: slash_0
+  m_Name: violinSlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6376,7 +6377,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 102
+  m_SortingOrder: 110
   m_Sprite: {fileID: 1602472255, guid: 2998a05b90f4b4f4386391f083ad8985, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6401,7 +6402,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 926645709}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &921020952
 GameObject:
@@ -6655,7 +6656,6 @@ Transform:
   - {fileID: 1130780268}
   - {fileID: 958030081}
   - {fileID: 1829969059}
-  - {fileID: 866475285}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &958030076
@@ -12335,6 +12335,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
   m_PrefabInstance: {fileID: 1170402298}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1170402300 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+  m_PrefabInstance: {fileID: 1170402298}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d994b72bfd84c1bb6e73f15769d4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1172879188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14246,3 +14257,4 @@ SceneRoots:
   - {fileID: 926645709}
   - {fileID: 212472075}
   - {fileID: 1256451112}
+  - {fileID: 866475285}

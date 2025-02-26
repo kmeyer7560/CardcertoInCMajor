@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Callbacks;
 using UnityEngine;
+using UnityEngine.Rendering.Universal.Internal;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class EnemyHealth : MonoBehaviour
     private Vector2 source;
     public Rigidbody2D rb;
     public int violinStacks;
+
+    public ParticleSystem pc;
 
     public GameObject healthOrb;
     public GameObject coin;
@@ -63,6 +66,7 @@ public class EnemyHealth : MonoBehaviour
     public void deflectSlash()
     {
         violinStacks += 2;
+        pc.maxParticles += 1;
         takeDamage(1);
         
     }
