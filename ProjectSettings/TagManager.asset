@@ -58,17 +58,29 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Room
+  - name: Floor
     uniqueID: 707640415
-    locked: 0
-  - name: Door
-    uniqueID: 2769848267
     locked: 0
   - name: Enemies
     uniqueID: 1295336243
     locked: 0
+  - name: Decor
+    uniqueID: 1246338673
+    locked: 0
+  - name: Bullets
+    uniqueID: 3370021245
+    locked: 0
+  - name: Walls
+    uniqueID: 1381762957
+    locked: 0
+  - name: Door
+    uniqueID: 2769848267
+    locked: 0
   - name: RoomHider
     uniqueID: 2706462473
+    locked: 0
+  - name: Player
+    uniqueID: 3439701159
     locked: 0
   - name: Leaves
     uniqueID: 1240142489
