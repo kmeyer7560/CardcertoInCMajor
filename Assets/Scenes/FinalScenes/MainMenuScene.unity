@@ -967,7 +967,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928ae84ccc7b7c740b457c449d84b034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenu: {fileID: 0}
+  mainMenu: {fileID: 1856882297}
+  moveDuration: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
