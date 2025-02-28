@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Callbacks;
 using UnityEngine;
+using UnityEngine.Rendering.Universal.Internal;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class EnemyHealth : MonoBehaviour
     private Vector2 source;
     public Rigidbody2D rb;
     public int violinStacks;
+
+    public ParticleSystem pc;
 
     public GameObject healthOrb;
     public GameObject coin;
@@ -56,15 +59,21 @@ public class EnemyHealth : MonoBehaviour
 
     public void detonate()
     {
-        currentHealth -= (violinStacks * 5);
+        currentHealth -= (violinStacks * 5);    
         violinStacks = 0;
+        pc.GetComponent<violinStacks>().SetMaxParticles(violinStacks);
+    }
+
+    public void addStack(int i)
+    {
+        pc.GetComponent<violinStacks>().SetMaxParticles(violinStacks);
     }
 
     public void deflectSlash()
     {
         violinStacks += 2;
         takeDamage(1);
-        
+        pc.GetComponent<violinStacks>().SetMaxParticles(violinStacks);
     }
 
     public void knockBack(GameObject attack)

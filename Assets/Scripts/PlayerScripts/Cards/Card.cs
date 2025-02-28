@@ -90,6 +90,7 @@ public class Card : MonoBehaviour
                 }
                 else if (cardType == "deflectCard")
                 {
+                    gameObject.transform.position = new Vector2(1000000, 100000); 
                     healthBar.GetComponent<PlayerHealthBar>().deflect(deflectedValue => StartCoroutine(OnDeflectComplete(deflectedValue)));
                     healthBar.GetComponent<PlayerHealthBar>().deflectedNum = 0;
                 }
