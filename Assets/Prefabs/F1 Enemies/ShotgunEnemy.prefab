@@ -92,6 +92,7 @@ MonoBehaviour:
   currentHealth: 0
   rb: {fileID: 4516514076274992145}
   violinStacks: 0
+  pc: {fileID: 6725082598963452529}
   healthOrb: {fileID: 4583867773829352207, guid: 6cef84490d53a8740ba8b5401e72b660, type: 3}
   coin: {fileID: 4583867773829352207, guid: 8608374c556deb640b5cb97a5c604d01, type: 3}
 --- !u!50 &4516514076274992145
@@ -252,7 +253,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1295336243
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 9
   m_Sprite: {fileID: -2021289045, guid: 7528246d8785542feb60ee9e2ec90ed5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -345,6 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e2e76a9771ac47428f5d653a17f4410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleSystem: {fileID: 0}
   speed: {x: 0, y: 0, z: 50}
 --- !u!198 &6725082598963452529
 ParticleSystem:
@@ -1183,7 +1185,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -3701,7 +3703,7 @@ ParticleSystem:
     range: {x: 0, y: 1}
     separateAxes: 0
   RotationBySpeedModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -3811,7 +3813,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.7853982
+      scalar: 0.7853981
       minScalar: 0.7853982
       maxCurve:
         serializedVersion: 2
@@ -5108,8 +5110,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1295336243
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -10055,7 +10057,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1295336243
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

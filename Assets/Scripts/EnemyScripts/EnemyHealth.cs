@@ -59,16 +59,21 @@ public class EnemyHealth : MonoBehaviour
 
     public void detonate()
     {
-        currentHealth -= (violinStacks * 5);
+        currentHealth -= (violinStacks * 5);    
         violinStacks = 0;
+        pc.GetComponent<violinStacks>().SetMaxParticles(violinStacks);
+    }
+
+    public void addStack(int i)
+    {
+        pc.GetComponent<violinStacks>().SetMaxParticles(violinStacks);
     }
 
     public void deflectSlash()
     {
         violinStacks += 2;
-        pc.maxParticles += 1;
         takeDamage(1);
-        
+        pc.GetComponent<violinStacks>().SetMaxParticles(violinStacks);
     }
 
     public void knockBack(GameObject attack)
