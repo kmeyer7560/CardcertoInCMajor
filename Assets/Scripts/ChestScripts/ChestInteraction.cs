@@ -16,10 +16,12 @@ public class ChestInteraction : MonoBehaviour
     public GameObject[] violinCardPrefabs;
     public GameObject[] drumCardPrefabs;
     public GameObject[] specialCardPrefabs;
+    public GameObject player;
 
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         if (rouletteManager == null)
         {
             rouletteManager = FindObjectOfType<RouletteManager>();
@@ -28,8 +30,11 @@ public class ChestInteraction : MonoBehaviour
 
     private void Update()
     {
-        playerInRange = Vector3.Distance(transform.position, Camera.main.transform.position) <= interactionRange; 
-
+        playerInRange = Vector3.Distance(transform.position, player.transform.position) <= interactionRange; 
+        if(playerInRange = false)
+        {
+            Debug.Log("eep");
+        }
         if (playerInRange && Input.GetKeyDown(interactionKey) && notSpinning)
         {
             StartCoroutine(Spinning(7f));

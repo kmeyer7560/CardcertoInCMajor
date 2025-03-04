@@ -130,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 6
   damage: 8
+  hitMarker: {fileID: 3909897366838591810, guid: cf19902ac61129c479d340d27367401f, type: 3}
 --- !u!61 &-3269173220025751175
 BoxCollider2D:
   m_ObjectHideFlags: 0
