@@ -68,9 +68,9 @@ public class Card : MonoBehaviour
                     player.GetComponent<PlayerMovement>().rb.velocity = new Vector2(0, 0);;
                     shootCard();
                 }
-                else if (cardType == "defenseCard") //guitar defense increase
+                else if (cardType == "GdefenseCard") //guitar defense increase
                 {
-                    healthBar.GetComponent<PlayerHealthBar>().setDefense(defense);
+                    healthBar.GetComponent<PlayerHealthBar>().setDefense(defense, 1);
                 }
                 else if (cardType == "speedCard") //violin speedup
                 {
@@ -93,6 +93,10 @@ public class Card : MonoBehaviour
                     gameObject.transform.position = new Vector2(1000000, 100000); 
                     healthBar.GetComponent<PlayerHealthBar>().deflect(deflectedValue => StartCoroutine(OnDeflectComplete(deflectedValue)));
                     healthBar.GetComponent<PlayerHealthBar>().deflectedNum = 0;
+                }
+                else if (cardType == "DdefenseCard")
+                {
+                    healthBar.GetComponent<PlayerHealthBar>().setDefense(defense, 2);
                 }
 
 

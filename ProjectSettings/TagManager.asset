@@ -13,7 +13,6 @@ TagManager:
   - gDashCard
   - playerAttack
   - enemyAttack
-  - defenseCard
   - violinAttack
   - speedCard
   - blowCard
@@ -21,6 +20,8 @@ TagManager:
   - ChestReward
   - Chest
   - deflectCard
+  - GdefenseCard
+  - DdefenseCard
   layers:
   - Default
   - TransparentFX

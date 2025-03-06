@@ -68,7 +68,7 @@ public class Drop : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Player picked up drop");
-            playerHealthBar.Heal(healAmount);
+            playerHealthBar.Heal(healAmount, 1);
             Destroy(gameObject);
         }
     }

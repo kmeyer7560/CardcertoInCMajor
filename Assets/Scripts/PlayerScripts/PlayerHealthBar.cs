@@ -9,6 +9,7 @@ public class PlayerHealthBar : MonoBehaviour
 {
     public GameObject guitubble;
     public GameObject vioubble;
+    public GameObject drubble;
     public Slider healthSlider;
     public float defense;
     private bool deflectActive;
@@ -42,15 +43,22 @@ public class PlayerHealthBar : MonoBehaviour
         healthSlider.value -= (amount - defense);
     }
 
-    public void Heal(float amount)
+    public void Heal(float amount, int i)
     {
         Debug.Log("player healed");
-        healthSlider.value += (amount);
+        healthSlider.value += (amount * i);
     }
 
-    public void setDefense(float value)
+    public void setDefense(float value, int i)
     {
-        guitubble.SetActive(true);
+        if (i == 1)
+        {
+            guitubble.SetActive(true);
+        }
+        else if (i == 2)
+        {
+            drubble.SetActive(true);
+        }
         defense = value;
         StartCoroutine(defenseReset());
     }
@@ -67,6 +75,7 @@ public class PlayerHealthBar : MonoBehaviour
         yield return new WaitForSeconds(3f);
         defense = 0;
         guitubble.SetActive(false);
+        drubble.SetActive(false);
     }
 
     IEnumerator reflectRoutine(Action<int> callback)

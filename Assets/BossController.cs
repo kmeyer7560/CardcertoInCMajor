@@ -14,6 +14,8 @@ public class BossController : MonoBehaviour
     private bool attack;
 
     private bool bossAlive = true;
+    public bool hittingPlayer;
+    Transform playerTransform;
 
     void Start()
     {
@@ -23,6 +25,8 @@ public class BossController : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetSliderMax(maxHealth);
         playerHealthBar = GetComponent<PlayerHealthBar>();
+        hittingPlayer = GetComponent<checkHit>().isHit;
+        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
     public void StartAttack()
     {
@@ -79,15 +83,43 @@ public class BossController : MonoBehaviour
     //PHASE ONE
     public void ScytheSwipeStart()
     {
-        //teleports to a random spot
+        //teleport ot random position
+        float horizontalRange = Random.Range(-10, 10);
+        float verticalRange = Random.Range(-10, 10);
+        transform.position = new Vector3(horizontalRange * Time.deltaTime, verticalRange * Time.deltaTime);
     }
     public void ScytheSwipeAttack()
     {
         //if the player is in attack area then deal damage
+        if(hittingPlayer)
+        {
+            playerHealthBar.TakeDamage(10);
+        }
+        
     }
     public void ScytheDashStart()
     {
         //teleports to top, left, right, or bottom of player
+        int directionRange = Random.Range(1,5);
+        switch(directionRange)
+        {
+            case 1:
+            //top
+            transform.position = new Vector3(playerTransform);
+            break;
+
+            case 2:
+            //bottom
+            break;
+
+            case 3:
+            //left
+            break;
+
+            case 4:
+            //right
+            break;
+        }
     }
     public void ScytheDashAttack()
     {
