@@ -5697,7 +5697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fd93798d82ff4764a405615b1eef960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  staminaBar: {fileID: 952528618}
+  staminaNum: {fileID: 0}
   stamina: 100
   maxStamina: 100
   ChargeRate: 10
@@ -6137,10 +6137,14 @@ MonoBehaviour:
   shootingPoint: {fileID: 1709078342}
   bulletPrefab: {fileID: 0}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 50
   defense: 0
+  burstShotNum: 0
+  eneimes: []
+  deflectBullets: 0
 --- !u!212 &495148988
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6245,10 +6249,14 @@ MonoBehaviour:
   shootingPoint: {fileID: 1709078342}
   bulletPrefab: {fileID: 5551599301993821772, guid: e27e9d74b0efe4765865ca05c10c5a46, type: 3}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 0
   defense: 0
+  burstShotNum: 0
+  eneimes: []
+  deflectBullets: 0
 --- !u!212 &502183285
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6638,10 +6646,14 @@ MonoBehaviour:
   shootingPoint: {fileID: 1709078342}
   bulletPrefab: {fileID: 5551599301993821772, guid: 51053576952684448a803b8454afb676, type: 3}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
   staminaCost: 15
   cardType: 
   dashStrength: 0
   defense: 0
+  burstShotNum: 0
+  eneimes: []
+  deflectBullets: 0
 --- !u!212 &612628091
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6817,12 +6829,10 @@ MonoBehaviour:
   savedDirection: {x: 0, y: 0}
   vulnerable: 0
   moveable: 0
-  tr: {fileID: 1762033994}
   rb: {fileID: 620382167}
   animator: {fileID: 523542941}
+  trail: {fileID: 0}
   moveDirection: {x: 0, y: 0}
-  trailPos1: {x: 0, y: 0, z: 0}
-  trailPos2: {x: 0, y: 0, z: 0}
 --- !u!4 &620382169
 Transform:
   m_ObjectHideFlags: 0
@@ -6896,10 +6906,14 @@ MonoBehaviour:
   shootingPoint: {fileID: 1709078342}
   bulletPrefab: {fileID: 5551599301993821772, guid: 195aa06c101e74b22b853b9241b04271, type: 3}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 0
   defense: 0
+  burstShotNum: 0
+  eneimes: []
+  deflectBullets: 0
 --- !u!212 &638082361
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7291,10 +7305,14 @@ MonoBehaviour:
   shootingPoint: {fileID: 1709078342}
   bulletPrefab: {fileID: 912633962132210534, guid: 26b78d961696b4a039ea06b684cde72b, type: 3}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
   staminaCost: 15
   cardType: 
   dashStrength: 0
   defense: 0
+  burstShotNum: 0
+  eneimes: []
+  deflectBullets: 0
 --- !u!212 &800683306
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7956,10 +7974,14 @@ MonoBehaviour:
   shootingPoint: {fileID: 1709078342}
   bulletPrefab: {fileID: 5551599301993821772, guid: a3765c5eeadc24b18b616db0ff548ed1, type: 3}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
   staminaCost: 30
   cardType: 
   dashStrength: 0
   defense: 0
+  burstShotNum: 0
+  eneimes: []
+  deflectBullets: 0
 --- !u!212 &1311061160
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8085,7 +8107,7 @@ MonoBehaviour:
     m_Bits: 64
   wallLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   drive: 0
 --- !u!50 &1412773918
 Rigidbody2D:
@@ -8547,8 +8569,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guitubble: {fileID: 1311061157}
+  vioubble: {fileID: 0}
   healthSlider: {fileID: 1690199546}
   defense: 0
+  deflectedNum: 0
 --- !u!1 &1709078341
 GameObject:
   m_ObjectHideFlags: 0
@@ -14338,7 +14362,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 14.9375
+  orthographic size: 10.3125
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -14497,10 +14521,14 @@ MonoBehaviour:
   shootingPoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
   staminaCost: 15
   cardType: 
   dashStrength: 40
   defense: 0
+  burstShotNum: 0
+  eneimes: []
+  deflectBullets: 0
 --- !u!212 &2134104527
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class EnemyBullet : MonoBehaviour
     public float force = 10f;
     private float timer;
     public float damage;
+    public GameObject hitMarker;
     
     void Start()
     {
@@ -20,9 +21,11 @@ public class EnemyBullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+
     void OnTriggerEnter2D(Collider2D other)
     {
+        Vector2 hitPoint = other.ClosestPoint(transform.position);
+
         if(other.gameObject.CompareTag("Player"))
         {
             PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
@@ -37,6 +40,7 @@ public class EnemyBullet : MonoBehaviour
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Environment"))
         {
             Destroy(gameObject);
+            Instantiate(hitMarker, hitPoint, Quaternion.identity);
         }
     }
 }
