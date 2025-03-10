@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d498bf7a333bf643bfd79cbde116abb, type: 3}
-  m_Name: Crates
+  m_Name: Flowers
   m_EditorClassIdentifier: 
-  itemToSpawn: {fileID: 284554842493823356, guid: 52fff4ff184630145bc935dea3e34a37, type: 3}
-  minSpawn: 1
-  maxSpawn: 2
+  itemToSpawn: {fileID: 0}
+  minSpawn: 5
+  maxSpawn: 8

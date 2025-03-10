@@ -5752,6 +5752,8 @@ MonoBehaviour:
     spawnerData: {fileID: 11400000, guid: 4f8ebff9baaefeb4896de5362ea292d3, type: 2}
   - name: MeleeEnemy
     spawnerData: {fileID: 11400000, guid: ae21b91915581af498b13e46fced3c35, type: 2}
+  - name: Trees
+    spawnerData: {fileID: 11400000, guid: 95b0b6a896dd34625b19c679a51b6d4c, type: 2}
 --- !u!1 &1407692505
 GameObject:
   m_ObjectHideFlags: 0

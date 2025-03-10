@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2074588109195942967}
-  - component: {fileID: 3124397123558871560}
+  - component: {fileID: 6097422880465338989}
   m_Layer: 0
-  m_Name: Shrub
-  m_TagString: Untagged
+  m_Name: Tree
+  m_TagString: playerAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 2809608840508878555}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &3124397123558871560
+--- !u!61 &6097422880465338989
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -65,7 +65,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2329891}
+  m_Offset: {x: 0, y: -0.56001264}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -76,7 +76,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5340218}
+  m_Size: {x: 1, y: 0.83999646}
   m_EdgeRadius: 0
 --- !u!1 &7509341535440995203
 GameObject:
@@ -151,7 +151,7 @@ SpriteRenderer:
   m_SortingLayerID: 1246338673
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 30ab1a114e62d458cb0d2d64750bf012, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 08e1e0b8143c746f680e369b64b09dc3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
