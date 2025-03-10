@@ -105,7 +105,7 @@ public class BossController : MonoBehaviour
         {
             case 1:
             //top
-            transform.position = new Vector3(playerTransform);
+            //transform.position = new Vector3(playerTransform);
             break;
 
             case 2:

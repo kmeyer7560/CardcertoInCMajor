@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 3914137}
   - component: {fileID: 3914141}
   - component: {fileID: 3914140}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: collider
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ TilemapCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2475,6 +2475,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   healthBar: {fileID: 1506383795}
   slash: {fileID: 0}
+  bam1: {fileID: 0}
+  bam2: {fileID: 0}
+  bam3: {fileID: 0}
   staminaCost: 1
   cardType: 
   dashStrength: 50
@@ -2634,6 +2637,155 @@ Transform:
   m_Children: []
   m_Father: {fileID: 531510548}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &108546840
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 587136451}
+    m_Modifications:
+    - target: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5212772
+      objectReference: {fileID: 0}
+    - target: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5212772
+      objectReference: {fileID: 0}
+    - target: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5212772
+      objectReference: {fileID: 0}
+    - target: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.932556
+      objectReference: {fileID: 0}
+    - target: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 16.593456
+      objectReference: {fileID: 0}
+    - target: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -28.068779
+      objectReference: {fileID: 0}
+    - target: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003354748859111361, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003354748859111361, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dde744057e41c1c429d2a7ee99f7991c, type: 3}
+    - target: {fileID: 2003354748859111361, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003354748859111361, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003354748859111361, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003354748859111361, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_SortingLayer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003354748859111361, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003354748859111361, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 974065331
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003354748859111361, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084438746439389207, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_Name
+      value: DrumDash
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084438746439389207, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084438746439389207, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: m_TagString
+      value: reinDashCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: tr
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 337609313}
+    - target: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: defense
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: staminaBar
+      value: 
+      objectReference: {fileID: 416458616}
+    - target: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: staminaCost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 5551599301993821772, guid: 40a34735b90d0409098d90348be1a2d1, type: 3}
+    - target: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: burstShotNum
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: shootingPoint
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
 --- !u!1 &170537721
 GameObject:
   m_ObjectHideFlags: 0
@@ -2975,7 +3127,7 @@ MonoBehaviour:
   hitObject: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 128
   light2D: {fileID: 1117528445}
 --- !u!114 &337609320
 MonoBehaviour:
@@ -3000,6 +3152,9 @@ MonoBehaviour:
   rb: {fileID: 337609315}
   animator: {fileID: 1571619864}
   trail: {fileID: 1983958702}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 256
   moveDirection: {x: 0, y: 0}
 --- !u!1 &351848721
 GameObject:
@@ -3378,6 +3533,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5551599301993821772, guid: e27e9d74b0efe4765865ca05c10c5a46, type: 3}
   healthBar: {fileID: 0}
   slash: {fileID: 0}
+  bam1: {fileID: 0}
+  bam2: {fileID: 0}
+  bam3: {fileID: 0}
   staminaCost: 1
   cardType: 
   dashStrength: 0
@@ -3577,6 +3735,7 @@ Transform:
   - {fileID: 2076442315}
   - {fileID: 1827300701}
   - {fileID: 895710575}
+  - {fileID: 1376722985}
   m_Father: {fileID: 359820094}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &610559414
@@ -3828,6 +3987,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   healthBar: {fileID: 1506383795}
   slash: {fileID: 0}
+  bam1: {fileID: 0}
+  bam2: {fileID: 0}
+  bam3: {fileID: 0}
   staminaCost: 1
   cardType: 
   dashStrength: 40
@@ -4039,7 +4201,7 @@ GameObject:
   - component: {fileID: 723714374}
   - component: {fileID: 723714376}
   - component: {fileID: 723714375}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6891,18 +7053,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deck:
-  - {fileID: 64175015}
-  - {fileID: 474042101}
-  - {fileID: 1801983616}
-  - {fileID: 1985669833}
-  - {fileID: 1033126712}
-  - {fileID: 1506132844}
-  - {fileID: 679912769}
-  - {fileID: 1021242237}
-  - {fileID: 2063462923}
-  - {fileID: 2076442317}
-  - {fileID: 1827300703}
-  - {fileID: 895710576}
+  - {fileID: 1376722987}
+  - {fileID: 1376722987}
+  - {fileID: 1376722987}
+  - {fileID: 1376722987}
   cardSlots:
   - {fileID: 1090926768}
   - {fileID: 795772669}
@@ -7109,17 +7263,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
   m_PrefabInstance: {fileID: 803971710}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &895710576 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
-  m_PrefabInstance: {fileID: 803971710}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54d994b72bfd84c1bb6e73f15769d4bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &965204206
 GameObject:
   m_ObjectHideFlags: 0
@@ -7282,17 +7425,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
   m_PrefabInstance: {fileID: 87032626}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1021242237 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
-  m_PrefabInstance: {fileID: 87032626}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54d994b72bfd84c1bb6e73f15769d4bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1033126709
 GameObject:
   m_ObjectHideFlags: 0
@@ -7398,6 +7530,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 912633962132210534, guid: 26b78d961696b4a039ea06b684cde72b, type: 3}
   healthBar: {fileID: 0}
   slash: {fileID: 0}
+  bam1: {fileID: 0}
+  bam2: {fileID: 0}
+  bam3: {fileID: 0}
   staminaCost: 3
   cardType: 
   dashStrength: 0
@@ -7452,7 +7587,7 @@ GameObject:
   - component: {fileID: 1112403919}
   - component: {fileID: 1112403921}
   - component: {fileID: 1112403920}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18024,7 +18159,7 @@ GameObject:
   - component: {fileID: 1360773684}
   - component: {fileID: 1360773686}
   - component: {fileID: 1360773685}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: foliage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18499,6 +18634,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!4 &1376722985 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+  m_PrefabInstance: {fileID: 108546840}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1376722987 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+  m_PrefabInstance: {fileID: 108546840}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d994b72bfd84c1bb6e73f15769d4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1391437064
 GameObject:
   m_ObjectHideFlags: 0
@@ -18577,7 +18728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1395717128}
   - component: {fileID: 1395717127}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Grid
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -18804,6 +18955,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5551599301993821772, guid: e27e9d74b0efe4765865ca05c10c5a46, type: 3}
   healthBar: {fileID: 1506383795}
   slash: {fileID: 0}
+  bam1: {fileID: 0}
+  bam2: {fileID: 0}
+  bam3: {fileID: 0}
   staminaCost: 4
   cardType: 
   dashStrength: 0
@@ -18864,6 +19018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guitubble: {fileID: 284873402}
   vioubble: {fileID: 1483198153}
+  drubble: {fileID: 0}
   healthSlider: {fileID: 1506383798}
   defense: 0
   deflectedNum: 0
@@ -19457,6 +19612,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5551599301993821772, guid: a3765c5eeadc24b18b616db0ff548ed1, type: 3}
   healthBar: {fileID: 1506383795}
   slash: {fileID: 0}
+  bam1: {fileID: 0}
+  bam2: {fileID: 0}
+  bam3: {fileID: 0}
   staminaCost: 2
   cardType: 
   dashStrength: 0
@@ -19610,17 +19768,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
   m_PrefabInstance: {fileID: 1827300700}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1827300703 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
-  m_PrefabInstance: {fileID: 1827300700}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54d994b72bfd84c1bb6e73f15769d4bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1892314789
 GameObject:
   m_ObjectHideFlags: 0
@@ -24804,6 +24951,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 912633962132210534, guid: 26b78d961696b4a039ea06b684cde72b, type: 3}
   healthBar: {fileID: 1506383795}
   slash: {fileID: 0}
+  bam1: {fileID: 0}
+  bam2: {fileID: 0}
+  bam3: {fileID: 0}
   staminaCost: 1
   cardType: 
   dashStrength: 0
@@ -24816,33 +24966,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
   m_PrefabInstance: {fileID: 610559414}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2063462923 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
-  m_PrefabInstance: {fileID: 610559414}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54d994b72bfd84c1bb6e73f15769d4bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2076442315 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
   m_PrefabInstance: {fileID: 779249846}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2076442317 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
-  m_PrefabInstance: {fileID: 779249846}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54d994b72bfd84c1bb6e73f15769d4bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2090141852
 GameObject:
   m_ObjectHideFlags: 0
