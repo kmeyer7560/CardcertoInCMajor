@@ -64,7 +64,7 @@ public class FOV : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(player.position, direction, rayLength, enemyLayer);
 
             // Draw the ray in the Scene view for debugging
-            Debug.DrawRay(player.position, direction * rayLength, Color.red);
+            //Debug.DrawRay(player.position, direction * rayLength, Color.red);
 
             // Check if the ray hit something
             if (hit.collider)
