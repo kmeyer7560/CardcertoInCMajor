@@ -93,7 +93,7 @@ private IEnumerator ReinDashCoroutine()
 
     // Define the number of rays and their offsets
     int numberOfRays = 3; // 1 main ray + 1 above + 1 below
-    float raySpacing = 0.1f; // Space between the rays
+    float raySpacing = 3f; // Space between the rays
 
     while (!collided)
     {
@@ -106,8 +106,13 @@ private IEnumerator ReinDashCoroutine()
         {
             Vector2 rayOrigin = rb.position + new Vector2(0, i * raySpacing);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, 0.5f, wallLayer);
-            if (hit.collider != null && hit.collider.CompareTag("Environment"))
+            Debug.DrawRay(player.position, direction * 0.5f, Color.red);
+            if (hit.collider != null && (hit.collider.CompareTag("Environment") || hit.collider.CompareTag("Enemy")))
             {
+                if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+                {
+                    hit.transform.gameObject.GetComponent<EnemyHealth>().takeDamage(60);
+                }
                 hitDetected = true;
                 break;
             }
@@ -144,7 +149,7 @@ public IEnumerator DashCoroutine(float dashSpeed)
 
     // Define the number of rays and their offsets
     int numberOfRays = 3; // 1 main ray + 1 above + 1 below
-    float raySpacing = 0.1f; // Space between the rays
+    float raySpacing = 1f; // Space between the rays
 
     for (int i = 0; i < steps; i++)
     {
@@ -194,14 +199,6 @@ public IEnumerator DashCoroutine(float dashSpeed)
     {
         yield return new WaitForSeconds(2f);
         activeSpeed = moveSpeed;
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Enemy") && inReinDash)
-        {
-            other.GetComponent<EnemyHealth>().takeDamage(60);
-        }
     }
 
     void Update()
