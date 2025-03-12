@@ -17,7 +17,9 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     public GameObject trail;
+    public Transform player;
     bool collided;
+    bool inReinDash;
     public LayerMask wallLayer;
 
     public Vector2 moveDirection;
@@ -84,20 +86,39 @@ private IEnumerator ReinDashCoroutine()
 {
     // Disable normal movement
     moveable = false;
-    vulnerable = false;
+    inReinDash = true;
 
-    float dashDistance = activeSpeed * Time.fixedDeltaTime; // Use activeSpeed for dash speed
+    float dashDistance = 0.2f; // Use activeSpeed for dash speed
     Vector2 direction = savedDirection.normalized; // Use the saved direction for the dash
+
+    // Define the number of rays and their offsets
+    int numberOfRays = 3; // 1 main ray + 1 above + 1 below
+    float raySpacing = 3f; // Space between the rays
 
     while (!collided)
     {
         // Move the player in the direction of the dash
         Vector2 targetPosition = rb.position + direction * dashDistance;
 
-        // Check for collision with the environment
-        RaycastHit2D hit = Physics2D.Raycast(rb.position, direction, dashDistance, wallLayer);
-        Debug.Log(hit.collider);
-        if (hit.collider != null && hit.collider.CompareTag("Environment"))
+        // Check for collision with the environment using multiple rays
+        bool hitDetected = false;
+        for (int i = -1; i <= 1; i++) // -1 for below, 0 for main, 1 for above
+        {
+            Vector2 rayOrigin = rb.position + new Vector2(0, i * raySpacing);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, 0.5f, wallLayer);
+            Debug.DrawRay(player.position, direction * 0.5f, Color.red);
+            if (hit.collider != null && (hit.collider.CompareTag("Environment") || hit.collider.CompareTag("Enemy")))
+            {
+                if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+                {
+                    hit.transform.gameObject.GetComponent<EnemyHealth>().takeDamage(60);
+                }
+                hitDetected = true;
+                break;
+            }
+        }
+
+        if (hitDetected)
         {
             // Stop dashing if we hit a wall
             collided = true;
@@ -110,47 +131,59 @@ private IEnumerator ReinDashCoroutine()
 
     // Reset the player's state after dashing
     moveable = true; // Re-enable movement
-    vulnerable = true; // Make the player vulnerable again
+    inReinDash = false;
     rb.velocity = Vector2.zero; // Reset velocity
 }
 
+public IEnumerator DashCoroutine(float dashSpeed)
+{
+    Debug.Log("Started Routine");
+    vulnerable = false;
+    dashCounter = dashLength;
 
+    float dashDistance = dashSpeed * Time.fixedDeltaTime;
+    trail.SetActive(true);
 
+    int steps = Mathf.CeilToInt(dashLength / Time.fixedDeltaTime);
+    Vector2 direction = savedDirection.normalized;
 
-    public IEnumerator DashCoroutine(float dashSpeed)
+    // Define the number of rays and their offsets
+    int numberOfRays = 3; // 1 main ray + 1 above + 1 below
+    float raySpacing = 1f; // Space between the rays
+
+    for (int i = 0; i < steps; i++)
     {
-        Debug.Log("Started Routine");
-        vulnerable = false;
-        dashCounter = dashLength;
+        Vector2 targetPosition = rb.position + direction * dashDistance;
 
-        float dashDistance = dashSpeed * Time.fixedDeltaTime;
-        trail.SetActive(true);
-
-        int steps = Mathf.CeilToInt(dashLength / Time.fixedDeltaTime);
-        Vector2 direction = savedDirection.normalized;
-
-        for (int i = 0; i < steps; i++)
+        // Check for collision with the environment using multiple rays
+        bool hitDetected = false;
+        for (int j = -1; j <= 1; j++) // -1 for below, 0 for main, 1 for above
         {
-            Vector2 targetPosition = rb.position + direction * dashDistance;
-
-            RaycastHit2D hit = Physics2D.Raycast(rb.position, direction, dashDistance);
+            Vector2 rayOrigin = rb.position + new Vector2(0, j * raySpacing);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, dashDistance, wallLayer);
             if (hit.collider != null && hit.collider.CompareTag("Environment"))
             {
+                hitDetected = true;
                 break;
             }
-
-            rb.MovePosition(targetPosition);
-            yield return new WaitForFixedUpdate();
         }
 
-        // Reset the player's velocity after dashing
-        StartCoroutine(DisableColliderAfterDelay(1.5f)); // Start the coroutine to disable the collider
-        rb.velocity = Vector2.zero;
-        dashCoolCounter = dashCooldown;
-        trail.GetComponent<ParticleSystem>().enableEmission = false;
-        vulnerable = true;
+        if (hitDetected)
+        {
+            break; // Stop dashing if we hit a wall
+        }
+
+        rb.MovePosition(targetPosition);
+        yield return new WaitForFixedUpdate();
     }
 
+    // Reset the player's velocity after dashing
+    StartCoroutine(DisableColliderAfterDelay(1.5f)); // Start the coroutine to disable the collider
+    rb.velocity = Vector2.zero;
+    dashCoolCounter = dashCooldown;
+    trail.GetComponent<ParticleSystem>().enableEmission = false;
+    vulnerable = true;
+}
     private IEnumerator DisableColliderAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay); // Wait for the specified delay

@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2074588109195942967}
   - component: {fileID: 3124397123558871560}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shrub
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,7 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2809608840508878555}
   - component: {fileID: 2048118260532082849}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
