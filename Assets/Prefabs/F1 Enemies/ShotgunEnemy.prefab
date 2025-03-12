@@ -95,6 +95,7 @@ MonoBehaviour:
   pc: {fileID: 6725082598963452529}
   healthOrb: {fileID: 4583867773829352207, guid: 6cef84490d53a8740ba8b5401e72b660, type: 3}
   coin: {fileID: 4583867773829352207, guid: 8608374c556deb640b5cb97a5c604d01, type: 3}
+  anim: {fileID: 6329621094661948581}
 --- !u!50 &4516514076274992145
 Rigidbody2D:
   serializedVersion: 4
@@ -253,7 +254,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1295336243
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 9
   m_Sprite: {fileID: -2021289045, guid: 7528246d8785542feb60ee9e2ec90ed5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5111,7 +5112,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1295336243
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -10057,7 +10058,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1295336243
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
