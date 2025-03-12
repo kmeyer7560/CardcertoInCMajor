@@ -22,6 +22,9 @@ TagManager:
   - deflectCard
   - GdefenseCard
   - DdefenseCard
+  - playerHealthBar
+  - drumBamCard
+  - reinDashCard
   - defenseCard
   layers:
   - Default
@@ -32,7 +35,7 @@ TagManager:
   - UI
   - Player
   - Enemy
-  - 
+  - Environment
   - 
   - 
   - 

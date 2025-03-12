@@ -9,7 +9,7 @@ public class aoeAttack : MonoBehaviour
     public GameObject Player;
     Rigidbody2D rb;
     public float damage;
-
+    public bool kb;
     SpriteRenderer sr;
 
     // Start is called before the first frame update
@@ -37,7 +37,10 @@ public class aoeAttack : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             other.GetComponent<EnemyHealth>().takeDamage(damage);
-            other.GetComponent<EnemyHealth>().knockBack(this.gameObject);
+            if (kb)
+            {
+                other.GetComponent<EnemyHealth>().knockBack(this.gameObject);
+            }
         }
     }
 }

@@ -17,6 +17,9 @@ public class Card : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject healthBar;
     public GameObject slash;
+    public GameObject bam1;
+    public GameObject bam2;
+    public GameObject bam3;
     public float staminaCost;
     public string cardType;
     public float dashStrength;
@@ -98,11 +101,19 @@ public class Card : MonoBehaviour
                 {
                     healthBar.GetComponent<PlayerHealthBar>().setDefense(defense, 2);
                 }
+                else if (cardType == "drumBamCard")
+                {
+                    StartCoroutine(DrumBam());
+                }
+                else if (cardType == "reinDashCard")
+                {
+                    dDash();
+                }
 
 
                 hm.shuffle();
                 hasBeenPlayed = false;
-                if (cardType != "burstCard" && cardType != "deflectCard") //need this for every card that uses a coroutine f you unity
+                if (cardType != "burstCard" && cardType != "deflectCard" && cardType != "drumBamCard") //need this for every card that uses a coroutine f you unity
                 {
                     gameObject.SetActive(false);
                 }
@@ -111,6 +122,15 @@ public class Card : MonoBehaviour
         }
     }
 
+    IEnumerator DrumBam()
+    {
+            Instantiate(bam1, shootingPoint.position, shootingPoint.rotation);
+            yield return new WaitForSeconds(0.3f);
+            Instantiate(bam2, shootingPoint.position, shootingPoint.rotation);
+            yield return new WaitForSeconds(0.3f);
+            Instantiate(bam3, shootingPoint.position, shootingPoint.rotation);
+            gameObject.SetActive(false);
+    }
     IEnumerator burstDelay(int num)
     {
         gameObject.transform.position = new Vector2(1000000, 100000); //just to get the sprite out of the way becuase i can't turn off the gameobject while a coroutine needs to run. Very desperate tactic.
@@ -180,6 +200,10 @@ public class Card : MonoBehaviour
     public void gDash()
     {
         player.GetComponent<PlayerMovement>().dash(dashStrength, true);
+    }
+    public void dDash()
+    {
+        player.GetComponent<PlayerMovement>().reinDash();
     }
 
     public void shootCard()

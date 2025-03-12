@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     public GameObject trail;
+    bool collided;
+    public LayerMask wallLayer;
 
     public Vector2 moveDirection;
     void Start()
@@ -69,6 +71,51 @@ public class PlayerMovement : MonoBehaviour
             trail.GetComponent<ParticleSystem>().enableEmission = true;
         }
     }
+   public void reinDash()
+{
+    if (moveable && savedDirection != Vector2.zero) // Ensure the player can only dash if they are currently able to move and have a direction
+    {
+        collided = false;
+        StartCoroutine(ReinDashCoroutine());
+    }
+}
+
+private IEnumerator ReinDashCoroutine()
+{
+    // Disable normal movement
+    moveable = false;
+    vulnerable = false;
+
+    float dashDistance = activeSpeed * Time.fixedDeltaTime; // Use activeSpeed for dash speed
+    Vector2 direction = savedDirection.normalized; // Use the saved direction for the dash
+
+    while (!collided)
+    {
+        // Move the player in the direction of the dash
+        Vector2 targetPosition = rb.position + direction * dashDistance;
+
+        // Check for collision with the environment
+        RaycastHit2D hit = Physics2D.Raycast(rb.position, direction, dashDistance, wallLayer);
+        Debug.Log(hit.collider);
+        if (hit.collider != null && hit.collider.CompareTag("Environment"))
+        {
+            // Stop dashing if we hit a wall
+            collided = true;
+            break;
+        }
+
+        rb.MovePosition(targetPosition);
+        yield return new WaitForFixedUpdate(); // Wait for the next fixed update
+    }
+
+    // Reset the player's state after dashing
+    moveable = true; // Re-enable movement
+    vulnerable = true; // Make the player vulnerable again
+    rb.velocity = Vector2.zero; // Reset velocity
+}
+
+
+
 
     public IEnumerator DashCoroutine(float dashSpeed)
     {
@@ -123,6 +170,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+    
         if (moveable)
         {
             ProcessInputs();
@@ -132,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
         {
             savedDirection = moveDirection;
         }
-
+       
         animator.SetBool("moving", rb.velocity != Vector2.zero);
       
     }
