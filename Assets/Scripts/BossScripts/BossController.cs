@@ -5,9 +5,9 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
     private Animator anim;
-    private float maxHealth;
+    private float maxHealth = 100;
     private float currentHealth;
-    public BossHealthBar healthBar;
+    public BossHealthBar bossHealthBar;
     public PlayerHealthBar playerHealthBar;
     private bool phase1;
     private bool phase2;
@@ -16,18 +16,22 @@ public class BossController : MonoBehaviour
     private bool bossAlive = true;
     public bool hittingPlayer;
     Transform playerTransform;
+    CheckHit checkHit;
 
     void Start()
     {
         anim = GetComponent<Animator>();
-        anim.SetBool("PhaseOne", true);
-
+        playerHealthBar = GameObject.Find("PlayerHealthBar").GetComponent<PlayerHealthBar>();
+        bossHealthBar = GameObject.Find("BossHealthBar").GetComponent<BossHealthBar>();
+        bossHealthBar.SetSliderMax(maxHealth);
+        bossHealthBar.SetSlider(maxHealth);
+        checkHit = GetComponentInChildren<CheckHit>();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        playerTransform = player.transform;
         currentHealth = maxHealth;
-        healthBar.SetSliderMax(maxHealth);
-        playerHealthBar = GetComponent<PlayerHealthBar>();
-        hittingPlayer = GetComponent<checkHit>().isHit;
-        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        anim.SetBool("PhaseOne", true);
     }
+
     public void StartAttack()
     {
         phase1 = true;
@@ -35,6 +39,7 @@ public class BossController : MonoBehaviour
     void Update()
     {
         UpdateHealth();
+        UpdateAttack();
     }
     void UpdateHealth()
     {
@@ -48,6 +53,13 @@ public class BossController : MonoBehaviour
         {
             bossAlive = false;
             anim.SetTrigger("Death");
+        }
+    }
+    void UpdateAttack()
+    {
+        if(checkHit.isHit)
+        {
+            hittingPlayer = true;
         }
     }
     void CallAttack()
@@ -81,21 +93,20 @@ public class BossController : MonoBehaviour
         CallAttack();
     }
     //PHASE ONE
-    public void ScytheSwipeStart()
+    public void ScytheSwipe()
     {
-        //teleport ot random position
-        float horizontalRange = Random.Range(-10, 10);
-        float verticalRange = Random.Range(-10, 10);
-        transform.position = new Vector3(horizontalRange * Time.deltaTime, verticalRange * Time.deltaTime);
+        //teleports to random pos
+        float horizontalRange = Random.Range(-20f,21f);
+        float verticalRange = Random.Range(-20f,21f);
+        transform.position = playerTransform.position + new Vector3(horizontalRange, verticalRange, 0);
     }
     public void ScytheSwipeAttack()
     {
-        //if the player is in attack area then deal damage
+        //hits player if in range
         if(hittingPlayer)
         {
             playerHealthBar.TakeDamage(10);
         }
-        
     }
     public void ScytheDashStart()
     {
@@ -104,21 +115,25 @@ public class BossController : MonoBehaviour
         switch(directionRange)
         {
             case 1:
-            //top
-            //transform.position = new Vector3(playerTransform);
+            //up
+            transform.position = playerTransform.position + new Vector3(0,20);
             break;
 
             case 2:
-            //bottom
+            //down
+            transform.position = playerTransform.position + new Vector3(0,-20);
             break;
 
             case 3:
             //left
+            transform.position = playerTransform.position + new Vector3(-20,0);
             break;
 
             case 4:
             //right
+            transform.position = playerTransform.position + new Vector3(20,0);
             break;
+
         }
     }
     public void ScytheDashAttack()
@@ -154,13 +169,5 @@ public class BossController : MonoBehaviour
     public void BossDeath()
     {
         Destroy(gameObject);
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.CompareTag("Player"));
-        {
-            playerHealthBar.TakeDamage(20f);
-        }
     }
 }
