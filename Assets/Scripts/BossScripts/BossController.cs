@@ -17,6 +17,10 @@ public class BossController : MonoBehaviour
     public bool hittingPlayer;
     Transform playerTransform;
     CheckHit checkHit;
+    Transform lastPlayerPosition;
+
+    public GameObject scytheProjectile;
+    public GameObject scytheBoomerang;
 
     void Start()
     {
@@ -116,22 +120,22 @@ public class BossController : MonoBehaviour
         {
             case 1:
             //up
-            transform.position = playerTransform.position + new Vector3(0,20);
+            transform.position = playerTransform.position + new Vector3(0,20,0);
             break;
 
             case 2:
             //down
-            transform.position = playerTransform.position + new Vector3(0,-20);
+            transform.position = playerTransform.position + new Vector3(0,-20,0);
             break;
 
             case 3:
             //left
-            transform.position = playerTransform.position + new Vector3(-20,0);
+            transform.position = playerTransform.position + new Vector3(-20,0,0);
             break;
 
             case 4:
             //right
-            transform.position = playerTransform.position + new Vector3(20,0);
+            transform.position = playerTransform.position + new Vector3(20,0,0);
             break;
 
         }
@@ -139,19 +143,24 @@ public class BossController : MonoBehaviour
     public void ScytheDashAttack()
     {
         //charges towards the player
+        playerTransform = lastPlayerPosition;
+        transform.position = Vector3.MoveTowards(transform.position, lastPlayerPosition.position, 3);
     }
     public void ScytheSpinStart()
     {
         //teleports to the center of the map
+        transform.position = new Vector3(0, 0, 0);
     }
     public void ScytheSpinAttack()
     {
         //send slash attack clones to the player
+        Instantiate(scytheProjectile, transform.position, transform.rotation);
     }
     //PHASE TWO
     public void ScytheThrow()
     {
         //throw boomerang scythes to the player
+        Instantiate(scytheBoomerang, transform.position, transform.rotation);
     }
     public void ScytheSpeedStart()
     {
@@ -160,6 +169,8 @@ public class BossController : MonoBehaviour
     public void ScytheSpeedAttack()
     {
         //charge towards the player
+        playerTransform = lastPlayerPosition;
+        transform.position = Vector3.MoveTowards(transform.position, lastPlayerPosition.position, 6);
     }
     public void Tornado()
     {

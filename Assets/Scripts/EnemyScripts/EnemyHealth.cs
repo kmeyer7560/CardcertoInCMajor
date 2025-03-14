@@ -18,8 +18,9 @@ public class EnemyHealth : MonoBehaviour
 
     public GameObject healthOrb;
     public GameObject coin;
-
     private Vector2 vel;
+
+    public Animator anim;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +49,7 @@ public class EnemyHealth : MonoBehaviour
         {
             Instantiate(coin, new Vector3(transform.position.x, transform.position.y, 0f), Quaternion.identity);
         }
-        Destroy(gameObject);
+        //anim.SetBool("dead");
 
     }
 

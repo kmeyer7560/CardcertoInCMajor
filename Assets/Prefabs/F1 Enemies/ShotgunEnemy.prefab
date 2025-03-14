@@ -95,6 +95,7 @@ MonoBehaviour:
   pc: {fileID: 6725082598963452529}
   healthOrb: {fileID: 4583867773829352207, guid: 6cef84490d53a8740ba8b5401e72b660, type: 3}
   coin: {fileID: 4583867773829352207, guid: 8608374c556deb640b5cb97a5c604d01, type: 3}
+  anim: {fileID: 6329621094661948581}
 --- !u!50 &4516514076274992145
 Rigidbody2D:
   serializedVersion: 4

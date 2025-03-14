@@ -90,13 +90,13 @@ public class Room : MonoBehaviour
         switch (doorType)
         {
             case Door.DoorType.right:
-                return GetRight() != null;
+                return GetRight() == null;
             case Door.DoorType.left:
-                return GetLeft() != null;
+                return GetLeft() == null;
             case Door.DoorType.top:
-                return GetTop() != null;
+                return GetTop() == null;
             case Door.DoorType.bottom:
-                return GetBottom() != null;
+                return GetBottom() == null;
             default:
                 return false;
         }
