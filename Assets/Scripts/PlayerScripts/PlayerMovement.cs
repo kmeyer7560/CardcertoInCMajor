@@ -178,7 +178,7 @@ public IEnumerator DashCoroutine(float dashSpeed)
     }
 
     // Reset the player's velocity after dashing
-    StartCoroutine(DisableColliderAfterDelay(1.5f)); // Start the coroutine to disable the collider
+    StartCoroutine(DisableColliderAfterDelay(5f)); // Start the coroutine to disable the collider
     rb.velocity = Vector2.zero;
     dashCoolCounter = dashCooldown;
     trail.GetComponent<ParticleSystem>().enableEmission = false;
