@@ -21,17 +21,21 @@ public class EnemyHealth : MonoBehaviour
     private Vector2 vel;
 
     public Animator anim;
+    public bool isAlive;
+    private SpriteRenderer renderer;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         currentHealth = health;
+        isAlive = true;
+        renderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentHealth <= 0 )
+        if (currentHealth <= 0 && isAlive)
         {
             Death();
         }
@@ -43,14 +47,32 @@ public class EnemyHealth : MonoBehaviour
         Debug.Log(dropChance);
         if(dropChance <=5)
         {
-            Instantiate(healthOrb, new Vector3(transform.position.x, transform.position.y, 0f), Quaternion.identity);
+            Instantiate(healthOrb, transform.position, Quaternion.identity);
         }
         if(dropChance == 2)
         {
-            Instantiate(coin, new Vector3(transform.position.x, transform.position.y, 0f), Quaternion.identity);
+            Instantiate(coin, transform.position, Quaternion.identity);
         }
-        //anim.SetBool("dead");
+        anim.SetTrigger("dead");
+        isAlive = false;
 
+        StartCoroutine(FadeToDeath());
+    }
+
+    private IEnumerator FadeToDeath()
+    {
+        yield return new WaitForSeconds(1f);
+        Color originalColor = renderer.color;
+
+        for(float i=0; i<2f; i += Time.deltaTime)
+        {
+            Debug.Log("dying");
+            float normalizedTime = i/2f;
+            float alpha = Mathf.Lerp(1f, 0f, normalizedTime);
+            renderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+            yield return null;
+        }
+        Destroy(gameObject);
     }
 
     public void takeDamage(float damage)

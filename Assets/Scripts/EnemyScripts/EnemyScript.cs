@@ -83,7 +83,7 @@ public class EnemyScript : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, player.transform.position);
 
-        if (playerInRoom)
+        if (playerInRoom && GetComponentInChildren<EnemyHealth>().isAlive)
         {
             if (distance <= walkRange)
             {

@@ -19,8 +19,16 @@ public class Drop : MonoBehaviour
     void Start()
     {
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-        player = playerObject.transform;
-        playerHealthBar = playerObject.GetComponentInChildren<PlayerHealthBar>();
+        if (playerObject != null)
+        {
+            player = playerObject.transform;
+        }
+
+        GameObject healthBarObject = GameObject.FindGameObjectWithTag("playerHealthBar");
+        if (healthBarObject != null)
+        {
+            playerHealthBar = healthBarObject.GetComponent<PlayerHealthBar>();
+        }
 
         countdownTimer = countdownTime;
         currentMoveSpeed = baseMoveSpeed;
@@ -28,6 +36,11 @@ public class Drop : MonoBehaviour
 
     void Update()
     {
+        if (player == null)
+        {
+            return;
+        }
+
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
         if (distanceToPlayer <= attractDistance)
@@ -67,8 +80,11 @@ public class Drop : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player picked up drop");
-            playerHealthBar.Heal(healAmount, 1);
+            if (playerHealthBar != null)
+            {
+                playerHealthBar.Heal(healAmount, 1);
+            }
+
             Destroy(gameObject);
         }
     }
