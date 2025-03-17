@@ -53,8 +53,8 @@ MonoBehaviour:
   bullet: {fileID: 2123376611950472817, guid: aa721edd4ffee8843830d833dde78b5f, type: 3}
   bulletPos: {fileID: 7147357794731468004}
   player: {fileID: 0}
-  speed: 2.8
-  shootRange: 0.6
+  speed: 4
+  shootRange: 1
   walkRange: 12
   animator: {fileID: 6329621094661948581}
   rb: {fileID: 4516514076274992145}
@@ -74,6 +74,7 @@ MonoBehaviour:
   shootFX: {fileID: 0}
   canMove: 0
   shootRotation: {x: 0, y: 0, z: 0, w: 0}
+  canLunge: 1
 --- !u!114 &305204119834781205
 MonoBehaviour:
   m_ObjectHideFlags: 0

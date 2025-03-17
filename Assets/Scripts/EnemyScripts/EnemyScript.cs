@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -45,6 +46,7 @@ public class EnemyScript : MonoBehaviour
     public Quaternion shootRotation;
 
     private bool isShootingAnimation = false;
+    public bool canLunge;
 
     void Start()
     {
@@ -181,6 +183,19 @@ public class EnemyScript : MonoBehaviour
             playerHealthBar.TakeDamage(meleeDamage);
         }
         canAttack = false;
+    }
+
+    public void Lunge()
+    {
+        rb.velocity = (playerTransform.position - transform.position).normalized * 3;
+        StartCoroutine(LungeDuration());
+    }
+
+    private IEnumerator LungeDuration()
+    {
+        yield return new WaitForSeconds(.5f);
+        rb.velocity = Vector2.zero;
+
     }
 
     void UpdatePlayerInRoom()

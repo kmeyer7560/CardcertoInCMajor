@@ -23,4 +23,8 @@ public class ShootAnim : MonoBehaviour
     {
         enemyScript.OnShootAnimationEnd();
     }
+    public void CallLunge()
+    {
+        enemyScript.Lunge();
+    }
 }
