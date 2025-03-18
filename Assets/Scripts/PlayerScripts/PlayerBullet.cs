@@ -24,19 +24,28 @@ public class PlayerBullet : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
+{
+    Player = GameObject.FindGameObjectWithTag("Player");
+    rb = GetComponent<Rigidbody2D>();
+
+    // Get the FOV component from the player
+    FOV fov = Player.GetComponent<FOV>();
+    objectInRay = fov.hitObject;
+
+    if (objectInRay != null) // If there is an object detected by the rays
     {
+        // Calculate the direction to the hit object
+        Vector2 directionToHitObject = (objectInRay.position - transform.position).normalized;
 
-        Player = GameObject.FindGameObjectWithTag("Player");
-        rb = GetComponent<Rigidbody2D>();
-        //Debug.Log(Player.GetComponent<FOV>().hitObject);
-        objectInRay = Player.GetComponent<FOV>().hitObject;
-        //Debug.Log(objectInRay);
-        if(objectInRay == null){ //ian code
-            rb.velocity = Player.GetComponent<PlayerMovement>().savedDirection * Speed;      
-        }
-
-        //Debug.Log(Player.GetComponent<Rigidbody2D>().velocity);
+        // Set the velocity towards the hit object
+        rb.velocity = directionToHitObject * Speed;
     }
+    else // If no object is detected, use the saved direction
+    {
+        rb.velocity = Player.GetComponent<PlayerMovement>().savedDirection * Speed;
+    }
+}
+
 
     // Update is called once per frame
     void Update()

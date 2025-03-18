@@ -10,17 +10,20 @@ public class FOV : MonoBehaviour
     public int numberOfRays = 10; // Number of rays to cast
     public float coneAngle = 45f; // Angle of the cone in degrees
 
-    private float lastAngle; // Store the last angle when the player was moving
+    public float lastAngle; // Store the last angle when the player was moving
+    private Quaternion lastLightRotation; // Store the last rotation of the light
 
     public Transform hitObject;
-
     public LayerMask enemyLayer;
-
     public Light2D light2D; // Reference to the Light2D component
 
     void Start()
     {
-
+        // Initialize the last light rotation
+        if (light2D != null)
+        {
+            lastLightRotation = light2D.transform.rotation;
+        }
     }
 
     void Update()
@@ -37,11 +40,18 @@ public class FOV : MonoBehaviour
                 lastAngle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg; // Update last angle
             }
 
-            // Cast rays in the direction of the last angle
-            CastConeRays(movement.magnitude > 0.1f ? lastAngle : lastAngle);
+            // Check if the space key is pressed
+            if (!Input.GetKey("space"))
+            {
+                // Cast rays in the direction of the last angle
+                CastConeRays(lastAngle);
 
-            // Update the light position and angle
-            UpdateLight();
+                // Update the light rotation
+                UpdateLightRotation();
+            }
+
+            // Always update the light position to follow the player
+            UpdateLightPosition();
         }
     }
 
@@ -62,9 +72,6 @@ public class FOV : MonoBehaviour
 
             // Cast the ray
             RaycastHit2D hit = Physics2D.Raycast(player.position, direction, rayLength, enemyLayer);
-
-            // Draw the ray in the Scene view for debugging
-            //Debug.DrawRay(player.position, direction * rayLength, Color.red);
 
             // Check if the ray hit something
             if (hit.collider)
@@ -88,15 +95,23 @@ public class FOV : MonoBehaviour
         hitObject = closestHitObject;
     }
 
-    void UpdateLight()
+    void UpdateLightPosition()
     {
         if (light2D != null)
         {
             // Set the position of the light to the player's position
-            
             light2D.transform.position = player.position;
-              // Rotate the light to match the direction of the last angle
-        light2D.transform.rotation = Quaternion.Euler(0, 0, lastAngle - 90);
+        }
+    }
+
+    void UpdateLightRotation()
+    {
+        if (light2D != null)
+        {
+            // Rotate the light to match the direction of the last angle
+            light2D.transform.rotation = Quaternion.Euler(0, 0, lastAngle - 90);
+            // Store the last known rotation
+            lastLightRotation = light2D.transform.rotation;
         }
     }
 }
