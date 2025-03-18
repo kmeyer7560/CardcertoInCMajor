@@ -29,6 +29,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] Transform playerTransform;
 
     public bool isMeleeEnemy;
+    public bool isDoubleEnemy;
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
@@ -173,6 +174,31 @@ public class EnemyScript : MonoBehaviour
             }
             lastMeleeAttack = Time.time;
         }
+        if(isDoubleEnemy && Time.time-lastMeleeAttack >= meleeCooldown)
+        {
+            if(canAttack)
+            {
+                DaggerAttack();
+            }
+        }
+
+    }
+
+    void DaggerAttack()
+    {
+        int switchAttack = Random.Range(0,2);
+        {
+            if(switchAttack == 0)
+            {
+                //melee
+                PerformMeleeAttack();
+            }
+            else if(switchAttack == 1)
+            {
+                //ranged
+                Shoot();
+            }
+        }
     }
 
     void PerformMeleeAttack()
@@ -226,6 +252,10 @@ public class EnemyScript : MonoBehaviour
         if(isMeleeEnemy)
         {
             canAttack = true;
+        }
+        else if(isDoubleEnemy)
+        {
+
         }
         else
         {
