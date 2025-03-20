@@ -67,8 +67,6 @@ public class StaminaManager : MonoBehaviour
         stamina += ChargeRate; // Add whole number
         stamina = Mathf.Clamp(stamina, 0, maxStamina); // Ensure stamina does not exceed max
 
-        Debug.Log("Recharging stamina: " + stamina); // Debug log to track stamina
-
         // Wait for a short duration before the next recharge increment
         yield return new WaitForSeconds(0.5f); 
 
