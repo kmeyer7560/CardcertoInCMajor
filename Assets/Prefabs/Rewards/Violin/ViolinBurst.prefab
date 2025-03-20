@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 9170174795430295845}
   - component: {fileID: -3698077115721410381}
   - component: {fileID: 2949614788827704608}
+  - component: {fileID: 8771009991410344081}
   m_Layer: 0
-  m_Name: GuitarDash
+  m_Name: ViolinBurst
   m_TagString: ChestReward
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,6 +122,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8771009991410344081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646419894224884969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Violin Burst
+  sprite: {fileID: 21300000, guid: 8435e5a6d9fe148c88a537b60c04656e, type: 3}
+  itemDescription: 'Shoot 20 bullets, adding 1 stack to any hit enemy.
+
+
+    2 MP'
 --- !u!1 &2579887443701795441
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,10 +210,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a395fef2bfc99cb40a569306a1288011, type: 3}
+  m_SortingLayerID: -855266137
+  m_SortingLayer: 5
+  m_SortingOrder: 200
+  m_Sprite: {fileID: 21300000, guid: 8435e5a6d9fe148c88a537b60c04656e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
