@@ -189,7 +189,7 @@ public class Room : MonoBehaviour
         if (enemiesInRoom.Count <= 0)
         {
             Debug.Log("No enemies in room: " + gameObject.name);
-            RemoveDoors();
+            //RemoveDoors();
         }
         else
         {
