@@ -5,6 +5,7 @@ using UnityEngine;
 public class HitMarker : MonoBehaviour
 {   
     private Animator animator;
+    public GameObject mainObject;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -15,6 +16,6 @@ public class HitMarker : MonoBehaviour
     IEnumerator Destroy(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        Destroy(gameObject);
+        Destroy(mainObject);
     }
 }

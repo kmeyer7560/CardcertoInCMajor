@@ -16,19 +16,20 @@ public class PlayerMovement : MonoBehaviour
     public bool moveable;
     public Rigidbody2D rb;
     public Animator animator;
-    public GameObject trail;
+    //public GameObject trail;
     public Transform player;
     bool collided;
     bool inReinDash;
     public LayerMask wallLayer;
 
     public Vector2 moveDirection;
+    public GameObject fireFX;
     void Start()
     {
         activeSpeed = moveSpeed;
         vulnerable = true;
         moveable = true;
-        trail.GetComponent<ParticleSystem>().enableEmission = false;
+        //trail.GetComponent<ParticleSystem>().enableEmission = false;
     }
 
     void ProcessInputs()
@@ -70,7 +71,16 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(DashCoroutine(dashSpeed));
         if (t)
         {
-            trail.GetComponent<ParticleSystem>().enableEmission = true;
+            //trail.GetComponent<ParticleSystem>().enableEmission = true;
+            StartCoroutine(FireDash());
+        }
+    }
+    private IEnumerator FireDash()
+    {
+        for(int i=0; i<=10; i++)
+        {
+            Instantiate(fireFX, transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(.01f);
         }
     }
    public void reinDash()
@@ -142,7 +152,7 @@ public IEnumerator DashCoroutine(float dashSpeed)
     dashCounter = dashLength;
 
     float dashDistance = dashSpeed * Time.fixedDeltaTime;
-    trail.SetActive(true);
+    //trail.SetActive(true);
 
     int steps = Mathf.CeilToInt(dashLength / Time.fixedDeltaTime);
     Vector2 direction = savedDirection.normalized;
@@ -181,7 +191,7 @@ public IEnumerator DashCoroutine(float dashSpeed)
     StartCoroutine(DisableColliderAfterDelay(5f)); // Start the coroutine to disable the collider
     rb.velocity = Vector2.zero;
     dashCoolCounter = dashCooldown;
-    trail.GetComponent<ParticleSystem>().enableEmission = false;
+    //trail.GetComponent<ParticleSystem>().enableEmission = false;
     vulnerable = true;
 }
     private IEnumerator DisableColliderAfterDelay(float delay)
