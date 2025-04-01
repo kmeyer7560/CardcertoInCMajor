@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7410519418851852582}
-  - component: {fileID: -3919131536562591108}
-  - component: {fileID: -3294769832345824451}
-  - component: {fileID: -5660389831498397494}
-  - component: {fileID: 5393303374705519895}
+  - component: {fileID: 7039403563148365927}
+  - component: {fileID: -8566862490544365602}
+  - component: {fileID: 5342662451499467327}
+  - component: {fileID: 7520781986520475463}
   m_Layer: 0
-  m_Name: GuitarShield
+  m_Name: Drum3hit
   m_TagString: ChestReward
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,10 +33,10 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3392926543758855979}
+  - {fileID: 8291788488071022344}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3919131536562591108
+--- !u!114 &7039403563148365927
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionRange: 2
   interactionKey: 32
---- !u!50 &-3294769832345824451
+--- !u!50 &-8566862490544365602
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -77,7 +77,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &-5660389831498397494
+--- !u!61 &5342662451499467327
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,7 +122,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5393303374705519895
+--- !u!114 &7520781986520475463
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,13 +134,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Guitar Shield
-  sprite: {fileID: 21300000, guid: 80fe37460eae37d4d8151dbd9127dd0d, type: 3}
-  itemDescription: 'Raises defense for a short time.
+  itemName: Drum Smash
+  sprite: {fileID: 21300000, guid: 1ec2691abc755466788b5a9988eda843, type: 3}
+  itemDescription: 'Smash the ground 3 times, dealing less damage with each smash.
 
 
-    1 MP'
---- !u!1 &1752668734530245742
+    3
+    MP'
+--- !u!1 &7459899008520035935
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,22 +149,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3392926543758855979}
-  - component: {fileID: 51186268322747775}
+  - component: {fileID: 8291788488071022344}
+  - component: {fileID: 7523008682843054396}
   m_Layer: 0
-  m_Name: gitarsheild
+  m_Name: guitargard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3392926543758855979
+--- !u!4 &8291788488071022344
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752668734530245742}
+  m_GameObject: {fileID: 7459899008520035935}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -172,13 +173,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7410519418851852582}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &51186268322747775
+--- !u!212 &7523008682843054396
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752668734530245742}
+  m_GameObject: {fileID: 7459899008520035935}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -213,7 +214,7 @@ SpriteRenderer:
   m_SortingLayerID: -855266137
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80fe37460eae37d4d8151dbd9127dd0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1ec2691abc755466788b5a9988eda843, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
