@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Item : MonoBehaviour
 {
     [SerializeField]
@@ -27,7 +28,7 @@ public class Item : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) //this is what triggers it to enter the inventory.
+    void OnCollisionEnter2D(Collision2D collision) //this is what triggers it to enter the inventory.
     {
         if(collision.gameObject.tag == "Player")
         {
