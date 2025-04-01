@@ -76,6 +76,10 @@ public class EnemyScript : MonoBehaviour
 
     void Update()
     {
+        if(isDoubleEnemy)
+        {
+            DoubleEnemyUpdate();
+        }
         if (player == null || playerTransform == null || currentRoom == null)
         {
             return;
@@ -158,7 +162,17 @@ public class EnemyScript : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, Time.deltaTime * speed);
         }
     }
-
+    void DoubleEnemyUpdate()
+    {
+        if (Time.time - lastMeleeAttack >= meleeCooldown)
+        {
+            if (canAttack)
+            {
+                PerformMeleeAttack();
+            }
+            lastMeleeAttack = Time.time;
+        }
+    }
     void StartShootingSequence()
     {
         canMove = false;
@@ -174,29 +188,28 @@ public class EnemyScript : MonoBehaviour
             }
             lastMeleeAttack = Time.time;
         }
-        if(isDoubleEnemy && Time.time-lastMeleeAttack >= meleeCooldown)
+        if(isDoubleEnemy)
         {
-            if(canAttack)
-            {
-                DaggerAttack();
-            }
+            DaggerAttack();
         }
-
+        
     }
 
     void DaggerAttack()
     {
+        canAttack = true;
         int switchAttack = Random.Range(0,2);
         {
+            Debug.Log(switchAttack);
             if(switchAttack == 0)
             {
                 //melee
-                PerformMeleeAttack();
+                animator.SetTrigger("stab");
             }
             else if(switchAttack == 1)
             {
                 //ranged
-                Shoot();
+                animator.SetTrigger("throw");
             }
         }
     }
@@ -253,10 +266,6 @@ public class EnemyScript : MonoBehaviour
         {
             canAttack = true;
         }
-        else if(isDoubleEnemy)
-        {
-
-        }
         else
         {
             Shoot();
@@ -267,6 +276,7 @@ public class EnemyScript : MonoBehaviour
     {
         nextFireTime = Time.time;
         shooting = false;
+        canAttack = false;
     }
 
     void Shoot()
@@ -323,5 +333,10 @@ public class EnemyScript : MonoBehaviour
     {
         isShootingAnimation = false;
         canMove = true;
+    }
+
+    public void DaggerStabBool()
+    {
+        //canAttack = true;
     }
 }

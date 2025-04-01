@@ -27,4 +27,8 @@ public class ShootAnim : MonoBehaviour
     {
         enemyScript.Lunge();
     }
+    public void CallDaggerStab()
+    {
+        enemyScript.DaggerStabBool();
+    }
 }
