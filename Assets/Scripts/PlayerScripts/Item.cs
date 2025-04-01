@@ -30,7 +30,7 @@ public class Item : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision) //this is what triggers it to enter the inventory.
     {
-        if(collision.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.F))
+        if(collision.gameObject.tag == "Player")
         {
             inventoryManager.AddItem(itemName,sprite,itemDescription);
             Destroy(gameObject);
