@@ -1757,6 +1757,7 @@ MonoBehaviour:
   rayLength: 8
   numberOfRays: 36
   coneAngle: 120
+  lastAngle: 0
   hitObject: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
