@@ -10087,6 +10087,7 @@ MonoBehaviour:
   rayLength: 8
   numberOfRays: 36
   coneAngle: 120
+  lastAngle: 0
   hitObject: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
@@ -10176,11 +10177,12 @@ MonoBehaviour:
   moveable: 0
   rb: {fileID: 1460985439}
   animator: {fileID: 2014534468}
-  trail: {fileID: 1032349614}
+  player: {fileID: 0}
   wallLayer:
     serializedVersion: 2
     m_Bits: 0
   moveDirection: {x: 0, y: 0}
+  fireFX: {fileID: 0}
 --- !u!1 &1539399375
 GameObject:
   m_ObjectHideFlags: 0
@@ -10513,7 +10515,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1770060646
 SpriteRenderer:
   m_ObjectHideFlags: 0
