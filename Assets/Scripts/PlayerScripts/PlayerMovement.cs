@@ -194,6 +194,21 @@ public IEnumerator DashCoroutine(float dashSpeed)
     //trail.GetComponent<ParticleSystem>().enableEmission = false;
     vulnerable = true;
 }
+
+    public void stupidDumbassFunction()
+    {
+        StartCoroutine(guitarAnimRoutine());
+    }
+
+    public IEnumerator guitarAnimRoutine()
+    {
+        Debug.Log("Starting guitar animation");
+        animator.SetBool("guitar", true);
+        yield return new WaitForSeconds(3f);
+        Debug.Log("Ending guitar animation");
+        animator.SetBool("guitar", false);
+    }
+
     private IEnumerator DisableColliderAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay); // Wait for the specified delay
