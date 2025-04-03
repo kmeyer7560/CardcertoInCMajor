@@ -10591,12 +10591,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grid: {fileID: 616959167}
   spawnerData:
-  - name: Shrubs
-    spawnerData: {fileID: 11400000, guid: 4738b18b3968994448dcd4f57c6b05ee, type: 2}
-  - name: Stumps
-    spawnerData: {fileID: 11400000, guid: 57b07565b7a08f84680e91ca6dbd57d6, type: 2}
-  - name: Crates
-    spawnerData: {fileID: 11400000, guid: 8460ff0c4cd58674eb09c395839b3341, type: 2}
+  - name: Chests
+    spawnerData: {fileID: 11400000, guid: ff945001331a84f66a57e06090ba26d5, type: 2}
+  - name: Flowers
+    spawnerData: {fileID: 11400000, guid: 5f06d8296a27846e5844baa89cf37681, type: 2}
 --- !u!1 &1661544929
 GameObject:
   m_ObjectHideFlags: 0

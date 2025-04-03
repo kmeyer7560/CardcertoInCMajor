@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/DungeonScenes/ForestBasic.unity
     guid: 048351cb092ab4f49b44193b5bfd62cc
   - enabled: 1
+    path: Assets/Scenes/DungeonScenes/ForestChest.unity
+    guid: 63b350b9c740845bf879c070ef3031ca
+  - enabled: 1
     path: Assets/Scenes/DungeonScenes/ForestEnd.unity
     guid: 83e00f7650e2d1542b0eee3fd2e9d1a1
   m_configObjects: {}

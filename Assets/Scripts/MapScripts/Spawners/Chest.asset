@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d498bf7a333bf643bfd79cbde116abb, type: 3}
-  m_Name: Flowers
+  m_Name: Chest
   m_EditorClassIdentifier: 
-  itemToSpawn: {fileID: 284554842493823356, guid: c9989a2bce4df4e1db50dee11bcb2835, type: 3}
-  minSpawn: 5
-  maxSpawn: 8
+  itemToSpawn: {fileID: 7519551053038593844, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}
+  minSpawn: 1
+  maxSpawn: 1
