@@ -6212,6 +6212,7 @@ MonoBehaviour:
   burstShotNum: 3
   eneimes: []
   deflectBullets: 0
+  type: 1
 --- !u!212 &460107317
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7216,6 +7217,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 1
 --- !u!212 &630483278
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7660,6 +7662,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 0
 --- !u!212 &743829601
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13975,6 +13978,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 0
 --- !u!212 &994529227
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14489,6 +14493,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 0
 --- !u!212 &1025484765
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15168,6 +15173,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 0
 --- !u!212 &1132237688
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15645,6 +15651,10 @@ PrefabInstance:
     - target: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
       propertyPath: tr
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
       propertyPath: player
@@ -16385,6 +16395,10 @@ PrefabInstance:
     - target: {fileID: 1646419894224884969, guid: df06f0f875a5d444da568562afed1a7c, type: 3}
       propertyPath: m_Name
       value: ViolinDeflect
+      objectReference: {fileID: 0}
+    - target: {fileID: 3544536931212648879, guid: df06f0f875a5d444da568562afed1a7c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.32
       objectReference: {fileID: 0}
     - target: {fileID: 7410519418851852582, guid: df06f0f875a5d444da568562afed1a7c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17212,6 +17226,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 1
 --- !u!212 &1530980510
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18054,6 +18069,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 0
 --- !u!212 &1738502044
 SpriteRenderer:
   m_ObjectHideFlags: 0

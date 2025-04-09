@@ -781,6 +781,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 0
 --- !u!212 &460107317
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1338,6 +1339,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 0
 --- !u!212 &630483278
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1795,8 +1797,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.01369907, y: -0.06928074}
-  m_Size: {x: 0.42917338, y: 0.69633174}
+  m_Offset: {x: -0.05762425, y: 0.3553294}
+  m_Size: {x: 0.341323, y: 0.73863}
   m_Direction: 0
 --- !u!50 &926645707
 Rigidbody2D:
@@ -2044,6 +2046,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 0
 --- !u!212 &994529227
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2159,6 +2162,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 0
 --- !u!212 &1025484765
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2515,6 +2519,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 0
 --- !u!212 &1132237688
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3179,6 +3184,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 0
 --- !u!212 &1530980510
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3548,6 +3554,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 0
 --- !u!212 &1738502044
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -27,12 +27,15 @@ public class Card : MonoBehaviour
     public int burstShotNum;
     public List<GameObject> eneimes;
     public int deflectBullets;
+    private Animator anim;
+    public int type; //0 = universals, 1 = guitar, 2 = violin, 3 = drum
 
 
     private void Start()
     {
         hm = FindObjectOfType<HandManager>();
         cardType = this.tag;
+        anim = player.GetComponent<PlayerMovement>().animator;
     }
 
     public void playCard()
@@ -41,6 +44,11 @@ public class Card : MonoBehaviour
         {
             if (staminaBar.GetComponent<StaminaManager>().stamina >= staminaCost)
             {
+                if (type == 1)
+                {
+                    anim.SetTrigger("guitarAttack");
+                    player.GetComponent<PlayerMovement>().stupidDumbassFunction();
+                }
                 staminaBar.GetComponent<StaminaManager>().useCard((int) staminaCost);
                 hasBeenPlayed = true;
                 hm.availableCardSlots[handIndex] = true;
@@ -109,15 +117,13 @@ public class Card : MonoBehaviour
                 {
                     dDash();
                 }
-
-
                 hm.shuffle();
                 hasBeenPlayed = false;
                 if (cardType != "burstCard" && cardType != "deflectCard" && cardType != "drumBamCard") //need this for every card that uses a coroutine f you unity
                 {
                     gameObject.SetActive(false);
                 }
-
+    
             }
         }
     }
