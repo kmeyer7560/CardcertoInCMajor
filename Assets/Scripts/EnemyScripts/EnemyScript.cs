@@ -78,7 +78,7 @@ public class EnemyScript : MonoBehaviour
     {
         if(animator != null)
         {
-            Debug.Log("no anim");
+            //Debug.Log("no anim");
         }
         if(isDoubleEnemy)
         {

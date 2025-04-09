@@ -29,12 +29,8 @@ public class ChestInteraction : MonoBehaviour
     }
 
     private void Update()
-    {
-        playerInRange = Vector3.Distance(transform.position, player.transform.position) <= interactionRange; 
-        if(playerInRange = false)
-        {
-            Debug.Log("eep");
-        }
+    {   
+        playerInRange = Vector2.Distance(transform.position, player.transform.position) <= interactionRange; 
         if (playerInRange && Input.GetKeyDown(interactionKey) && notSpinning)
         {
             StartCoroutine(Spinning(7f));

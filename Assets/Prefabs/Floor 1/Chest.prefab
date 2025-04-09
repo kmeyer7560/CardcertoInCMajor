@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89207147ccbece942b5977f9dcdd9104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionRange: 10.4
+  interactionRange: 2
   interactionKey: 32
   rouletteManager: {fileID: 0}
   guitarCardPrefabs:
