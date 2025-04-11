@@ -20,6 +20,7 @@ public class Card : MonoBehaviour
     public GameObject bam1;
     public GameObject bam2;
     public GameObject bam3;
+    public GameObject windWall;
     public float staminaCost;
     public string cardType;
     public float dashStrength;
@@ -117,6 +118,11 @@ public class Card : MonoBehaviour
                 {
                     dDash();
                 }
+
+                else if (cardType == "fDefenseCard")
+                {
+                    
+                }
                 hm.shuffle();
                 hasBeenPlayed = false;
                 if (cardType != "burstCard" && cardType != "deflectCard" && cardType != "drumBamCard") //need this for every card that uses a coroutine f you unity
@@ -149,11 +155,7 @@ public class Card : MonoBehaviour
         }
         gameObject.SetActive(false);
     }
-    IEnumerator wait(double wait)
-    {
-        yield return new WaitForSeconds((float) wait);
-    }
-
+    
     IEnumerator OnDeflectComplete(int deflectedValue)
 {
     Debug.Log("Deflected Number: " + deflectedValue);
