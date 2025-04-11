@@ -229,6 +229,7 @@ public class RouletteManager : MonoBehaviour
     public void StartSpin()
     {
         stopper.SetActive(true);
+        stopper.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane-3f));
         foreach (Transform child in rewardContainer)
         {
             if (child != null)
@@ -241,7 +242,7 @@ public class RouletteManager : MonoBehaviour
         InstantiateRewards(rewards);
 
         float verticalOffset = 0f;
-        rewardContainer.position = playerTransform.position + new Vector3(0, verticalOffset, 0);
+        rewardContainer.position = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane));
         
         rewardContainer.localPosition += new Vector3(0, 0, 1);
 

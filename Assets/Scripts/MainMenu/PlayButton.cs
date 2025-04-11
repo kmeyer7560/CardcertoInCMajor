@@ -29,13 +29,13 @@ public class PlayButton : MonoBehaviour
     public void SettingsCameraPosition()
     {
         Debug.Log("move settings");
-        StartCoroutine(MoveTransition(new Vector2(0f, -300f)));
+        StartCoroutine(MoveTransition(new Vector2(0f, -351f)));
     }
 
     public void MainCameraPosition()
     {
         Debug.Log("move main");
-        StartCoroutine(MoveTransition(new Vector2(0f, 0f)));
+        StartCoroutine(MoveTransition(new Vector2(0f, 351f)));
     }
 
     IEnumerator MoveTransition(Vector2 targetPosition)
