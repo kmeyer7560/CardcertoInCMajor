@@ -9819,8 +9819,8 @@ MonoBehaviour:
   animator: {fileID: 7213943082640874932}
   rb: {fileID: 3410477575903246725}
   spriteRenderer: {fileID: 4993502847653888366}
-  bulletsPerShot: 5
-  spread: 30
+  bulletsPerShot: 1
+  spread: 0
   pathUpdateRate: 0.2
   playerTransform: {fileID: 0}
   isMeleeEnemy: 0

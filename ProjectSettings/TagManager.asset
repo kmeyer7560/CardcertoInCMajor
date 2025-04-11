@@ -96,3 +96,6 @@ TagManager:
   - name: Canvas
     uniqueID: 974065331
     locked: 0
+  - name: ChestScroll
+    uniqueID: 3012013565
+    locked: 0

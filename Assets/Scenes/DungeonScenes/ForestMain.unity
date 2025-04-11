@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Intensity: 1.44
   m_LightVolumeIntensity: 0
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000005fbc2d2ab30e0f3a3343354d095751a1a7ac05cd7d71dec8
+  m_ApplyToSortingLayers: 000000005fbc2d2ab30e0f3a3343354d095751a1a7ac05cd7d71dec8fdad87b3
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 100
@@ -781,6 +781,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 0
 --- !u!212 &460107317
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1023,6 +1024,123 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &607654670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 607654672}
+  - component: {fileID: 607654671}
+  m_Layer: 0
+  m_Name: RouletteManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &607654671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607654670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63933cd7304c22743a4890f6dd2d9c96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RewardPrefabs:
+  - Value: Ace
+    Suit: Clubs
+    Weight: 10
+    Prefab: {fileID: 286709107986089897, guid: 61caf7bfa0f977d42a62875e8af9cf70, type: 3}
+  - Value: Ace
+    Suit: Diamonds
+    Weight: 10
+    Prefab: {fileID: 286709107986089897, guid: e41e4c9a3334c4e42929f2fe8fdf37fa, type: 3}
+  - Value: Ace
+    Suit: Hearts
+    Weight: 10
+    Prefab: {fileID: 286709107986089897, guid: c0b2b5b8b1f96cf4792186a9391db996, type: 3}
+  - Value: Ace
+    Suit: Spades
+    Weight: 10
+    Prefab: {fileID: 286709107986089897, guid: 671a29f19bd83fe4792fe0804a14e46b, type: 3}
+  - Value: 8
+    Suit: Clubs
+    Weight: 20
+    Prefab: {fileID: 286709107986089897, guid: cfe0970bb8262f841b4481e0dda4cb67, type: 3}
+  - Value: 8
+    Suit: Diamonds
+    Weight: 20
+    Prefab: {fileID: 286709107986089897, guid: 56e23ec8cdfa2264197833841130fb8b, type: 3}
+  - Value: 8
+    Suit: Hearts
+    Weight: 20
+    Prefab: {fileID: 286709107986089897, guid: f9b84d5ecd1cea146ad19a4ea4d61fdb, type: 3}
+  - Value: 8
+    Suit: Spades
+    Weight: 20
+    Prefab: {fileID: 286709107986089897, guid: d1fcb629a4fb38241b289ad2af76aee0, type: 3}
+  - Value: 4
+    Suit: Clubs
+    Weight: 30
+    Prefab: {fileID: 286709107986089897, guid: 3efcbc838615c004ca6eae791c49af90, type: 3}
+  - Value: 4
+    Suit: Diamonds
+    Weight: 30
+    Prefab: {fileID: 286709107986089897, guid: d329ac1bc2070b74e81dba9785542cf2, type: 3}
+  - Value: 4
+    Suit: Hearts
+    Weight: 30
+    Prefab: {fileID: 286709107986089897, guid: b84491328cf18e640a326738122ad4c2, type: 3}
+  - Value: 4
+    Suit: Spades
+    Weight: 30
+    Prefab: {fileID: 286709107986089897, guid: 1bc2cb789cd88b04d8222c794b885a3b, type: 3}
+  - Value: 2
+    Suit: Clubs
+    Weight: 40
+    Prefab: {fileID: 286709107986089897, guid: a2f57bf6f8814d247a7cd991c724b70c, type: 3}
+  - Value: 2
+    Suit: Diamonds
+    Weight: 40
+    Prefab: {fileID: 286709107986089897, guid: c862d15e564fc1f488aad1cbbed944ce, type: 3}
+  - Value: 2
+    Suit: Hearts
+    Weight: 40
+    Prefab: {fileID: 286709107986089897, guid: 4a24df3ff06a20849892414284d27fd0, type: 3}
+  - Value: 2
+    Suit: Spades
+    Weight: 40
+    Prefab: {fileID: 286709107986089897, guid: 202d6099701979a4cb10cb7edb43d12f, type: 3}
+  rewardContainer: {fileID: 1335385499}
+  playerTransform: {fileID: 2015453718}
+  chestInteraction: {fileID: 0}
+  stopper: {fileID: 646750500}
+--- !u!224 &607654672
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607654670}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.057047337}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -2.7291896, y: 2.7701952}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &611328227
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,6 +1456,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 0
 --- !u!212 &630483278
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1390,6 +1509,90 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &646750500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 646750502}
+  - component: {fileID: 646750501}
+  m_Layer: 6
+  m_Name: RoulleteStopper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &646750501
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646750500}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -1282953731
+  m_SortingLayer: 12
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &646750502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646750500}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.051000003, y: -1.43, z: 0}
+  m_LocalScale: {x: 0.15937999, y: 0.65468997, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 926645709}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &703264778 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
@@ -1795,8 +1998,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.01369907, y: -0.06928074}
-  m_Size: {x: 0.42917338, y: 0.69633174}
+  m_Offset: {x: -0.05762425, y: 0.3553294}
+  m_Size: {x: 0.341323, y: 0.73863}
   m_Direction: 0
 --- !u!50 &926645707
 Rigidbody2D:
@@ -1869,6 +2072,7 @@ Transform:
   - {fileID: 2015453718}
   - {fileID: 1130780268}
   - {fileID: 1829969059}
+  - {fileID: 646750502}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &942962972
@@ -2044,6 +2248,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 0
 --- !u!212 &994529227
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2159,6 +2364,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 0
 --- !u!212 &1025484765
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2515,6 +2721,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 0
 --- !u!212 &1132237688
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2760,7 +2967,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10.641026
+  orthographic size: 8.009615
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2790,6 +2997,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1417324098}
+  - {fileID: 1335385499}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1185270027
@@ -2958,6 +3166,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1335385498
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1335385499}
+  m_Layer: 6
+  m_Name: RewardContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1335385499
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335385498}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.15, y: -0.55, z: 30}
+  m_LocalScale: {x: 10, y: 10, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1185270026}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1417324097
 GameObject:
   m_ObjectHideFlags: 0
@@ -3179,6 +3418,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 0
 --- !u!212 &1530980510
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3548,6 +3788,7 @@ MonoBehaviour:
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 0
 --- !u!212 &1738502044
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4175,7 +4416,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 0000000057ac12465fbc2d2a3343354d7d71dec8a7ac05cd8d075c52cb8718a5719e494a095751a19912eb49b30e0f3a
+  m_ApplyToSortingLayers: 0000000057ac12465fbc2d2a3343354d7d71dec8a7ac05cd8d075c52cb8718a5719e494a095751a19912eb49b30e0f3afdad87b3
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -4415,3 +4656,4 @@ SceneRoots:
   - {fileID: 517648234}
   - {fileID: 926645709}
   - {fileID: 2031533266}
+  - {fileID: 607654672}
