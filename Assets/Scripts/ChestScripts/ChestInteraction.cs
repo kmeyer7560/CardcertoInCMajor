@@ -33,6 +33,7 @@ public class ChestInteraction : MonoBehaviour
         playerInRange = Vector2.Distance(transform.position, player.transform.position) <= interactionRange; 
         if (playerInRange && Input.GetKeyDown(interactionKey) && notSpinning)
         {
+            rouletteManager.GetChestInteraction(this.gameObject);
             StartCoroutine(Spinning(7f));
             rouletteManager.StartSpin();
             Debug.Log("Spin started");

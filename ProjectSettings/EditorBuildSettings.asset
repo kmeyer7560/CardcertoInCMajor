@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/DungeonScenes/ForestEmpty.unity
     guid: f33a264c4385ab241946223fb6590061
   - enabled: 1
-    path: Assets/Scenes/DungeonScenes/ForestBasic.unity
+    path: Assets/Animation/ForestBasic.unity
     guid: 048351cb092ab4f49b44193b5bfd62cc
   - enabled: 1
     path: Assets/Scenes/DungeonScenes/ForestChest.unity

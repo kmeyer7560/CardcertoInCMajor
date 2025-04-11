@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 public class RouletteManager : MonoBehaviour
 {
@@ -25,9 +26,11 @@ public class RouletteManager : MonoBehaviour
     private const float cardScale = 0.18f;
 
     public ChestInteraction chestInteraction;
+    public GameObject stopper;
     
     void Start()
     {
+        stopper.SetActive(false);
         GameObject chest = GameObject.FindGameObjectWithTag("Chest");
         chestInteraction = chest.GetComponent<ChestInteraction>();
 
@@ -100,6 +103,11 @@ public class RouletteManager : MonoBehaviour
         }
     }
 
+    public void GetChestInteraction(GameObject chest)
+    {
+        chestInteraction = chest.GetComponent<ChestInteraction>();
+    }
+
     private IEnumerator SpinRewards()
     {
         float duration = 5f;
@@ -163,6 +171,7 @@ public class RouletteManager : MonoBehaviour
 
     private IEnumerator MakeCardsDisappear()
     {
+        stopper.SetActive(false);
         float fadeDuration = 0.1f;
 
         Renderer[] cardRenderers = rewardContainer.GetComponentsInChildren<Renderer>();
@@ -219,6 +228,7 @@ public class RouletteManager : MonoBehaviour
 
     public void StartSpin()
     {
+        stopper.SetActive(true);
         foreach (Transform child in rewardContainer)
         {
             if (child != null)
