@@ -257,12 +257,19 @@ MonoBehaviour:
   shootingPoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
+  bam1: {fileID: 0}
+  bam2: {fileID: 0}
+  bam3: {fileID: 0}
+  windWall: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 0
   defense: 0
   burstShotNum: 0
   eneimes: []
+  deflectBullets: 0
+  type: 0
 --- !u!1 &229743473
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,12 +374,19 @@ MonoBehaviour:
   shootingPoint: {fileID: 13560221}
   bulletPrefab: {fileID: 5551599301993821772, guid: 195aa06c101e74b22b853b9241b04271, type: 3}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
+  bam1: {fileID: 0}
+  bam2: {fileID: 0}
+  bam3: {fileID: 0}
+  windWall: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 0
   defense: 0
   burstShotNum: 0
   eneimes: []
+  deflectBullets: 0
+  type: 0
 --- !u!1 &243135495
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,12 +608,19 @@ MonoBehaviour:
   shootingPoint: {fileID: 13560221}
   bulletPrefab: {fileID: 0}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
+  bam1: {fileID: 0}
+  bam2: {fileID: 0}
+  bam3: {fileID: 0}
+  windWall: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 50
   defense: 0
   burstShotNum: 0
   eneimes: []
+  deflectBullets: 0
+  type: 0
 --- !u!1 &827743468
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,6 +732,7 @@ MonoBehaviour:
   rayLength: 8
   numberOfRays: 18
   coneAngle: 120
+  lastAngle: 0
   hitObject: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
@@ -800,8 +822,12 @@ MonoBehaviour:
   moveable: 0
   rb: {fileID: 830170163}
   animator: {fileID: 1310314056}
-  trail: {fileID: 0}
+  player: {fileID: 0}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
   moveDirection: {x: 0, y: 0}
+  fireFX: {fileID: 0}
 --- !u!1001 &857207688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1013,7 +1039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fd93798d82ff4764a405615b1eef960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  staminaBar: {fileID: 1419314146}
+  staminaNum: {fileID: 0}
   stamina: 100
   maxStamina: 100
   ChargeRate: 10
@@ -1121,12 +1147,19 @@ MonoBehaviour:
   shootingPoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
+  bam1: {fileID: 0}
+  bam2: {fileID: 0}
+  bam3: {fileID: 0}
+  windWall: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 0
   defense: 0
   burstShotNum: 0
   eneimes: []
+  deflectBullets: 0
+  type: 0
 --- !u!1 &1006323507
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,12 +1585,19 @@ MonoBehaviour:
   shootingPoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
+  bam1: {fileID: 0}
+  bam2: {fileID: 0}
+  bam3: {fileID: 0}
+  windWall: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 0
   defense: 0
   burstShotNum: 0
   eneimes: []
+  deflectBullets: 0
+  type: 0
 --- !u!1 &1257636011
 GameObject:
   m_ObjectHideFlags: 0
@@ -1976,12 +2016,19 @@ MonoBehaviour:
   shootingPoint: {fileID: 13560221}
   bulletPrefab: {fileID: 0}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
+  bam1: {fileID: 0}
+  bam2: {fileID: 0}
+  bam3: {fileID: 0}
+  windWall: {fileID: 0}
   staminaCost: 15
   cardType: 
   dashStrength: 0
   defense: 0
   burstShotNum: 0
   eneimes: []
+  deflectBullets: 0
+  type: 0
 --- !u!1 &1382489392
 GameObject:
   m_ObjectHideFlags: 0
@@ -2086,12 +2133,19 @@ MonoBehaviour:
   shootingPoint: {fileID: 13560221}
   bulletPrefab: {fileID: 5551599301993821772, guid: a3765c5eeadc24b18b616db0ff548ed1, type: 3}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
+  bam1: {fileID: 0}
+  bam2: {fileID: 0}
+  bam3: {fileID: 0}
+  windWall: {fileID: 0}
   staminaCost: 30
   cardType: 
   dashStrength: 0
   defense: 0
   burstShotNum: 0
   eneimes: []
+  deflectBullets: 0
+  type: 0
 --- !u!1 &1419314144
 GameObject:
   m_ObjectHideFlags: 0
@@ -2607,6 +2661,7 @@ MonoBehaviour:
   rewardContainer: {fileID: 1691967949}
   playerTransform: {fileID: 1310314055}
   chestInteraction: {fileID: 2065633952}
+  stopper: {fileID: 0}
 --- !u!224 &1661210279
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2836,12 +2891,19 @@ MonoBehaviour:
   shootingPoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
   healthBar: {fileID: 0}
+  slash: {fileID: 0}
+  bam1: {fileID: 0}
+  bam2: {fileID: 0}
+  bam3: {fileID: 0}
+  windWall: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 0
   defense: 0
   burstShotNum: 0
   eneimes: []
+  deflectBullets: 0
+  type: 0
 --- !u!114 &2065633952 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4660126434956474823, guid: 50d4f77b945cc4c48980af8d7b30b487, type: 3}

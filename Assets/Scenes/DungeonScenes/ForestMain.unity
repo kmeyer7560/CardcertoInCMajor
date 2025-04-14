@@ -774,6 +774,7 @@ MonoBehaviour:
   bam1: {fileID: 0}
   bam2: {fileID: 0}
   bam3: {fileID: 0}
+  windWall: {fileID: 0}
   staminaCost: 15
   cardType: 
   dashStrength: 0
@@ -1133,7 +1134,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: -0.057047337}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 646750502}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1449,6 +1451,7 @@ MonoBehaviour:
   bam1: {fileID: 0}
   bam2: {fileID: 0}
   bam3: {fileID: 0}
+  windWall: {fileID: 0}
   staminaCost: 25
   cardType: 
   dashStrength: 0
@@ -1519,6 +1522,7 @@ GameObject:
   m_Component:
   - component: {fileID: 646750502}
   - component: {fileID: 646750501}
+  - component: {fileID: 646750503}
   m_Layer: 6
   m_Name: RoulleteStopper
   m_TagString: Untagged
@@ -1587,12 +1591,57 @@ Transform:
   m_GameObject: {fileID: 646750500}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.051000003, y: -1.43, z: 0}
-  m_LocalScale: {x: 0.15937999, y: 0.65468997, z: 1}
+  m_LocalPosition: {x: -77.27082, y: -15.3, z: 0}
+  m_LocalScale: {x: 0.36678553, y: 1.0761827, z: 2.9223204}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 926645709}
+  m_Father: {fileID: 607654672}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &646750503
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646750500}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!4 &703264778 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 822482029421341663, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
@@ -2072,7 +2121,6 @@ Transform:
   - {fileID: 2015453718}
   - {fileID: 1130780268}
   - {fileID: 1829969059}
-  - {fileID: 646750502}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &942962972
@@ -2241,6 +2289,7 @@ MonoBehaviour:
   bam1: {fileID: 0}
   bam2: {fileID: 0}
   bam3: {fileID: 0}
+  windWall: {fileID: 0}
   staminaCost: 30
   cardType: 
   dashStrength: 0
@@ -2357,6 +2406,7 @@ MonoBehaviour:
   bam1: {fileID: 0}
   bam2: {fileID: 0}
   bam3: {fileID: 0}
+  windWall: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 0
@@ -2714,6 +2764,7 @@ MonoBehaviour:
   bam1: {fileID: 0}
   bam2: {fileID: 0}
   bam3: {fileID: 0}
+  windWall: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 50
@@ -2967,7 +3018,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8.009615
+  orthographic size: 7.8461537
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2992,7 +3043,7 @@ Transform:
   m_GameObject: {fileID: 1185270023}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -30}
+  m_LocalPosition: {x: 0, y: 0, z: -14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3411,6 +3462,7 @@ MonoBehaviour:
   bam1: {fileID: 0}
   bam2: {fileID: 0}
   bam3: {fileID: 0}
+  windWall: {fileID: 0}
   staminaCost: 15
   cardType: 
   dashStrength: 40
@@ -3781,6 +3833,7 @@ MonoBehaviour:
   bam1: {fileID: 0}
   bam2: {fileID: 0}
   bam3: {fileID: 0}
+  windWall: {fileID: 0}
   staminaCost: 15
   cardType: 
   dashStrength: 0
