@@ -39,6 +39,7 @@ public class EnemyScript : MonoBehaviour
     public PlayerHealthBar playerHealthBar;
     public int meleeDamage;
     private bool canAttack = true;
+    private bool cooldown = false;
     private bool playerInRoom;
     private Room currentRoom;
     public GameObject shootFX;
@@ -103,10 +104,10 @@ public class EnemyScript : MonoBehaviour
             {
                 if (distance <= shootRange)
                 {
-                      if(isDoubleEnemy) 
-                      {
-                         StartShootingSequence();
-                      }
+                    if(isDoubleEnemy) 
+                    {
+                        StartShootingSequence();
+                    }
                     else if (!shooting && Time.time >= nextFireTime)  
                     {
                         StartShootingSequence();
@@ -193,9 +194,10 @@ public class EnemyScript : MonoBehaviour
             }
             lastMeleeAttack = Time.time;
         }
-        if(isDoubleEnemy)
+        if(isDoubleEnemy && !cooldown)
         {
             DaggerAttack();
+            StartCoroutine(DaggerCooldown());
         }
         
     }
@@ -204,27 +206,26 @@ public class EnemyScript : MonoBehaviour
     {
         int switchAttack = Random.Range(0,2);
         {
-            Debug.Log(switchAttack);
-            if(switchAttack == 0 && canAttack)
+
+            if(switchAttack == 0)
             {
                 //melee
                 DaggerCharge();
             }
-            else if(switchAttack == 1 && canAttack)
+            else if(switchAttack == 1)
             {
                 //ranged
                 animator.SetTrigger("throw");
             }
-             StartCoroutine(DaggerCooldown());
         }
     }
 
 
     private IEnumerator DaggerCooldown()
     {
-        canAttack = false;
-        yield return new WaitForSeconds(3f);
-        canAttack = true;
+        cooldown = true;
+        yield return new WaitForSeconds(1f);
+        cooldown = false;
 
     }
 
@@ -350,7 +351,7 @@ public class EnemyScript : MonoBehaviour
 
     public void DaggerStab()
     {
-        //PerformMeleeAttack();
+        PerformMeleeAttack();
     }
 
       void DaggerCharge()
@@ -361,19 +362,20 @@ public class EnemyScript : MonoBehaviour
     }
 
     IEnumerator ChargeTowardsPlayer()
+{
+    isCharging = true;
+
+    while (Vector2.Distance(transform.position, playerTransform.position) > 2f && isCharging)
     {
-        isCharging = true;
+        MoveTowardsPlayer();
+        yield return null;
+    }
 
-        while (Vector2.Distance(transform.position, playerTransform.position) > 2f)
-        {
-            MoveTowardsPlayer();
-
-             float distance = Vector2.Distance(transform.position, playerTransform.position);
-             Debug.Log("distance in charge = " + distance);
-            yield return null;
-        }
-
+    if (isCharging)
+    {
         animator.SetTrigger("stab");
         isCharging = false;
     }
+}
+
 }
