@@ -35,6 +35,7 @@ public class RouletteManager : MonoBehaviour
         chestInteraction = chest.GetComponent<ChestInteraction>();
 
     }
+
     private void Awake()
     {
         foreach (var reward in RewardPrefabs)
@@ -147,16 +148,20 @@ public class RouletteManager : MonoBehaviour
         return 1 - Mathf.Pow(1 - t, 3);
     }
 
-    private void DetermineWinningReward()
+     private void DetermineWinningReward()
     {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(playerTransform.position, 0.5f);
+        Collider2D stopperCollider = stopper.GetComponent<Collider2D>();
+
+        Bounds stopperBounds = stopperCollider.bounds;
+        Collider2D[] hitColliders = Physics2D.OverlapAreaAll(stopperBounds.min, stopperBounds.max);
+
         foreach (Collider2D hitCollider in hitColliders)
         {
             if (hitCollider.transform.parent == rewardContainer)
             {
                 GameObject hitObject = hitCollider.gameObject;
                 RewardPrefab winningReward = RewardPrefabs.FirstOrDefault(r => r != null && r.Prefab != null && r.Prefab.name == hitObject.name.Replace("(Clone)", "").Trim());
-                
+
                 if (winningReward != null)
                 {
                     Debug.Log($"You won: {winningReward.Value} of {winningReward.Suit}");
@@ -166,8 +171,9 @@ public class RouletteManager : MonoBehaviour
             }
         }
 
-        Debug.Log("Player is not touching any reward");
+        Debug.Log("No reward touched by the stopper");
     }
+
 
     private IEnumerator MakeCardsDisappear()
     {
@@ -229,6 +235,7 @@ public class RouletteManager : MonoBehaviour
     public void StartSpin()
     {
         stopper.SetActive(true);
+        stopper.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, .42f, Camera.main.nearClipPlane+3f));
         foreach (Transform child in rewardContainer)
         {
             if (child != null)
@@ -241,7 +248,7 @@ public class RouletteManager : MonoBehaviour
         InstantiateRewards(rewards);
 
         float verticalOffset = 0f;
-        rewardContainer.position = playerTransform.position + new Vector3(0, verticalOffset, 0);
+        rewardContainer.position = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane));
         
         rewardContainer.localPosition += new Vector3(0, 0, 1);
 

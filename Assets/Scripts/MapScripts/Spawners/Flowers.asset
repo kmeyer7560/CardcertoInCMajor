@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Flowers
   m_EditorClassIdentifier: 
   itemToSpawn: {fileID: 284554842493823356, guid: c9989a2bce4df4e1db50dee11bcb2835, type: 3}
-  minSpawn: 5
-  maxSpawn: 8
+  minSpawn: 10
+  maxSpawn: 15

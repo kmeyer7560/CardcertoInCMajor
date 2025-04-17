@@ -35,9 +35,11 @@ public class EnemyScript : MonoBehaviour
     public LayerMask enemyLayers;
     private float meleeCooldown = 1f;
     private float lastMeleeAttack;
+    private float lastDoubleAttack;
     public PlayerHealthBar playerHealthBar;
     public int meleeDamage;
-    private bool canAttack;
+    private bool canAttack = true;
+    private bool cooldown = false;
     private bool playerInRoom;
     private Room currentRoom;
     public GameObject shootFX;
@@ -48,6 +50,9 @@ public class EnemyScript : MonoBehaviour
 
     private bool isShootingAnimation = false;
     public bool canLunge;
+
+     private bool isCharging = false;
+     public float chargeRange = 4f;
 
     void Start()
     {
@@ -78,7 +83,6 @@ public class EnemyScript : MonoBehaviour
     {
         if(animator != null)
         {
-            //Debug.Log("no anim");
         }
         if(isDoubleEnemy)
         {
@@ -100,7 +104,11 @@ public class EnemyScript : MonoBehaviour
             {
                 if (distance <= shootRange)
                 {
-                    if (!shooting && Time.time >= nextFireTime)
+                    if(isDoubleEnemy) 
+                    {
+                        StartShootingSequence();
+                    }
+                    else if (!shooting && Time.time >= nextFireTime)  
                     {
                         StartShootingSequence();
                     }
@@ -156,6 +164,7 @@ public class EnemyScript : MonoBehaviour
 
     void MoveTowardsPlayer()
     {
+        animator.SetBool("move", true);
         if (player == null || playerTransform == null || isShootingAnimation)
         {
             return;
@@ -166,17 +175,15 @@ public class EnemyScript : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, Time.deltaTime * speed);
         }
     }
-    void DoubleEnemyUpdate()
+
+   void DoubleEnemyUpdate()
     {
-        if (Time.time - lastMeleeAttack >= meleeCooldown)
+        if(isCharging && isDoubleEnemy)
         {
-            if (canAttack)
-            {
-                PerformMeleeAttack();
-            }
-            lastMeleeAttack = Time.time;
+            animator.SetBool("move", true);
         }
     }
+
     void StartShootingSequence()
     {
         canMove = false;
@@ -192,23 +199,23 @@ public class EnemyScript : MonoBehaviour
             }
             lastMeleeAttack = Time.time;
         }
-        if(isDoubleEnemy)
+        if(isDoubleEnemy && !cooldown && !isCharging)
         {
             DaggerAttack();
+            StartCoroutine(DaggerCooldown());
         }
         
     }
 
-    void DaggerAttack()
+        void DaggerAttack()
     {
-        canAttack = true;
         int switchAttack = Random.Range(0,2);
         {
-            Debug.Log(switchAttack);
+
             if(switchAttack == 0)
             {
                 //melee
-                animator.SetTrigger("stab");
+                DaggerCharge();
             }
             else if(switchAttack == 1)
             {
@@ -216,6 +223,15 @@ public class EnemyScript : MonoBehaviour
                 animator.SetTrigger("throw");
             }
         }
+    }
+
+
+    private IEnumerator DaggerCooldown()
+    {
+        cooldown = true;
+        yield return new WaitForSeconds(.5f);
+        cooldown = false;
+
     }
 
     void PerformMeleeAttack()
@@ -256,7 +272,6 @@ public class EnemyScript : MonoBehaviour
 
     void UpdateSpriteDirection()
     {
-        // Update sprite direction
         if (spriteRenderer != null)
         {
             Vector2 directionToTarget = (player.transform.position - transform.position).normalized;
@@ -339,8 +354,38 @@ public class EnemyScript : MonoBehaviour
         canMove = true;
     }
 
-    public void DaggerStabBool()
+    public void DaggerStab()
     {
-        //canAttack = true;
+        PerformMeleeAttack();
     }
+
+      void DaggerCharge()
+    {
+        if (isCharging) return;
+
+        StartCoroutine(ChargeTowardsPlayer());
+    }
+
+    IEnumerator ChargeTowardsPlayer()
+{
+    isCharging = true;
+    canMove = true;
+    Debug.Log("charging");
+
+    while (Vector2.Distance(transform.position, playerTransform.position) > 2f && isCharging)
+    {
+        Vector2 direction = (playerTransform.position - transform.position).normalized;
+        rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
+        yield return null;
+    }
+
+    if (isCharging)
+    {
+        animator.SetTrigger("stab");
+        isCharging = false;
+        canMove = false;
+    }
+}
+
+
 }
