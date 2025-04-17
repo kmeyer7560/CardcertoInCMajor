@@ -164,6 +164,7 @@ public class EnemyScript : MonoBehaviour
 
     void MoveTowardsPlayer()
     {
+        animator.SetBool("move", true);
         if (player == null || playerTransform == null || isShootingAnimation)
         {
             return;
@@ -177,6 +178,10 @@ public class EnemyScript : MonoBehaviour
 
    void DoubleEnemyUpdate()
     {
+        if(isCharging && isDoubleEnemy)
+        {
+            animator.SetBool("move", true);
+        }
     }
 
     void StartShootingSequence()
@@ -194,7 +199,7 @@ public class EnemyScript : MonoBehaviour
             }
             lastMeleeAttack = Time.time;
         }
-        if(isDoubleEnemy && !cooldown)
+        if(isDoubleEnemy && !cooldown && !isCharging)
         {
             DaggerAttack();
             StartCoroutine(DaggerCooldown());
@@ -224,7 +229,7 @@ public class EnemyScript : MonoBehaviour
     private IEnumerator DaggerCooldown()
     {
         cooldown = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.5f);
         cooldown = false;
 
     }
@@ -364,10 +369,13 @@ public class EnemyScript : MonoBehaviour
     IEnumerator ChargeTowardsPlayer()
 {
     isCharging = true;
+    canMove = true;
+    Debug.Log("charging");
 
     while (Vector2.Distance(transform.position, playerTransform.position) > 2f && isCharging)
     {
-        MoveTowardsPlayer();
+        Vector2 direction = (playerTransform.position - transform.position).normalized;
+        rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
         yield return null;
     }
 
@@ -375,7 +383,9 @@ public class EnemyScript : MonoBehaviour
     {
         animator.SetTrigger("stab");
         isCharging = false;
+        canMove = false;
     }
 }
+
 
 }

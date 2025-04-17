@@ -2090,7 +2090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 2015453719}
-  moveSpeed: 15
+  moveSpeed: 3
   activeSpeed: 0
   dashLength: 0.1
   dashCooldown: 0
@@ -3018,7 +3018,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.8461537
+  orthographic size: 6.923077
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

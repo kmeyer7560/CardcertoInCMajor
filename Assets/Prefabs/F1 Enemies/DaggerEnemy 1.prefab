@@ -9813,7 +9813,7 @@ MonoBehaviour:
   bullet: {fileID: 2123376611950472817, guid: 3ec123f8d4c9946b596a8c24053099f4, type: 3}
   bulletPos: {fileID: 3889315383338291285}
   player: {fileID: 0}
-  speed: 2
+  speed: 4
   shootRange: 6
   walkRange: 12
   animator: {fileID: 7213943082640874932}
@@ -9836,6 +9836,7 @@ MonoBehaviour:
   canMove: 0
   shootRotation: {x: 0, y: 0, z: 0, w: 0}
   canLunge: 1
+  chargeRange: 4
 --- !u!114 &3986939515340477646
 MonoBehaviour:
   m_ObjectHideFlags: 0
