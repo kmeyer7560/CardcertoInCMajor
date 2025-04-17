@@ -9813,9 +9813,9 @@ MonoBehaviour:
   bullet: {fileID: 2123376611950472817, guid: 3ec123f8d4c9946b596a8c24053099f4, type: 3}
   bulletPos: {fileID: 3889315383338291285}
   player: {fileID: 0}
-  speed: 4
+  speed: 8
   shootRange: 6
-  walkRange: 12
+  walkRange: 18
   animator: {fileID: 7213943082640874932}
   rb: {fileID: 3410477575903246725}
   spriteRenderer: {fileID: 4993502847653888366}
@@ -9826,7 +9826,7 @@ MonoBehaviour:
   isMeleeEnemy: 0
   isDoubleEnemy: 1
   attackPoint: {fileID: 4527839605840707158}
-  attackRange: 0.4
+  attackRange: 0.5
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
@@ -10099,7 +10099,7 @@ Transform:
   m_GameObject: {fileID: 9171673824243053945}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.213, y: 0.038, z: 0.029295493}
+  m_LocalPosition: {x: 0.336, y: 0.038, z: 0.029295493}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

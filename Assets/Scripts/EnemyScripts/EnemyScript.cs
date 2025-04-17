@@ -209,15 +209,15 @@ public class EnemyScript : MonoBehaviour
 
         void DaggerAttack()
     {
-        int switchAttack = Random.Range(0,2);
+        int switchAttack = Random.Range(0,3);
         {
 
-            if(switchAttack == 0)
+            if(switchAttack == 0 )
             {
                 //melee
                 DaggerCharge();
             }
-            else if(switchAttack == 1)
+            else if(switchAttack == 1 || switchAttack == 2)
             {
                 //ranged
                 animator.SetTrigger("throw");
@@ -229,24 +229,29 @@ public class EnemyScript : MonoBehaviour
     private IEnumerator DaggerCooldown()
     {
         cooldown = true;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(1f);
         cooldown = false;
 
     }
 
     void PerformMeleeAttack()
     {
+        Debug.Log("Performing Melee Attack");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in hitEnemies)
         {
+            Debug.Log("Hit: " + enemy.name);
             playerHealthBar.TakeDamage(meleeDamage);
         }
         canAttack = false;
     }
 
+
     public void Lunge()
     {
-        rb.velocity = (playerTransform.position - transform.position).normalized * 3;
+        int lungeSpeed = 3;
+        if(isDoubleEnemy){lungeSpeed = 4;}
+        rb.velocity = (playerTransform.position - transform.position).normalized * lungeSpeed;
         StartCoroutine(LungeDuration());
     }
 
@@ -374,8 +379,9 @@ public class EnemyScript : MonoBehaviour
 
     while (Vector2.Distance(transform.position, playerTransform.position) > 2f && isCharging)
     {
+        animator.SetBool("move", true);
         Vector2 direction = (playerTransform.position - transform.position).normalized;
-        rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
+        rb.MovePosition(rb.position + direction * 15 * Time.deltaTime);
         yield return null;
     }
 
