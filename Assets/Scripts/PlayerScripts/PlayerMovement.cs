@@ -117,7 +117,7 @@ private IEnumerator ReinDashCoroutine()
             Vector2 rayOrigin = rb.position + new Vector2(0, i * raySpacing);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, 0.5f, wallLayer);
             Debug.DrawRay(player.position, direction * 0.5f, Color.red);
-            if (hit.collider != null && (hit.collider.CompareTag("Environment") || hit.collider.CompareTag("Enemy")))
+            if (hit.collider != null && (!hit.collider.CompareTag("Player")))
             {
                 if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                 {
