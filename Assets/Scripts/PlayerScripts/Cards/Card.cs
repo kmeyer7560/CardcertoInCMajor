@@ -121,7 +121,9 @@ public class Card : MonoBehaviour
 
                 else if (cardType == "fDefenseCard")
                 {
-                    
+                    windWall.transform.position = new Vector2 (10000, 10000);
+                    windWall.SetActive(true);
+                    windWall.GetComponent<windWall>().activate();
                 }
                 hm.shuffle();
                 hasBeenPlayed = false;
