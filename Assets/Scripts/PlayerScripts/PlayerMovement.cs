@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector2 moveDirection;
     public GameObject fireFX;
+    public GameObject dashHitBox;
     void Start()
     {
         activeSpeed = moveSpeed;
@@ -64,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer.flipX = rb.velocity.x < 0;
     }
 
-    public void dash(float dashSpeed, bool t)
+    public void dash(float dashSpeed, bool t, bool hitbox)
     {
         Debug.Log("dashed");
         Debug.Log(dashSpeed);
@@ -73,6 +74,10 @@ public class PlayerMovement : MonoBehaviour
         {
             //trail.GetComponent<ParticleSystem>().enableEmission = true;
             StartCoroutine(FireDash());
+        }
+        if (hitbox)
+        {
+            dashHitBox.SetActive(true);
         }
     }
     private IEnumerator FireDash()
@@ -192,6 +197,7 @@ public IEnumerator DashCoroutine(float dashSpeed)
     rb.velocity = Vector2.zero;
     dashCoolCounter = dashCooldown;
     //trail.GetComponent<ParticleSystem>().enableEmission = false;
+    dashHitBox.SetActive(false);
     vulnerable = true;
 }
 
