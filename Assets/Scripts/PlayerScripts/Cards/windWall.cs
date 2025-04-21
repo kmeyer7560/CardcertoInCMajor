@@ -6,11 +6,13 @@ using UnityEngine;
 public class windWall : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public GameObject wallPoint;
+    public GameObject fov;
     
 
-    public void activate(float angle, Vector2 pos)
+    public void activate()
     {
-        StartCoroutine(Wall(angle, pos));
+        StartCoroutine(Wall());
     }
     // Start is called before the first frame update
     void Start()
@@ -24,9 +26,12 @@ public class windWall : MonoBehaviour
         
     }
 
-    IEnumerator Wall(float an, Vector2 position)
+    IEnumerator Wall()
     {
-        rb.position = position;
+        Debug.Log("windwall up");
+        rb.position = wallPoint.transform.position;
+        rb.rotation = fov.GetComponent<FOV>().lastAngle;
         yield return new WaitForSeconds(3f);
+        gameObject.SetActive(false);
     }
 }
