@@ -16,7 +16,7 @@ public class Card : MonoBehaviour
     public Transform shootingPoint;
     public GameObject bulletPrefab;
     public GameObject healthBar;
-    public GameObject slash;
+    public GameObject violinSlashFX;
     public GameObject bam1;
     public GameObject bam2;
     public GameObject bam3;
@@ -125,6 +125,10 @@ public class Card : MonoBehaviour
                     windWall.SetActive(true);
                     windWall.GetComponent<windWall>().activate();
                 }
+                else if (cardType == "fDashCard")
+                {
+                    fDash();
+                }
                 hm.shuffle();
                 hasBeenPlayed = false;
                 if (cardType != "burstCard" && cardType != "deflectCard" && cardType != "drumBamCard") //need this for every card that uses a coroutine f you unity
@@ -164,19 +168,19 @@ public class Card : MonoBehaviour
     GameObject closestEnemy = FindClosestEnemy();
     if (closestEnemy != null)
     {   
-        slash.SetActive(true); // Activate the slash GameObject once before the loop
+        violinSlashFX.SetActive(true); // Activate the slash GameObject once before the loop
         for (int i = 0; i < deflectedValue; i++)
         {
-            slash.transform.position = closestEnemy.transform.position; // Move the slash to the enemy's position
-            slash.transform.rotation = Random.rotation;
-            slash.GetComponent<Animator>().Play("Slash"); // Play the slash animation
+            violinSlashFX.transform.position = closestEnemy.transform.position; // Move the slash to the enemy's position
+            violinSlashFX.transform.rotation = Random.rotation;
+            violinSlashFX.GetComponent<Animator>().Play("Slash"); // Play the slash animation
             
             // Wait for the duration of the animation before playing it again
             yield return new WaitForSeconds(0.125f); // Adjust this value based on the length of your animation
             
             closestEnemy.GetComponent<EnemyHealth>().deflectSlash(); // Call the deflect method on the enemy
         }
-        slash.SetActive(false); // Deactivate the slash GameObject after all animations
+        violinSlashFX.SetActive(false); // Deactivate the slash GameObject after all animations
     }
     healthBar.GetComponent<PlayerHealthBar>().deflectedNum = 0;
     gameObject.SetActive(false);
@@ -203,13 +207,18 @@ public class Card : MonoBehaviour
 
     public void dashCard()
     {
-        player.GetComponent<PlayerMovement>().dash(dashStrength, false);
+        player.GetComponent<PlayerMovement>().dash(dashStrength, false, false);
 
     }
 
     public void gDash()
     {
-        player.GetComponent<PlayerMovement>().dash(dashStrength, true);
+        player.GetComponent<PlayerMovement>().dash(dashStrength, true, false);
+    }
+
+    public void fDash()
+    {
+        player.GetComponent<PlayerMovement>().dash(dashStrength, false, true);
     }
     public void dDash()
     {
