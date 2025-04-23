@@ -21,6 +21,7 @@ public class Card : MonoBehaviour
     public GameObject bam2;
     public GameObject bam3;
     public GameObject windWall;
+    public GameObject fSLash;
     public float staminaCost;
     public string cardType;
     public float dashStrength;
@@ -128,6 +129,12 @@ public class Card : MonoBehaviour
                 else if (cardType == "fDashCard")
                 {
                     fDash();
+                }
+                else if (cardType == "fSlashCard")
+                {
+                    fSLash.transform.position = new Vector2 (1000, 1000);
+                    fSLash.SetActive(true);
+                    fSLash.GetComponent<fluteSlash>().activate();
                 }
                 hm.shuffle();
                 hasBeenPlayed = false;

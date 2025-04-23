@@ -26,6 +26,9 @@ TagManager:
   - drumBamCard
   - reinDashCard
   - defenseCard
+  - fDefenseCard
+  - fDashCard
+  - fSlashCard
   layers:
   - Default
   - TransparentFX
