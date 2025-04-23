@@ -72,7 +72,7 @@ public class PlayerHealthBar : MonoBehaviour
 
     IEnumerator defenseReset()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         defense = 0;
         guitubble.SetActive(false);
         drubble.SetActive(false);
