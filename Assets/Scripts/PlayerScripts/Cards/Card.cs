@@ -136,6 +136,10 @@ public class Card : MonoBehaviour
                     fSLash.SetActive(true);
                     fSLash.GetComponent<fluteSlash>().activate();
                 }
+                else if (cardType == "getOverHereCard")
+                {
+                    
+                }
                 hm.shuffle();
                 hasBeenPlayed = false;
                 if (cardType != "burstCard" && cardType != "deflectCard" && cardType != "drumBamCard") //need this for every card that uses a coroutine f you unity

@@ -8,6 +8,7 @@ public class fluteSlash : MonoBehaviour
     public Rigidbody2D rb;
     public GameObject wallPoint;
     public GameObject fov;
+    public Animator anim;
     
 
     public void activate()
@@ -23,15 +24,14 @@ public class fluteSlash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        rb.position = wallPoint.transform.position;
     }
 
     IEnumerator Slash()
     {
         
-        rb.position = wallPoint.transform.position;
         rb.rotation = fov.GetComponent<FOV>().lastAngle;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.4f);
         gameObject.SetActive(false);
     }
     void OnTriggerEnter2D(Collider2D other)
