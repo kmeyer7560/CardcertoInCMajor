@@ -29,6 +29,8 @@ TagManager:
   - fDefenseCard
   - fDashCard
   - fSlashCard
+  - getOverHereCard
+  - grapplePoint
   layers:
   - Default
   - TransparentFX

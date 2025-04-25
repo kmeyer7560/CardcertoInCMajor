@@ -13,7 +13,8 @@ public class Room : MonoBehaviour
     private bool updatedDoors = false;
     private bool isPlayerInRoom = false;
     private bool doorsRemoved = false;
-
+    public static RoomController instance;
+    private Room currentRoom;
     public Door leftDoor;
     public Door rightDoor;
     public Door topDoor;
@@ -67,7 +68,7 @@ public class Room : MonoBehaviour
             updatedDoors = true;
         }
     }
-
+   
     public void RemoveUnconnectedDoors()
     {
         foreach (Door door in doors)
