@@ -81,6 +81,9 @@ TagManager:
   - name: Player
     uniqueID: 3439701159
     locked: 0
+  - name: Shields
+    uniqueID: 3988980605
+    locked: 0
   - name: Walls
     uniqueID: 1381762957
     locked: 0

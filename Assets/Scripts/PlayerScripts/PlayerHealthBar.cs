@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,11 +15,12 @@ public class PlayerHealthBar : MonoBehaviour
     public float defense;
     private bool deflectActive;
     public int deflectedNum;
+    public GameObject player;
 
     void Start()
     {
-        guitubble.SetActive(false);
         vioubble.SetActive(false);
+        player = GameObject.FindGameObjectWithTag("Player");
     }
     
     public void SetSlider(float amount)
@@ -53,7 +55,8 @@ public class PlayerHealthBar : MonoBehaviour
     {
         if (i == 1)
         {
-            guitubble.SetActive(true);
+            GameObject instantiateGuitubble = Instantiate(guitubble, new Vector3(player.transform.position.x-.3f, player.transform.position.y, player.transform.position.z), transform.rotation);
+            instantiateGuitubble.transform.SetParent(player.transform);
         }
         else if (i == 2)
         {
@@ -74,7 +77,6 @@ public class PlayerHealthBar : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         defense = 0;
-        guitubble.SetActive(false);
         drubble.SetActive(false);
     }
 
