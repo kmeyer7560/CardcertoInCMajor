@@ -31,6 +31,7 @@ public class EnemyScript : MonoBehaviour
     public bool isMeleeEnemy;
     public bool isDoubleEnemy;
     public Transform attackPoint;
+    public GameObject grapplePoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
     private float meleeCooldown = 1f;
@@ -67,7 +68,7 @@ public class EnemyScript : MonoBehaviour
         {
             attackPoint = null;
         }
-
+        grapplePoint = GameObject.FindGameObjectWithTag("grapplePoint");
         player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
@@ -152,6 +153,37 @@ public class EnemyScript : MonoBehaviour
             lastPathUpdateTime = Time.time;
         }
     }
+    public void getHooked()
+    {
+        Debug.Log("hook started");
+        Vector2 target = grapplePoint.transform.position;
+        this.GetComponent<EnemyHealth>().takeDamage(25);
+        canMove = false; // Disable movement
+        canAttack = false; // Disable attack
+        StartCoroutine(hookRoutine(target));
+    }
+
+    IEnumerator hookRoutine(Vector2 target)
+    {
+        float duration = 0.3f; // Duration of the pull
+        float elapsedTime = 0f;
+
+        Vector2 startingPosition = transform.position;
+
+        while (elapsedTime < duration)
+        {
+            transform.position = Vector2.Lerp(startingPosition, target, (elapsedTime / duration));
+            elapsedTime += Time.deltaTime;
+            yield return null; // Wait for the next frame
+        }
+
+        // Ensure the enemy is exactly at the target position after the loop
+        transform.position = target;
+
+        canAttack = true; // Re-enable attack
+        canMove = true; // Re-enable movement
+    }
+
 
     void OnDrawGizmosSelected()
     {

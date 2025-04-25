@@ -138,6 +138,7 @@ public class Card : MonoBehaviour
                 }
                 else if (cardType == "getOverHereCard")
                 {
+                    FindClosestEnemy().GetComponent<EnemyScript>().getHooked();
                     
                 }
                 hm.shuffle();
