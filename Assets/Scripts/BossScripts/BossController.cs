@@ -1,6 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
+using System.Collections;
 
 public class BossController : MonoBehaviour
 {
@@ -12,8 +13,8 @@ public class BossController : MonoBehaviour
     private bool phase1;
     private bool phase2;
     private bool attack;
-
     private bool bossAlive = true;
+    private bool isDead;
     public bool hittingPlayer;
     Transform playerTransform;
     CheckHit checkHit;
@@ -21,6 +22,7 @@ public class BossController : MonoBehaviour
 
     public GameObject scytheProjectile;
     public GameObject scytheBoomerang;
+    public GameObject[] TPs;
 
     void Start()
     {
@@ -29,6 +31,7 @@ public class BossController : MonoBehaviour
         bossHealthBar = GameObject.Find("BossHealthBar").GetComponent<BossHealthBar>();
         bossHealthBar.SetSliderMax(maxHealth);
         bossHealthBar.SetSlider(maxHealth);
+
         checkHit = GetComponentInChildren<CheckHit>();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerTransform = player.transform;
@@ -120,22 +123,22 @@ public class BossController : MonoBehaviour
         {
             case 1:
             //up
-            transform.position = playerTransform.position + new Vector3(0,20,0);
+            transform.position = playerTransform.position + new Vector3(0,10,0);
             break;
 
             case 2:
             //down
-            transform.position = playerTransform.position + new Vector3(0,-20,0);
+            transform.position = playerTransform.position + new Vector3(0,-10,0);
             break;
 
             case 3:
             //left
-            transform.position = playerTransform.position + new Vector3(-20,0,0);
+            transform.position = playerTransform.position + new Vector3(-10,0,0);
             break;
 
             case 4:
             //right
-            transform.position = playerTransform.position + new Vector3(20,0,0);
+            transform.position = playerTransform.position + new Vector3(10,0,0);
             break;
 
         }
@@ -165,6 +168,24 @@ public class BossController : MonoBehaviour
     public void ScytheSpeedStart()
     {
         //teleport around the edge of the map
+        StartCoroutine(SpeedTimer());
+    }
+    private IEnumerator SpeedTimer()
+    {
+        int totalMoves = 10;
+        int currMoves = 0;
+
+        while(currMoves < totalMoves)
+        {
+            int randTP = Random.Range(0,TPs.Length);
+            transform.position = TPs[randTP].transform.position;
+            float baseDelay = 1f;
+            float currDelay = baseDelay * (1 - (float)currMoves/totalMoves);
+
+            currDelay = Mathf.Max(currDelay, 0.1f);
+            yield return new WaitForSeconds(currDelay);
+            currMoves++;
+        }
     }
     public void ScytheSpeedAttack()
     {
@@ -174,11 +195,35 @@ public class BossController : MonoBehaviour
     }
     public void Tornado()
     {
-        //bounce around the map randomly
+        //bounce around the map randomlyccccccjdetfffhiildferkndrbvgnivfglcefrciicnc
+        
     }
     //DEATH
-    public void BossDeath()
+    public void BossFadeDeath()
     {
+        if(isDead) return;
+        isDead = true;
+        StartCoroutine(FadeToDeath());
+    }
+
+    private IEnumerator FadeToDeath()
+    {
+        yield return new WaitForSeconds(1f);
+        Renderer bossRenderer = GetComponent<Renderer>();
+        if(bossRenderer == null) yield break;
+
+        Color originalColor = bossRenderer.material.color;
+        float fadeDuration = 2f;
+        float elapsedTime = 0f;
+
+        while(elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, elapsedTime/fadeDuration);
+            bossRenderer.material.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+            yield return null;
+        }
+
         Destroy(gameObject);
     }
 }

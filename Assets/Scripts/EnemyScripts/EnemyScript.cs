@@ -64,7 +64,7 @@ public class EnemyScript : MonoBehaviour
         }
         playerHealthBar = GameObject.Find("PlayerHealthBar").GetComponent<PlayerHealthBar>();
 
-        if(!isMeleeEnemy)
+        /*if(!isMeleeEnemy || !isDoubleEnemy)
         {
             attackPoint = null;
         }
@@ -282,7 +282,7 @@ public class EnemyScript : MonoBehaviour
     public void Lunge()
     {
         int lungeSpeed = 3;
-        if(isDoubleEnemy){lungeSpeed = 4;}
+        if(isDoubleEnemy){lungeSpeed = 2;}
         rb.velocity = (playerTransform.position - transform.position).normalized * lungeSpeed;
         StartCoroutine(LungeDuration());
     }
