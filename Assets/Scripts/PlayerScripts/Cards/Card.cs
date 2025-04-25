@@ -22,6 +22,7 @@ public class Card : MonoBehaviour
     public GameObject bam3;
     public GameObject windWall;
     public GameObject fSLash;
+    public GameObject roomontroller;
     public float staminaCost;
     public string cardType;
     public float dashStrength;
@@ -139,7 +140,6 @@ public class Card : MonoBehaviour
                 else if (cardType == "getOverHereCard")
                 {
                     FindClosestEnemy().GetComponent<EnemyScript>().getHooked();
-                    
                 }
                 hm.shuffle();
                 hasBeenPlayed = false;
@@ -198,23 +198,38 @@ public class Card : MonoBehaviour
     gameObject.SetActive(false);
 }
 
-    private GameObject FindClosestEnemy()
-    {
-        GameObject closestEnemy = null;
-        float closestDistance = Mathf.Infinity;
+   private GameObject FindClosestEnemy()
+{
+    GameObject closestEnemy = null;
+    float closestDistance = Mathf.Infinity;
+/*
+    // Get the current room of the player
+    Room currentRoom = RoomController.instance.GetCurrentRoom(); // Assuming you have a method to get the current room
 
-        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+    // Check if the current room is valid
+    if (currentRoom == null)
     {
-        float distance = Vector3.Distance(player.transform.position, enemy.transform.position);
-        if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                closestEnemy = enemy;
-            }
+        Debug.LogWarning("Current room is null.");
+        return null;
     }
 
+    // Iterate through all enemies in the current room
+    foreach (Transform child in currentRoom.transform)
+    {
+        if (child.CompareTag("Enemy"))
+        {
+            float distance = Vector3.Distance(player.transform.position, child.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestEnemy = child.gameObject;
+            }
+        }
+    }
+*/
     return closestEnemy;
 }
+
 
 
     public void dashCard()

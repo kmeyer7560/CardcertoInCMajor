@@ -64,7 +64,7 @@ public class EnemyScript : MonoBehaviour
         }
         playerHealthBar = GameObject.Find("PlayerHealthBar").GetComponent<PlayerHealthBar>();
 
-        /*if(!isMeleeEnemy || !isDoubleEnemy)
+        if(!isMeleeEnemy || !isDoubleEnemy)
         {
             attackPoint = null;
         }
