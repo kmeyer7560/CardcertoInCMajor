@@ -16,13 +16,13 @@ public class Card : MonoBehaviour
     public Transform shootingPoint;
     public GameObject bulletPrefab;
     public GameObject healthBar;
+    public GameObject roomController;
     public GameObject violinSlashFX;
     public GameObject bam1;
     public GameObject bam2;
     public GameObject bam3;
     public GameObject windWall;
     public GameObject fSLash;
-    public GameObject roomontroller;
     public float staminaCost;
     public string cardType;
     public float dashStrength;
@@ -141,12 +141,17 @@ public class Card : MonoBehaviour
                 {
                     FindClosestEnemy().GetComponent<EnemyScript>().getHooked();
                 }
+                else if (cardType == "potofGreed")
+                {
+                    greed();
+                }
                 hm.shuffle();
                 hasBeenPlayed = false;
                 if (cardType != "burstCard" && cardType != "deflectCard" && cardType != "drumBamCard") //need this for every card that uses a coroutine f you unity
                 {
                     gameObject.SetActive(false);
                 }
+
     
             }
         }
@@ -202,9 +207,9 @@ public class Card : MonoBehaviour
 {
     GameObject closestEnemy = null;
     float closestDistance = Mathf.Infinity;
-/*
+
     // Get the current room of the player
-    Room currentRoom = RoomController.instance.GetCurrentRoom(); // Assuming you have a method to get the current room
+    Room currentRoom = (roomController.GetComponent<RoomController>().currRoom); // Assuming you have a method to get the current room
 
     // Check if the current room is valid
     if (currentRoom == null)
@@ -226,7 +231,7 @@ public class Card : MonoBehaviour
             }
         }
     }
-*/
+
     return closestEnemy;
 }
 
@@ -255,5 +260,9 @@ public class Card : MonoBehaviour
     public void shootCard()
     {
         GameObject bullet = Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.rotation);
+    }
+    private void greed()
+    {
+        staminaBar.GetComponent<StaminaManager>().stamina += 3;
     }
 }
