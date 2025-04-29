@@ -38,7 +38,7 @@ public class fluteSlash : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            other.GetComponent<EnemyHealth>().takeDamage(45);
+            other.GetComponent<EnemyHealth>().takeDamage(55);
             other.GetComponent<EnemyHealth>().knockBack(this.gameObject);
 
         }
