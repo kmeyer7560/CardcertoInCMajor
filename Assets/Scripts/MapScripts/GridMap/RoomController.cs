@@ -17,7 +17,7 @@ public class RoomController : MonoBehaviour
     public static RoomController instance;
     string currentWorldName = "Forest";
     RoomInfo currentLoadRoomData;
-    Room currRoom;
+    public Room currRoom;
     Queue<RoomInfo> loadRoomQueue = new Queue<RoomInfo>();
     public List<Room> loadedRooms = new List<Room>();
 

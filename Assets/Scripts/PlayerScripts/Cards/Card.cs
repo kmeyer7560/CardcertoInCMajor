@@ -16,13 +16,13 @@ public class Card : MonoBehaviour
     public Transform shootingPoint;
     public GameObject bulletPrefab;
     public GameObject healthBar;
+    public GameObject roomController;
     public GameObject violinSlashFX;
     public GameObject bam1;
     public GameObject bam2;
     public GameObject bam3;
     public GameObject windWall;
     public GameObject fSLash;
-    public GameObject roomontroller;
     public float staminaCost;
     public string cardType;
     public float dashStrength;
@@ -202,9 +202,9 @@ public class Card : MonoBehaviour
 {
     GameObject closestEnemy = null;
     float closestDistance = Mathf.Infinity;
-/*
+
     // Get the current room of the player
-    Room currentRoom = RoomController.instance.GetCurrentRoom(); // Assuming you have a method to get the current room
+    Room currentRoom = (roomController.GetComponent<RoomController>().currRoom); // Assuming you have a method to get the current room
 
     // Check if the current room is valid
     if (currentRoom == null)
@@ -226,7 +226,7 @@ public class Card : MonoBehaviour
             }
         }
     }
-*/
+
     return closestEnemy;
 }
 
