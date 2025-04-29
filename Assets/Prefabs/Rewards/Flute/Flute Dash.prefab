@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5342662451499467327}
   - component: {fileID: 7520781986520475463}
   m_Layer: 0
-  m_Name: FlutePull
+  m_Name: Flute Dash
   m_TagString: ChestReward
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,12 +134,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Flute Pull
-  sprite: {fileID: 21300000, guid: cd8335bb23c8c47eb900b4e72f23add9, type: 3}
-  itemDescription: 'Pull the closest enemy to you, dealing low damage.
+  itemName: Flute Dash
+  sprite: {fileID: 21300000, guid: ba49632ba5b4d4cb6a6f81be06dd61b9, type: 3}
+  itemDescription: 'Do a strong dash, dealing damage to any enemy passed through.
 
 
-    1 MP'
+    2
+    MP'
 --- !u!1 &7459899008520035935
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +214,7 @@ SpriteRenderer:
   m_SortingLayerID: -855266137
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cd8335bb23c8c47eb900b4e72f23add9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba49632ba5b4d4cb6a6f81be06dd61b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

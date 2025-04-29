@@ -141,12 +141,17 @@ public class Card : MonoBehaviour
                 {
                     FindClosestEnemy().GetComponent<EnemyScript>().getHooked();
                 }
+                else if (cardType == "potofGreed")
+                {
+                    greed();
+                }
                 hm.shuffle();
                 hasBeenPlayed = false;
                 if (cardType != "burstCard" && cardType != "deflectCard" && cardType != "drumBamCard") //need this for every card that uses a coroutine f you unity
                 {
                     gameObject.SetActive(false);
                 }
+
     
             }
         }
@@ -255,5 +260,9 @@ public class Card : MonoBehaviour
     public void shootCard()
     {
         GameObject bullet = Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.rotation);
+    }
+    private void greed()
+    {
+        staminaBar.GetComponent<StaminaManager>().stamina += 3;
     }
 }
