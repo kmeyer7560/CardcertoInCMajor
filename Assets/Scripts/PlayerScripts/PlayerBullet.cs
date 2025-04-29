@@ -14,8 +14,10 @@ public class PlayerBullet : MonoBehaviour
 
     public GameObject Player;
 
+    public bool targeting;
+    
     Rigidbody2D rb;
-
+    
     private float timer;
 
     public Transform objectInRay;
@@ -32,7 +34,7 @@ public class PlayerBullet : MonoBehaviour
     FOV fov = Player.GetComponent<FOV>();
     objectInRay = fov.hitObject;
 
-    if (objectInRay != null) // If there is an object detected by the rays
+    if (objectInRay != null && targeting) // If there is an object detected by the rays
     {
         // Calculate the direction to the hit object
         Vector2 directionToHitObject = (objectInRay.position - transform.position).normalized;
@@ -50,7 +52,7 @@ public class PlayerBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {    
-        if (objectInRay != null)
+        if (objectInRay != null && targeting)
         {
             transform.position = Vector2.MoveTowards(transform.position, objectInRay.position, Speed * Time.deltaTime);
         }
