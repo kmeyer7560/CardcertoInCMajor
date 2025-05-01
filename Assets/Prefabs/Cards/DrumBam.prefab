@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 822482029421341663}
   - component: {fileID: 2003354748859111361}
   - component: {fileID: 9169216950374028759}
-  m_Layer: 6
-  m_Name: Card
-  m_TagString: Untagged
+  m_Layer: 5
+  m_Name: DrumBam
+  m_TagString: drumBamCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 6084438746439389207}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.98, y: 5.95, z: 0}
+  m_LocalPosition: {x: -6.03, y: 9.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -72,14 +72,14 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 974065331
-  m_SortingLayer: 10
-  m_SortingOrder: 100
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.94509804, g: 0.53117704, b: 0.09411764, a: 1}
+  m_SortingLayer: 13
+  m_SortingOrder: 102
+  m_Sprite: {fileID: 21300000, guid: 206e0676399d64c0681cccedef78a866, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -104,11 +104,18 @@ MonoBehaviour:
   shootingPoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
   healthBar: {fileID: 0}
-  slash: {fileID: 0}
-  staminaCost: 10
+  roomController: {fileID: 0}
+  violinSlashFX: {fileID: 0}
+  bam1: {fileID: 912633962132210534, guid: a85bca20ff44541ee8397a394919fac6, type: 3}
+  bam2: {fileID: 912633962132210534, guid: bc147b52e679e42bb8dd3fc556125c62, type: 3}
+  bam3: {fileID: 912633962132210534, guid: 7a91ce82bc24b43d8afa99519ee5acc4, type: 3}
+  windWall: {fileID: 0}
+  fSLash: {fileID: 0}
+  staminaCost: 3
   cardType: 
   dashStrength: 0
   defense: 0
   burstShotNum: 0
   eneimes: []
   deflectBullets: 0
+  type: 0

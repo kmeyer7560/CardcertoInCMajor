@@ -32,6 +32,10 @@ TagManager:
   - getOverHereCard
   - grapplePoint
   - potofGreed
+  - stamina
+  - shootpoint
+  - roomController
+  - vSlash
   layers:
   - Default
   - TransparentFX
