@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 659330958889434331}
   - component: {fileID: 7694421270625968421}
   - component: {fileID: 3424075913735891606}
+  - component: {fileID: -4251810669085258101}
   m_Layer: 0
-  m_Name: ViolinDeflect
-  m_TagString: violinAttack
+  m_Name: cow 1
+  m_TagString: playerAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,8 +31,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.025954401, y: 0.7698978, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -76,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: -924946051
   m_SortingLayer: 4
   m_SortingOrder: 9
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.7830189, g: 0.51360106, b: 0.15143289, a: 1}
+  m_Sprite: {fileID: 280179842, guid: 4d76ec405c5a443b69ed0d95c974bd88, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,7 +100,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -171,8 +172,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe86800d141ad48ccbc26b7879b3e2b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 13
-  damage: 1
+  Speed: 5
+  damage: 50
   Player: {fileID: 0}
-  targeting: 1
+  targeting: 0
   objectInRay: {fileID: 0}
+--- !u!95 &-4251810669085258101
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5551599301993821772}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fa64c56be298d4749bbc0f7e643cb0f1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

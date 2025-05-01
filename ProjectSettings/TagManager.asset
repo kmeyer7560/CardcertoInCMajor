@@ -31,6 +31,7 @@ TagManager:
   - fSlashCard
   - getOverHereCard
   - grapplePoint
+  - potofGreed
   layers:
   - Default
   - TransparentFX
