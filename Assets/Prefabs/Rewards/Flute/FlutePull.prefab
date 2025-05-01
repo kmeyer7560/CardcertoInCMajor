@@ -135,12 +135,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Flute Pull
-  sprite: {fileID: 21300000, guid: 6fec4af6cf7c545ecad4f445245939ef, type: 3}
-  itemDescription: 'Slash forward, dealing high damage and knocking back.
+  sprite: {fileID: 21300000, guid: cd8335bb23c8c47eb900b4e72f23add9, type: 3}
+  itemDescription: 'Pull the closest enemy to you, dealing low damage.
 
 
-    3
-    MP'
+    1 MP'
 --- !u!1 &7459899008520035935
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +213,7 @@ SpriteRenderer:
   m_SortingLayerID: -855266137
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6fec4af6cf7c545ecad4f445245939ef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cd8335bb23c8c47eb900b4e72f23add9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
