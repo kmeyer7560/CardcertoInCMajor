@@ -6363,6 +6363,7 @@ MonoBehaviour:
   bam3: {fileID: 0}
   windWall: {fileID: 0}
   fSLash: {fileID: 0}
+  roomontroller: {fileID: 0}
   staminaCost: 2
   cardType: 
   dashStrength: 0
@@ -7375,6 +7376,7 @@ MonoBehaviour:
   bam3: {fileID: 0}
   windWall: {fileID: 0}
   fSLash: {fileID: 0}
+  roomontroller: {fileID: 0}
   staminaCost: 3
   cardType: 
   dashStrength: 0
@@ -7811,6 +7813,7 @@ MonoBehaviour:
   bam3: {fileID: 0}
   windWall: {fileID: 0}
   fSLash: {fileID: 0}
+  roomontroller: {fileID: 0}
   staminaCost: 3
   cardType: 
   dashStrength: 0
@@ -8268,6 +8271,7 @@ MonoBehaviour:
   - {fileID: 2073454558}
   - {fileID: 2073454558}
   - {fileID: 743829600}
+  - {fileID: 994529226}
   cardSlots:
   - {fileID: 173853490}
   - {fileID: 2079856419}
@@ -14128,6 +14132,7 @@ MonoBehaviour:
   bam3: {fileID: 0}
   windWall: {fileID: 0}
   fSLash: {fileID: 0}
+  roomontroller: {fileID: 0}
   staminaCost: 2
   cardType: 
   dashStrength: 0
@@ -14645,6 +14650,7 @@ MonoBehaviour:
   bam3: {fileID: 0}
   windWall: {fileID: 0}
   fSLash: {fileID: 0}
+  roomontroller: {fileID: 0}
   staminaCost: 1
   cardType: 
   dashStrength: 0
@@ -15417,6 +15423,7 @@ MonoBehaviour:
   bam3: {fileID: 0}
   windWall: {fileID: 0}
   fSLash: {fileID: 0}
+  roomontroller: {fileID: 0}
   staminaCost: 1
   cardType: 
   dashStrength: 50
@@ -17455,6 +17462,7 @@ MonoBehaviour:
   bam3: {fileID: 0}
   windWall: {fileID: 0}
   fSLash: {fileID: 0}
+  roomontroller: {fileID: 0}
   staminaCost: 1
   cardType: 
   dashStrength: 40
@@ -18342,6 +18350,7 @@ MonoBehaviour:
   bam3: {fileID: 0}
   windWall: {fileID: 0}
   fSLash: {fileID: 0}
+  roomontroller: {fileID: 0}
   staminaCost: 1
   cardType: 
   dashStrength: 0

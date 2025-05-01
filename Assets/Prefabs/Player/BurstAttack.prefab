@@ -175,6 +175,7 @@ MonoBehaviour:
   Speed: 13
   damage: 9
   Player: {fileID: 0}
+  targeting: 1
   objectInRay: {fileID: 0}
 --- !u!1 &6526761520127046209
 GameObject:
