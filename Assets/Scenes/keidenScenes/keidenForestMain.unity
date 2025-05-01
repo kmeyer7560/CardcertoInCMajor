@@ -8655,6 +8655,7 @@ MonoBehaviour:
   - {fileID: 1194100219}
   - {fileID: 1554849013}
   - {fileID: 125681424}
+  - {fileID: 1787097611}
   cardSlots:
   - {fileID: 173853490}
   - {fileID: 2079856419}
@@ -18652,6 +18653,7 @@ Transform:
   m_Children:
   - {fileID: 1132237686}
   - {fileID: 1025484763}
+  - {fileID: 1787097610}
   - {fileID: 994529225}
   - {fileID: 1738502042}
   - {fileID: 460107315}
@@ -19370,6 +19372,125 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7410519418851852582, guid: d8b58f2be8f4b4879b58706f81ef781b, type: 3}
   m_PrefabInstance: {fileID: 761692773}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1787097609
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1787097610}
+  - component: {fileID: 1787097612}
+  - component: {fileID: 1787097611}
+  m_Layer: 5
+  m_Name: cow
+  m_TagString: attackCard
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1787097610
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787097609}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.47, y: 4.23, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1602473765}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1787097611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787097609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d994b72bfd84c1bb6e73f15769d4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasBeenPlayed: 0
+  handIndex: 0
+  staminaBar: {fileID: 1433197885}
+  player: {fileID: 926645704}
+  shootingPoint: {fileID: 1829969059}
+  bulletPrefab: {fileID: 5551599301993821772, guid: 7712b0e3af742465d932565456e0075d, type: 3}
+  healthBar: {fileID: 921020952}
+  roomController: {fileID: 0}
+  violinSlashFX: {fileID: 0}
+  bam1: {fileID: 0}
+  bam2: {fileID: 0}
+  bam3: {fileID: 0}
+  windWall: {fileID: 0}
+  fSLash: {fileID: 0}
+  staminaCost: 1
+  cardType: 
+  dashStrength: 0
+  defense: 0
+  burstShotNum: 0
+  eneimes: []
+  deflectBullets: 0
+  type: 0
+--- !u!212 &1787097612
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787097609}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 974065331
+  m_SortingLayer: 13
+  m_SortingOrder: 102
+  m_Sprite: {fileID: 21300000, guid: f9460b87d0a034abbab4abab19ab334b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1001 &1797970196
 PrefabInstance:
   m_ObjectHideFlags: 0
