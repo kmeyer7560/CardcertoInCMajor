@@ -2855,7 +2855,7 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 0
@@ -3161,8 +3161,8 @@ Transform:
   m_GameObject: {fileID: 1484906765}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -738, y: -415, z: 52.4}
-  m_LocalScale: {x: 0.6074458, y: 0.6074458, z: 0}
+  m_LocalPosition: {x: -737.97, y: -415.2, z: 52.4}
+  m_LocalScale: {x: 1.6490331, y: 1.6490331, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1275104847}
@@ -3431,7 +3431,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.23718406, g: 0.5947848, b: 0.7735849, a: 0.39215687}
+      maxColor: {r: 0.09306392, g: 0.0015574975, b: 0.3301887, a: 0.69411767}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -8614,7 +8614,7 @@ RectTransform:
   m_GameObject: {fileID: 1856882296}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 15.43935, y: 15.43935, z: 15.43935}
+  m_LocalScale: {x: 14.757086, y: 14.757086, z: 14.757086}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 314920479}
@@ -8630,7 +8630,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 351}
+  m_AnchoredPosition: {x: 0, y: 322}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1856882298
