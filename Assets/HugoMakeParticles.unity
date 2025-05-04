@@ -6989,6 +6989,7 @@ GameObject:
   - component: {fileID: 517648236}
   - component: {fileID: 517648235}
   - component: {fileID: 517648238}
+  - component: {fileID: 517648239}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -7094,11 +7095,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 517648233}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f8532232e5a94f58a9dd17bf090679e, type: 3}
+  m_Script: {fileID: 11500000, guid: 92c9232beadd44d09ba377512ae0c400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   InventoryMenu: {fileID: 1623311322}
-  itemSlot: []
+  itemSlot:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &517648239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517648233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce2c0db2f5834b49b6234f1f8f8291e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &521028050 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7410519418851852582, guid: 4963b5659ebdd4f648559830122cb384, type: 3}
