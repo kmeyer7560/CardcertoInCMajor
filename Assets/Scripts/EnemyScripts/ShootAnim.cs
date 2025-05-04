@@ -34,7 +34,7 @@ public class ShootAnim : MonoBehaviour
 
     public void CallDaggerEnd()
     {
-        enemyScript.DaggerStab();
+        //enemyScript.DaggerStab();
         CallEnd();
     }
 }
