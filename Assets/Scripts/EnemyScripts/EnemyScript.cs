@@ -268,11 +268,11 @@ public class EnemyScript : MonoBehaviour
 
     void PerformMeleeAttack()
     {
-        Debug.Log("Performing Melee Attack");
+        //Debug.Log("Performing Melee Attack");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("Hit: " + enemy.name);
+            //Debug.Log("Hit: " + enemy.name);
             playerHealthBar.TakeDamage(meleeDamage);
         }
         canAttack = false;
@@ -350,7 +350,7 @@ public class EnemyScript : MonoBehaviour
         {
             shootFX.transform.rotation = shootRotation;
             shootFXParticleSystem.Play();
-            Debug.Log("ShootFX is played");
+            //Debug.Log("ShootFX is played");
         }
 
         for (int i = 0; i < bulletsPerShot; i++)

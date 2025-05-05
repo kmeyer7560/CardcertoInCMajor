@@ -60,7 +60,8 @@ public class PlayerHealthBar : MonoBehaviour
         }
         else if (i == 2)
         {
-            drubble.SetActive(true);
+            GameObject instantiateDrubble = Instantiate(drubble, new Vector3(player.transform.position.x-.3f, player.transform.position.y, player.transform.position.z), transform.rotation);
+            instantiateDrubble.transform.SetParent(player.transform);
         }
         defense = value;
         StartCoroutine(defenseReset());
@@ -68,7 +69,8 @@ public class PlayerHealthBar : MonoBehaviour
 
     public void deflect(Action<int> callback)
     {
-        vioubble.SetActive(true);
+        GameObject instantiateVioubble = Instantiate(vioubble, new Vector3(player.transform.position.x-.3f, player.transform.position.y, player.transform.position.z), transform.rotation);
+        instantiateVioubble.transform.SetParent(player.transform);
         deflectActive = true;
         StartCoroutine(reflectRoutine(callback));
     }
