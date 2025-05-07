@@ -44,6 +44,8 @@ public class Card : MonoBehaviour
         healthBar = GameObject.FindGameObjectWithTag("playerHealthBar");
         roomController = GameObject.FindGameObjectWithTag("roomController");
         violinSlashFX = GameObject.FindGameObjectWithTag("vSlash");
+
+        violinSlashFX.SetActive(false);
     }
 
     public void playCard()
