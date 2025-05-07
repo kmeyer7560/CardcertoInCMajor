@@ -37,15 +37,8 @@ public class Card : MonoBehaviour
     private void Start()
     {
         hm = FindObjectOfType<HandManager>();
+        anim = FindObjectOfType<Animator>();
         cardType = this.tag;
-        anim = player.GetComponent<PlayerMovement>().animator;
-        staminaBar = GameObject.FindGameObjectWithTag("stamina");
-        shootingPoint = GameObject.FindGameObjectWithTag("shootpoint").transform;
-        healthBar = GameObject.FindGameObjectWithTag("playerHealthBar");
-        roomController = GameObject.FindGameObjectWithTag("roomController");
-        violinSlashFX = GameObject.FindGameObjectWithTag("vSlash");
-
-        violinSlashFX.SetActive(false);
     }
 
     public void playCard()

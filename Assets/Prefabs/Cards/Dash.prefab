@@ -103,18 +103,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasBeenPlayed: 0
   handIndex: 0
-  staminaBar: {fileID: 0}
-  player: {fileID: 0}
-  shootingPoint: {fileID: 0}
+  staminaBar: {fileID: 3654076306677449298, guid: e084a1d2393ac49a4bad322bc8d5c347, type: 3}
+  player: {fileID: 1891293838002807625, guid: 4cb7d92ef87124fe29edd9028ba4891d, type: 3}
+  shootingPoint: {fileID: 5465922947931588012, guid: f664a3f9d3bb84e3bbb76abb4a8e364b, type: 3}
   bulletPrefab: {fileID: 0}
-  healthBar: {fileID: 0}
-  roomController: {fileID: 0}
-  violinSlashFX: {fileID: 0}
+  healthBar: {fileID: 217579301450799410, guid: 80e4abe6c0eee46089204ff2481926b9, type: 3}
+  roomController: {fileID: 2700033913459030277, guid: c2628f00acaba48ee8c07dbc24c4b340, type: 3}
+  violinSlashFX: {fileID: 434959991097124869, guid: 3fc1e73255bac4785bd86ca08834340e, type: 3}
   bam1: {fileID: 0}
   bam2: {fileID: 0}
   bam3: {fileID: 0}
-  windWall: {fileID: 0}
-  fSLash: {fileID: 0}
+  windWall: {fileID: 5330752164935264372, guid: 6a8868988d56a41d88e5a670818b77e9, type: 3}
+  fSLash: {fileID: 4350072210773851073, guid: 617878e2fb1134e408ac727890b9d7d2, type: 3}
   staminaCost: 1
   cardType: 
   dashStrength: 50

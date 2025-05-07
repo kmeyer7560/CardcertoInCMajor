@@ -4876,4 +4876,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSystem: {fileID: 6070325988997487016}
-  player: {fileID: 0}
+  player: {fileID: 1891293838002807625, guid: 4cb7d92ef87124fe29edd9028ba4891d, type: 3}
