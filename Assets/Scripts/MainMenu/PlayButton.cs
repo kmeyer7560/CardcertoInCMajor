@@ -8,7 +8,7 @@ public class PlayButton : MonoBehaviour
     public float moveDuration = 0.8f;
     public ParticleSystem ps;
     public GameObject vignette;
-    private RectTransform vtransform;  // Changed from Transform to RectTransform
+    private RectTransform vtransform;
     private Animator anim;
 
     void Start()
@@ -16,7 +16,7 @@ public class PlayButton : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         vignette.SetActive(false);
         mainMenu = GameObject.Find("MainImage").GetComponent<RectTransform>();
-        vtransform = vignette.GetComponent<RectTransform>();  // Ensure it’s a RectTransform
+        vtransform = vignette.GetComponent<RectTransform>();
     }
 
     void Update()
