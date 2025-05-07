@@ -16,11 +16,13 @@ public class PlayerHealthBar : MonoBehaviour
     private bool deflectActive;
     public int deflectedNum;
     public GameObject player;
+    private SpriteRenderer renderer;
 
     void Start()
     {
         vioubble.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player");
+        renderer = player.GetComponentInChildren<SpriteRenderer>();
     }
     
     public void SetSlider(float amount)
@@ -43,6 +45,14 @@ public class PlayerHealthBar : MonoBehaviour
         }
         
         healthSlider.value -= (amount - defense);
+        StartCoroutine(DmgFlash());
+    }
+
+    IEnumerator DmgFlash()
+    {
+        renderer.color = Color.red;
+        yield return new WaitForSeconds(.1f);
+        renderer.color = Color.white;
     }
 
     public void Heal(float amount, int i)

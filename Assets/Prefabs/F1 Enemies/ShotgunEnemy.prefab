@@ -65,7 +65,9 @@ MonoBehaviour:
   pathUpdateRate: 0.2
   playerTransform: {fileID: 0}
   isMeleeEnemy: 0
+  isDoubleEnemy: 0
   attackPoint: {fileID: 0}
+  grapplePoint: {fileID: 0}
   attackRange: 0.5
   enemyLayers:
     serializedVersion: 2
@@ -75,6 +77,8 @@ MonoBehaviour:
   shootFX: {fileID: 8164566284723399100}
   canMove: 0
   shootRotation: {x: 0, y: 0, z: 0, w: 0}
+  canLunge: 0
+  chargeRange: 4
 --- !u!114 &305204119834781205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,6 +100,8 @@ MonoBehaviour:
   healthOrb: {fileID: 4583867773829352207, guid: 6cef84490d53a8740ba8b5401e72b660, type: 3}
   coin: {fileID: 4583867773829352207, guid: 8608374c556deb640b5cb97a5c604d01, type: 3}
   anim: {fileID: 6329621094661948581}
+  isAlive: 0
+  hitSprite: {fileID: 0}
 --- !u!50 &4516514076274992145
 Rigidbody2D:
   serializedVersion: 4
@@ -192,6 +198,7 @@ GameObject:
   - component: {fileID: 228331844927896582}
   - component: {fileID: 6329621094661948581}
   - component: {fileID: 3550632757325524420}
+  - component: {fileID: 4942353403659206418}
   m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
@@ -199,14 +206,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5565939504505739623
-Transform:
+--- !u!224 &5565939504505739623
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884976235194256226}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -215,6 +221,11 @@ Transform:
   - {fileID: 7147357794731468004}
   m_Father: {fileID: 8948112452239885712}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &228331844927896582
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -301,6 +312,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyObject: {fileID: 1220592464380258565}
+--- !u!114 &4942353403659206418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884976235194256226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1
 --- !u!1 &4540098748631134793
 GameObject:
   m_ObjectHideFlags: 0

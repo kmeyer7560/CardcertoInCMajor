@@ -46,7 +46,6 @@ public class TraderScript : MonoBehaviour
         }
         if(canMove)
         {
-            MoveTowardsPlayer();
         }
     }
     void UpdatePlayerInRoom()
@@ -59,15 +58,6 @@ public class TraderScript : MonoBehaviour
         else
         {
             playerInRoom = false;
-        }
-    }
-    void MoveTowardsPlayer()
-    {
-        //animator.SetBool("move", true);
-
-        if(playerInRoom && canMove)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, Time.deltaTime * speed);
         }
     }
 

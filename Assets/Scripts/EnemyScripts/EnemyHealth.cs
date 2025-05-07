@@ -78,6 +78,14 @@ public class EnemyHealth : MonoBehaviour
     public void takeDamage(float damage)
     {
         currentHealth -= damage;
+        StartCoroutine(HitFlash());
+    }
+
+    IEnumerator HitFlash()
+    {
+        renderer.color = Color.red;
+        yield return new WaitForSeconds(.1f);
+        renderer.color = Color.white;
     }
 
     public void detonate()
