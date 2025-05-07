@@ -17,6 +17,8 @@ public class ChestInteraction : MonoBehaviour
     public GameObject[] drumCardPrefabs;
     public GameObject[] specialCardPrefabs;
     public GameObject player;
+    private Animator anim;
+    private SpriteRenderer sprite;
 
 
     private void Start()
@@ -26,6 +28,8 @@ public class ChestInteraction : MonoBehaviour
         {
             rouletteManager = FindObjectOfType<RouletteManager>();
         }
+        anim = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -33,11 +37,20 @@ public class ChestInteraction : MonoBehaviour
         playerInRange = Vector2.Distance(transform.position, player.transform.position) <= interactionRange; 
         if (playerInRange && Input.GetKeyDown(interactionKey) && notSpinning)
         {
+            anim.SetTrigger("opening");
+            
             rouletteManager.GetChestInteraction(this.gameObject);
             StartCoroutine(Spinning(7f));
-            rouletteManager.StartSpin();
-            Debug.Log("Spin started");
+            StartCoroutine(DelaySpin());
         }
+    }
+
+    private IEnumerator DelaySpin()
+    {
+        yield return new WaitForSeconds(1.5f);
+        rouletteManager.StartSpin();
+        Debug.Log("Spin started");
+        sprite.enabled = false;
     }
     
 
