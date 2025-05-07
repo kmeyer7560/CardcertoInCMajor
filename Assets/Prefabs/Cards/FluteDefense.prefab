@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 822482029421341663}
   - component: {fileID: 2003354748859111361}
   - component: {fileID: 9169216950374028759}
-  m_Layer: 5
-  m_Name: DrumBam
-  m_TagString: drumBamCard
+  m_Layer: 6
+  m_Name: FluteDefense
+  m_TagString: fDefenseCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,10 +26,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6084438746439389207}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.03, y: 9.62, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.97, y: 11.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 974065331
   m_SortingLayer: 13
   m_SortingOrder: 102
-  m_Sprite: {fileID: 21300000, guid: 206e0676399d64c0681cccedef78a866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3470894b2e5b8435b83931a1247a7109, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,9 +106,9 @@ MonoBehaviour:
   healthBar: {fileID: 217579301450799410, guid: 80e4abe6c0eee46089204ff2481926b9, type: 3}
   roomController: {fileID: 2700033913459030277, guid: c2628f00acaba48ee8c07dbc24c4b340, type: 3}
   violinSlashFX: {fileID: 434959991097124869, guid: 3fc1e73255bac4785bd86ca08834340e, type: 3}
-  bam1: {fileID: 912633962132210534, guid: a85bca20ff44541ee8397a394919fac6, type: 3}
-  bam2: {fileID: 912633962132210534, guid: bc147b52e679e42bb8dd3fc556125c62, type: 3}
-  bam3: {fileID: 912633962132210534, guid: 7a91ce82bc24b43d8afa99519ee5acc4, type: 3}
+  bam1: {fileID: 0}
+  bam2: {fileID: 0}
+  bam3: {fileID: 0}
   windWall: {fileID: 5330752164935264372, guid: 6a8868988d56a41d88e5a670818b77e9, type: 3}
   fSLash: {fileID: 4350072210773851073, guid: 617878e2fb1134e408ac727890b9d7d2, type: 3}
   staminaCost: 3
