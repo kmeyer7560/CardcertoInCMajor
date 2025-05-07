@@ -37,6 +37,7 @@ public class Card : MonoBehaviour
     private void Start()
     {
         hm = FindObjectOfType<HandManager>();
+        anim = FindObjectOfType<Animator>();
         cardType = this.tag;
     }
 

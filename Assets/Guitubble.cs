@@ -12,7 +12,6 @@ public class Guitubble : MonoBehaviour
     public GameObject player;
     void Start()
     {
-        particleSystem = GetComponent<ParticleSystem>();
         particleSystem.Play();
     }
 }
