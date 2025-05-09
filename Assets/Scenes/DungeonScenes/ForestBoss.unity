@@ -193,7 +193,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 974065331
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -362,7 +362,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1381762957
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 10
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -3348,11 +3348,13 @@ MonoBehaviour:
   shootingPoint: {fileID: 1332535941}
   bulletPrefab: {fileID: 5551599301993821772, guid: 195aa06c101e74b22b853b9241b04271, type: 3}
   healthBar: {fileID: 0}
-  slash: {fileID: 0}
+  roomController: {fileID: 0}
+  violinSlashFX: {fileID: 0}
   bam1: {fileID: 0}
   bam2: {fileID: 0}
   bam3: {fileID: 0}
   windWall: {fileID: 0}
+  fSLash: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 0
@@ -3400,7 +3402,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 974065331
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 102
   m_Sprite: {fileID: 21300000, guid: 9576212157b354f5d9e1fdce41aed9be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3834,7 +3836,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 974065331
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3899,11 +3901,13 @@ MonoBehaviour:
   shootingPoint: {fileID: 1332535941}
   bulletPrefab: {fileID: 5551599301993821772, guid: a3765c5eeadc24b18b616db0ff548ed1, type: 3}
   healthBar: {fileID: 0}
-  slash: {fileID: 0}
+  roomController: {fileID: 0}
+  violinSlashFX: {fileID: 0}
   bam1: {fileID: 0}
   bam2: {fileID: 0}
   bam3: {fileID: 0}
   windWall: {fileID: 0}
+  fSLash: {fileID: 0}
   staminaCost: 30
   cardType: 
   dashStrength: 0
@@ -3951,7 +3955,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 974065331
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 102
   m_Sprite: {fileID: 21300000, guid: e71fb0d506ab94587a3db69e5f6af518, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9621,11 +9625,13 @@ MonoBehaviour:
   shootingPoint: {fileID: 1332535941}
   bulletPrefab: {fileID: 0}
   healthBar: {fileID: 0}
-  slash: {fileID: 0}
+  roomController: {fileID: 0}
+  violinSlashFX: {fileID: 0}
   bam1: {fileID: 0}
   bam2: {fileID: 0}
   bam3: {fileID: 0}
   windWall: {fileID: 0}
+  fSLash: {fileID: 0}
   staminaCost: 10
   cardType: 
   dashStrength: 50
@@ -9673,7 +9679,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 974065331
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 102
   m_Sprite: {fileID: 21300000, guid: 520e7f2ec17874ba180f014bb1826015, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9941,7 +9947,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 974065331
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10037,11 +10043,13 @@ MonoBehaviour:
   shootingPoint: {fileID: 1332535941}
   bulletPrefab: {fileID: 5551599301993821772, guid: 51053576952684448a803b8454afb676, type: 3}
   healthBar: {fileID: 0}
-  slash: {fileID: 0}
+  roomController: {fileID: 0}
+  violinSlashFX: {fileID: 0}
   bam1: {fileID: 0}
   bam2: {fileID: 0}
   bam3: {fileID: 0}
   windWall: {fileID: 0}
+  fSLash: {fileID: 0}
   staminaCost: 15
   cardType: 
   dashStrength: 0
@@ -10089,7 +10097,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 974065331
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 102
   m_Sprite: {fileID: 21300000, guid: ac7dea8d8edb74d2597bfa9aaa19485c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10387,7 +10395,7 @@ Transform:
   m_GameObject: {fileID: 1460985435}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6284111, y: -0.44, z: 0.1005164}
+  m_LocalPosition: {x: -1.466, y: -0.44, z: 0.1005164}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -10509,6 +10517,7 @@ MonoBehaviour:
     m_Bits: 0
   moveDirection: {x: 0, y: 0}
   fireFX: {fileID: 0}
+  dashHitBox: {fileID: 0}
 --- !u!1 &1539399375
 GameObject:
   m_ObjectHideFlags: 0
@@ -10561,11 +10570,13 @@ MonoBehaviour:
   shootingPoint: {fileID: 1332535941}
   bulletPrefab: {fileID: 912633962132210534, guid: 26b78d961696b4a039ea06b684cde72b, type: 3}
   healthBar: {fileID: 0}
-  slash: {fileID: 0}
+  roomController: {fileID: 0}
+  violinSlashFX: {fileID: 0}
   bam1: {fileID: 0}
   bam2: {fileID: 0}
   bam3: {fileID: 0}
   windWall: {fileID: 0}
+  fSLash: {fileID: 0}
   staminaCost: 15
   cardType: 
   dashStrength: 0
@@ -10613,7 +10624,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 974065331
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 102
   m_Sprite: {fileID: 21300000, guid: 221e11805066d44e7a9f29f43cd3c952, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10732,7 +10743,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 974065331
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10883,7 +10894,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1240142489
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10993,7 +11004,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 974065331
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11073,11 +11084,13 @@ MonoBehaviour:
   shootingPoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
   healthBar: {fileID: 0}
-  slash: {fileID: 0}
+  roomController: {fileID: 0}
+  violinSlashFX: {fileID: 0}
   bam1: {fileID: 0}
   bam2: {fileID: 0}
   bam3: {fileID: 0}
   windWall: {fileID: 0}
+  fSLash: {fileID: 0}
   staminaCost: 15
   cardType: 
   dashStrength: 40
@@ -11125,7 +11138,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 974065331
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 102
   m_Sprite: {fileID: 21300000, guid: dbae26584a70a4eae90ecb127bf5d1b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11148,7 +11161,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9169216950374028759, guid: a9dc8c693d50542f19cd07bd269c83b8, type: 3}
   m_PrefabInstance: {fileID: 408279025}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1898842096}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54d994b72bfd84c1bb6e73f15769d4bb, type: 3}
@@ -11286,11 +11299,13 @@ MonoBehaviour:
   shootingPoint: {fileID: 1332535941}
   bulletPrefab: {fileID: 5551599301993821772, guid: e27e9d74b0efe4765865ca05c10c5a46, type: 3}
   healthBar: {fileID: 0}
-  slash: {fileID: 0}
+  roomController: {fileID: 0}
+  violinSlashFX: {fileID: 0}
   bam1: {fileID: 0}
   bam2: {fileID: 0}
   bam3: {fileID: 0}
   windWall: {fileID: 0}
+  fSLash: {fileID: 0}
   staminaCost: 25
   cardType: 
   dashStrength: 0
@@ -11338,7 +11353,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 974065331
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 102
   m_Sprite: {fileID: 21300000, guid: 1b6c5eca71692429c8f7b4ffaab4650f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11560,7 +11575,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1381762957
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 10
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -12660,7 +12675,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 974065331
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12816,7 +12831,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 974065331
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12886,6 +12901,7 @@ MonoBehaviour:
   healthSlider: {fileID: 2096575787}
   defense: 0
   deflectedNum: 0
+  player: {fileID: 0}
 --- !u!114 &2096575787
 MonoBehaviour:
   m_ObjectHideFlags: 0
