@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Flute Pull
+  itemName: Flute Lasso
   sprite: {fileID: 21300000, guid: cd8335bb23c8c47eb900b4e72f23add9, type: 3}
   itemDescription: 'Pull the closest enemy to you, dealing low damage.
 

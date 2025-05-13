@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Drum Shield
+  itemName: Drum of Aegis
   sprite: {fileID: 21300000, guid: c153c508bc1eb4343bfb44930bcc1e28, type: 3}
   itemDescription: 'Greatly raises defense for a short duration.
 

@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Flute Slash
+  itemName: Sonic Arc
   sprite: {fileID: 21300000, guid: 6fec4af6cf7c545ecad4f445245939ef, type: 3}
   itemDescription: 'Slash forward, dealing high damage and knocking back.
 

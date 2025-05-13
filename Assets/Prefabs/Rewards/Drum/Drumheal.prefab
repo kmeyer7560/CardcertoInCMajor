@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Drum Heal
+  itemName: Resonant Pulse
   sprite: {fileID: 21300000, guid: 9c6f8a9664a5846e0895541310c5c036, type: 3}
   itemDescription: 'Smash the ground, healing for every enemy hit.
 

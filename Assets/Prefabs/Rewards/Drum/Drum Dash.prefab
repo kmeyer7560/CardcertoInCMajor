@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Drum Ram
+  itemName: Drumstrike Roll
   sprite: {fileID: 21300000, guid: 034a646427f2b4c51b7777e75b6f8ed5, type: 3}
   itemDescription: 'Start charging until hitting a wall or enemy.
 

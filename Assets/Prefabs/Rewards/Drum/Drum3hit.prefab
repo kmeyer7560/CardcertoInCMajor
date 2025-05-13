@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Drum Smash
+  itemName: Trium Drum
   sprite: {fileID: 21300000, guid: 1ec2691abc755466788b5a9988eda843, type: 3}
   itemDescription: 'Smash the ground 3 times, dealing less damage with each smash.
 

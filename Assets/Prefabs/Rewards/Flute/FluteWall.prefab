@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Flute Wall
+  itemName: Aural Barrier
   sprite: {fileID: 21300000, guid: 7b11b61f31e344fdcb985b1147fd8ee6, type: 3}
   itemDescription: 'Place down a wall, destroying any projecticle that passes through
     it. Can be walked through.

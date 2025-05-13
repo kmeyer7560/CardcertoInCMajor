@@ -38,6 +38,7 @@ public class Card : MonoBehaviour
     {
         hm = FindObjectOfType<HandManager>();
         anim = FindObjectOfType<Animator>();
+        staminaBar = GameObject.FindGameObjectWithTag("stamina");
         cardType = this.tag;
     }
 
@@ -49,7 +50,7 @@ public class Card : MonoBehaviour
             {
                 if (type == 1)
                 {
-                    anim.SetTrigger("guitarAttack");
+                    //anim.SetTrigger("guitarAttack");
                     player.GetComponent<PlayerMovement>().stupidDumbassFunction();
                 }
                 staminaBar.GetComponent<StaminaManager>().useCard((int) staminaCost);
@@ -114,6 +115,7 @@ public class Card : MonoBehaviour
                 }
                 else if (cardType == "drumBamCard")
                 {
+                    Debug.Log("drumbam started");
                     StartCoroutine(DrumBam());
                 }
                 else if (cardType == "reinDashCard")
