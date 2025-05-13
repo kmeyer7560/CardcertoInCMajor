@@ -17,14 +17,27 @@ public class PlayerHealthBar : MonoBehaviour
     public int deflectedNum;
     public GameObject player;
     private SpriteRenderer renderer;
+    public GameObject deathScreen;
 
     void Start()
     {
         vioubble.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player");
         renderer = player.GetComponentInChildren<SpriteRenderer>();
+        if(deathScreen != null)
+        {
+            deathScreen.SetActive(false);
+        }
     }
-    
+
+    void Update()
+    {
+        if(healthSlider.value <= 0)
+        {
+            DeathSequence();
+        }
+    }
+
     public void SetSlider(float amount)
     {
         healthSlider.value = amount;
@@ -98,5 +111,10 @@ public class PlayerHealthBar : MonoBehaviour
         deflectActive = false;
         vioubble.SetActive(false);
         callback(deflectedNum); // Call the callback with the deflectedNum
+    }
+
+    void DeathSequence()
+    {
+        
     }
 }
