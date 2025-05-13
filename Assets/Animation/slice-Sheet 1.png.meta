@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7bc83177f8ee04c2c93270c29512b574
+guid: 4dec236ee5a9a4b7b933cd29a794a658
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slice-Sheet_0
+      name: slice-Sheet 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afd86785d39cc487d9b424064ebe4435
-      internalID: 1229236514
+      spriteID: b56ad5faa91764e889049e5dc774ed19
+      internalID: -1200494599
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slice-Sheet_1
+      name: slice-Sheet 1_1
       rect:
         serializedVersion: 2
         x: 64
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e45d4b69e251417d9983b5b5fd1e6ac
-      internalID: 793347262
+      spriteID: d594a15b938ef4a3b8f9c7376cc79daf
+      internalID: -559527607
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slice-Sheet_2
+      name: slice-Sheet 1_2
       rect:
         serializedVersion: 2
         x: 128
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 407f94c10943e42c29444e5b8a269271
-      internalID: -1984270170
+      spriteID: f71e32c14921a44e5b31645b774ea029
+      internalID: -829660479
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slice-Sheet_3
+      name: slice-Sheet 1_3
       rect:
         serializedVersion: 2
         x: 192
@@ -174,8 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f41b3626b375e46c5ac57ff292b53393
-      internalID: -155341200
+      spriteID: c260fa28f5f204cb6b811bf3dcf25005
+      internalID: -929906128
       vertices: []
       indices: 
       edges: []
@@ -191,10 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      slice-Sheet_0: 1229236514
-      slice-Sheet_1: 793347262
-      slice-Sheet_2: -1984270170
-      slice-Sheet_3: -155341200
+      slice-Sheet 1_0: -1200494599
+      slice-Sheet 1_1: -559527607
+      slice-Sheet 1_2: -829660479
+      slice-Sheet 1_3: -929906128
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
