@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Big Shoot
+  itemName: Arcstrike
   sprite: {fileID: 21300000, guid: 83f85f0eb02e04ba6b59654b03751eca, type: 3}
   itemDescription: 'Shoot a big bullet that deals decent damage.
 

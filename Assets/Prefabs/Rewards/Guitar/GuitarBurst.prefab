@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Guitar Burst
+  itemName: Tristring
   sprite: {fileID: 21300000, guid: faa86545739943e42aee72af6c45fe6f, type: 3}
   itemDescription: 'Shoots 3 bullet in quick succession.
 

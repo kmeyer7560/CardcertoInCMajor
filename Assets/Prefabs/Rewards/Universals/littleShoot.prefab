@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Little Shoot
+  itemName: Whisper Shot
   sprite: {fileID: 21300000, guid: c27ae826bc95745f39da1cdc6108b2fc, type: 3}
   itemDescription: 'Shoot a tiny bullet that deals pitiful damage.
 

@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Violin Deflect
+  itemName: Counterstring
   sprite: {fileID: 21300000, guid: 002500b8decab4ce2a533ad57fecbacd, type: 3}
   itemDescription: 'Absorbe incoming projecticles, and apply stacks based on projectiles
     absorbed.

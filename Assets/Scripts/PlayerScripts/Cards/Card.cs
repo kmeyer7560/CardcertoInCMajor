@@ -38,8 +38,12 @@ public class Card : MonoBehaviour
     {
         hm = FindObjectOfType<HandManager>();
         anim = FindObjectOfType<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        shootingPoint = GameObject.FindGameObjectWithTag("Player").transform;
         staminaBar = GameObject.FindGameObjectWithTag("stamina");
         cardType = this.tag;
+        hm.GetComponent<HandManager>().deck.Add(this);
+        hm.GetComponent<HandManager>().DrawCard();
     }
 
     public void playCard()

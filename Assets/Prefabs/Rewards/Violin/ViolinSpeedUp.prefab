@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Violin Dash
+  itemName: Vivace Veil
   sprite: {fileID: 21300000, guid: c28d4aa59ce814266a1c58568a6e26ba, type: 3}
   itemDescription: 'Speed Up!
 

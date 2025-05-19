@@ -6,6 +6,8 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     [SerializeField]
+    public Card card;
+    [SerializeField]
     private string itemName;
     
     [SerializeField]
@@ -16,6 +18,7 @@ public class Item : MonoBehaviour
     private string itemDescription;
 
     private InventoryManager inventoryManager;
+    public GameObject hm;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +36,9 @@ public class Item : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             inventoryManager.AddItem(itemName,sprite,itemDescription);
+            Card madeobject = Instantiate(card);
+            madeobject.transform.SetParent(GameObject.Find("Canvas").transform);
+            hm.GetComponent<HandManager>().deck.Add(madeobject);
             Destroy(gameObject);
         }
     }

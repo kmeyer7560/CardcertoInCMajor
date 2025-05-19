@@ -134,12 +134,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  card: {fileID: 9169216950374028759, guid: 73fcbde25a22e4a10b0869cb0ac0775f, type: 3}
   itemName: Flute Lasso
   sprite: {fileID: 21300000, guid: cd8335bb23c8c47eb900b4e72f23add9, type: 3}
   itemDescription: 'Pull the closest enemy to you, dealing low damage.
 
 
     1 MP'
+  hm: {fileID: 4479590099476822781, guid: 4e2d9e805b6134ea8abfb15963564cb2, type: 3}
 --- !u!1 &7459899008520035935
 GameObject:
   m_ObjectHideFlags: 0

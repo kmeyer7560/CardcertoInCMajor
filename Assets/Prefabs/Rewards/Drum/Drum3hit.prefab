@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  card: {fileID: 9169216950374028759, guid: d2515574eae104e41ba266a1a8635016, type: 3}
   itemName: Trium Drum
   sprite: {fileID: 21300000, guid: 1ec2691abc755466788b5a9988eda843, type: 3}
   itemDescription: 'Smash the ground 3 times, dealing less damage with each smash.
@@ -141,6 +142,7 @@ MonoBehaviour:
 
     3
     MP'
+  hm: {fileID: 4479590099476822781, guid: 4e2d9e805b6134ea8abfb15963564cb2, type: 3}
 --- !u!1 &7459899008520035935
 GameObject:
   m_ObjectHideFlags: 0

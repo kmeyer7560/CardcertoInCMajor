@@ -134,12 +134,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  card: {fileID: 9169216950374028759, guid: 7e744d9aa99344851a16eff056350c79, type: 3}
   itemName: Drumstrike Roll
   sprite: {fileID: 21300000, guid: 034a646427f2b4c51b7777e75b6f8ed5, type: 3}
   itemDescription: 'Start charging until hitting a wall or enemy.
 
 
     3 MP'
+  hm: {fileID: 4479590099476822781, guid: 4e2d9e805b6134ea8abfb15963564cb2, type: 3}
 --- !u!1 &7459899008520035935
 GameObject:
   m_ObjectHideFlags: 0
