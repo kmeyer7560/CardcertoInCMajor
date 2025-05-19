@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using UnityEditor.Experimental.GraphView;
 
 public class BossController : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class BossController : MonoBehaviour
     public GameObject scytheProjectile;
     public GameObject scytheBoomerang;
     public GameObject[] TPs;
+    string dashDirection;
 
     void Start()
     {
@@ -81,7 +83,38 @@ public class BossController : MonoBehaviour
                 break;
 
                 case 2:
-                anim.SetTrigger("Atk2");
+                //dashes
+
+                if(phase1)
+                {
+                    Vector2 calcDashDirection = playerTransform.position - transform.position;
+                    float angle = Mathf.Atan2(calcDashDirection.y, calcDashDirection.x) * Mathf.Rad2Deg;
+                    angle = (angle + 360) % 360;
+                    if (angle >= 45 && angle < 135)
+                        {
+                            dashDirection = "Up";
+                            anim.SetTrigger("DashUp");
+                        }
+                        else if (angle >= 135 && angle < 225)
+                        {
+                            dashDirection = "Left";
+                            anim.SetTrigger("DashLeft");
+                        }
+                        else if (angle >= 225 && angle < 315)
+                        {
+                            dashDirection = "Down";
+                            anim.SetTrigger("DashDown");
+                        }
+                        else
+                        {
+                            dashDirection = "Right";
+                            anim.SetTrigger("DashRight");
+                        }
+                    }
+                else
+                    {
+                        anim.SetTrigger("Atk2");
+                    }
                 break;
 
                 case 3:
@@ -89,6 +122,7 @@ public class BossController : MonoBehaviour
                 break;
 
                 case 4:
+                //exhaustion
                 anim.SetTrigger("Ex");
                 break;
             }

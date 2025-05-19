@@ -11,10 +11,9 @@ using UnityEditor.ShaderGraph;
 public class InteractableWater : MonoBehaviour
 {
 
-    //https://www.youtube.com/watch?v=TbGEKpdsmCI 8:23
     [Range(2, 500)] public int NumOfXVertices = 70;
     public float Width = 10f;
-    public float Height = 4f;
+    public float Height = 1;
     public Material WaterMaterial;
     private const int NUM_OF_Y_VERTICES = 2;
 

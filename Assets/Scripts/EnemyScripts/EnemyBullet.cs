@@ -7,10 +7,14 @@ public class EnemyBullet : MonoBehaviour
     private float timer;
     public float damage;
     public GameObject hitMarker;
+    PlayerMovement playerMovement; 
+    PlayerHealthBar healthBar;
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        healthBar = GameObject.Find("PlayerHealthBar").GetComponent<PlayerHealthBar>();
     }
     
     void Update()
@@ -28,16 +32,15 @@ public class EnemyBullet : MonoBehaviour
 
         if(other.gameObject.CompareTag("Player"))
         {
-            PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
-            PlayerHealthBar healthBar = GameObject.Find("PlayerHealthBar").GetComponent<PlayerHealthBar>();
-
-            if (playerMovement != null && playerMovement.vulnerable)
+            Destroy(gameObject);
+            Instantiate(hitMarker, hitPoint, Quaternion.identity);
+            if (playerMovement.vulnerable)
             {
                 healthBar.TakeDamage(damage);
             }
         }
 
-        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Environment"))
+        if (other.gameObject.CompareTag("Environment"))
         {
             Destroy(gameObject);
             Instantiate(hitMarker, hitPoint, Quaternion.identity);
