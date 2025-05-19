@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Violin Burst
+  itemName: Crescendo
   sprite: {fileID: 21300000, guid: 20b48bcc9e86e4a47b7734112610af84, type: 3}
   itemDescription: 'Detonate all violin stacks, dealing damage depending on the amount
     of stacks.

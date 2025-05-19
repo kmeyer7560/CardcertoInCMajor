@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Guitar Shield
+  itemName: Fortichord
   sprite: {fileID: 21300000, guid: 80fe37460eae37d4d8151dbd9127dd0d, type: 3}
   itemDescription: 'Raises defense for a short time.
 

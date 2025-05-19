@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Violin Burst
+  itemName: Arco Burst
   sprite: {fileID: 21300000, guid: 8435e5a6d9fe148c88a537b60c04656e, type: 3}
   itemDescription: 'Shoot 20 bullets, adding 1 stack to any hit enemy.
 
