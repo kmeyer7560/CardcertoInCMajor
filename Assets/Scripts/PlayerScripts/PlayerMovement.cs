@@ -25,12 +25,14 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 moveDirection;
     public GameObject fireFX;
     public GameObject dashHitBox;
+    public bool canMove;
     void Start()
     {
         activeSpeed = moveSpeed;
         vulnerable = true;
         moveable = true;
         //trail.GetComponent<ParticleSystem>().enableEmission = false;
+        canMove = true;
     }
 
     void ProcessInputs()
@@ -61,8 +63,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        rb.velocity = new Vector2(moveDirection.x * activeSpeed, moveDirection.y * activeSpeed);
+        if(canMove)
+        {
+            rb.velocity = new Vector2(moveDirection.x * activeSpeed, moveDirection.y * activeSpeed);
         spriteRenderer.flipX = rb.velocity.x < 0;
+        }
     }
 
     public void dash(float dashSpeed, bool t, bool hitbox)

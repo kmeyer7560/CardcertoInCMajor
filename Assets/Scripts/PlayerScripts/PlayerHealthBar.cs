@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealthBar : MonoBehaviour
 {
@@ -20,14 +21,20 @@ public class PlayerHealthBar : MonoBehaviour
     private SpriteRenderer renderer;
     public GameObject healthBall;
     Transform healthBallTransform;
+    public GameObject deathScreenObj;
     [SerializeField] public RawImage deathScreen;
     [SerializeField] public Button respawnButton;
-    [SerializeField] private float fadeDuration = 1f;
+    [SerializeField] private float fadeDuration = 5f;
+    double currHealth;
 
     Animator anim;
 
+    public PlayerMovement playerMovement;
+    bool playingDeathSequence;
+
     void Start()
     {
+        respawnButton = GameObject.Find("RespawnButton").GetComponent<Button>();
         Color c = deathScreen.color;
         c.a = 0f;
         deathScreen.color = c;
@@ -37,16 +44,20 @@ public class PlayerHealthBar : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         renderer = player.GetComponentInChildren<SpriteRenderer>();
         anim = player.GetComponentInChildren<Animator>();
-        deathScreen.enabled=(false);
-        respawnButton.enabled=(false);
+        deathScreenObj.SetActive(false);
+        playerMovement = player.GetComponent<PlayerMovement>();
+
+        currHealth = 100f;
     }
 
     void Update()
     {
-        if(healthSlider.value <= 0 || healthBallTransform.position.y<-1)
+        if(deathScreenObj == null){Debug.Log("null");}
+        if(currHealth <= 0 && !playingDeathSequence)
         {
             DeathSequence();
             Debug.Log("playerdeath");
+            playingDeathSequence = true;
         }
     }
 
@@ -69,6 +80,7 @@ public class PlayerHealthBar : MonoBehaviour
             deflectedNum++; 
         }
         healthBallTransform.position += new Vector3(0f, -amount/110,0f);
+        currHealth -= amount*.6;
         healthSlider.value -= (amount - defense);
         StartCoroutine(DmgFlash());
     }
@@ -85,6 +97,7 @@ public class PlayerHealthBar : MonoBehaviour
         Debug.Log("player healed");
         healthSlider.value += (amount * i);
         healthBallTransform.position += new Vector3(0f, 1-amount/110,0f);
+        currHealth += amount*.6;
     }
 
     public void setDefense(float value, int i)
@@ -128,24 +141,34 @@ public class PlayerHealthBar : MonoBehaviour
 
     void DeathSequence()
     {
-        anim.SetBool("Dead",true);
+        playerMovement.canMove = false;
+        anim.SetTrigger("dead");
+
         StartCoroutine(FadeIn());
+        deathScreenObj.SetActive(true);
+        respawnButton.enabled = false;
     }
     IEnumerator FadeIn()
+{
+    deathScreen.enabled = true;
+    float elapsed = 0f;
+    Color c = deathScreen.color;
+    
+    while (elapsed < fadeDuration)
     {
-        deathScreen.enabled=(true);
-        float elapsed = 0f;
-        Color c = deathScreen.color;
-        while (elapsed < fadeDuration)
-        {
-            elapsed += Time.deltaTime;
-            c.a = Mathf.Clamp01(elapsed / fadeDuration);
-            deathScreen.color = c;
-            yield return null;
-        }
-        // Ensure fully opaque at the end
-        c.a = 1f;
+        elapsed += Time.deltaTime;
+        c.a = Mathf.Clamp01(elapsed / fadeDuration) *0.5f;
         deathScreen.color = c;
-        respawnButton.enabled=(true);
+        yield return null;
     }
+    c.a = 0.5f;
+    deathScreen.color = c;
+    respawnButton.enabled = true;
+}
+    public void Respawn()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+    }
+
 }
