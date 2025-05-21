@@ -61,7 +61,7 @@ public class PlayButton : MonoBehaviour
     private IEnumerator StartGameRoutine()
     {
         anim.SetTrigger("shake");
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(0f);
         SceneManager.LoadScene("ForestMain");
     }
 

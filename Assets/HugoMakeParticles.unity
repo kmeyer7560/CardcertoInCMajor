@@ -1429,7 +1429,7 @@ GameObject:
   - component: {fileID: 300778345}
   - component: {fileID: 300778344}
   m_Layer: 5
-  m_Name: Button
+  m_Name: RespawnButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1498,7 +1498,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 300778345}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 487537091644731449, guid: 80e4abe6c0eee46089204ff2481926b9, type: 3}
+        m_TargetAssemblyTypeName: PlayerHealthBar, Assembly-CSharp
+        m_MethodName: Respawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &300778345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5532,16 +5544,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guitubble: {fileID: 4651807249749236087, guid: 31b301280718b4e5c85a057e2211b53b, type: 3}
-  vioubble: {fileID: 357363408983092455, guid: e231840793fa14d91b6975e4e7fcdeda, type: 3}
+  vioubble: {fileID: 7214270768767470709, guid: e231840793fa14d91b6975e4e7fcdeda, type: 3}
   drubble: {fileID: 7683817946849552578, guid: d18fee0b730fb41c48ce2919f402c253, type: 3}
   healthSlider: {fileID: 921020955}
   defense: 0
   deflectedNum: 0
   player: {fileID: 0}
   healthBall: {fileID: 1022606454}
+  deathScreenObj: {fileID: 722486847}
   deathScreen: {fileID: 1307237324}
   respawnButton: {fileID: 300778344}
   fadeDuration: 1
+  playerMovement: {fileID: 0}
 --- !u!114 &921020955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5726,6 +5740,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0}
   fireFX: {fileID: 0}
   dashHitBox: {fileID: 0}
+  canMove: 0
 --- !u!4 &926645709
 Transform:
   m_ObjectHideFlags: 0
@@ -13137,7 +13152,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8.596154
+  orthographic size: 7.25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -13776,7 +13791,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 10305, guid: 0000000000000000f000000000000000, type: 0}
   m_UVRect:
     serializedVersion: 2
     x: 0
