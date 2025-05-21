@@ -17,7 +17,7 @@ public class windWall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.position = new Vector2(1000000, 100000);
     }
 
     // Update is called once per frame

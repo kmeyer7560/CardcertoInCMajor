@@ -41,7 +41,20 @@ public class Card : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         shootingPoint = GameObject.FindGameObjectWithTag("Player").transform;
         staminaBar = GameObject.FindGameObjectWithTag("stamina");
+        roomController = GameObject.FindGameObjectWithTag("roomController");
+        fSLash = GameObject.FindGameObjectWithTag("fSlash");
+        windWall = GameObject.Find("WindWall");
         cardType = this.tag;
+        gameObject.transform.position = new Vector2(1000000, 100000);
+        if (this.CompareTag("fSlashCard"))
+        {
+            fSLash.GetComponent<fluteSlash>().isSlash = true;
+            fSLash.SetActive(false);
+        }
+        if (this.CompareTag("fDefenseCard"))
+        {
+            windWall.SetActive(false);
+        }
         hm.GetComponent<HandManager>().deck.Add(this);
         hm.GetComponent<HandManager>().DrawCard();
     }
@@ -184,29 +197,29 @@ public class Card : MonoBehaviour
         }
         gameObject.SetActive(false);
     }
-    
+
     IEnumerator OnDeflectComplete(int deflectedValue)
-{
-    Debug.Log("Deflected Number: " + deflectedValue);
-    GameObject closestEnemy = FindClosestEnemy();
-    if (closestEnemy != null)
-    {   
-        violinSlashFX.SetActive(true); // Activate the slash GameObject once before the loop
-        for (int i = 0; i < deflectedValue; i++)
+    {
+        Debug.Log("Deflected Number: " + deflectedValue);
+        GameObject closestEnemy = FindClosestEnemy();
+        if (closestEnemy != null)
         {
-            violinSlashFX.transform.position = closestEnemy.transform.position; // Move the slash to the enemy's position
-            violinSlashFX.transform.rotation = Random.rotation;
-            violinSlashFX.GetComponent<Animator>().Play("Slash"); // Play the slash animation
-            
-            // Wait for the duration of the animation before playing it again
-            yield return new WaitForSeconds(0.125f); // Adjust this value based on the length of your animation
-            
-            closestEnemy.GetComponent<EnemyHealth>().deflectSlash(); // Call the deflect method on the enemy
+            violinSlashFX.SetActive(true); // Activate the slash GameObject once before the loop
+            for (int i = 0; i < deflectedValue; i++)
+            {
+                violinSlashFX.transform.position = closestEnemy.transform.position; // Move the slash to the enemy's position
+                violinSlashFX.transform.rotation = Random.rotation;
+                violinSlashFX.GetComponent<Animator>().Play("Slash"); // Play the slash animation
+
+                // Wait for the duration of the animation before playing it again
+                yield return new WaitForSeconds(0.125f); // Adjust this value based on the length of your animation
+
+                closestEnemy.GetComponent<EnemyHealth>().deflectSlash(); // Call the deflect method on the enemy
+            }
+            violinSlashFX.SetActive(false); // Deactivate the slash GameObject after all animations
         }
-        violinSlashFX.SetActive(false); // Deactivate the slash GameObject after all animations
-    }
-    healthBar.GetComponent<PlayerHealthBar>().deflectedNum = 0;
-    gameObject.SetActive(false);
+        healthBar.GetComponent<PlayerHealthBar>().deflectedNum = 0;
+        gameObject.SetActive(false);
 }
 
    private GameObject FindClosestEnemy()

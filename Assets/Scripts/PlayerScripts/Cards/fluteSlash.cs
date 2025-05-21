@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Callbacks;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class fluteSlash : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class fluteSlash : MonoBehaviour
     public GameObject wallPoint;
     public GameObject fov;
     public Animator anim;
-    
+    public bool isSlash;
+
 
     public void activate()
     {
@@ -18,18 +20,20 @@ public class fluteSlash : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.position = new Vector2(1000000, 100000);
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.position = wallPoint.transform.position;
+        if (isSlash)
+        {
+            transform.position = wallPoint.transform.position;
+        }
     }
 
     IEnumerator Slash()
     {
-        
         rb.rotation = fov.GetComponent<FOV>().lastAngle;
         yield return new WaitForSeconds(0.4f);
         gameObject.SetActive(false);

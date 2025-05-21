@@ -36,6 +36,8 @@ TagManager:
   - shootpoint
   - roomController
   - vSlash
+  - handManager
+  - fSlash
   layers:
   - Default
   - TransparentFX

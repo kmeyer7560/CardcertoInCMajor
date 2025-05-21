@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2884380807026817475}
   m_Layer: 0
   m_Name: fSlash
-  m_TagString: Untagged
+  m_TagString: fSlash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,6 +51,7 @@ MonoBehaviour:
   wallPoint: {fileID: 0}
   fov: {fileID: 0}
   anim: {fileID: 280348360365612226}
+  slash: 0
 --- !u!50 &7799205115061817642
 Rigidbody2D:
   serializedVersion: 4

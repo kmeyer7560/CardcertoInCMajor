@@ -138,7 +138,7 @@ public class PlayerHealthBar : MonoBehaviour
         vioubble.SetActive(false);
         callback(deflectedNum); // Call the callback with the deflectedNum
     }
-
+    
     void DeathSequence()
     {
         playerMovement.canMove = false;
@@ -170,5 +170,5 @@ public class PlayerHealthBar : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }
-
+    
 }
