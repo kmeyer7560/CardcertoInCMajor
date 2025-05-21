@@ -10940,8 +10940,6 @@ MonoBehaviour:
     spawnerData: {fileID: 11400000, guid: ff945001331a84f66a57e06090ba26d5, type: 2}
   - name: Flowers
     spawnerData: {fileID: 11400000, guid: 5f06d8296a27846e5844baa89cf37681, type: 2}
-  - name: Shotgun
-    spawnerData: {fileID: 11400000, guid: 4f8ebff9baaefeb4896de5362ea292d3, type: 2}
 --- !u!1 &1686902421
 GameObject:
   m_ObjectHideFlags: 0

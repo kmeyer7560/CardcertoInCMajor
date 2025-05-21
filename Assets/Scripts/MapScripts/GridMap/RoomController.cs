@@ -158,9 +158,11 @@ public class RoomController : MonoBehaviour
     public string GetRandomRoomName()
     {
         string[] possibleRooms = new string[] {
-            "Empty",
-            "Basic",
-            "Basic",
+            "Basic1",
+            "Basic2",
+            "Basic3",
+            "Basic4",
+            "Basic5",
             "Chest"
         };
 
