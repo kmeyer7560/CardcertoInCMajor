@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  card: {fileID: 9169216950374028759, guid: a13ff26b9ad4249fc8c18a79d10430ad, type: 3}
   itemName: Counterstring
   sprite: {fileID: 21300000, guid: 002500b8decab4ce2a533ad57fecbacd, type: 3}
   itemDescription: 'Absorbe incoming projecticles, and apply stacks based on projectiles
@@ -141,6 +142,7 @@ MonoBehaviour:
 
 
     3 MP'
+  hm: {fileID: 4479590099476822781, guid: 4e2d9e805b6134ea8abfb15963564cb2, type: 3}
 --- !u!1 &2579887443701795441
 GameObject:
   m_ObjectHideFlags: 0

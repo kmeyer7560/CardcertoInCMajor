@@ -134,12 +134,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  card: {fileID: 9169216950374028759, guid: 7058b210e79e94118baed863b95e0c29, type: 3}
   itemName: Fortichord
   sprite: {fileID: 21300000, guid: 80fe37460eae37d4d8151dbd9127dd0d, type: 3}
   itemDescription: 'Raises defense for a short time.
 
 
     1 MP'
+  hm: {fileID: 4479590099476822781, guid: 4e2d9e805b6134ea8abfb15963564cb2, type: 3}
 --- !u!1 &1752668734530245742
 GameObject:
   m_ObjectHideFlags: 0

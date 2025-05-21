@@ -134,12 +134,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  card: {fileID: 5357492026435679162, guid: d4b4f63f2c17041bbaad8a3b56c107ff, type: 3}
   itemName: Tristring
   sprite: {fileID: 21300000, guid: faa86545739943e42aee72af6c45fe6f, type: 3}
   itemDescription: 'Shoots 3 bullet in quick succession.
 
 
     2 MP'
+  hm: {fileID: 4479590099476822781, guid: 4e2d9e805b6134ea8abfb15963564cb2, type: 3}
 --- !u!1 &7459899008520035935
 GameObject:
   m_ObjectHideFlags: 0

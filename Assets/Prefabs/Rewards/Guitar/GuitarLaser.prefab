@@ -218,6 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b714e9d7b7f402eae043574fafc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  card: {fileID: 8105552921797955356, guid: 8da76f02666dc42d4b0186be79007789, type: 3}
   itemName: Shredline
   sprite: {fileID: 21300000, guid: 05038762d9506c14b935a8584328a1fc, type: 3}
   itemDescription: 'Shoots a high damaging laser while locking you in place.
@@ -225,3 +226,4 @@ MonoBehaviour:
 
     3
     MP'
+  hm: {fileID: 4479590099476822781, guid: 4e2d9e805b6134ea8abfb15963564cb2, type: 3}
