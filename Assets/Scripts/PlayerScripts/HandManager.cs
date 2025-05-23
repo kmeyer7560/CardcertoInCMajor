@@ -58,6 +58,7 @@ public class HandManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J))
         {
             hand[0].GetComponent<Card>().playCard();
+            Debug.Log("play");
         }
 
         if (Input.GetKeyDown(KeyCode.K))

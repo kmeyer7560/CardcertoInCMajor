@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Xml.Serialization;
 
 public class PlayerHealthBar : MonoBehaviour
 {
@@ -27,18 +28,22 @@ public class PlayerHealthBar : MonoBehaviour
     [SerializeField] private float fadeDuration = 5f;
     double currHealth;
 
-    Animator anim;
+    public Animator anim;
 
     public PlayerMovement playerMovement;
     bool playingDeathSequence;
 
+    void Awake()
+    {
+        currHealth = 100f;
+    }
     void Start()
     {
         respawnButton = GameObject.Find("RespawnButton").GetComponent<Button>();
         Color c = deathScreen.color;
         c.a = 0f;
         deathScreen.color = c;
-        
+
         healthBallTransform = healthBall.GetComponent<RectTransform>();
         vioubble.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player");
@@ -47,7 +52,7 @@ public class PlayerHealthBar : MonoBehaviour
         deathScreenObj.SetActive(false);
         playerMovement = player.GetComponent<PlayerMovement>();
 
-        currHealth = 100f;
+        playerMovement.canMove = true;
     }
 
     void Update()

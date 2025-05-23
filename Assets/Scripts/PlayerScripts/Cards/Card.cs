@@ -76,12 +76,12 @@ public class Card : MonoBehaviour
                 hm.hold.Add(this);
                 hm.hand.Remove(this);
                 hm.DrawCard();
-
+                Debug.Log("card played");
                 if (cardType == "dashCard")
                 {
                     dashCard();
                 }
-                if (cardType == "gDashCard") //guitar dash
+                else if (cardType == "gDashCard") //guitar dash
                 {
                     gDash();
                 }
