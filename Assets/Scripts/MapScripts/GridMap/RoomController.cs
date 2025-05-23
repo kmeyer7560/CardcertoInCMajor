@@ -60,7 +60,7 @@ public class RoomController : MonoBehaviour
             {
                 foreach(Room room in loadedRooms)
                 {
-                    room.RemoveUnconnectedDoors();
+                    room.RemoveConnectedDoorsIfNoEnemies();
                 }
                 updatedRooms = true;
             }
@@ -158,9 +158,11 @@ public class RoomController : MonoBehaviour
     public string GetRandomRoomName()
     {
         string[] possibleRooms = new string[] {
-            "Empty",
-            "Basic",
-            "Basic",
+            "Basic1",
+            "Basic2",
+            "Basic3",
+            "Basic4",
+            "Basic5",
             "Chest"
         };
 
