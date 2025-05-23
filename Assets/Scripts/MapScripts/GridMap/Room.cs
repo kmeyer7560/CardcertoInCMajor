@@ -54,18 +54,25 @@ public class Room : MonoBehaviour
         }
 
         RoomController.instance.RegisterRoom(this);
-        RemoveUnconnectedDoors();
+        foreach (Door door in doors)
+        {
+            if (door != null && door.gameObject != null)
+            {
+                door.gameObject.SetActive(false);
+            }
+        }
     }
 
     void Update()
+{
+    if (name.Contains("End") && !updatedDoors)
     {
-        if (name.Contains("End") && !updatedDoors)
-        {
-            RemoveUnconnectedDoors();
-            updatedDoors = true;
-        }
+        RemoveConnectedDoorsIfNoEnemies();
+        ActivateConnectedDoors();
+        updatedDoors = true;
+    }
 
-            if (Input.GetKeyDown(KeyCode.K))
+    if (Input.GetKeyDown(KeyCode.K))
     {
         Debug.Log("press k");
         foreach (Door door in doors.ToList())
@@ -81,32 +88,53 @@ public class Room : MonoBehaviour
             }
         }
     }
+}
+
+
+    public void RemoveConnectedDoorsIfNoEnemies()
+{
+    bool hasEnemies = false;
+
+    foreach (Transform child in transform)
+    {
+        if (child.CompareTag("Enemy"))
+        {
+            hasEnemies = true;
+            break;
+        }
     }
 
-    public void RemoveUnconnectedDoors()
+    foreach (Door door in doors.ToList())
     {
-        foreach (Door door in doors)
+        if (door != null && door.gameObject != null)
         {
-            if (door != null && door.gameObject != null)
+            bool isConnected = IsConnectedRoom(door.doorType);
+
+            if (isConnected && !hasEnemies)
             {
-                bool shouldRemove = !IsConnectedRoom(door.doorType);
-                door.gameObject.SetActive(!shouldRemove);
+                Destroy(door.gameObject);
+                doors.Remove(door);
+            }
+            else
+            {
+                door.gameObject.SetActive(false);
             }
         }
     }
+}
 
     private bool IsConnectedRoom(Door.DoorType doorType)
     {
         switch (doorType)
         {
             case Door.DoorType.right:
-                return GetRight() == null;
+                return GetRight() != null;
             case Door.DoorType.left:
-                return GetLeft() == null;
+                return GetLeft() != null;
             case Door.DoorType.top:
-                return GetTop() == null;
+                return GetTop() != null;
             case Door.DoorType.bottom:
-                return GetBottom() == null;
+                return GetBottom() != null;
             default:
                 return false;
         }
@@ -177,6 +205,7 @@ public class Room : MonoBehaviour
             return;
 
         bool hasEnemies = false;
+
         foreach (Transform child in transform)
         {
             if (child.CompareTag("Enemy"))
@@ -191,19 +220,35 @@ public class Room : MonoBehaviour
             if (door != null && door.gameObject != null)
             {
                 bool isConnected = IsConnectedRoom(door.doorType);
-                if (isConnected)
+
+                if (!isConnected)
+                    continue;
+
+                if (hasEnemies)
                 {
-                    if (!hasEnemies)
-                    {
-                        Destroy(door.gameObject);
-                        doors.Remove(door);
-                    }
-                    else
-                    {
-                        door.gameObject.SetActive(true);
-                    }
+                    door.gameObject.SetActive(true);
+                }
+                else
+                {
+                    Destroy(door.gameObject);
+                    doors.Remove(door);
                 }
             }
         }
     }
+public void ActivateConnectedDoors()
+{
+    foreach (Door door in doors)
+    {
+        if (door != null && door.gameObject != null)
+        {
+            if (IsConnectedRoom(door.doorType))
+            {
+                door.gameObject.SetActive(true); // Show door if it's connected
+            }
+        }
+    }
+}
+
+
 }

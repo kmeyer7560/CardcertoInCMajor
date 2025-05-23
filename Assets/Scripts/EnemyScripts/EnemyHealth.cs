@@ -23,6 +23,8 @@ public class EnemyHealth : MonoBehaviour
     public Animator anim;
     public bool isAlive;
     private SpriteRenderer renderer;
+
+    private Room room;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,7 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = health;
         isAlive = true;
         renderer = GetComponentInChildren<SpriteRenderer>();
+        room = GetComponentInParent<Room>();
     }
 
     // Update is called once per frame
@@ -55,6 +58,10 @@ public class EnemyHealth : MonoBehaviour
         }
         anim.SetTrigger("dead");
         isAlive = false;
+        if (room != null)
+        {
+            room.CheckForEnemies();
+        }
 
         StartCoroutine(FadeToDeath());
     }

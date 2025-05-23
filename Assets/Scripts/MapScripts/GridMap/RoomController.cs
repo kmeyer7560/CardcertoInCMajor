@@ -60,7 +60,7 @@ public class RoomController : MonoBehaviour
             {
                 foreach(Room room in loadedRooms)
                 {
-                    room.RemoveUnconnectedDoors();
+                    room.RemoveConnectedDoorsIfNoEnemies();
                 }
                 updatedRooms = true;
             }

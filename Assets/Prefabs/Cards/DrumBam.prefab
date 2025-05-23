@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 6084438746439389207}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.323721, y: 4.2805367, z: -28.131376}
+  m_LocalPosition: {x: -8.222375, y: 4.279326, z: -28.131622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasBeenPlayed: 0
-  handIndex: 3
+  handIndex: 1
   staminaBar: {fileID: 3654076306677449298, guid: e084a1d2393ac49a4bad322bc8d5c347, type: 3}
   player: {fileID: 1891293838002807625, guid: 4cb7d92ef87124fe29edd9028ba4891d, type: 3}
   shootingPoint: {fileID: 5465922947931588012, guid: f664a3f9d3bb84e3bbb76abb4a8e364b, type: 3}
