@@ -62,7 +62,7 @@ public class PlayButton : MonoBehaviour
     {
         anim.SetTrigger("shake");
         yield return new WaitForSeconds(0f);
-        SceneManager.LoadScene("ForestMain");
+        SceneManager.LoadScene("keidenForestMain");
     }
 
     public void SettingsCameraPosition()

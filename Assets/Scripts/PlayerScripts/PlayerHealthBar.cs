@@ -24,7 +24,6 @@ public class PlayerHealthBar : MonoBehaviour
     Transform healthBallTransform;
     public GameObject deathScreenObj;
     [SerializeField] public RawImage deathScreen;
-    [SerializeField] public Button respawnButton;
     [SerializeField] private float fadeDuration = 5f;
     double currHealth;
 
@@ -39,10 +38,10 @@ public class PlayerHealthBar : MonoBehaviour
     }
     void Start()
     {
-        respawnButton = GameObject.Find("RespawnButton").GetComponent<Button>();
-        Color c = deathScreen.color;
-        c.a = 0f;
-        deathScreen.color = c;
+        deathScreen = GameObject.Find("DSBG").GetComponent<RawImage>();
+        Color fadecolor = deathScreen.color;
+        fadecolor.a = 0f;
+        deathScreen.color = fadecolor;
 
         healthBallTransform = healthBall.GetComponent<RectTransform>();
         vioubble.SetActive(false);
@@ -151,25 +150,24 @@ public class PlayerHealthBar : MonoBehaviour
 
         StartCoroutine(FadeIn());
         deathScreenObj.SetActive(true);
-        respawnButton.enabled = false;
     }
     IEnumerator FadeIn()
 {
     deathScreen.enabled = true;
     float elapsed = 0f;
-    Color c = deathScreen.color;
+    Color fadeColor = deathScreen.color;
     
     while (elapsed < fadeDuration)
     {
         elapsed += Time.deltaTime;
-        c.a = Mathf.Clamp01(elapsed / fadeDuration) *0.5f;
-        deathScreen.color = c;
+        fadeColor.a = Mathf.Clamp01(elapsed / fadeDuration) * 0.75f;
+        deathScreen.color = fadeColor;
         yield return null;
     }
-    c.a = 0.5f;
-    deathScreen.color = c;
-    respawnButton.enabled = true;
+    fadeColor.a = 0.75f;
+    deathScreen.color = fadeColor;
 }
+
     public void Respawn()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

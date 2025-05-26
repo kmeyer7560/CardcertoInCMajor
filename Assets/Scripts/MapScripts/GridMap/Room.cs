@@ -1,6 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public class Room : MonoBehaviour
 {
@@ -54,74 +54,76 @@ public class Room : MonoBehaviour
         }
 
         RoomController.instance.RegisterRoom(this);
+
+        // Start with doors closed and then update the connected doors after room initialization
+
+        // Delay the activation of doors to ensure room connections are confirmed
+        StartCoroutine(ActivateDoorsAfterDelay());
+    }
+
+    IEnumerator ActivateDoorsAfterDelay()
+    {
+        // Wait until the next frame to ensure room is fully initialized
+        yield return null;
+
+        // Now activate the connected doors
+        ActivateConnectedDoors();
+    }
+
+    void Update()
+    {
+        if (name.Contains("End") && !updatedDoors)
+        {
+            updatedDoors = true;
+        }
+    }
+
+    /*public void UpdateDoorStates()
+    {
         foreach (Door door in doors)
         {
             if (door != null && door.gameObject != null)
             {
-                door.gameObject.SetActive(false);
+                bool isConnected = IsConnectedRoom(door.doorType);
+                door.gameObject.SetActive(!isConnected); // Open doors if not connected
             }
         }
-    }
+    }*/
 
-    void Update()
-{
-    if (name.Contains("End") && !updatedDoors)
+    public void RemoveConnectedDoorsIfNoEnemies()
     {
-        RemoveConnectedDoorsIfNoEnemies();
-        ActivateConnectedDoors();
-        updatedDoors = true;
-    }
+        bool hasEnemies = false;
 
-    if (Input.GetKeyDown(KeyCode.K))
-    {
-        Debug.Log("press k");
-        foreach (Door door in doors.ToList())
+        foreach (Transform child in transform)
         {
-            if (door != null && door.gameObject != null)
+            if (child.CompareTag("Enemy"))
             {
-                bool isConnected = IsConnectedRoom(door.doorType);
-                if (isConnected)
+                hasEnemies = true;
+                break;
+            }
+        }
+
+        if (hasEnemies)
+        {
+            foreach (Door door in doors)
+            {
+                if (door != null && door.gameObject != null)
                 {
-                    door.gameObject.SetActive(true);
-                    Debug.Log($"Activated door: {door.doorType} in room {gameObject.name}");
+                    door.gameObject.SetActive(true); // Close all doors if there are enemies
+                }
+            }
+        }
+        else
+        {
+            foreach (Door door in doors)
+            {
+                if (door != null && door.gameObject != null)
+                {
+                    door.gameObject.SetActive(false); // Open all doors if there are no enemies
                 }
             }
         }
     }
-}
-
-
-    public void RemoveConnectedDoorsIfNoEnemies()
-{
-    bool hasEnemies = false;
-
-    foreach (Transform child in transform)
-    {
-        if (child.CompareTag("Enemy"))
-        {
-            hasEnemies = true;
-            break;
-        }
-    }
-
-    foreach (Door door in doors.ToList())
-    {
-        if (door != null && door.gameObject != null)
-        {
-            bool isConnected = IsConnectedRoom(door.doorType);
-
-            if (isConnected && !hasEnemies)
-            {
-                Destroy(door.gameObject);
-                doors.Remove(door);
-            }
-            else
-            {
-                door.gameObject.SetActive(false);
-            }
-        }
-    }
-}
 
     private bool IsConnectedRoom(Door.DoorType doorType)
     {
@@ -183,10 +185,9 @@ public class Room : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player entered room: " + gameObject.name);
             isPlayerInRoom = true;
             RoomController.instance.OnPlayerEnterRoom(this);
-            CheckForEnemies();
+            CheckForEnemies();  // Use the method with delay here
         }
     }
 
@@ -194,13 +195,14 @@ public class Room : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player exited room: " + gameObject.name);
             isPlayerInRoom = false;
+            CheckForEnemies();
         }
     }
 
     public void CheckForEnemies()
     {
+        Debug.Log("CHECKFIREBEMIES");
         if (!isPlayerInRoom)
             return;
 
@@ -215,40 +217,55 @@ public class Room : MonoBehaviour
             }
         }
 
-        foreach (Door door in doors.ToList())
+        if (hasEnemies)
+        {
+            Debug.Log("has enemies");
+            foreach (Door door in doors)
+            {
+                if (door != null && door.gameObject != null)
+                {
+                    door.gameObject.SetActive(true); // Close doors if there are enemies
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("no enemies");
+            ActivateConnectedDoors();
+        }
+    }
+
+    // Check for enemies with a delay before activating doors
+    public void CheckForEnemiesWithDelay()
+    {
+        StartCoroutine(CheckForEnemiesWithDelayCoroutine());
+    }
+
+    private IEnumerator CheckForEnemiesWithDelayCoroutine()
+    {
+        yield return new WaitForSeconds(3f);
+        CheckForEnemies();
+        yield return new WaitForSeconds(1f);
+        CheckForEnemies();
+    }
+
+    public void ActivateConnectedDoors()
+    {
+        Debug.Log("activatingConnectedDoors");
+        foreach (Door door in doors)
         {
             if (door != null && door.gameObject != null)
             {
-                bool isConnected = IsConnectedRoom(door.doorType);
-
-                if (!isConnected)
-                    continue;
-
-                if (hasEnemies)
+                // Only open doors with a connected room
+                if (IsConnectedRoom(door.doorType))
                 {
-                    door.gameObject.SetActive(true);
+                    door.gameObject.SetActive(false); // Open doors if connected
                 }
                 else
                 {
-                    Destroy(door.gameObject);
-                    doors.Remove(door);
+                    door.gameObject.SetActive(true); // Keep doors closed if not connected
                 }
             }
         }
     }
-public void ActivateConnectedDoors()
-{
-    foreach (Door door in doors)
-    {
-        if (door != null && door.gameObject != null)
-        {
-            if (IsConnectedRoom(door.doorType))
-            {
-                door.gameObject.SetActive(true); // Show door if it's connected
-            }
-        }
-    }
-}
-
-
 }

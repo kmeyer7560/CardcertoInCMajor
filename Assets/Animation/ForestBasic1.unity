@@ -7559,14 +7559,12 @@ MonoBehaviour:
   spawnerData:
   - name: ShotgunEnemy
     spawnerData: {fileID: 11400000, guid: 4f8ebff9baaefeb4896de5362ea292d3, type: 2}
-  - name: Melee
-    spawnerData: {fileID: 11400000, guid: ae21b91915581af498b13e46fced3c35, type: 2}
+  - name: crates
+    spawnerData: {fileID: 11400000, guid: 8460ff0c4cd58674eb09c395839b3341, type: 2}
   - name: trees
     spawnerData: {fileID: 11400000, guid: 95b0b6a896dd34625b19c679a51b6d4c, type: 2}
   - name: stumps
     spawnerData: {fileID: 11400000, guid: 57b07565b7a08f84680e91ca6dbd57d6, type: 2}
-  - name: shrubs
-    spawnerData: {fileID: 11400000, guid: 4738b18b3968994448dcd4f57c6b05ee, type: 2}
 --- !u!1 &1407692505
 GameObject:
   m_ObjectHideFlags: 0

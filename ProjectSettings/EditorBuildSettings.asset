@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FinalScenes/MainMenuScene.unity
     guid: e78f180c4cc4d4c8091565298c90b83e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DungeonScenes/ForestMain.unity
     guid: e3d162e90e769224da2d382108978e91
+  - enabled: 1
+    path: Assets/Scenes/keidenScenes/keidenForestMain.unity
+    guid: b5d06b2f7aa064585927a87ed40ba8d4
   - enabled: 1
     path: Assets/Scenes/DungeonScenes/ForestStart.unity
     guid: 4ef7b90a3058fad4cbcc3aee1c461564

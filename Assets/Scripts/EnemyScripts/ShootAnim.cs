@@ -12,7 +12,7 @@ public class ShootAnim : MonoBehaviour
 
     public void CallShoot()
     {
-        Debug.Log("shot is called");
+        //Debug.Log("shot is called");
         enemyScript.StartShooting();
     }
     public void CallStart()

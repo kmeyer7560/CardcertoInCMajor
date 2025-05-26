@@ -24,7 +24,7 @@ public class EnemyHealth : MonoBehaviour
     public bool isAlive;
     private SpriteRenderer renderer;
 
-    private Room room;
+    public Room room;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,7 +60,7 @@ public class EnemyHealth : MonoBehaviour
         isAlive = false;
         if (room != null)
         {
-            room.CheckForEnemies();
+            room.CheckForEnemiesWithDelay();
         }
 
         StartCoroutine(FadeToDeath());
@@ -73,7 +73,7 @@ public class EnemyHealth : MonoBehaviour
 
         for(float i=0; i<2f; i += Time.deltaTime)
         {
-            Debug.Log("dying");
+            //Debug.Log("dying");
             float normalizedTime = i/2f;
             float alpha = Mathf.Lerp(1f, 0f, normalizedTime);
             renderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);

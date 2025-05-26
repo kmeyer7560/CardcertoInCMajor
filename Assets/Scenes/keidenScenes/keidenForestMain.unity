@@ -436,6 +436,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 926645709}
     m_Modifications:
+    - target: {fileID: 258706257485797742, guid: d18fee0b730fb41c48ce2919f402c253, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2320070696713217375, guid: d18fee0b730fb41c48ce2919f402c253, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -735,7 +739,7 @@ Transform:
   m_GameObject: {fileID: 173853489}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8, y: 1.5, z: 0}
+  m_LocalPosition: {x: -9.56, y: 1.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6020,7 +6024,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -336.1, y: 183.6}
+  m_AnchoredPosition: {x: -378.4, y: -66}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &265288109
@@ -6231,7 +6235,7 @@ GameObject:
   - component: {fileID: 307867218}
   - component: {fileID: 307867217}
   m_Layer: 5
-  m_Name: bg
+  m_Name: DSBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6277,7 +6281,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 10305, guid: 0000000000000000f000000000000000, type: 0}
+  m_Texture: {fileID: 0}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -7536,7 +7540,7 @@ Transform:
   m_GameObject: {fileID: 618848537}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 1.5, z: -0.054120116}
+  m_LocalPosition: {x: -9.56, y: -2.16, z: -0.054120116}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8987,6 +8991,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GuitarBubble
       objectReference: {fileID: 0}
+    - target: {fileID: 4651807249749236087, guid: 31b301280718b4e5c85a057e2211b53b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070325988997487016, guid: 31b301280718b4e5c85a057e2211b53b, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8007069031167764175, guid: 31b301280718b4e5c85a057e2211b53b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -10396,7 +10408,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.923077
+  orthographic size: 8.461538
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -10499,9 +10511,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
-  m_AssetsPPU: 13
-  m_RefResolutionX: 320
-  m_RefResolutionY: 180
+  m_AssetsPPU: 26
+  m_RefResolutionX: 1280
+  m_RefResolutionY: 720
   m_CropFrame: 0
   m_GridSnapping: 0
   m_FilterMode: 0
@@ -11993,7 +12005,7 @@ Transform:
   m_GameObject: {fileID: 1616299098}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 1.5, z: -0.054120116}
+  m_LocalPosition: {x: -9.56, y: -0.89, z: -0.054120116}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13260,7 +13272,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000005fbc2d2a3343354d719e494a7d71dec88d075c52cb8718a5095751a1a7ac05cd9912eb49b30e0f3a
+  m_ApplyToSortingLayers: 0000000057ac12465fbc2d2a3343354d7d71dec8a7ac05cd7d03c3ed8d075c52cb8718a5719e494a095751a19912eb49fdad87b3b30e0f3ae5d7cbbc
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -13336,7 +13348,7 @@ Transform:
   m_GameObject: {fileID: 2079856418}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.5, y: 1.5, z: -0.054120116}
+  m_LocalPosition: {x: -9.56, y: 0.4, z: -0.054120116}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14513,7 +14525,7 @@ PrefabInstance:
     - target: {fileID: 487537091644731449, guid: 80e4abe6c0eee46089204ff2481926b9, type: 3}
       propertyPath: deathScreenObj
       value: 
-      objectReference: {fileID: 1276567582}
+      objectReference: {fileID: 307867215}
     - target: {fileID: 487537091644731449, guid: 80e4abe6c0eee46089204ff2481926b9, type: 3}
       propertyPath: playerMovement
       value: 
