@@ -15,7 +15,6 @@ public class ChestInteraction : MonoBehaviour
     public GameObject[] fluteCardPrefabs;
     public GameObject[] violinCardPrefabs;
     public GameObject[] drumCardPrefabs;
-    public GameObject[] universalCardPrefabs;
     public GameObject[] specialCardPrefabs;
 
     public GameObject player;
@@ -84,9 +83,6 @@ public class ChestInteraction : MonoBehaviour
                     break;
                 case "Diamonds":
                     prefabArray = drumCardPrefabs;
-                    break;
-                case "Universals":
-                    prefabArray = universalCardPrefabs;
                     break;
             }
 

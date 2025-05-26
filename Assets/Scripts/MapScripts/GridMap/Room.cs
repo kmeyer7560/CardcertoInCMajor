@@ -187,7 +187,7 @@ public class Room : MonoBehaviour
         {
             isPlayerInRoom = true;
             RoomController.instance.OnPlayerEnterRoom(this);
-            CheckForEnemies();  // Use the method with delay here
+            CheckForEnemies();
         }
     }
 
@@ -202,40 +202,44 @@ public class Room : MonoBehaviour
 
     public void CheckForEnemies()
     {
-        Debug.Log("CHECKFIREBEMIES");
-        if (!isPlayerInRoom)
-            return;
-
-        bool hasEnemies = false;
-
-        foreach (Transform child in transform)
-        {
-            if (child.CompareTag("Enemy"))
-            {
-                hasEnemies = true;
-                break;
-            }
-        }
-
-        if (hasEnemies)
-        {
-            Debug.Log("has enemies");
-            foreach (Door door in doors)
-            {
-                if (door != null && door.gameObject != null)
-                {
-                    door.gameObject.SetActive(true); // Close doors if there are enemies
-                }
-            }
-        }
-        else
-        {
-            Debug.Log("no enemies");
-            ActivateConnectedDoors();
-        }
+        StartCoroutine(CheckForEnemiesFix());
     }
 
-    // Check for enemies with a delay before activating doors
+    private IEnumerator CheckForEnemiesFix()
+    {
+        Debug.Log("CHECKFIREBEMIES");
+        yield return new WaitForSeconds(.3f);
+        if (isPlayerInRoom)
+        {
+                bool hasEnemies = false;
+
+            foreach (Transform child in transform)
+            {
+                if (child.CompareTag("Enemy"))
+                {
+                    hasEnemies = true;
+                    break;
+                }
+            }
+
+            if (hasEnemies)
+            {
+                Debug.Log("has enemies");
+                foreach (Door door in doors)
+                {
+                    if (door != null && door.gameObject != null)
+                    {
+                        door.gameObject.SetActive(true); // Close doors if there are enemies
+                    }
+                }
+            }
+            else
+            {
+                Debug.Log("no enemies");
+                ActivateConnectedDoors();
+            }
+        }
+    }
     public void CheckForEnemiesWithDelay()
     {
         StartCoroutine(CheckForEnemiesWithDelayCoroutine());
