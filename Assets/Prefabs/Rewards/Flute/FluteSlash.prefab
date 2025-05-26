@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -8566862490544365602}
   - component: {fileID: 5342662451499467327}
   - component: {fileID: 7520781986520475463}
+  - component: {fileID: 6736425932182886357}
   m_Layer: 0
   m_Name: FluteSlash
   m_TagString: ChestReward
@@ -143,6 +144,27 @@ MonoBehaviour:
     3
     MP'
   hm: {fileID: 4479590099476822781, guid: 4e2d9e805b6134ea8abfb15963564cb2, type: 3}
+--- !u!95 &6736425932182886357
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646419894224884969}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 24ad6e1ab022a40cb803b46133fb986d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7459899008520035935
 GameObject:
   m_ObjectHideFlags: 0
