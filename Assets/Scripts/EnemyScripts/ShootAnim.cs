@@ -8,6 +8,10 @@ public class ShootAnim : MonoBehaviour
     void Start()
     {
         enemyScript = enemyObject.GetComponent<EnemyScript>();
+        if (enemyScript == null)
+        {
+            Debug.Log("enemy script is null");
+        }
     }
 
     public void CallShoot()

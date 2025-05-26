@@ -64,10 +64,6 @@ public class EnemyScript : MonoBehaviour
         }
         playerHealthBar = GameObject.Find("PlayerHealthBar").GetComponent<PlayerHealthBar>();
 
-        if(!isMeleeEnemy || !isDoubleEnemy)
-        {
-            attackPoint = null;
-        }
         grapplePoint = GameObject.FindGameObjectWithTag("grapplePoint");
         player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)

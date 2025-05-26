@@ -9775,7 +9775,7 @@ GameObject:
   - component: {fileID: 5685996182443590925}
   m_Layer: 0
   m_Name: DaggerEnemy 1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9826,6 +9826,7 @@ MonoBehaviour:
   isMeleeEnemy: 0
   isDoubleEnemy: 1
   attackPoint: {fileID: 4527839605840707158}
+  grapplePoint: {fileID: 0}
   attackRange: 0.7
   enemyLayers:
     serializedVersion: 2
@@ -9859,6 +9860,7 @@ MonoBehaviour:
   coin: {fileID: 4583867773829352207, guid: 8608374c556deb640b5cb97a5c604d01, type: 3}
   anim: {fileID: 7213943082640874932}
   isAlive: 0
+  room: {fileID: 0}
 --- !u!50 &3410477575903246725
 Rigidbody2D:
   serializedVersion: 4
