@@ -57,7 +57,7 @@ public class PlayerHealthBar : MonoBehaviour
     void Update()
     {
         if(deathScreenObj == null){Debug.Log("null");}
-        if(currHealth <= 0 && !playingDeathSequence)
+        if(healthSlider.value<=0 && !playingDeathSequence)
         {
             DeathSequence();
             Debug.Log("playerdeath");
