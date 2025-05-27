@@ -31,6 +31,7 @@ public class PlayerHealthBar : MonoBehaviour
 
     public PlayerMovement playerMovement;
     bool playingDeathSequence;
+    public Timer timer;
 
     void Awake()
     {
@@ -52,15 +53,17 @@ public class PlayerHealthBar : MonoBehaviour
         playerMovement = player.GetComponent<PlayerMovement>();
 
         playerMovement.canMove = true;
+        timer = GameObject.Find("TimerManager").GetComponent<Timer>();
     }
 
     void Update()
     {
-        if(deathScreenObj == null){Debug.Log("null");}
+        //if(deathScreenObj == null){Debug.Log("null");}
         if(healthSlider.value<=0 && !playingDeathSequence)
         {
             DeathSequence();
             Debug.Log("playerdeath");
+
             playingDeathSequence = true;
         }
     }
@@ -147,7 +150,7 @@ public class PlayerHealthBar : MonoBehaviour
     {
         playerMovement.canMove = false;
         anim.SetTrigger("dead");
-
+        timer.StopTimer();
         StartCoroutine(FadeIn());
         deathScreenObj.SetActive(true);
     }

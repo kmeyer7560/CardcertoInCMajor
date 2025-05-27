@@ -403,7 +403,10 @@ public class EnemyScript : MonoBehaviour
 {
     isCharging = true;
     canMove = true;
-    Debug.Log("charging");
+        if (GetComponentInChildren<EnemyHealth>().isAlive)
+        {
+        Debug.Log("charging");
+    }
 
     while (Vector2.Distance(transform.position, playerTransform.position) > 2f && isCharging)
     {
@@ -413,7 +416,7 @@ public class EnemyScript : MonoBehaviour
         yield return null;
     }
 
-    if (isCharging)
+    if (isCharging && GetComponentInChildren<EnemyHealth>().isAlive)
     {
         animator.SetTrigger("stab");
         isCharging = false;

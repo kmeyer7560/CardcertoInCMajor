@@ -7,6 +7,7 @@ public class Timer : MonoBehaviour
 {
     [Header("Component")]
     public TextMeshProUGUI timerText;
+    public TextMeshProUGUI finalText;
 
     [Header("Timer Settings")]
     public float currentTime;
@@ -21,6 +22,8 @@ public class Timer : MonoBehaviour
     public TimerFormats format;
     private Dictionary<TimerFormats, string> timeFormats = new Dictionary<TimerFormats, string>();
 
+    public bool startTimer;
+
     public float finalTime;
 
     void Start()
@@ -32,6 +35,10 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
+        if (!startTimer)
+        {
+            currentTime = 0;
+        }
         if (!enabled) return;
 
         currentTime = countDown ? currentTime -= Time.deltaTime : currentTime += Time.deltaTime;
@@ -80,7 +87,7 @@ public class Timer : MonoBehaviour
     {
         if (currentTime < 1f)
         {
-                        timerText.text = (currentTime * 1000f).ToString("0") + " ms";
+                        timerText.text = (currentTime * 1000f).ToString("0");
         }
         else if (currentTime < 60f)
         {
@@ -116,6 +123,7 @@ public class Timer : MonoBehaviour
         finalTime = currentTime;
         enabled = false;
         timerText.color = Color.red;
+        finalText.text = timerText.text;
         SetTimerText();
     }
 }
