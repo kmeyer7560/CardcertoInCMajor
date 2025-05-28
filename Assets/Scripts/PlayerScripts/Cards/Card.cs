@@ -33,9 +33,30 @@ public class Card : MonoBehaviour
     private Animator anim;
     public int type; //0 = universals, 1 = guitar, 2 = violin, 3 = drum
 
+    public AudioClip Guitar1;
+    public AudioClip Guitar2;
+    public AudioClip Guitar3;
+    public AudioClip Violin1;
+    public AudioClip Violin2;
+    public AudioClip Violin3;
+    public AudioClip Flute1;
+    public AudioClip Flute2;
+    public AudioClip Flute3;
+    public AudioClip Drum1;
+    public AudioClip Drum2;
+    public AudioClip Drum3;
+    public AudioClip Magic;
+    private AudioSource audioSource;
+
+
 
     private void Start()
     {
+        audioSource = GameObject.Find("SoundFX").GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            Debug.Log("audiosource null");
+        }
         hm = FindObjectOfType<HandManager>();
         anim = FindObjectOfType<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -80,37 +101,70 @@ public class Card : MonoBehaviour
                 if (cardType == "dashCard")
                 {
                     dashCard();
+                    if (type == 0)
+                    {
+                        audioSource.PlayOneShot(Magic);
+                    }
                 }
                 else if (cardType == "gDashCard") //guitar dash
                 {
+                    audioSource.PlayOneShot(new AudioClip[] { Guitar1, Guitar2, Guitar3 }[Random.Range(0, 3)]);
                     gDash();
                 }
                 else if (cardType == "attackCard") //simple attack
                 {
                     shootCard();
+                    if (type == 0)
+                    {
+                        audioSource.PlayOneShot(Magic);
+                    }
+                    else if (type == 1)
+                    {
+                        audioSource.PlayOneShot(new AudioClip[] { Guitar1, Guitar2, Guitar3 }[Random.Range(0, 3)]);
+                    }
+                    else if (type == 2)
+                    {
+                        audioSource.PlayOneShot(new AudioClip[] { Violin1, Violin2, Violin3 }[Random.Range(0, 3)]);
+                    }
+                    else if (type == 3)
+                    {
+                        audioSource.PlayOneShot(new AudioClip[] { Drum1, Drum2, Drum3 }[Random.Range(0, 3)]);
+                    }
                 }
                 else if (cardType == "burstCard") //any burst shot
                 {
                     gameObject.SetActive(true);
                     StartCoroutine(burstDelay(burstShotNum));
+                    if (type == 1)
+                    {
+                        audioSource.PlayOneShot(new AudioClip[] { Guitar1, Guitar2, Guitar3 }[Random.Range(0, 3)]);
+                    }
+                    else if (type == 2)
+                    {
+                        audioSource.PlayOneShot(new AudioClip[] { Violin1, Violin2, Violin3 }[Random.Range(0, 3)]);
+                    }
                 }
                 else if (cardType == "laserCard") //guitar laser
                 {
+                    audioSource.PlayOneShot(new AudioClip[] { Guitar1, Guitar2, Guitar3 }[Random.Range(0, 3)]);
                     player.GetComponent<PlayerMovement>().moveable = false;
-                    player.GetComponent<PlayerMovement>().rb.velocity = new Vector2(0, 0);;
+                    player.GetComponent<PlayerMovement>().rb.velocity = new Vector2(0, 0); ;
                     shootCard();
                 }
                 else if (cardType == "GdefenseCard") //guitar defense increase
                 {
+                    audioSource.PlayOneShot(new AudioClip[] { Guitar1, Guitar2, Guitar3 }[Random.Range(0, 3)]);
                     healthBar.GetComponent<PlayerHealthBar>().setDefense(defense, 1);
                 }
                 else if (cardType == "speedCard") //violin speedup
                 {
                     player.GetComponent<PlayerMovement>().speedUp();
+                    audioSource.PlayOneShot(new AudioClip[] { Violin1, Violin2, Violin3 }[Random.Range(0, 3)]);
                 }
                 else if (cardType == "blowCard") //violin detonate
                 {
-                    List <GameObject> enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+                    audioSource.PlayOneShot(new AudioClip[] { Violin1, Violin2, Violin3 }[Random.Range(0, 3)]);
+                    List<GameObject> enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
                     foreach (GameObject i in enemies)
                     {
                         if (i == null)
@@ -122,46 +176,55 @@ public class Card : MonoBehaviour
                 }
                 else if (cardType == "deflectCard")
                 {
-                    gameObject.transform.position = new Vector2(1000000, 100000); 
+                    gameObject.transform.position = new Vector2(1000000, 100000);
                     healthBar.GetComponent<PlayerHealthBar>().deflect(deflectedValue => StartCoroutine(OnDeflectComplete(deflectedValue)));
                     healthBar.GetComponent<PlayerHealthBar>().deflectedNum = 0;
+                    audioSource.PlayOneShot(new AudioClip[] { Violin1, Violin2, Violin3 }[Random.Range(0, 3)]);
                 }
                 else if (cardType == "DdefenseCard")
                 {
                     healthBar.GetComponent<PlayerHealthBar>().setDefense(defense, 2);
+                    audioSource.PlayOneShot(new AudioClip[] { Drum1, Drum2, Drum3 }[Random.Range(0, 3)]);
                 }
                 else if (cardType == "drumBamCard")
                 {
+                    audioSource.PlayOneShot(new AudioClip[] { Drum1, Drum2, Drum3 }[Random.Range(0, 3)]);
                     Debug.Log("drumbam started");
                     StartCoroutine(DrumBam());
                 }
                 else if (cardType == "reinDashCard")
                 {
+                    audioSource.PlayOneShot(new AudioClip[] { Drum1, Drum2, Drum3 }[Random.Range(0, 3)]);
                     dDash();
                 }
 
                 else if (cardType == "fDefenseCard")
                 {
-                    windWall.transform.position = new Vector2 (10000, 10000);
+                    audioSource.PlayOneShot(new AudioClip[] { Flute1, Flute2, Flute3 }[Random.Range(0, 3)]);
+                    windWall.transform.position = new Vector2(10000, 10000);
                     windWall.SetActive(true);
                     windWall.GetComponent<windWall>().activate();
                 }
                 else if (cardType == "fDashCard")
                 {
+                    audioSource.PlayOneShot(new AudioClip[] { Flute1, Flute2, Flute3 }[Random.Range(0, 3)]);
                     fDash();
                 }
                 else if (cardType == "fSlashCard")
                 {
-                    fSLash.transform.position = new Vector2 (1000, 1000);
+                    audioSource.PlayOneShot(new AudioClip[] { Flute1, Flute2, Flute3 }[Random.Range(0, 3)]);
+                    fSLash.transform.position = new Vector2(1000, 1000);
                     fSLash.SetActive(true);
                     fSLash.GetComponent<fluteSlash>().activate();
                 }
                 else if (cardType == "getOverHereCard")
                 {
+                    audioSource.PlayOneShot(new AudioClip[] { Flute1, Flute2, Flute3 }[Random.Range(0, 3)]);
                     FindClosestEnemy().GetComponent<EnemyScript>().getHooked();
                 }
                 else if (cardType == "potofGreed")
                 {
+                    audioSource.PlayOneShot(Magic);
                     greed();
                 }
                 hm.shuffle();

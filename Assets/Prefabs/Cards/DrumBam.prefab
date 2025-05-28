@@ -119,3 +119,16 @@ MonoBehaviour:
   eneimes: []
   deflectBullets: 0
   type: 0
+  Guitar1: {fileID: 0}
+  Guitar2: {fileID: 0}
+  Guitar3: {fileID: 0}
+  Violin1: {fileID: 0}
+  Violin2: {fileID: 0}
+  Violin3: {fileID: 0}
+  Flute1: {fileID: 0}
+  Flute2: {fileID: 0}
+  Flute3: {fileID: 0}
+  Drum1: {fileID: 8300000, guid: 9307a55c87d174dfcb6b1190e5f0626e, type: 3}
+  Drum2: {fileID: 8300000, guid: e914d04d93aa74e2fa1c7dc94fd75689, type: 3}
+  Drum3: {fileID: 8300000, guid: fc26a3131456b49b28890f20caf84cd3, type: 3}
+  Magic: {fileID: 0}

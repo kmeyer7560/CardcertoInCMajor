@@ -27,6 +27,8 @@ public class BossController : MonoBehaviour
     public GameObject player;
     public bool playerInRoom;
     private Room currentRoom;
+    public Vector2 moveDirection;
+    public SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -42,6 +44,8 @@ public class BossController : MonoBehaviour
         currentHealth = maxHealth;
         phase = 0;
         rb = GetComponent<Rigidbody2D>();
+
+        ScytheDashStart();
     }
 
     public void StartAttack()
@@ -53,6 +57,15 @@ public class BossController : MonoBehaviour
         UpdateHealth();
         UpdateAttack();
         UpdatePlayerInRoom();
+        UpdateSpriteDirection();
+    }
+    void UpdateSpriteDirection()
+    {
+        if (spriteRenderer != null)
+        {
+            Vector2 directionToTarget = (player.transform.position - transform.position).normalized;
+            spriteRenderer.flipX = directionToTarget.x < 0;
+        }
     }
     void UpdatePlayerInRoom()
     {
@@ -90,6 +103,7 @@ public class BossController : MonoBehaviour
     {
         if (bossAlive && !attacking)
         {
+            Debug.Log("Call Atack");
             int attackType = Random.Range(0, 3);
             if (phase == 1)
             {
@@ -182,118 +196,151 @@ public class BossController : MonoBehaviour
     StartCoroutine(ScytheDashSequence());
 }
 
-private IEnumerator ScytheDashSequence()
-{
-    float baseForce = 10f;
-    float baseDelay = 2f;
-    for (int i = 1; i <= 10; i++)
+    private IEnumerator ScytheDashSequence()
+    {
+        attacking = true;
+        float baseForce = 10f;
+        float baseDelay = 3f;
+        for (int i = 1; i <= 20; i++)
         {
             int directionRange = Random.Range(1, 5);
-            float currentForce = baseForce * (i/10);
-            float currentDelay = baseDelay - (i/10);
+            float currentForce = baseForce + (i / 10);
+            float currentDelay = baseDelay - (i / 10);
 
             switch (directionRange)
             {
                 case 1:
                     // Up (dash down)
+                    Debug.Log("up");
                     transform.position = playerTransform.position + new Vector3(0, 5, 0);
                     anim.SetTrigger("DashDown");
                     rb.velocity = Vector2.zero;
                     rb.AddForce(Vector2.down * currentForce, ForceMode2D.Impulse);
                     yield return new WaitForSeconds(currentDelay - .5f);
+                    rb.velocity = Vector2.zero;
                     anim.SetTrigger("SlashDown");
                     break;
 
                 case 2:
                     // Down (dash up)
+                    Debug.Log("down");
                     transform.position = playerTransform.position + new Vector3(0, -5, 0);
                     anim.SetTrigger("DashUp");
                     rb.velocity = Vector2.zero;
                     rb.AddForce(Vector2.up * currentForce, ForceMode2D.Impulse);
                     yield return new WaitForSeconds(currentDelay - .5f);
+                    rb.velocity = Vector2.zero;
                     anim.SetTrigger("SlashUp");
                     break;
 
                 case 3:
                     // Left (dash right)
+                    Debug.Log("left");
                     transform.position = playerTransform.position + new Vector3(-5, 0, 0);
                     anim.SetTrigger("Dash");
                     rb.velocity = Vector2.zero;
                     rb.AddForce(Vector2.right * currentForce, ForceMode2D.Impulse);
                     yield return new WaitForSeconds(currentDelay - .5f);
+                    rb.velocity = Vector2.zero;
                     anim.SetTrigger("Slash");
                     break;
 
                 case 4:
                     // Right (dash left)
+                    Debug.Log("right");
                     transform.position = playerTransform.position + new Vector3(5, 0, 0);
                     anim.SetTrigger("Dash");
                     rb.velocity = Vector2.zero;
                     rb.AddForce(Vector2.left * currentForce, ForceMode2D.Impulse);
                     yield return new WaitForSeconds(currentDelay - .5f);
+                    rb.velocity = Vector2.zero;
                     anim.SetTrigger("Slash");
                     break;
             }
 
             yield return new WaitForSeconds(currentDelay);
+
         }
+        Debug.Log("ScytheDashOver");
+        attacking = false;
+        CallAttack();
 }
     public void TripleDashStart()
     {
         StartCoroutine(TripleDashSequence());
     }
     private IEnumerator TripleDashSequence()
-{
-    float delay = .5f;
-    float forceAmount = 5f;
-    for (int i = 0; i < 3; i++)
     {
-        for (int o = 0; o < 3; o++)
+        attacking = true;
+        float delay = 1f;
+        float forceAmount = 2f;
+        for (int i = 0; i < 3; i++)
         {
-            if (o == 2)
+            for (int o = 0; o < 3; o++)
             {
-                forceAmount = 10f;
-                delay = 1f;
-            }
-            Vector2 lastPlayerPosition = (Vector2)player.transform.position;
-            yield return new WaitForSeconds(delay);
-            Vector2 direction = lastPlayerPosition - (Vector2)transform.position;
+                if (o == 2)
+                {
+                    forceAmount = 3f;
+                    delay = 1f;
+                }
+                Vector2 lastPlayerPosition = (Vector2)player.transform.position;
+                yield return new WaitForSeconds(delay);
+                Vector2 direction = lastPlayerPosition - (Vector2)transform.position;
 
-            if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
-            {
-                // Horizontal direction
-                if (direction.x > 0)
+                if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
                 {
-                    // Player is right
-                    anim.SetTrigger("Dash");
-                    rb.AddForce(direction * forceAmount, ForceMode2D.Impulse);
+                    // Horizontal direction
+                    if (direction.x > 0)
+                    {
+                        // Player is right
+                        anim.SetTrigger("Dash");
+                        rb.velocity = Vector2.zero;
+                        rb.AddForce(direction * forceAmount, ForceMode2D.Impulse);
+                        yield return new WaitForSeconds(.8f);
+                        rb.velocity = Vector2.zero;
+                        anim.SetTrigger("Slash");
+                    }
+                    else
+                    {
+                        // Player is left
+                        anim.SetTrigger("Dash");
+                        rb.velocity = Vector2.zero;
+                        rb.AddForce(direction * forceAmount, ForceMode2D.Impulse);
+                        yield return new WaitForSeconds(.8f);
+                        rb.velocity = Vector2.zero;
+                        anim.SetTrigger("Slash");
+                    }
                 }
                 else
                 {
-                    // Player is left
-                    anim.SetTrigger("Dash");
-                    rb.AddForce(direction * forceAmount, ForceMode2D.Impulse);
+                    // Vertical direction
+                    if (direction.y > 0)
+                    {
+                        // Player is up
+                        anim.SetTrigger("DashUp");
+                        rb.velocity = Vector2.zero;
+                        rb.AddForce(direction * forceAmount, ForceMode2D.Impulse);
+                        yield return new WaitForSeconds(.8f);
+                        rb.velocity = Vector2.zero;
+                        anim.SetTrigger("Slash");
+                    }
+                    else
+                    {
+                        // Player is down
+                        anim.SetTrigger("DashDown");
+                        rb.velocity = Vector2.zero;
+                        rb.AddForce(direction * forceAmount, ForceMode2D.Impulse);
+                        yield return new WaitForSeconds(.8f);
+                        rb.velocity = Vector2.zero;
+                        anim.SetTrigger("Slash");
+                    }
                 }
             }
-            else
-            {
-                // Vertical direction
-                if (direction.y > 0)
-                {
-                    // Player is up
-                    anim.SetTrigger("DashUp");
-                    rb.AddForce(direction * forceAmount, ForceMode2D.Impulse);
-                }
-                else
-                {
-                    // Player is down
-                    anim.SetTrigger("DashDown");
-                    rb.AddForce(direction * forceAmount, ForceMode2D.Impulse);
-                }
-            }
+            attacking = false;
+            CallAttack();
+
         }
-
-    }
+        Debug.Log("TripleDashOver");
 }
     public void StartScytheThrow()
     {
@@ -304,32 +351,49 @@ private IEnumerator ScytheDashSequence()
 
     public void Catch()
     {
-    anim.SetBool("toss", false);
-    anim.SetTrigger("catch");
+        anim.SetBool("toss", false);
+        anim.SetTrigger("catch");
+        StartCoroutine(CatchSequence());
+    }
+    private IEnumerator CatchSequence()
+    {
+        yield return new WaitForSeconds(1f);
+        Debug.Log("Catch over");
+        CallAttack();
+
     }
     public void StartBackStab()
     {
-    StartCoroutine(BackStabSequence());
+        StartCoroutine(BackStabSequence());
     }
 
     private IEnumerator BackStabSequence()
     {
-    PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
-    gameObject.SetActive(false);
-    yield return new WaitForSeconds(3f);
-    if (playerMovement.savedDirection.x < 0)
-    {
-        // Player is facing LEFT
-        gameObject.SetActive(true);
-        transform.position = new Vector3(player.transform.position.x + 1, player.transform.position.y);
-    }
+        PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
+        gameObject.SetActive(false);
+        yield return new WaitForSeconds(3f);
+        if (playerMovement.savedDirection.x < 0)
+        {
+            // Player is facing LEFT
+            gameObject.SetActive(true);
+            transform.position = new Vector3(player.transform.position.x + 1, player.transform.position.y);
+            anim.SetTrigger("Slash");
+            yield return new WaitForSeconds(.8f);
+            Debug.Log("backstab over");
+            CallAttack();
+        }
 
-    if (playerMovement.savedDirection.x > 0)
-    {
-        // Player is facing RIGHT
-        gameObject.SetActive(true);
-        transform.position = new Vector3(player.transform.position.x - 1, player.transform.position.y);
-    }
+        if (playerMovement.savedDirection.x > 0)
+        {
+            // Player is facing RIGHT
+            gameObject.SetActive(true);
+            transform.position = new Vector3(player.transform.position.x - 1, player.transform.position.y);
+            anim.SetTrigger("Slash");
+            yield return new WaitForSeconds(.8f);
+            Debug.Log("backstab over");
+            CallAttack();
+        }
+    
 
     }
 }

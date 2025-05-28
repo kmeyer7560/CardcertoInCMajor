@@ -12797,6 +12797,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: FogStalker
       objectReference: {fileID: 0}
+    - target: {fileID: 5831358937684893597, guid: 3077b71ce6773bd4ab6595af1ee069b7, type: 3}
+      propertyPath: m_SortingLayer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5831358937684893597, guid: 3077b71ce6773bd4ab6595af1ee069b7, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1246338673
+      objectReference: {fileID: 0}
     - target: {fileID: 8218528816626802605, guid: 3077b71ce6773bd4ab6595af1ee069b7, type: 3}
       propertyPath: healthBar
       value: 
@@ -12809,6 +12817,10 @@ PrefabInstance:
       propertyPath: TPs.Array.size
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 8218528816626802605, guid: 3077b71ce6773bd4ab6595af1ee069b7, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 672937922795623774}
     - target: {fileID: 8218528816626802605, guid: 3077b71ce6773bd4ab6595af1ee069b7, type: 3}
       propertyPath: playerHealthBar
       value: 
@@ -12918,7 +12930,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -12960,7 +12972,12 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!212 &672937922795623774 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5831358937684893597, guid: 3077b71ce6773bd4ab6595af1ee069b7, type: 3}
+  m_PrefabInstance: {fileID: 672937922795623765}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
